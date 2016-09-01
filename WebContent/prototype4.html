@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body class="sansserif">
+	<form>
+		<a href="prototype.html" class="button">Home</a> <a
+			href="prototype2.html" class="button">Report Issue</a> <a
+			href="prototype3.html" class="button">Manage</a>
+	</form>
+	<br>
+	<form>
+		<fieldset>
+			<legend>
+				<h3>View Issue Details</h3>
+			</legend>
+			<br>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Project</th>
+						<th>Title</th>
+						<th>Date Submitted</th>
+						<th>Due date</th>
+						<th>Last Update</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0001</td>
+						<td>Test</td>
+						<td>Test</td>
+						<td>10/08/2016</td>
+						<td>30/08/2016</td>
+						<td>30/08/2016</td>
+					</tr>
+				</tbody>
+			</table>
+			<br> <br>
+			<div>
+				<p>
+					<label class="field" for="personId">Reporter </label><input
+						type="text" placeholder="Admin" />
+				</p>
+				<p>
+					<label class="field" for="personId">Assigned To </label><input
+						type="text" placeholder="Siwa" />
+				</p>
+				<p>
+					<label class="field" for="personId">Severity</label> <select>
+						<option value="volvo">Minor</option>
+						<option value="saab">Major</option>
+						<option value="mercedes">Crash</option>
+					</select>
+				</p>
+				<p>
+					<label class="field" for="personId">Priority</label> <select>
+						<option value="volvo">Low</option>
+						<option value="saab">Normal</option>
+						<option value="mercedes">High</option>
+
+					</select>
+				</p>
+				<p>
+					<label class="field" for="personId">Status </label><select>
+						<option value="volvo">New</option>
+						<option value="saab">Feedback</option>
+						<option value="saab">Acknowledged</option>
+						<option value="audi">Confirmed</option>
+						<option value="audi">Resolved</option>
+						<option value="audi">Closed</option>
+					</select>
+				</p>
+				<p>
+					<label class="field" for="personId">Description </label>
+					<textarea rows="4" cols="50"></textarea>
+				</p>
+				<label class="field" for="personId">Attach Files</label><input
+					type="text" />
+
+				<button class="field" type="button">Select File</button>
+				<br>
+				<p>
+					<input class="field" type="submit" value="Submit" />
+				</p>
+			</div>
+		</fieldset>
+	</form>
+</body>
+</html>

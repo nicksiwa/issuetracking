@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Report Issue</title>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body class="sansserif">
+	<form>
+		<a href="prototype.html" class="button">Home</a> <a
+			href="prototype2.html" class="button">Report Issue</a> <a
+			href="prototype3.html" class="button">Manage</a>
+	</form>
+	<br>
+	<form action="prototype.html">
+		<fieldset>
+			<legend>
+				<h3>Enter Report Details</h3>
+			</legend>
+			<div>
+				<label class="field" for="personId">Project</label> <select>
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</select> <br> <br> <label class="field" for="personId">Assign
+					To</label> <select>
+					<option value="volvo">Developer1</option>
+					<option value="saab">Developer2</option>
+					<option value="mercedes">Developer3</option>
+
+				</select> <br> <br> <label class="field" for="personId">Severity</label>
+				<select>
+					<option value="volvo">Minor</option>
+					<option value="saab">Major</option>
+					<option value="mercedes">Crash</option>
+				</select> <br> <br> <label class="field" for="personId">Priority</label>
+				<select>
+					<option value="volvo">Low</option>
+					<option value="saab">Normal</option>
+					<option value="mercedes">High</option>
+					
+				</select> <br> <br> <label class="field" for="personId">Title</label>
+				<input type="text" /> <br> <br> <label class="field"
+					for="personId">Description </label>
+				<textarea rows="4" cols="50"></textarea>
+				<br> <br> <label class="field" for="personId">Due
+					date</label> <input type="date" /><br> <br> <label class="field"
+					for="personId">Attach File</label> <input type="text" />
+				<button>Select file</button>
+				<br> <br>
+				<p>
+					<input class="field" type="submit" value="Submit" />
+				</p>
+			</div>
+			</fieldset>
+	</form>
+	<br>
+</body>
+</html>
