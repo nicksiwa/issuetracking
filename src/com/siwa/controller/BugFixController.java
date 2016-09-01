@@ -20,7 +20,7 @@ import com.siwa.model.Person;
 public class BugFixController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        private BugFixDAO dao;
-       public static final String lIST_PERSON = "/listBug.jsp";
+       public static final String lIST_BUG = "/listBug.jsp";
    	public static final String INSERT_OR_EDIT = "/bug.jsp";
   
     public BugFixController() {
@@ -35,7 +35,7 @@ public class BugFixController extends HttpServlet {
 		String forward = "";
 		String action = request.getParameter("action");
 		if (action.equalsIgnoreCase("delete")) {
-			forward = lIST_PERSON;
+			forward = lIST_BUG;
 			int bugId = Integer.parseInt(request.getParameter("bugId"));
 			dao.deleteBug(bugId);
 			request.setAttribute("bugs", dao.getAllBugs());
@@ -47,7 +47,7 @@ public class BugFixController extends HttpServlet {
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 		} else {
-			forward = lIST_PERSON;
+			forward = lIST_BUG;
 			request.setAttribute("bugs", dao.getAllBugs());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -81,7 +81,15 @@ public class BugFixController extends HttpServlet {
 		
 		String bugId = request.getParameter("bugId");
 		
-		if(bugId == null || bugId.isEmpty()){}
+		if(bugId == null || bugId.isEmpty()){
+			dao.addBug(bug);
+		}else{
+			bug.setBugId(Integer.parseInt(bugId));
+			dao.updateBug(bug);
+		}
+		RequestDispatcher view = request.getRequestDispatcher(lIST_BUG);
+		request.setAttribute("bugs", dao.getAllBugs());
+		view.forward(request, response);
 		
 	}
 
