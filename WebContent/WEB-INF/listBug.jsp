@@ -8,6 +8,24 @@
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body class="sansserif">
+<p>
+		<a href="FixBugController.do?action=insert">Add Issue</a>
+	</p>
+<table>
+		<thead>
+			<tr>
+				<th>Person ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Birth Date</th>
+				<th>Gender</th>
+				<th>Address</th>
+				<th>Telephone Number</th>
+				<th>Position</th>
+				<th colspan="2">Action</th>
+			</tr>
+		</thead>
+</table>
 
 </body>
 </html>
