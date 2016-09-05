@@ -51,22 +51,30 @@
 						type="text" placeholder="Siwa" />
 				</p>
 				<p>
-					<label class="field" for="personId">Severity</label> <select>
-						<option value="volvo">Minor</option>
-						<option value="saab">Major</option>
-						<option value="mercedes">Crash</option>
-					</select>
+					<label class="field" for="personId">Severity</label><input
+						type="text" placeholder="Minor" />
 				</p>
 				<p>
-					<label class="field" for="personId">Priority</label> <select>
-						<option value="volvo">Low</option>
-						<option value="saab">Normal</option>
-						<option value="mercedes">High</option>
+					<label class="field" for="personId">Priority</label><input
+						type="text" placeholder="Low" />
+				</p>
+				<p>
+					<label class="field" for="personId">Status </label><input
+						type="text" placeholder="Resolved" />
+				</p>
+				<p>
+					<label class="field" for="personId">Description </label>
+					<textarea rows="4" cols="50" placeholder="Font bug"></textarea>
+				</p>
+				<p>
+				<label class="field" for="personId">Attach Files </label><input
+					type="text" />
 
-					</select>
-				</p>
-				<p>
-					<label class="field" for="personId">Status </label><select>
+				<button class="field" type="button">Select File</button></p>
+				<br>
+				<hr>
+					<p>
+					<label class="field" for="personId"><a href="prototype5.html">Change Status To</a> </label><select>
 						<option value="volvo">New</option>
 						<option value="saab">Feedback</option>
 						<option value="saab">Acknowledged</option>
@@ -75,19 +83,26 @@
 						<option value="audi">Closed</option>
 					</select>
 				</p>
+				<hr>
 				<p>
-					<label class="field" for="personId">Description </label>
-					<textarea rows="4" cols="50"></textarea>
+					<label class="field" for="personId"><a href="prototype5.html">Assign To</a> </label><select>
+						<option value="volvo">Developer1</option>
+						<option value="saab">Developer2</option>
+					</select>
 				</p>
-				<label class="field" for="personId">Attach Files</label><input
-					type="text" />
-
-				<button class="field" type="button">Select File</button>
-				<br>
-				<p>
-					<input class="field" type="submit" value="Submit" />
-				</p>
+				<hr>	
 			</div>
+		</fieldset>
+		<br>
+		<fieldset>
+		<legend><h3>Note</h3></legend>
+		<div>
+		<table>
+		<tr>
+		<td>Developer1 12/08/2016<br>Assign to Developer2<br><a href="prototype5.html">edit</a> <a href="">delete</a></td><td>I can't find bug</td>
+		</tr>
+		</table>
+		</div>
 		</fieldset>
 	</form>
 </body>

@@ -14,10 +14,10 @@
 <table>
 		<thead>
 			<tr>
-				<th>Person ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Birth Date</th>
+				<th>Bug ID</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Complete %</th>
 				<th>Gender</th>
 				<th>Address</th>
 				<th>Telephone Number</th>
