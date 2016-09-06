@@ -77,12 +77,6 @@ public class Person {
 		this.birthDate = birthDate;
 	}
 
-
-	
-	
-	
-
-	
 	public String toString() {
 		return "Person [personId=" + personId + ",firstName=" + firstName + ", lastName=" + lastName + ",birthDate="
 				+ birthDate + ", gender=" + gender + ",address=" + address + ",tel=" + tel + ",position=" + position
