@@ -21,7 +21,7 @@ public class PersonDAOImplementation implements PersonDAO {
 	@Override
 	public void addPerson(Person person) {
 		try {
-			String query = "insert into person (firstName, lastName, birthDate, gender, address, tel, position) values (?,?,?,?,?,?,?)";
+			String query = "insert into Person (firstName, lastName, birthDate, gender, address, tel, position) values (?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setString(1, person.getFirstName());
 			preparedStatement.setString(2, person.getLastName());
@@ -40,7 +40,7 @@ public class PersonDAOImplementation implements PersonDAO {
 	@Override
 	public void deletePerson(int personId) {
 		try {
-			String query = "delete from person where personId=?";
+			String query = "delete from Person where personId=?";
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setInt(1, personId);
 			preparedStatement.executeUpdate();
@@ -57,7 +57,7 @@ public class PersonDAOImplementation implements PersonDAO {
 	@Override
 	public void updatePerson(Person person) {
 		try {
-			String query = "update person set firstName=?, lastName=?, birthDate=?, gender=?, address=?, tel=?, position=? where personId=?";
+			String query = "update Person set firstName=?, lastName=?, birthDate=?, gender=?, address=?, tel=?, position=? where personId=?";
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setString(1, person.getFirstName());
 			preparedStatement.setString(2, person.getLastName());
@@ -79,7 +79,7 @@ public class PersonDAOImplementation implements PersonDAO {
 		List<Person> persons = new ArrayList<Person>();
 		try {
 			Statement statement = conn.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from person");
+			ResultSet resultSet = statement.executeQuery("select * from Person");
 			while (resultSet.next()) {
 				Person person = new Person();
 				person.setPersonId(resultSet.getInt("personId"));
@@ -104,7 +104,7 @@ public class PersonDAOImplementation implements PersonDAO {
 	public Person getPersonById(int personId) {
 		Person person = new Person();
 		try {
-			String query = "select * from person where personId=?";
+			String query = "select * from Person where personId=?";
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setInt(1, personId);
 			ResultSet resultSet = preparedStatement.executeQuery();
