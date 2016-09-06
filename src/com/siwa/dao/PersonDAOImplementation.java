@@ -50,10 +50,6 @@ public class PersonDAOImplementation implements PersonDAO {
 		}
 	}
 	
-	
-
-
-	
 	@Override
 	public void updatePerson(Person person) {
 		try {
