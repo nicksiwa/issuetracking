@@ -9,7 +9,7 @@ public class Project {
 	private String status;
 	private String description;
 	private Date startDate;
-	private Date dueDate;
+	private Date finishDate;
 	
 	public int getProjectID() {
 		return projectID;
@@ -41,14 +41,14 @@ public class Project {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getDueDate() {
-		return dueDate;
+	public Date getFinishDate() {
+		return finishDate;
 	}
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
 	}
 	public String toString(){
 		return "Project [projectID=" + projectID + ",projectName="+projectName+",status="
-				+status+",description="+description+",startDate="+startDate+",dueDate="+dueDate+"]";
+				+status+",description="+description+",startDate="+startDate+",finishDate="+finishDate+"]";
 	}
 }
