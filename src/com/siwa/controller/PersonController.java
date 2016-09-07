@@ -55,7 +55,7 @@ public class PersonController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Person person = new Person();
 
 		String firstname = (request.getParameter("firstName"));
@@ -66,14 +66,12 @@ public class PersonController extends HttpServlet {
 		lastname = new String(lastname.getBytes("ISO8859-1"), "UTF-8");
 		person.setLastName(lastname);
 
-		
-		
 		try {
-            Date birthdate = new SimpleDateFormat("yyy-MM-dd",Locale.ENGLISH).parse(request.getParameter("birthDate"));
-            person.setBirthDate(birthdate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+			Date birthdate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("birthDate"));
+			person.setBirthDate(birthdate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		String gender = (request.getParameter("gender"));
 		gender = new String(gender.getBytes("ISO8859-1"), "UTF-8");
