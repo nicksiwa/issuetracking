@@ -38,7 +38,7 @@ public class ProjectController extends HttpServlet {
 			forward = LIST_PROJECT;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			dao.deleteProject(projectID);
-			request.setAttribute("projects", dao.getAllProject());
+			request.setAttribute("projects", dao.getAllProjects());
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
@@ -48,7 +48,7 @@ public class ProjectController extends HttpServlet {
 			forward = INSERT_OR_EDIT;
 		} else {
 			forward = LIST_PROJECT;
-			request.setAttribute("projects", dao.getAllProject());
+			request.setAttribute("projects", dao.getAllProjects());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
@@ -80,8 +80,7 @@ public class ProjectController extends HttpServlet {
 		}
 
 		try {
-			Date finishDate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
-					.parse(request.getParameter("finishDate"));
+			Date finishDate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("finishDate"));
 			project.setStartDate(finishDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -95,8 +94,10 @@ public class ProjectController extends HttpServlet {
 			project.setProjectID(Integer.parseInt(projectID));
 			dao.updateProject(project);
 		}
+		
+	
 		RequestDispatcher view = request.getRequestDispatcher(LIST_PROJECT);
-		request.setAttribute("projects", dao.getAllProject());
+		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);
 	}
 

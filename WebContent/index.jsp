@@ -6,6 +6,6 @@
 <title>Login Application</title>
 </head>
 <body>
-   <jsp:forward page="/PersonController?action=listPerson"></jsp:forward>
+   <jsp:forward page="/ProjectController?action=listProject"></jsp:forward>
 </body>
 </html>

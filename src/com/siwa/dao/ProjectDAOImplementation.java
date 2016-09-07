@@ -22,7 +22,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void addProject(Project project) {
 		try{
-			String query = "insert into Project (projectID, projectName, status, description, startDate, finishDate) values (?,?,?,?,?,?)";
+			String query = "insert into project (projectName, status, description, startDate, finishDate) values (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getStatus());
@@ -39,7 +39,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void deleteProject(int projectID) {
 		try{
-			String query = "delete from Project where projectID=?";
+			String query = "delete from project where projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, projectID);
 			ps.executeUpdate();
@@ -53,7 +53,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void updateProject(Project project) {
 		try{
-			String query = "update Project set projectName=?, status=?, description=?, startDate=?, finishDate=? where projectID=?";
+			String query = "update project set projectName=?, status=?, description=?, startDate=?, finishDate=? where projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getStatus());
@@ -70,11 +70,11 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	}
 
 	@Override
-	public List<Project> getAllProject() {
+	public List<Project> getAllProjects() {
 		List<Project> projects = new ArrayList<Project>();
 		try{
 			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("select * from Project");
+			ResultSet rs = statement.executeQuery("select * from project");
 			while(rs.next()){
 				Project project = new Project();
 				project.setProjectID(rs.getInt("projectID"));
@@ -97,7 +97,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	public Project getProjectById(int projectID) {
 		Project project = new Project();
 		try{
-			String query = "select * from Project where projectID=?";
+			String query = "select * from project where projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, projectID);
 			ResultSet rs = ps.executeQuery();

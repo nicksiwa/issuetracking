@@ -11,7 +11,7 @@ public interface ProjectDAO {
 
 	public void updateProject(Project project);
 
-	public List<Project> getAllProject();
+	public List<Project> getAllProjects();
 
 	public Project getProjectById(int projectID);
 }
