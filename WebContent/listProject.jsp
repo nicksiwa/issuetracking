@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show All Project</title>
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
@@ -23,6 +23,7 @@
 				<th>Description</th>
 				<th>Start Date</th>
 				<th>Finish Date</th>
+			
 				<th colspan="2">Action</th>
 			</tr>
 		</thead>
@@ -34,8 +35,9 @@
 					<td><c:out value="${project.status}"></c:out></td>
 					<td><c:out value="${project.description}"></c:out></td>
 					<td><fmt:formatDate pattern="dd-MM-yyy" value="${project.startDate}" /></td>
-
 					<td><fmt:formatDate pattern="dd-MM-yyy" value="${project.finishDate}" /></td>
+
+					
 					<td><a
 						href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>">Update</a></td>
 					<td><a

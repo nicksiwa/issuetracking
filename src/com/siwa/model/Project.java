@@ -11,6 +11,7 @@ public class Project {
 	private Date startDate;
 	private Date finishDate;
 	
+	
 	public int getProjectID() {
 		return projectID;
 	}
@@ -41,14 +42,19 @@ public class Project {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+	
 	public Date getFinishDate() {
 		return finishDate;
 	}
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
+	
+	
 	public String toString(){
 		return "Project [projectID=" + projectID + ",projectName="+projectName+",status="
-				+status+",description="+description+",startDate="+startDate+",finishDate="+finishDate+"]";
+				+status+",description="+description+",startDate="+startDate+"]";
 	}
+	
+	
 }

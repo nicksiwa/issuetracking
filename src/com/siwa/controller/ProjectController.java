@@ -19,6 +19,7 @@ import com.siwa.model.Project;
 
 @WebServlet("/ProjectController")
 public class ProjectController extends HttpServlet {
+	
 	private ProjectDAO dao;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_PROJECT = "/listProject.jsp";
@@ -78,13 +79,15 @@ public class ProjectController extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
+		
 		try {
 			Date finishDate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("finishDate"));
-			project.setStartDate(finishDate);
+			project.setFinishDate(finishDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
+		
 
 		String projectID = request.getParameter("projectID");
 
@@ -94,11 +97,8 @@ public class ProjectController extends HttpServlet {
 			project.setProjectID(Integer.parseInt(projectID));
 			dao.updateProject(project);
 		}
-		
-	
 		RequestDispatcher view = request.getRequestDispatcher(LIST_PROJECT);
 		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);
 	}
-
 }

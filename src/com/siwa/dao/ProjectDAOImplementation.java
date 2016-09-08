@@ -29,6 +29,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			ps.setString(3, project.getDescription());
 			ps.setDate(4,new java.sql.Date( project.getStartDate().getTime()));
 			ps.setDate(5,new java.sql.Date( project.getFinishDate().getTime()));
+		
 			ps.executeUpdate();
 			ps.close();	
 		}catch(SQLException e){
@@ -60,6 +61,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			ps.setString(3, project.getDescription());
 			ps.setDate(4,new java.sql.Date( project.getStartDate().getTime()));
 			ps.setDate(5,new java.sql.Date( project.getFinishDate().getTime()));
+	
 			ps.setInt(6, project.getProjectID());
 			ps.executeUpdate();
 			ps.close();
@@ -83,6 +85,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				project.setDescription(rs.getString("description"));
 				project.setStartDate(rs.getDate("startDate"));
 				project.setFinishDate(rs.getDate("finishDate"));
+				
 				projects.add(project);
 			}
 			rs.close();
@@ -102,11 +105,13 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			ps.setInt(1, projectID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				project.setProjectID(rs.getInt("projectID"));
 				project.setProjectName(rs.getString("projectName"));
 				project.setStatus(rs.getString("status"));
 				project.setDescription(rs.getString("description"));
 				project.setStartDate(rs.getDate("startDate"));
 				project.setFinishDate(rs.getDate("finishDate"));
+		
 			}
 			rs.close();
 			ps.close();

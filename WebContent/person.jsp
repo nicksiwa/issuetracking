@@ -9,62 +9,10 @@
 <script type="text/javascript" src="WebContent/js/jquery-1.7.1.min.js"></script>
 
 <title>Add New Person</title>
-
-
-
-<style>
-
-input[type=radio]{width: 5%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;}
-
-input[type=date]{width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;}
-
-input[type=text], select {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type=submit] {
-    width: 10%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
 </head>
-<body>
+<body class="sansserif">
 	<script>
 		$(function() {
 			$('input[name=birthDate]').datepicker();
