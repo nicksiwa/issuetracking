@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.model.Comment;
-import com.siwa.model.Person;
+
 
 
 @WebServlet("/CommentController")
@@ -24,7 +24,6 @@ public class CommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private CommentDAO dao;
-	
 	public static final String LIST_COMMENT = "/listComment.jsp";
 	public static final String INSERT_OR_EDIT = "/comment.jsp";
     

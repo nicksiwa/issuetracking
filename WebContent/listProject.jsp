@@ -19,11 +19,11 @@
 			<tr>
 				<th>Project ID</th>
 				<th>Project Name</th>
-				<th>Project Status</th>
+				<th>Status</th>
 				<th>Description</th>
 				<th>Start Date</th>
 				<th>Finish Date</th>
-			
+
 				<th colspan="2">Action</th>
 			</tr>
 		</thead>

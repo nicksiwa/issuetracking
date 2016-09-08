@@ -12,6 +12,7 @@
     <servlet-name>PersonController</servlet-name>
     <url-pattern>/PersonController.do</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ProjectController</servlet-name>
     <servlet-class>com.siwa.controller.ProjectController</servlet-class>
@@ -19,5 +20,14 @@
   <servlet-mapping>
     <servlet-name>ProjectController</servlet-name>
     <url-pattern>/ProjectController.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CommentController</servlet-name>
+    <servlet-class>com.siwa.controller.CommentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentController</servlet-name>
+    <url-pattern>/CommentController.do</url-pattern>
   </servlet-mapping>
 </web-app>
