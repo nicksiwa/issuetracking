@@ -12,9 +12,7 @@
     <servlet-name>PersonController</servlet-name>
     <url-pattern>/PersonController.do</url-pattern>
   </servlet-mapping>
-  
-  
-    <servlet>
+  <servlet>
     <servlet-name>ProjectController</servlet-name>
     <servlet-class>com.siwa.controller.ProjectController</servlet-class>
   </servlet>
