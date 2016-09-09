@@ -31,7 +31,7 @@
 					<td><c:out value="${comment.commentID}"></c:out></td>
 					<td><c:out value="${comment.description}"></c:out></td>
 					<td><c:out value="${comment.status}"></c:out></td>
-					<td><fmt:formatDate pattern="dd-MM-yyy" value="${comment.date}" /></td>
+					<td><fmt:formatDate pattern="dd-MM-yyy HH:mm" value="${comment.date}" /></td>
 
 					<td><a
 						href="CommentController.do?action=edit&commentID=<c:out value="${comment.commentID }"/>">Update</a></td>
