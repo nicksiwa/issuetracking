@@ -20,7 +20,6 @@
     <servlet-name>ProjectController</servlet-name>
     <url-pattern>/ProjectController.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>CommentController</servlet-name>
     <servlet-class>com.siwa.controller.CommentController</servlet-class>
@@ -29,14 +28,4 @@
     <servlet-name>CommentController</servlet-name>
     <url-pattern>/CommentController.do</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
-    <servlet-name>TestController</servlet-name>
-    <servlet-class>com.siwa.controller.TestController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TestController</servlet-name>
-    <url-pattern>/TestController.do</url-pattern>
-  </servlet-mapping>
-  
 </web-app>
