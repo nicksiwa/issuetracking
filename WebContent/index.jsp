@@ -10,6 +10,7 @@
 <a href="index1.jsp">Person</a>
 <a href="index2.jsp">Project</a>
 <a href="index3.jsp">Comment</a>
+<a href="index4.jsp">Test</a>
 
 </body>
 </html>

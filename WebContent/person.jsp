@@ -23,7 +23,7 @@
 	<form action="PersonController.do" method="post">
 	
 			<div>
-				<label for="personId">Person ID</label><br> <input type="text"
+				<input type="hidden"
 					name="personId" value="<c:out value="${person.personId}" />"
 					readonly="readonly" placeholder="Auto generate ID" />
 		<br><br>

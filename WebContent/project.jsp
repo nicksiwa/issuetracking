@@ -15,10 +15,10 @@
 	<form action="ProjectController.do" method="post">
 	
 	<div>
-				<label for="projectID">Project ID</label><br> <input type="text"
+			<input type="hidden"
 					name="projectID" value="<c:out value="${project.projectID}" />"
 					readonly="readonly" placeholder="Auto generate ID" />
-		<br><br>
+		
 				<label for="projectName">Project Name</label><br> <input type="text"
 					name="projectName" value="<c:out value="${project.projectName}" />"
 					placeholder="Project Name" />
