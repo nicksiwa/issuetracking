@@ -30,7 +30,7 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(4, issue.getPriority());
 			ps.setDate(5, new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(6, issue.getUpdateDate());
-			ps.setBlob(7, issue.getAttachFile());
+			ps.setBlob(7, issue.getAttachFile().getBinaryStream());
 			ps.setString(8, issue.getStatus());
 		}catch(SQLException e){
 			e.printStackTrace();
