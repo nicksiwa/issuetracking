@@ -4,23 +4,15 @@ import java.sql.Blob;
 import java.util.Date;
 
 public class Issue {
-	
-	private int issueID;
-	
-	private String title;
-	
-	private String description;
-	
-	private String severity;
-	
-	private String priority;
-	
-	private Date dueDate;
-	
-	private String updateDate;
-	
-	private Blob attachFile;
 
+	private int issueID;
+	private String title;
+	private String description;
+	private String severity;
+	private String priority;
+	private Date dueDate;
+	private String updateDate;
+	private Blob attachFile;
 	private String status;
 
 	public int getIssueID() {
@@ -101,6 +93,5 @@ public class Issue {
 				+ severity + ", priority=" + priority + ", dueDate=" + dueDate + ", updateDate=" + updateDate
 				+ ", attachFile=" + attachFile + ", status=" + status + "]";
 	}
-	
-	
+
 }
