@@ -32,13 +32,13 @@
 		<tbody>
 			<c:forEach items="${issues}" var="issue">
 				<tr>
+			
 					<td><c:out value="${issue.issueID}"></c:out></td>
 					<td><c:out value="${issue.title}"></c:out></td>
 					<td><c:out value="${issue.description}"></c:out></td>
 					<td><c:out value="${issue.severity}"></c:out></td>
 					<td><c:out value="${issue.priority}"></c:out></td>
-					<td><fmt:formatDate pattern="dd-MM-yyy"
-							value="${issue.dueDate}" /></td>
+					<td><fmt:formatDate pattern="dd-MM-yyy" value="${issue.dueDate}" /></td>
 					<td><c:out value="${issue.attachFile}"></c:out></td>
 					<td><c:out value="${issue.status}"></c:out></td>
 					<td><a

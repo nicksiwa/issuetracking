@@ -11,13 +11,13 @@
 </head>
 
 <body class="sansserif">
-	<form action="TestController.do" method="post">
+	<form action="TestController.do" method="post" enctype="multipart/form-data">
 		<div>
 			<input type="hidden" name="testID"
 				value="<c:out value="${test.testID}" />" readonly="readonly"
 				placeholder="Auto generate ID" /> <br>
 			<br> <label for="file">File</label><br> <input type="file"
-				name="file" value="<c:out value="${test.file}" />" /> <input
+				name="file" size="10" required="required"  value="<c:out value="${test.file}" />" /> <input
 				type="submit" value="Submit" />
 		</div>
 	</form>

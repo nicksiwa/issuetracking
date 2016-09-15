@@ -100,5 +100,6 @@ public class PersonController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(lIST_PERSON);
 		request.setAttribute("persons", dao.getAllPersons());
 		view.forward(request, response);
+	
 	}
 }

@@ -14,6 +14,7 @@
 		<a href="ProjectController.do?action=insert">Add Project</a>
 	</p>
 
+
 	<table>
 		<thead>
 			<tr>
