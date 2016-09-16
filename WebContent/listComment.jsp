@@ -2,18 +2,26 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+ <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="sansserif">
+<body>
+<div class="container">
+<ul class="nav nav-tabs" role="tablist">
+<li class="active"><a href="#">Home</a></li>
+<li><a href="index1.jsp">Person</a></li>
+<li><a href="index2.jsp">Project</a></li>
+<li><a href="index3.jsp">Comment</a></li>
+<li><a href="index4.jsp">Test</a></li>
+</ul>
 <p>
 		<a href="CommentController.do?action=insert">Add Comment</a>
 	</p>
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>Comment ID</th>
@@ -41,6 +49,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+</div>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

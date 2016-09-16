@@ -7,32 +7,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add New Comment</title>
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="sansserif">
+<body>
 
-<form action="CommentController.do" method="post">
-<div>
+<form action="CommentController.do" method="post" class="form-inline">
+<div class="container">
+<ul class="nav nav-tabs" role="tablist">
+<li class="active"><a href="#">Home</a></li>
+<li><a href="index1.jsp">Person</a></li>
+<li><a href="index2.jsp">Project</a></li>
+<li><a href="index3.jsp">Comment</a></li>
+<li><a href="index4.jsp">Test</a></li>
+</ul>
+
 <input type="hidden"
 					name="commentID" value="<c:out value="${comment.commentID}" />"
 					readonly="readonly" placeholder="Auto generate ID" />
 		<br><br>
+		<div class="form-group">
 		<label for="description">Description</label><br> <input type="text"
-					name="description" value="<c:out value="${comment.description}" />"
-					placeholder="Description" />
+					name="description" class="form-control" value="<c:out value="${comment.description}" />"
+					placeholder="Description" /></div>	
 		<br><br>
+		<div class="form-group">
 		<label for="status">Status</label><br> <input type="text"
-					name="status" value="<c:out value="${comment.status}" />"
+					name="status" class="form-control" value="<c:out value="${comment.status}" />"
 					placeholder="Status" />
+					</div>
 	
 		<input type="hidden" id="date"
 					name="commentTime" value="<c:out value="${comment.commentTime}" />"
 					placeholder="Comment Time" />
 					<br><br>
-<input type="submit" value="Submit" />
+<input type="submit" class="btn btn-default" value="Submit" />
 
 </div>
 </form>
+<script src="js/bootstrap.min.js"></script>
 
 </body>
 <script type="text/javascript">
