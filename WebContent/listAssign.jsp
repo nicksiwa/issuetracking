@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="sansserif">
+<body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -27,6 +27,7 @@
 					<li><a href="index2.jsp">Project</a></li>
 					<li><a href="index3.jsp">Comment</a></li>
 					<li><a href="index4.jsp">Test</a></li>
+					<li><a href="index5.jsp">Assign</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -38,53 +39,39 @@
 		</div>
 	</nav>
 
-	<div class="container">
+
+<div class="container">
 		<br>
 		<p>
-			<a href="TestController.do?action=insert">Add Test</a>
+			<a href="AssignController.do?action=insert">Add Assign</a>
 		</p>
-
-		<c:forEach items="${tests}" var="test">
-			<div class="row">
-				<div class="col-sm-6 col-md-4">
-					<div class="caption">
-						<div class="thumbnail">
-							<c:out value="${test.testID}"></c:out>
-							<c:out value="${test.testProject}"></c:out>
-							<c:out value="${test.testComment}"></c:out>
-						</div>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-
-		<table>
+		<table class="table table-hover table-responsive table-striped">
 			<thead>
 				<tr>
-					<th>Test ID</th>
-					<th>Test Project</th>
-					<th>Test Comment</th>
+					<th>Assign ID</th>
+					<th>Person ID</th>
+					<th>Project ID</th>
 					<th colspan="2">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${tests}" var="test">
+				<c:forEach items="${assigns}" var="assign">
 					<tr>
-						<td><c:out value="${test.testID}"></c:out></td>
-						<td><c:out value="${test.testProject}"></c:out></td>
-						<td><c:out value="${test.testComment}"></c:out></td>
-
+						<td><c:out value="${assign.assignID}"></c:out></td>
+						<td><c:out value="${assign.personID}"></c:out></td>
+						<td><c:out value="${assign.projectID}"></c:out></td>
 						<td><a
-							href="TestController.do?action=edit&testID=<c:out value="${test.testID }"/>">Update</a></td>
+							href="AssignController.do?action=edit&assignID=<c:out value="${assign.assignID }"/>">Update</a></td>
 						<td><a
-							href="TestController.do?action=delete&testID=<c:out value="${test.testID }"/>">Delete</a></td>
-
+							href="AssignController.do?action=delete&assignID=<c:out value="${assign.assignID }"/>">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<script src="js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-3.1.0.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script

@@ -66,11 +66,12 @@ public class TestDAOImplementation implements TestDAO {
 		List<Test> tests = new ArrayList<Test>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select * from test");
+			ResultSet rs = stat.executeQuery("select testID,projectID,commentID from test,project,comment where testID=1 order by projectID,commentID");
 			while(rs.next()){
 				Test test = new Test();
 				test.setTestID(rs.getInt("testID"));
-				test.setFile(rs.getBlob("file"));
+				test.setTestProject(rs.getInt("projectID"));
+				test.setTestComment(rs.getInt("commentID"));
 				tests.add(test);
 			}
 			rs.close();
@@ -85,13 +86,14 @@ public class TestDAOImplementation implements TestDAO {
 	public Test getTestById(int testID) {
 		Test test = new Test();
 		try{
-			String query = "select * from test where testID=?";
+			String query = "select testID,projectID,commentID from test,project,comment,person where personId=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, testID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				test.setTestID(rs.getInt("testID"));
-				test.setFile(rs.getBlob("file"));
+				test.setTestProject(rs.getInt("projectID"));
+				test.setTestComment(rs.getInt("commentID"));
 			}
 			rs.close();
 			ps.close();

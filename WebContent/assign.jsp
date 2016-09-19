@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
 <html>
@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="sansserif">
-	<nav class="navbar navbar-default">
+<body>
+<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -27,6 +27,7 @@
 					<li><a href="index2.jsp">Project</a></li>
 					<li><a href="index3.jsp">Comment</a></li>
 					<li><a href="index4.jsp">Test</a></li>
+					<li><a href="index5.jsp">Assign</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -38,53 +39,42 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<br>
-		<p>
-			<a href="TestController.do?action=insert">Add Test</a>
-		</p>
 
-		<c:forEach items="${tests}" var="test">
-			<div class="row">
-				<div class="col-sm-6 col-md-4">
-					<div class="caption">
-						<div class="thumbnail">
-							<c:out value="${test.testID}"></c:out>
-							<c:out value="${test.testProject}"></c:out>
-							<c:out value="${test.testComment}"></c:out>
-						</div>
-					</div>
-				</div>
+
+	<form action="AssignController.do" method="post" class="form-inline">
+		<div class="container">
+
+			<input type="hidden" name="assignID"
+				value="<c:out value="${assign.assignID}" />" readonly="readonly"
+				placeholder="Auto generate ID" /> <br>
+			<br>
+			<div class="form-group">
+				<label for="personID">Person ID</label><br> <input
+					type="text" name="personID" class="form-control"
+					value="<c:out value="${assign.personID}" />"
+					placeholder="Person ID" />
 			</div>
-		</c:forEach>
+			<br>
+			<br>
+			<div class="form-group">
+				<label for="projectID">Project ID</label><br> <input type="text"
+					name="projectID" class="form-control"
+					value="<c:out value="${assign.projectID}" />" placeholder="Project ID" />
+			</div>
+			
+	
+		
+		
+			<br>
+			<br> <input type="submit" class="btn btn-default" value="Submit" />
 
-		<table>
-			<thead>
-				<tr>
-					<th>Test ID</th>
-					<th>Test Project</th>
-					<th>Test Comment</th>
-					<th colspan="2">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${tests}" var="test">
-					<tr>
-						<td><c:out value="${test.testID}"></c:out></td>
-						<td><c:out value="${test.testProject}"></c:out></td>
-						<td><c:out value="${test.testComment}"></c:out></td>
+		</div>
+	</form>
 
-						<td><a
-							href="TestController.do?action=edit&testID=<c:out value="${test.testID }"/>">Update</a></td>
-						<td><a
-							href="TestController.do?action=delete&testID=<c:out value="${test.testID }"/>">Delete</a></td>
 
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<script src="js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-3.1.0.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script

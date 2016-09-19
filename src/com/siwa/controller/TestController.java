@@ -44,7 +44,7 @@ public class TestController extends HttpServlet {
 			request.setAttribute("tests", dao.getAllTest());
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
-			int testID = Integer.parseInt(request.getParameter("testID"));
+			int testID = Integer.parseInt(request.getParameter("personId"));
 			Test test = dao.getTestById(testID);
 			request.setAttribute("test", test);
 		} else if (action.equalsIgnoreCase("insert")) {
