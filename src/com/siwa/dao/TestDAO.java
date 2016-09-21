@@ -15,6 +15,10 @@ public interface TestDAO {
 	public List<Test> getAllTest();
 
 	public Test getTestById(int testID);
+	
+	public Test getTestByUser(int testID);
+	
+	public Test getTestByStatus(String status);
 
 }
 

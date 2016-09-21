@@ -54,6 +54,9 @@
 					value="<c:out value="${assign.personID}" />"
 					placeholder="Person ID" />
 			</div>
+			<c:forEach items="${assigns}" var="assign">
+			<c:out value="${assign.assignID}"></c:out>
+			</c:forEach>
 			<br>
 			<br>
 			<div class="form-group">

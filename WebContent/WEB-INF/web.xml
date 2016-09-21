@@ -44,4 +44,13 @@
     <servlet-name>AssignController</servlet-name>
     <url-pattern>/AssignController.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>IssueController</servlet-name>
+    <servlet-class>com.siwa.controller.IssueController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IssueController</servlet-name>
+    <url-pattern>/IssueController.do</url-pattern>
+  </servlet-mapping>
 </web-app>

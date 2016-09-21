@@ -12,7 +12,7 @@ public class Issue {
 	private String priority;
 	private Date dueDate;
 	private String updateDate;
-	private Blob attachFile;
+	//private Blob attachFile;
 	private String status;
 
 	public int getIssueID() {
@@ -71,13 +71,13 @@ public class Issue {
 		this.updateDate = updateDate;
 	}
 
-	public Blob getAttachFile() {
+	/*public Blob getAttachFile() {
 		return attachFile;
 	}
 
 	public void setAttachFile(Blob attachFile) {
 		this.attachFile = attachFile;
-	}
+	}*/
 
 	public String getStatus() {
 		return status;
@@ -91,7 +91,7 @@ public class Issue {
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", title=" + title + ", description=" + description + ", severity="
 				+ severity + ", priority=" + priority + ", dueDate=" + dueDate + ", updateDate=" + updateDate
-				+ ", attachFile=" + attachFile + ", status=" + status + "]";
+				+ ", status=" + status + "]";
 	}
 
 }

@@ -8,6 +8,7 @@ public class Test {
 	private Blob file;
 	private int testProject;
 	private int testComment; 
+	private String testStatus;
 	
 	public int getTestID() {
 		return testID;
@@ -35,14 +36,15 @@ public class Test {
 		this.testComment = testComment;
 	}
 	
-	
-	public String toString(){
-		return "Test [testID="+testID+",file="+file+",testProject="+testProject+",testComment="+testComment+"]";
+	public String getTestStatus() {
+		return testStatus;
+	}
+	public void setTestStatus(String testStatus) {
+		this.testStatus = testStatus;
 	}
 	
-	
-	
-	
-	
-
+	public String toString(){
+		return "Test [testID="+testID+",file="+file+",testProject="
+				+testProject+",testComment="+testComment+",testStatus="+testStatus+"]";
+	}
 }

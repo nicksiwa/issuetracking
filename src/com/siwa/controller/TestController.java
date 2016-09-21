@@ -25,6 +25,7 @@ public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_TEST = "/listTest.jsp";
 	public static final String INSERT_OR_EDIT = "/test.jsp";
+	public static final String STATUS = "/testStatus.jsp";
 
  
 
@@ -49,6 +50,11 @@ public class TestController extends HttpServlet {
 			request.setAttribute("test", test);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
+		} else if (action.equalsIgnoreCase("status")) {
+			forward = STATUS;
+			String status = request.getParameter("status");
+			Test test = dao.getTestByStatus(status);
+			request.setAttribute("test", test);
 		} else {
 			forward = LIST_TEST;
 			request.setAttribute("tests", dao.getAllTest());
@@ -82,6 +88,7 @@ public class TestController extends HttpServlet {
     		RequestDispatcher view = request.getRequestDispatcher(LIST_TEST);
     		request.setAttribute("tests", dao.getAllTest());
     		view.forward(request, response);
+    		
         }
 
 	}

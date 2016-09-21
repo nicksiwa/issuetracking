@@ -89,7 +89,7 @@ public class IssueController extends HttpServlet {
 		updateDate = new String(updateDate.getBytes("ISO8859-1"),"UTF-8");
 		issue.setUpdateDate(updateDate);
 		
-		Part filePart = request.getPart("attachFile");
+		/*Part filePart = request.getPart("attachFile");
         if (filePart != null) {
             // debug messages
             System.out.println(filePart.getName());
@@ -98,7 +98,7 @@ public class IssueController extends HttpServlet {
 
             // obtains input stream of the upload file
             inputStream = filePart.getInputStream();
-        }
+        }*/
         
         String status = (request.getParameter("status"));
         status = new String(status.getBytes("ISO8859-1"),"UTF-8");

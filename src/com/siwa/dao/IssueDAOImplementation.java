@@ -22,7 +22,7 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void addIssue(Issue issue) {
 		try{
-			String query = "insert into issue (title,description,severity,priority,dueDate,updateDate,attachFile,status) values (?,?,?,?,?,?,?,?)";
+			String query = "insert into issue (title,description,severity,priority,dueDate,updateDate,status) values (?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, issue.getTitle());
 			ps.setString(2, issue.getDescription());
@@ -30,8 +30,8 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(4, issue.getPriority());
 			ps.setDate(5, new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(6, issue.getUpdateDate());
-			ps.setBlob(7, issue.getAttachFile().getBinaryStream());
-			ps.setString(8, issue.getStatus());
+			/*ps.setBlob(7, issue.getAttachFile().getBinaryStream());*/
+			ps.setString(7, issue.getStatus());
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -55,7 +55,7 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void updateIssue(Issue issue) {
 		try{
-			String query = "update issue set title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, attachFile=?, status=? where issueID=?";
+			String query = "update issue set title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=? where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, issue.getTitle());
 			ps.setString(2, issue.getDescription());
@@ -63,9 +63,9 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(4, issue.getPriority());
 			ps.setDate(5, new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(6, issue.getUpdateDate());
-			ps.setBlob(7, issue.getAttachFile());
-			ps.setString(8, issue.getStatus());
-			ps.setInt(9, issue.getIssueID());
+			/*ps.setBlob(7, issue.getAttachFile());*/
+			ps.setString(7, issue.getStatus());
+			ps.setInt(8, issue.getIssueID());
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -87,7 +87,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
-				issue.setAttachFile(rs.getBlob("attachFile"));
+				/*issue.setAttachFile(rs.getBlob("attachFile"));*/
 				issue.setStatus(rs.getString("status"));
 				issues.add(issue);
 			}
@@ -116,7 +116,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
-				issue.setAttachFile(rs.getBlob("attachFile"));
+				/*issue.setAttachFile(rs.getBlob("attachFile"));*/
 				issue.setStatus(rs.getString("status"));
 			}
 			rs.close();

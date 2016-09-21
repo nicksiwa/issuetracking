@@ -66,12 +66,12 @@ public class TestDAOImplementation implements TestDAO {
 		List<Test> tests = new ArrayList<Test>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select testID,projectID,commentID from test,project,comment where testID=1 order by projectID,commentID");
+			ResultSet rs = stat.executeQuery("select testID,projectID,status from test,project where testID=1 order by projectID");
 			while(rs.next()){
 				Test test = new Test();
 				test.setTestID(rs.getInt("testID"));
 				test.setTestProject(rs.getInt("projectID"));
-				test.setTestComment(rs.getInt("commentID"));
+				test.setTestStatus(rs.getString("status"));
 				tests.add(test);
 			}
 			rs.close();
@@ -100,6 +100,34 @@ public class TestDAOImplementation implements TestDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		return test;
+	}
+
+	@Override
+	public Test getTestByUser(int testID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Test getTestByStatus(String status) {
+		Test test = new Test();
+		try{
+			String query = "select testID,projectID,status from test,project,person where status=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, status);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				test.setTestID(rs.getInt("testID"));
+				test.setTestProject(rs.getInt("projectID"));
+				test.setTestStatus(rs.getString("status"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
 		return test;
 	}
 
