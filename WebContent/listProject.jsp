@@ -23,7 +23,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href="index.jsp">Home</a></li>
 					<li><a href="index1.jsp">Person</a></li>
 					<li><a href="index2.jsp">Project</a></li>
 					<li><a href="index3.jsp">Comment</a></li>
