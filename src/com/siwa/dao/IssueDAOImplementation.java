@@ -28,10 +28,11 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(2, issue.getDescription());
 			ps.setString(3, issue.getSeverity());
 			ps.setString(4, issue.getPriority());
-			ps.setDate(5, new java.sql.Date (issue.getDueDate().getTime()));
+			ps.setDate(5,new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(6, issue.getUpdateDate());
-			/*ps.setBlob(7, issue.getAttachFile().getBinaryStream());*/
 			ps.setString(7, issue.getStatus());
+			ps.executeUpdate();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -61,11 +62,12 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(2, issue.getDescription());
 			ps.setString(3, issue.getSeverity());
 			ps.setString(4, issue.getPriority());
-			ps.setDate(5, new java.sql.Date (issue.getDueDate().getTime()));
+			ps.setDate(5,new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(6, issue.getUpdateDate());
-			/*ps.setBlob(7, issue.getAttachFile());*/
 			ps.setString(7, issue.getStatus());
 			ps.setInt(8, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -73,7 +75,7 @@ public class IssueDAOImplementation implements IssueDAO {
 	}
 
 	@Override
-	public List<Issue> getAllIssues() {
+	public List<Issue> getAllIssue() {
 		List<Issue> issues = new ArrayList<Issue>();
 		try{
 			Statement stat = conn.createStatement();
@@ -87,7 +89,6 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
-				/*issue.setAttachFile(rs.getBlob("attachFile"));*/
 				issue.setStatus(rs.getString("status"));
 				issues.add(issue);
 			}
@@ -96,12 +97,11 @@ public class IssueDAOImplementation implements IssueDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 		return issues;
 	}
 
 	@Override
-	public Issue getIssueById(int issueID) {
+	public Issue getAssignById(int issueID) {
 		Issue issue = new Issue();
 		try{
 			String query = "select * from issue where issueID=?";
@@ -116,7 +116,6 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
-				/*issue.setAttachFile(rs.getBlob("attachFile"));*/
 				issue.setStatus(rs.getString("status"));
 			}
 			rs.close();

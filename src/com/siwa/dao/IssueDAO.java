@@ -5,15 +5,15 @@ import java.util.List;
 import com.siwa.model.Issue;
 
 public interface IssueDAO {
-
+	
 	public void addIssue(Issue issue);
 
 	public void deleteIssue(int issueID);
 
 	public void updateIssue(Issue issue);
 
-	public List<Issue> getAllIssues();
+	public List<Issue> getAllIssue();
 
-	public Issue getIssueById(int issueID);
-	
+	public Issue getAssignById(int issueID);
+
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
 <html>
@@ -27,6 +27,8 @@
 					<li><a href="index2.jsp">Project</a></li>
 					<li><a href="index3.jsp">Comment</a></li>
 					<li><a href="index4.jsp">Test</a></li>
+					<li><a href="index5.jsp">Assign</a></li>
+					<li><a href="index6.jsp">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -37,9 +39,10 @@
 			</div>
 		</div>
 	</nav>
-	
-	
-	<form action="TestController.do" method="post" enctype="multipart/form-data">
+
+
+	<form action="TestController.do" method="post"
+		enctype="multipart/form-data">
 		<c:forEach items="${tests}" var="test">
 			<div class="row">
 				<div class="col-sm-6 col-md-4">

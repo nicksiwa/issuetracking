@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
@@ -28,6 +28,7 @@
 					<li><a href="index3.jsp">Comment</a></li>
 					<li><a href="index4.jsp">Test</a></li>
 					<li><a href="index5.jsp">Assign</a></li>
+					<li><a href="index6.jsp">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -40,7 +41,7 @@
 	</nav>
 
 
-<div class="container">
+	<div class="container">
 		<br>
 		<p>
 			<a href="AssignController.do?action=insert">Add Assign</a>
@@ -70,7 +71,7 @@
 		</table>
 	</div>
 
-<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -36,7 +36,7 @@
     <servlet-name>TestController</servlet-name>
     <url-pattern>/TestController.do</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>AssignController</servlet-name>
     <servlet-class>com.siwa.controller.AssignController</servlet-class>
   </servlet>

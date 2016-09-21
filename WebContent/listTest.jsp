@@ -27,6 +27,8 @@
 					<li><a href="index2.jsp">Project</a></li>
 					<li><a href="index3.jsp">Comment</a></li>
 					<li><a href="index4.jsp">Test</a></li>
+					<li><a href="index5.jsp">Assign</a></li>
+					<li><a href="index6.jsp">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>

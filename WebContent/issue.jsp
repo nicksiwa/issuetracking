@@ -28,6 +28,8 @@
         <li><a href="index2.jsp">Project</a></li>
         <li><a href="index3.jsp">Comment</a></li>
         <li><a href="index4.jsp">Test</a></li>
+		<li><a href="index5.jsp">Assign</a></li>
+        <li><a href="index6.jsp">Issue</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -58,9 +60,12 @@
 			<br>
 			<br>
 			<div class="form-group">
-				<label for="severity">Severity</label><br> <input type="text"
-					name="severity" class="form-control"
-					value="<c:out value="${issue.severity}" />" placeholder="Severity" />
+				<label for="severity">Severity</label><br> <select
+					name="severity" class="form-control">
+					<option value="Minor">Minor</option>
+					<option value="Major">Major</option>
+					<option value="Crash">Crash</option>
+				</select>
 			</div>
 			<br>
 			<br>
@@ -81,7 +86,7 @@
 			</div>
 			<br>
 			<br>
-			<input type="text" id="date" name="updateDate"
+			<input type="hidden" id="date" name="updateDate"
 				value="<c:out value="${issue.updateDate}" />"
 				placeholder="Comment Time" />
 				
