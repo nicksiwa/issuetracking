@@ -61,10 +61,11 @@
 			</div>
 			<br> <br>
 			<div class="form-group">
-				<label for="description">Description</label><br> <input
-					type="text" name="description" class="form-control"
-					value="<c:out value="${project.description}" />"
-					placeholder="Description" />
+
+				<label for="description">Description</label> <br>
+				<textarea rows="4" cols="50" name="description" class="form-control"
+					placeholder="Description"> <c:out
+						value="${project.description}" /> </textarea>
 			</div>
 			<br> <br>
 			<div class="form-group">
