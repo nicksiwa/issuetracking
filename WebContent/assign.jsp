@@ -22,13 +22,13 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li><a href="index1.jsp">Person</a></li>
-					<li><a href="index2.jsp">Project</a></li>
-					<li><a href="index3.jsp">Comment</a></li>
-					<li><a href="index4.jsp">Test</a></li>
-					<li><a href="index5.jsp">Assign</a></li>
-					<li><a href="index6.jsp">Issue</a></li>
+				<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="PersonController?action=listPerson">Person</a></li>
+					<li><a href="ProjectController?action=listProject">Project</a></li>
+					<li><a href="CommentController?action=listComment">Comment</a></li>
+					<li><a href="TestController?action=listTest">Test</a></li>
+					<li><a href="AssignController?action=listAssign">Assign</a></li>
+					<li><a href="IssueController?action=listIssue">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
