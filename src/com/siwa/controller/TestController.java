@@ -50,6 +50,10 @@ public class TestController extends HttpServlet {
 			request.setAttribute("test", test);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
+			request.setAttribute("testss", dao.getPersonAndProject());
+			
+			
+			
 		} else if (action.equalsIgnoreCase("status")) {
 			forward = STATUS;
 			String status = request.getParameter("status");
@@ -65,18 +69,19 @@ public class TestController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Test test = new Test();
-		InputStream inputStream = null;
-		 
-        Part filePart = request.getPart("file");
-        if (filePart != null) {
+		
+		String testName = (request.getParameter("testName"));
+		testName = new String(testName.getBytes("ISO8859-1"), "UTF-8");
+		test.setTestName(testName);
+	
+	
+		String testProject = (request.getParameter("testProject"));
+		testProject = new String(testProject.getBytes("ISO8859-1"), "UTF-8");
+		test.setTestProject(testProject);
+            
            
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-
-            inputStream = filePart.getInputStream();
-            
-            
+		
+		
             String testID = request.getParameter("testID");
         	
     		if (testID == null || testID.isEmpty())
@@ -93,4 +98,4 @@ public class TestController extends HttpServlet {
 
 	}
 
-}
+

@@ -83,7 +83,20 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
+	<select>
+		<c:forEach var="person" items="${persons}">
+			<option><c:out value="${person.firstName}" /></option>
+		</c:forEach>
+	</select>
+
 	</div>
+
+
+	
+
+
+
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

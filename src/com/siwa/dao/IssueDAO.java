@@ -3,6 +3,7 @@ package com.siwa.dao;
 import java.util.List;
 
 import com.siwa.model.Issue;
+import com.siwa.model.Test;
 
 public interface IssueDAO {
 	
@@ -15,5 +16,7 @@ public interface IssueDAO {
 	public List<Issue> getAllIssue();
 
 	public Issue getAssignById(int issueID);
+	
+	public List<Issue> getPersonAndProject();
 
 }

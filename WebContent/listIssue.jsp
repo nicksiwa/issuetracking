@@ -47,6 +47,8 @@
 		<thead>
 			<tr>
 				<th>Issue ID</th>
+				<th>Project</th>
+				<th>Assign To</th>
 				<th>Title</th>
 				<th>Description</th>
 				<th>Severity</th>
@@ -63,6 +65,8 @@
 				<tr>
 			
 					<td><c:out value="${issue.issueID}"></c:out></td>
+					<td><c:out value="${issue.project}"></c:out></td>
+					<td><c:out value="${issue.assign}"></c:out></td>
 					<td><c:out value="${issue.title}"></c:out></td>
 					<td><c:out value="${issue.description}"></c:out></td>
 					<td><c:out value="${issue.severity}"></c:out></td>

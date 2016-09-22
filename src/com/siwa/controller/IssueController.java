@@ -46,8 +46,11 @@ public class IssueController extends HttpServlet {
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = dao.getAssignById(issueID);
 			request.setAttribute("issue", issue);
+			request.setAttribute("issuess", dao.getPersonAndProject());
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
+			request.setAttribute("issuess", dao.getPersonAndProject());
+			
 		} else {
 			forward = LIST_ISSUE;
 			request.setAttribute("issues", dao.getAllIssue());
@@ -61,6 +64,16 @@ public class IssueController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Issue issue = new Issue();
+		
+		String project = (request.getParameter("project"));
+		project = new String(project.getBytes("ISO8859-1"), "UTF-8");
+		issue.setProject(project);
+		
+		
+		
+		String assign = (request.getParameter("assign"));
+		assign = new String(assign.getBytes("ISO8859-1"), "UTF-8");
+		issue.setAssign(assign);
 		
 		String title = (request.getParameter("title"));
 		title = new String(title.getBytes("ISO8859-1"), "UTF-8");

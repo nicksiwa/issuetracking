@@ -13,6 +13,8 @@ public interface TestDAO {
 	public void updateTest(Test test);
 
 	public List<Test> getAllTest();
+	
+	public List<Test> getPersonAndProject();
 
 	public Test getTestById(int testID);
 	

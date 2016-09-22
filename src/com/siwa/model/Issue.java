@@ -6,6 +6,8 @@ import java.util.Date;
 public class Issue {
 
 	private int issueID;
+	private String project;
+	private String assign;
 	private String title;
 	private String description;
 	private String severity;
@@ -87,11 +89,30 @@ public class Issue {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Issue [issueID=" + issueID + ", title=" + title + ", description=" + description + ", severity="
-				+ severity + ", priority=" + priority + ", dueDate=" + dueDate + ", updateDate=" + updateDate
-				+ ", status=" + status + "]";
+
+	public String getProject() {
+		return project;
 	}
 
+	public void setProject(String project) {
+		this.project = project;
+	}
+
+	public String getAssign() {
+		return assign;
+	}
+
+	public void setAssign(String assign) {
+		this.assign = assign;
+	}
+
+	@Override
+	public String toString() {
+		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
+				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
+				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + "]";
+	}
+
+	
+	
 }

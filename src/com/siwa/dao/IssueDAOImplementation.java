@@ -22,15 +22,17 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void addIssue(Issue issue) {
 		try{
-			String query = "insert into issue (title,description,severity,priority,dueDate,updateDate,status) values (?,?,?,?,?,?,?)";
+			String query = "insert into issue (project,assign,title,description,severity,priority,dueDate,updateDate,status) values (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getTitle());
-			ps.setString(2, issue.getDescription());
-			ps.setString(3, issue.getSeverity());
-			ps.setString(4, issue.getPriority());
-			ps.setDate(5,new java.sql.Date (issue.getDueDate().getTime()));
-			ps.setString(6, issue.getUpdateDate());
-			ps.setString(7, issue.getStatus());
+			ps.setString(1, issue.getProject());
+			ps.setString(2, issue.getAssign());
+			ps.setString(3, issue.getTitle());
+			ps.setString(4, issue.getDescription());
+			ps.setString(5, issue.getSeverity());
+			ps.setString(6, issue.getPriority());
+			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
+			ps.setString(8, issue.getUpdateDate());
+			ps.setString(9, issue.getStatus());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -56,16 +58,18 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void updateIssue(Issue issue) {
 		try{
-			String query = "update issue set title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=? where issueID=?";
+			String query = "update issue set project=?, assign=?, title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=? where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getTitle());
-			ps.setString(2, issue.getDescription());
-			ps.setString(3, issue.getSeverity());
-			ps.setString(4, issue.getPriority());
-			ps.setDate(5,new java.sql.Date (issue.getDueDate().getTime()));
-			ps.setString(6, issue.getUpdateDate());
-			ps.setString(7, issue.getStatus());
-			ps.setInt(8, issue.getIssueID());
+			ps.setString(1, issue.getProject());
+			ps.setString(2, issue.getAssign());
+			ps.setString(3, issue.getTitle());
+			ps.setString(4, issue.getDescription());
+			ps.setString(5, issue.getSeverity());
+			ps.setString(6, issue.getPriority());
+			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
+			ps.setString(8, issue.getUpdateDate());
+			ps.setString(9, issue.getStatus());
+			ps.setInt(10, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -83,6 +87,8 @@ public class IssueDAOImplementation implements IssueDAO {
 			while(rs.next()){
 				Issue issue = new Issue();
 				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
 				issue.setTitle(rs.getString("title"));
 				issue.setDescription(rs.getString("description"));
 				issue.setSeverity(rs.getString("severity"));
@@ -110,6 +116,8 @@ public class IssueDAOImplementation implements IssueDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
 				issue.setTitle(rs.getString("title"));
 				issue.setDescription(rs.getString("description"));
 				issue.setSeverity(rs.getString("severity"));
@@ -124,6 +132,26 @@ public class IssueDAOImplementation implements IssueDAO {
 			e.printStackTrace();
 		}
 		return issue;
+	}
+
+	@Override
+	public List<Issue> getPersonAndProject() {
+		List<Issue> issuess = new ArrayList<Issue>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select projectName,firstName from project,person");
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setProject(rs.getString("projectName"));
+				issue.setAssign(rs.getString("firstName"));
+				issuess.add(issue);
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issuess;
 	}
 
 }

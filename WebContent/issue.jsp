@@ -45,6 +45,26 @@
 				placeholder="Auto generate ID" /> <br>
 			<br>
 			<div class="form-group">
+			<label for="description">Project</label><br> 
+			<select name="project" class="form-control">
+					<c:forEach var="issue" items="${issuess}">
+						<option><c:out value="${issue.project}" /></option>
+					</c:forEach>
+				</select> 
+			</div>
+			<br>
+			<br>
+			<div class="form-group">
+			<label for="description">Assign To</label><br> 
+			<select name="assign" class="form-control">
+					<c:forEach var="issue" items="${issuess}">
+						<option><c:out value="${issue.assign}" /></option>
+					</c:forEach>
+				</select> 
+			</div>
+			<br>
+			<br>
+			<div class="form-group">
 				<label for="tile">Title</label><br> <input type="text"
 					name="title" class="form-control"
 					value="<c:out value="${issue.title}" />" placeholder="Title" />
@@ -70,8 +90,8 @@
 			<br>
 			<br>
 			<div class="form-group">
-				<label for="priority">Priority</label><br> <select
-					name="priority" class="form-control">
+				<label for="priority">Priority</label><br> 
+				<select name="priority" class="form-control">
 					<option value="Low">Low</option>
 					<option value="Normal">Normal</option>
 					<option value="High">High</option>

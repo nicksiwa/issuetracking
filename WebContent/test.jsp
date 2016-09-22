@@ -42,27 +42,31 @@
 		</div>
 	</nav>
 
-	<form action="TestController.do" method="post"
-		enctype="multipart/form-data">
+	<form action="TestController.do" method="post">
 		<div>
 			<input type="hidden" name="testID"
 				value="<c:out value="${test.testID}" />" readonly="readonly"
 				placeholder="Auto generate ID" /> <br> <br>
 			<div class="form-group">
-				<label for="testProject">Project ID</label><br> <input
-					type="text" name="testProject" class="form-control"
-					value="<c:out value="${test.testProject}" />"
-					placeholder="Project ID" />
-			</div>
-			<br>
-			<div class="form-group">
-				<label for="testComment">Comment ID</label><br> <input
-					type="text" name="testComment" class="form-control"
-					value="<c:out value="${test.testComment}" />"
-					placeholder="Project ID" />
-			</div>
 
+
+				<select name="testName" class="form-control">
+					<c:forEach var="test" items="${testss}">
+						<option><c:out value="${test.testName}" /></option>
+					</c:forEach>
+				</select> 
+				
+				<select name="testProject" class="form-control">
+					<c:forEach var="test" items="${testss}">
+						<option><c:out value="${test.testProject}" /></option>
+					</c:forEach>
+				</select> 
+				
+				
 		</div>
+				<br> <input type="submit" class="btn btn-default" value="Submit" />
+		</div>
+		
 	</form>
 	<script src="js/bootstrap.min.js"></script>
 	<script

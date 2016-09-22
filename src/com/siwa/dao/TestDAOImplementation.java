@@ -22,9 +22,10 @@ public class TestDAOImplementation implements TestDAO {
 	@Override
 	public void addTest(Test test) {
 		try{
-			String query = "insert into test (file) values (?)";
+			String query = "insert into test (testName,testProject) values (?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setBlob(1, test.getFile());
+			ps.setString(1, test.getTestName());
+			ps.setString(2, test.getTestProject());
 			ps.executeUpdate();
 			ps.close();
 			
@@ -53,8 +54,9 @@ public class TestDAOImplementation implements TestDAO {
 		try{
 			String query = "update test set file=? where testID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setBlob(1, test.getFile());
-			ps.setInt(2, test.getTestID());
+			ps.setString(1, test.getTestName());
+			ps.setString(2, test.getTestProject());
+			ps.setInt(3, test.getTestID());
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -66,12 +68,12 @@ public class TestDAOImplementation implements TestDAO {
 		List<Test> tests = new ArrayList<Test>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select testID,projectID,status from test,project where testID=1 order by projectID");
+			ResultSet rs = stat.executeQuery("select * from test");
 			while(rs.next()){
 				Test test = new Test();
 				test.setTestID(rs.getInt("testID"));
-				test.setTestProject(rs.getInt("projectID"));
-				test.setTestStatus(rs.getString("status"));
+				test.setTestName(rs.getString("testName"));
+				test.setTestProject(rs.getString("testProject"));
 				tests.add(test);
 			}
 			rs.close();
@@ -86,14 +88,14 @@ public class TestDAOImplementation implements TestDAO {
 	public Test getTestById(int testID) {
 		Test test = new Test();
 		try{
-			String query = "select testID,projectID,commentID from test,project,comment,person where personId=?";
+			String query = "select * from test where personId=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, testID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				test.setTestID(rs.getInt("testID"));
-				test.setTestProject(rs.getInt("projectID"));
-				test.setTestComment(rs.getInt("commentID"));
+				test.setTestName(rs.getString("testName"));
+				test.setTestProject(rs.getString("testProject"));
 			}
 			rs.close();
 			ps.close();
@@ -111,24 +113,27 @@ public class TestDAOImplementation implements TestDAO {
 
 	@Override
 	public Test getTestByStatus(String status) {
-		Test test = new Test();
+		
+		return null;
+	}
+
+	@Override
+	public List<Test> getPersonAndProject() {
+		List<Test> testss = new ArrayList<Test>();
 		try{
-			String query = "select testID,projectID,status from test,project,person where status=?";
-			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, status);
-			ResultSet rs = ps.executeQuery();
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select firstName,projectName from person,project");
 			while(rs.next()){
-				test.setTestID(rs.getInt("testID"));
-				test.setTestProject(rs.getInt("projectID"));
-				test.setTestStatus(rs.getString("status"));
+				Test test = new Test();
+				test.setTestName(rs.getString("firstName"));
+				test.setTestProject(rs.getString("projectName"));
+				testss.add(test);
 			}
 			rs.close();
-			ps.close();
+			stat.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
-		return test;
+		return testss;
 	}
-
 }

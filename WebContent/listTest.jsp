@@ -55,9 +55,9 @@
 					<div class="caption">
 						<div class="thumbnail">
 							<c:out value="${test.testID}"></c:out>
+							<c:out value="${test.testName}"></c:out>
 							<c:out value="${test.testProject}"></c:out>
-							<c:out value="${test.testComment}"></c:out>
-							<c:out value="${test.testStatus}"></c:out>
+
 						</div>
 					</div>
 				</div>

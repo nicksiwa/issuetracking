@@ -1,14 +1,12 @@
 package com.siwa.model;
 
-import java.sql.Blob;
+
 
 public class Test {
 	
 	private int testID;
-	private Blob file;
-	private int testProject;
-	private int testComment; 
-	private String testStatus;
+	private String testName;
+	private String testProject;
 	
 	public int getTestID() {
 		return testID;
@@ -16,35 +14,24 @@ public class Test {
 	public void setTestID(int testID) {
 		this.testID = testID;
 	}
-	public Blob getFile() {
-		return file;
+	public String getTestName() {
+		return testName;
 	}
-	public void setFile(Blob file) {
-		this.file = file;
+	public void setTestName(String testName) {
+		this.testName = testName;
 	}
-	public int getTestProject() {
+	public String getTestProject() {
 		return testProject;
 	}
-	public void setTestProject(int testProject) {
+	public void setTestProject(String testProject) {
 		this.testProject = testProject;
 	}
+	@Override
+	public String toString() {
+		return "Test [testID=" + testID + ", testName=" + testName + ", testProject=" + testProject + "]";
+	}
+
 	
-	public int getTestComment() {
-		return testComment;
-	}
-	public void setTestComment(int testComment) {
-		this.testComment = testComment;
-	}
+
 	
-	public String getTestStatus() {
-		return testStatus;
-	}
-	public void setTestStatus(String testStatus) {
-		this.testStatus = testStatus;
-	}
-	
-	public String toString(){
-		return "Test [testID="+testID+",file="+file+",testProject="
-				+testProject+",testComment="+testComment+",testStatus="+testStatus+"]";
-	}
 }
