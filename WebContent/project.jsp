@@ -71,13 +71,13 @@
 			<div class="form-group">
 				<label for="startDate">Start Date</label><br> <input
 					type="date" name="startDate" class="form-control"
-					value="<fmt:formatDate pattern="dd-MM-yyy" value="${project.startDate}" />" />
+					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.startDate}" />" />
 			</div>
 			<br> <br>
 			<div class="form-group">
 				<label for="finishDate">Finish Date</label><br> <input
 					type="date" name="finishDate" class="form-control"
-					value="<fmt:formatDate pattern="dd-MM-yyy" value="${project.finishDate}" />" />
+					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />
 			</div>
 			<br> <br> <input type="submit" class="btn btn-default"
 				value="Submit" />

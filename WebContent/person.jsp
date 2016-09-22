@@ -73,7 +73,7 @@
 			<div class="form-group">
 				<label for="birthDate">Birth Date</label><br> <input
 					type="date" name="birthDate" class="form-control"
-					value="<fmt:formatDate pattern="dd-MM-yyy" value="${person.birthDate}" />" />
+					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${person.birthDate}" />" />
 			</div>
 			<br> <br>
 			<div class="form-group,radio">

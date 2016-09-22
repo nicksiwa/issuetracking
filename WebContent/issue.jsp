@@ -97,7 +97,7 @@
 			<div class="form-group">
 				<label for="dueDate">Due Date</label><br> <input type="date"
 					name="dueDate" class="form-control"
-					value="<fmt:formatDate pattern="dd-MM-yyy" value="${issue.dueDate}" />" />
+					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 			</div>
 			<br> <br> <input type="hidden" id="date" name="updateDate"
 				value="<c:out value="${issue.updateDate}" />"
