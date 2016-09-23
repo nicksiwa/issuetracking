@@ -74,14 +74,14 @@ public class ProjectController extends HttpServlet {
 		project.setDescription(description);
 
 		try {
-			Date startDate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("startDate"));
+			Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("startDate"));
 			project.setStartDate(startDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			Date finishDate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("finishDate"));
+			Date finishDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("finishDate"));
 			project.setFinishDate(finishDate);
 		} catch (ParseException e) {
 			e.printStackTrace();

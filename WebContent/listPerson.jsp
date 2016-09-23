@@ -69,7 +69,7 @@
 						<td><c:out value="${person.personId}" /></td>
 						<td><c:out value="${person.firstName}" /></td>
 						<td><c:out value="${person.lastName}" /></td>
-						<td><fmt:formatDate pattern="dd-MM-yyy"
+						<td><fmt:formatDate pattern="dd/MM/yyy"
 								value="${person.birthDate}" /></td>
 						<td><c:out value="${person.gender}" /></td>
 						<td><c:out value="${person.address}" /></td>

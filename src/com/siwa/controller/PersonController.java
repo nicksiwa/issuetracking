@@ -67,7 +67,7 @@ public class PersonController extends HttpServlet {
 		person.setLastName(lastname);
 
 		try {
-			Date birthdate = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH).parse(request.getParameter("birthDate"));
+			Date birthdate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthDate"));
 			person.setBirthDate(birthdate);
 		} catch (ParseException e) {
 			e.printStackTrace();

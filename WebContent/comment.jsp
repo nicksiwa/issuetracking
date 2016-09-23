@@ -72,11 +72,31 @@
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 <script>
-	var dateString = new Date();
-	dateString = new Date(dateString).toLocaleString()
-	dateString = dateString.split(' ').slice(0, 5).join(' ')
-	console.log(dateString);
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; //January is 0!
 
-	document.getElementById('date').value = dateString;
+	var yyyy = today.getFullYear();
+	var hh = today.getHours();
+	var mn = today.getMinutes();
+	var ss = today.getSeconds();
+	if (dd < 10) {
+		dd = '0' + dd
+	}
+	if (mm < 10) {
+		mm = '0' + mm
+	}
+	if (ss < 10) {
+		ss = '0' + ss
+	}
+	if (mn < 10) {
+		mn = '0' + mn
+	}
+	if (hh < 10) {
+		hh = '0' + hh
+	}
+	var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
+	document.getElementById('date').value = today;
+	console.log(today);
 </script>
 </html>
