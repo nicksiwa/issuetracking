@@ -22,9 +22,6 @@ public class LoginDAOImplementation implements LoginDAO {
 		String username = login.getUsername();
 		String password = login.getPassword();
 		
-		System.out.println(username);
-		System.out.println(password);
-		
 		String usernameDB = "";
 		String passwordDB = "";
 		
@@ -42,7 +39,7 @@ public class LoginDAOImplementation implements LoginDAO {
 			e.printStackTrace();
 		}
 		
-		return "Invalid user credentials";
+		return "Invalid User";
 	}
 
 }
