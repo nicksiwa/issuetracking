@@ -30,7 +30,7 @@ public class AdminFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
-		if(session.getAttribute("username") == null && !req.getRequestURI().endsWith("/admin/login"))
+		if(session.getAttribute("username") == null && !req.getRequestURI().endsWith("/LoginController"))
 			req.getRequestDispatcher("/login.jsp").forward(request, response);
 		else
 		chain.doFilter(request, response);

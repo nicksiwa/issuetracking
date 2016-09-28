@@ -31,7 +31,7 @@ public class PersonController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		
 		
 		String forward = "";
 		String action = request.getParameter("action");

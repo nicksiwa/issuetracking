@@ -83,14 +83,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
+<a href="LoginController?action=logout">Logout</a>
 	</div>
 
 
 	
-
-
-
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script
