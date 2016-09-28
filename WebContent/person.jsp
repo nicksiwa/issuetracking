@@ -12,35 +12,49 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">WebSiteName</a>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">WebSiteName</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="PersonController?action=listPerson">Person</a></li>
+					<li><a href="ProjectController?action=listProject">Project</a></li>
+					<li><a href="CommentController?action=listComment">Comment</a></li>
+					<li><a href="TestController?action=listTest">Test</a></li>
+					<li><a href="AssignController?action=listAssign">Assign</a></li>
+					<li><a href="IssueController?action=listIssue">Issue</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<%
+						String username = (String) session.getAttribute("username");
+						if (username == null) {
+					%>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+							Sign Up</a></li>
+					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
+							Login</a></li>
+					<%
+						} else {
+					%>
+					<li><a>Hi, <%=username%></a></li>
+					<li>
+					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</li>
+					<%
+						}
+					%>
+				</ul>
+			</div>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.jsp">Home</a></li>
-				<li><a href="PersonController?action=listPerson">Person</a></li>
-				<li><a href="ProjectController?action=listProject">Project</a></li>
-				<li><a href="CommentController?action=listComment">Comment</a></li>
-				<li><a href="TestController?action=listTest">Test</a></li>
-				<li><a href="AssignController?action=listAssign">Assign</a></li>
-				<li><a href="IssueController?action=listIssue">Issue</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Sign Up</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+	</nav>
 
 <body>
 	<script>

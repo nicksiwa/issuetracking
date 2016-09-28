@@ -39,7 +39,7 @@ public class LoginDAOImplementation implements LoginDAO {
 			e.printStackTrace();
 		}
 		
-		return "Invalid User";
+		return "Invalid username or passward";
 	}
 
 }

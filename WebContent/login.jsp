@@ -8,7 +8,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -29,10 +29,24 @@
 					<li><a href="IssueController?action=listIssue">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<%
+						String username = (String) session.getAttribute("username");
+						if (username == null) {
+					%>
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
 							Login</a></li>
+					<%
+						} else {
+					%>
+					<li><a>Hi, <%=username%></a></li>
+					<li>
+					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -57,7 +71,7 @@
 					</div>
 					
 					<div class="form-group col-lg-12">
-					<input type="text" name="password" class="form-control" placeholder="Password" />
+					<input type="password" name="password" class="form-control" placeholder="Password" />
 					</div>
 						<input type="submit" class="btn btn-default" value="Login"/>
 					</div>

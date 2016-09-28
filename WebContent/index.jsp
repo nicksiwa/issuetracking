@@ -32,23 +32,30 @@
 					<li><a href="IssueController?action=listIssue">Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<%
+						String username = (String) session.getAttribute("username");
+						if (username == null) {
+					%>
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
 							Login</a></li>
+					<%
+						} else {
+					%>
+					<li><a>Hi, <%=username%></a></li>
+					<li>
+					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container">
-		Welcome
-		<%=request.getAttribute("username")%>
-		
-		
-				<a href="LoginController.do?action=logout">Logout</a>
-				
-				
-				
+
 		<div class="col-md-12">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
