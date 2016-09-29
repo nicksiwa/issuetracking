@@ -22,11 +22,12 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void addComment(Comment comment) {
 		try{
-			String query = "insert into comment (description,status,commentTime) values (?,?,?)";
+			String query = "insert into comment (description,status,commentTime,userComment) values (?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getDescription());
 			ps.setString(2, comment.getStatus());
-			ps.setString(3, comment.getCommentTime());		
+			ps.setString(3, comment.getCommentTime());	
+			ps.setString(4, comment.getUserComment());
 			ps.executeUpdate();
 			ps.close();
 					
@@ -53,12 +54,13 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void updateComment(Comment comment) {
 		try{
-			String query = "update comment set description=?, status=?, commentTime=? where commentID=?";
+			String query = "update comment set description=?, status=?, commentTime=?, userComment=? where commentID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getDescription());
 			ps.setString(2, comment.getStatus());
 			ps.setString(3, comment.getCommentTime());
-			ps.setInt(4, comment.getCommentID());
+			ps.setString(4, comment.getUserComment());
+			ps.setInt(5, comment.getCommentID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -79,6 +81,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setDescription(rs.getString("description"));
 				comment.setStatus(rs.getString("status"));
 				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setUserComment(rs.getString("userComment"));
 				comments.add(comment);
 			}
 			rs.close();
@@ -102,6 +105,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setDescription(rs.getString("description"));
 				comment.setStatus(rs.getString("status"));
 				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setUserComment(rs.getString("userComment"));
 			}
 			rs.close();
 			ps.close();

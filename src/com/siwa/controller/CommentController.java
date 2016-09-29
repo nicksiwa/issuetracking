@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
@@ -57,6 +58,9 @@ public class CommentController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Comment comment = new Comment();
 		
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
+		
 		String description = (request.getParameter("description"));
 		description = new String(description.getBytes("ISO8859-1"), "UTF-8");
 		comment.setDescription(description);
@@ -68,6 +72,10 @@ public class CommentController extends HttpServlet {
 		String commentTime = (request.getParameter("commentTime"));
 		commentTime = new String(commentTime.getBytes("ISO8859-1"), "UTF-8");
 		comment.setCommentTime(commentTime);
+		
+		String userComment = username;
+		userComment = new String(userComment.getBytes("ISO8859-1"), "UTF-8");
+		comment.setUserComment(userComment);
 		
 		String commentID = request.getParameter("commentID");
 	

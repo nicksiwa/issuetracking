@@ -5,6 +5,7 @@ public class Comment {
 	private String description;
 	private String status;
 	private String commentTime;
+	private String userComment;
 	
 	public int getCommentID() {
 		return commentID;
@@ -32,11 +33,18 @@ public class Comment {
 		this.commentTime = commentTime;
 	}
 	
-
-	
-	public String toString(){
-		return "Comment [commentID=" + commentID + ",description="+description+",status="+status+"]";
+	public String getUserComment() {
+		return userComment;
 	}
+	public void setUserComment(String userComment) {
+		this.userComment = userComment;
+	}
+	@Override
+	public String toString() {
+		return "Comment [commentID=" + commentID + ", description=" + description + ", status=" + status
+				+ ", commentTime=" + commentTime + ", userComment=" + userComment + "]";
+	}
+	
 	
 	
 }

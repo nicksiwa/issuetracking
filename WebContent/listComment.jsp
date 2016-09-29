@@ -67,6 +67,7 @@
 					<th>Description</th>
 					<th>Status</th>
 					<th>Comment Time</th>
+					<th>Username</th>
 					<th colspan="2">Action</th>
 				</tr>
 			</thead>
@@ -77,6 +78,7 @@
 						<td><c:out value="${comment.description}"></c:out></td>
 						<td><c:out value="${comment.status}"></c:out></td>
 						<td><c:out value="${comment.commentTime}"></c:out></td>
+						<td><c:out value="${comment.userComment}"></c:out></td>
 						<td><a
 							href="CommentController.do?action=edit&commentID=<c:out value="${comment.commentID }"/>">Update</a></td>
 						<td><a
