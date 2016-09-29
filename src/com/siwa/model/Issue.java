@@ -16,6 +16,7 @@ public class Issue {
 	private String updateDate;
 	//private Blob attachFile;
 	private String status;
+	private String reporter;
 
 	public int getIssueID() {
 		return issueID;
@@ -106,13 +107,19 @@ public class Issue {
 		this.assign = assign;
 	}
 
+	public String getReporter() {
+		return reporter;
+	}
+
+	public void setReporter(String reporter) {
+		this.reporter = reporter;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
-				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + "]";
+				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter + "]";
 	}
-
-	
 	
 }

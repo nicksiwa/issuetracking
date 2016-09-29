@@ -22,7 +22,7 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void addIssue(Issue issue) {
 		try{
-			String query = "insert into issue (project,assign,title,description,severity,priority,dueDate,updateDate,status) values (?,?,?,?,?,?,?,?,?)";
+			String query = "insert into issue (project,assign,title,description,severity,priority,dueDate,updateDate,status,reporter) values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, issue.getProject());
 			ps.setString(2, issue.getAssign());
@@ -33,6 +33,7 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(8, issue.getUpdateDate());
 			ps.setString(9, issue.getStatus());
+			ps.setString(10, issue.getReporter());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -58,7 +59,7 @@ public class IssueDAOImplementation implements IssueDAO {
 	@Override
 	public void updateIssue(Issue issue) {
 		try{
-			String query = "update issue set project=?, assign=?, title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=? where issueID=?";
+			String query = "update issue set project=?, assign=?, title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=?, reporter=? where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, issue.getProject());
 			ps.setString(2, issue.getAssign());
@@ -69,7 +70,8 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
 			ps.setString(8, issue.getUpdateDate());
 			ps.setString(9, issue.getStatus());
-			ps.setInt(10, issue.getIssueID());
+			ps.setString(10, issue.getReporter());
+			ps.setInt(11, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -96,6 +98,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
 				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
 				issues.add(issue);
 			}
 			rs.close();
@@ -125,6 +128,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setDueDate(rs.getDate("dueDate"));
 				issue.setUpdateDate(rs.getString("updateDate"));
 				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
 			}
 			rs.close();
 			ps.close();

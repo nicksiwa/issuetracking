@@ -73,6 +73,7 @@
 					<th>Update Date</th>
 
 					<th>Status</th>
+					<th>Reporter</th>
 					<th colspan="2">Action</th>
 				</tr>
 			</thead>
@@ -91,6 +92,7 @@
 								value="${issue.dueDate}" /></td>
 						<td><c:out value="${issue.updateDate}"></c:out></td>
 						<td><c:out value="${issue.status}"></c:out></td>
+						<td><c:out value="${issue.reporter}"></c:out></td>
 						<td><a
 							href="IssueController.do?action=edit&issueID=<c:out value="${issue.issueID }"/>">Update</a></td>
 						<td><a

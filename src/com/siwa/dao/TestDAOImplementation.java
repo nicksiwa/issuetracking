@@ -85,12 +85,12 @@ public class TestDAOImplementation implements TestDAO {
 	}
 
 	@Override
-	public Test getTestById(int testID) {
+	public Test getTestById(String testName) {
 		Test test = new Test();
 		try{
-			String query = "select * from test where personId=?";
+			String query = "select * from test where testName=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, testID);
+			ps.setString(1, testName);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				test.setTestID(rs.getInt("testID"));

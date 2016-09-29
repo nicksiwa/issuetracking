@@ -16,7 +16,7 @@ public interface TestDAO {
 	
 	public List<Test> getPersonAndProject();
 
-	public Test getTestById(int testID);
+	public Test getTestById(String testName);
 	
 	public Test getTestByUser(int testID);
 	

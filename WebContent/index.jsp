@@ -39,15 +39,14 @@
 					%>
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 							Sign Up</a></li>
-					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
+					<li><a href="LoginController"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
 					<%
 						} else {
 					%>
 					<li><a>Hi, <%=username%></a></li>
-					<li>
-					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-					</li>
+					<li><a href="LoginController?action=logout"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					<%
 						}
 					%>
@@ -64,7 +63,28 @@
 						<h3>Assigned to Me</h3>
 					</div>
 					<div class="panel-body">
-						Panel Content <br>
+
+						<div class="form-group">
+							<label for="assign">First Name</label><br> <input
+								type="text" name="assign" class="form-control"
+								value="<c:out value="${test.testName}" />"
+								placeholder="First Name" />
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="project">Project Name</label><br> <input
+								type="text" name="project" class="form-control"
+								value="<c:out value="${test.testProject}" />"
+								placeholder="First Name" />
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="issusID">issusID</label><br> <input
+								type="text" name="issusID" class="form-control"
+								value="<c:out value="${test.testID}" />"
+								placeholder="First Name" />
+						</div>
+						<br>
 						<button type="button" class="btn btn-default">Default</button>
 					</div>
 				</div>

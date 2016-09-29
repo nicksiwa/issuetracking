@@ -10,10 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.siwa.dao.TestDAO;
 import com.siwa.dao.TestDAOImplementation;
+import com.siwa.model.Assign;
+import com.siwa.model.Issue;
 import com.siwa.model.Test;
 
 @WebServlet("/TestController")
@@ -26,7 +29,7 @@ public class TestController extends HttpServlet {
 	public static final String LIST_TEST = "/listTest.jsp";
 	public static final String INSERT_OR_EDIT = "/test.jsp";
 	public static final String STATUS = "/testStatus.jsp";
-
+	public static final String INDEX = "/index.jsp";
  
 
     public TestController() {
@@ -37,6 +40,8 @@ public class TestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
+		HttpSession session  = request.getSession();
+		
 		
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_TEST;
@@ -46,8 +51,8 @@ public class TestController extends HttpServlet {
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int testID = Integer.parseInt(request.getParameter("personId"));
-			Test test = dao.getTestById(testID);
-			request.setAttribute("test", test);
+		
+			
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 			request.setAttribute("testss", dao.getPersonAndProject());
@@ -60,8 +65,10 @@ public class TestController extends HttpServlet {
 			Test test = dao.getTestByStatus(status);
 			request.setAttribute("test", test);
 		} else {
-			forward = LIST_TEST;
-			request.setAttribute("tests", dao.getAllTest());
+			forward = INDEX;
+			String testName = (String) session.getAttribute("username");
+			Test test = dao.getTestById(testName);
+			request.setAttribute("test", test);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
@@ -70,11 +77,16 @@ public class TestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Test test = new Test();
 		
-		String testName = (request.getParameter("testName"));
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
+	
+		String testName = (username);
 		testName = new String(testName.getBytes("ISO8859-1"), "UTF-8");
 		test.setTestName(testName);
 	
-	
+		
+		
+		
 		String testProject = (request.getParameter("testProject"));
 		testProject = new String(testProject.getBytes("ISO8859-1"), "UTF-8");
 		test.setTestProject(testProject);

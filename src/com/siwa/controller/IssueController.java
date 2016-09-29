@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
@@ -65,6 +66,9 @@ public class IssueController extends HttpServlet {
 
 		Issue issue = new Issue();
 		
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
+		
 		String project = (request.getParameter("project"));
 		project = new String(project.getBytes("ISO8859-1"), "UTF-8");
 		issue.setProject(project);
@@ -105,6 +109,10 @@ public class IssueController extends HttpServlet {
 		String status = (request.getParameter("status"));
 		status = new String(status.getBytes("ISO8859-1"), "UTF-8");
 		issue.setStatus(status);
+		
+		String reporter = username;
+		reporter = new String(reporter.getBytes("ISO8859-1"), "UTF-8");
+		issue.setReporter(reporter);
 		
 		String issueID = request.getParameter("issueID");
 		if(issueID == null || issueID.isEmpty())
