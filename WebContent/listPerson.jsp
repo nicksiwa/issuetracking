@@ -97,7 +97,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-<a href="LoginController?action=logout">Logout</a>
 	</div>
 
 

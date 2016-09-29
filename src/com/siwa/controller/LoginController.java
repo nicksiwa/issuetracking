@@ -1,6 +1,8 @@
 package com.siwa.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import com.siwa.model.Login;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private LoginDAO dao;
+    public static final String LOGIN = "/login.jsp";
    
     public LoginController() {
        dao = new LoginDAOImplementation();
@@ -24,14 +27,18 @@ public class LoginController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String forward = "";
 		String action = request.getParameter("action");
+		
 		if(action==null)
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			forward = LOGIN;
 		else if(action.equalsIgnoreCase("logout")){
 			HttpSession session = request.getSession();
 			session.removeAttribute("username");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			forward = LOGIN;
 		}
+		RequestDispatcher view = request.getRequestDispatcher(forward);
+		view.forward(request, response);
 	}
 
 	
