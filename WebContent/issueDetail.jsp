@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add New Comment</title>
+<title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -52,75 +53,69 @@
 			</div>
 		</div>
 	</nav>
-	<form action="CommentController.do" method="post"
-		class="form-horizontal">
+	<form action="" class="form-horizontal">
 		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>View Issue Details</h3>
+				</div>
+				<div class="panel-body">
+					Panel Content <br>
 
-			<input type="hidden" name="commentID"
-				value="<c:out value="${comment.commentID}" />" readonly="readonly"
-				placeholder="Auto generate ID" /> <br> <br>
 
-			<div class="form-group">
-				<label for="description" class="control-label col-sm-2">Description:</label>
-				<div class="col-sm-8 col-lg-5 col-md-6">
-					<input type="text" name="description" class="form-control"
-						value="<c:out value="${comment.description}" />"
-						placeholder="Description" />
+					<table class="table table-hover table-responsive table-striped">
+						<thead>
+							<tr>
+								<th>Issue ID</th>
+								<th>Project</th>
+								<th>Title</th>
+								<th>Due Date</th>
+								<th>Update Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>a</td>
+								<td>s</td>
+								<td>s</td>
+								<td>s</td>
+								<td>s</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr>
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Title :</label>
+					
+					</div>
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Title :</label>
+					
+					</div>
+
+					<div class="form-group">
+					
+					</div>
+
+
+
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="status" class="control-label col-sm-2">Status:</label>
-				<div class="col-sm-8 col-lg-5 col-md-6">
-					<input type="text" name="status" class="form-control"
-						value="<c:out value="${comment.status}" />" placeholder="Status" />
-				</div>
-			</div>
 
-			<input type="hidden" id="date" name="commentTime"
-				value="<c:out value="${comment.commentTime}" />"
-				placeholder="Comment Time" />
-				
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn btn-default" value="Submit" />
-				</div>
-			</div>
+
+
+
+
+
 
 		</div>
 	</form>
+
 	<script src="js/bootstrap.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-<script>
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth() + 1; //January is 0!
-
-	var yyyy = today.getFullYear();
-	var hh = today.getHours();
-	var mn = today.getMinutes();
-	var ss = today.getSeconds();
-	if (dd < 10) {
-		dd = '0' + dd
-	}
-	if (mm < 10) {
-		mm = '0' + mm
-	}
-	if (ss < 10) {
-		ss = '0' + ss
-	}
-	if (mn < 10) {
-		mn = '0' + mn
-	}
-	if (hh < 10) {
-		hh = '0' + hh
-	}
-	var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
-	document.getElementById('date').value = today;
-	console.log(today);
-</script>
 </html>

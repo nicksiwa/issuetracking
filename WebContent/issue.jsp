@@ -54,76 +54,92 @@
 			</div>
 		</div>
 	</nav>
-	<form action="IssueController.do" method="post" class="form-inline">
+	<form action="IssueController.do" method="post" class="form-horizontal">
 		<div class="container">
 			<input type="hidden" name="issueID"
 				value="<c:out value="${issue.issueID}" />" readonly="readonly"
 				placeholder="Auto generate ID" /> <br> <br>
+				
 			<div class="form-group">
-				<label for="description">Project</label><br> <select
+				<label for="description" class="control-label col-sm-2">Project :</label>
+				<div class="col-sm-3 col-lg-2 col-md-2">
+				<select
 					name="project" class="form-control">
 					<c:forEach var="issue" items="${issuess}">
 						<option><c:out value="${issue.project}" /></option>
 					</c:forEach>
 				</select>
-			</div>
-			<br> <br>
-			<div class="form-group">
-				<label for="description">Assign To</label><br> <select
+				</div>
+		
+				<label for="description" class="control-label col-sm-2">Assign To :</label>
+				<div class="col-sm-3 col-lg-2 col-md-2"><select
 					name="assign" class="form-control">
 					<c:forEach var="issue" items="${issuess}">
 						<option><c:out value="${issue.assign}" /></option>
 					</c:forEach>
 				</select>
+				</div>
 			</div>
-			<br> <br>
+		<br>
 			<div class="form-group">
-				<label for="tile">Title</label><br> <input type="text"
+				<label for="tile" class="control-label col-sm-2">Title :</label>
+				<div class="col-sm-8 col-lg-6 col-md-6"><input type="text"
 					name="title" class="form-control"
 					value="<c:out value="${issue.title}" />" placeholder="Title" />
 			</div>
-			<br> <br>
-			<div class="form-group">
-				<label for="description">Description</label><br> <input
-					type="text" name="description" class="form-control"
-					value="<c:out value="${issue.description}" />"
-					placeholder="Description" />
 			</div>
-			<br> <br>
+			
+			
 			<div class="form-group">
-				<label for="severity">Severity</label><br> <select
+				<label for="description" class="control-label col-sm-2">Description :</label>
+				<div class="col-sm-8 col-lg-6 col-md-6">
+				<textarea name="description" class="form-control" rows="5" id="comment" placeholder="Description" ><c:out value="${issue.description}" /></textarea>
+					</div>
+			</div>
+			
+			<br>
+			
+			<div class="form-group">
+				<label for="severity" class="control-label col-sm-2">Severity :</label>
+				<div class="col-sm-3 col-lg-2 col-md-2"><select
 					name="severity" class="form-control">
 					<option value="Minor">Minor</option>
 					<option value="Major">Major</option>
 					<option value="Crash">Crash</option>
 				</select>
-			</div>
-			<br> <br>
-			<div class="form-group">
-				<label for="priority">Priority</label><br> <select
+				</div>
+		
+				<label for="priority" class="control-label col-sm-2">Priority :</label>
+				<div class="col-sm-3 col-lg-2 col-md-2"><select
 					name="priority" class="form-control">
 					<option value="Low">Low</option>
 					<option value="Normal">Normal</option>
 					<option value="High">High</option>
 				</select>
+				</div>
 			</div>
-			<br> <br>
+			
 			<div class="form-group">
-				<label for="dueDate">Due Date</label><br> <input type="date"
+				<label for="dueDate" class="control-label col-sm-2">Due Date :</label>
+				<div class="col-sm-8 col-lg-6 col-md-6"><input type="date"
 					name="dueDate" class="form-control"
 					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 			</div>
-			<br> <br> <input type="hidden" id="date" name="updateDate"
+			</div>
+			<input type="hidden" id="date" name="updateDate"
 				value="<c:out value="${issue.updateDate}" />"
 				placeholder="Comment Time" />
 
 			<div class="form-group">
-				<label for="status">Status</label><br> <input type="text"
+				<label for="status" class="control-label col-sm-2">Status :</label>	
+				<div class="col-sm-8 col-lg-6 col-md-6"><input type="text"
 					name="status" class="form-control"
 					value="<c:out value="${issue.status}" />" placeholder="Status" />
+					</div>
 			</div>
-			<br> <br> <input type="submit" class="btn btn-default"
-				value="Submit" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" class="btn btn-default" value="Submit" /></div></div>
 		</div>
 	</form>
 
