@@ -80,6 +80,7 @@
 						<td><c:out value="${project.projectName}"></c:out></td>
 						<td><c:out value="${project.status}"></c:out></td>
 						<td><c:out value="${project.description}"></c:out></td>
+						<fmt:setLocale value="en_US" />
 						<td><fmt:formatDate pattern="dd/MM/yyy"
 								value="${project.startDate}" /></td>
 						<td><fmt:formatDate pattern="dd/MM/yyy"

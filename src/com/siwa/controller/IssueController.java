@@ -96,7 +96,7 @@ public class IssueController extends HttpServlet {
 		issue.setPriority(priority);
 		
 		try {
-			Date dueDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dueDate"));
+			Date dueDate = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(request.getParameter("dueDate"));
 			issue.setDueDate(dueDate);
 		} catch (ParseException e) {
 			e.printStackTrace();

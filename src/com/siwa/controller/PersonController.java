@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -71,7 +72,7 @@ public class PersonController extends HttpServlet {
 		person.setLastName(lastname);
 
 		try {
-			Date birthdate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birthDate"));
+			Date birthdate = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(request.getParameter("birthDate"));
 			person.setBirthDate(birthdate);
 		} catch (ParseException e) {
 			e.printStackTrace();

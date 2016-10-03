@@ -88,7 +88,8 @@
 						<td><c:out value="${issue.description}"></c:out></td>
 						<td><c:out value="${issue.severity}"></c:out></td>
 						<td><c:out value="${issue.priority}"></c:out></td>
-						<td><fmt:formatDate pattern="dd/MM/yyy"
+						<fmt:setLocale value="en_US" />
+						<td><fmt:formatDate pattern="dd/MM/yyyy"
 								value="${issue.dueDate}" /></td>
 						<td><c:out value="${issue.updateDate}"></c:out></td>
 						<td><c:out value="${issue.status}"></c:out></td>

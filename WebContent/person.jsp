@@ -83,7 +83,7 @@
 					placeholder="Last Name" />
 					</div>
 			</div>
-		<br>
+		<br><fmt:setLocale value="en_US" />
 			<div class="form-group">
 				<label for="birthDate" class="control-label col-sm-2">Birth Date :</label>
 				<div class="col-sm-3 col-lg-3 col-md-3"><input

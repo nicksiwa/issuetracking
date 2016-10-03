@@ -118,7 +118,7 @@
 				</select>
 				</div>
 			</div>
-			
+			<fmt:setLocale value="en_US" />
 			<div class="form-group">
 				<label for="dueDate" class="control-label col-sm-2">Due Date :</label>
 				<div class="col-sm-8 col-lg-6 col-md-6"><input type="date"

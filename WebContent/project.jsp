@@ -75,7 +75,7 @@
 					placeholder="Project Status" />
 					</div>
 			</div>
-			
+			<fmt:setLocale value="en_US" />
 					<div class="form-group">
 				<label for="startDate" class="control-label col-sm-2">Start Date :</label>
 				<div class="col-sm-3 col-lg-2 col-md-2"><input type="date" name="startDate" class="form-control"
