@@ -107,7 +107,14 @@ public class TestDAOImplementation implements TestDAO {
 
 	@Override
 	public Test getTestByUser(int testID) {
-		// TODO Auto-generated method stub
+		try{
+			Test test = new Test();
+			String sql = "select username,password from person";
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery(sql);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		return null;
 	}
 

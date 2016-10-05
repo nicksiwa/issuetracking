@@ -5,6 +5,7 @@ public class Index {
 	private int indexID;
 	private String assignName;
 	private String assignProject;
+	private String assignTitle;
 	private String reportName;
 	private String reportProject;
 	
@@ -38,10 +39,17 @@ public class Index {
 	public void setReportProject(String reportProject) {
 		this.reportProject = reportProject;
 	}
+	public String getAssignTitle() {
+		return assignTitle;
+	}
+	public void setAssignTitle(String assignTitle) {
+		this.assignTitle = assignTitle;
+	}
 	@Override
 	public String toString() {
 		return "Index [indexID=" + indexID + ", assignName=" + assignName + ", assignProject=" + assignProject
-				+ ", reportName=" + reportName + ", reportProject=" + reportProject + "]";
+				+ ", assignTitle=" + assignTitle + ", reportName=" + reportName + ", reportProject=" + reportProject
+				+ "]";
 	}
 	
 

@@ -67,21 +67,21 @@
 						<div class="form-group">
 							<label for="assign">First Name</label><br> <input
 								type="text" name="assign" class="form-control"
-								value="<c:out value="${test.testName}" />"
+								value="<c:out value="${index.assignName}" />"
 								placeholder="First Name" />
 						</div>
 						<br>
 						<div class="form-group">
 							<label for="project">Project Name</label><br> <input
 								type="text" name="project" class="form-control"
-								value="<c:out value="${test.testProject}" />"
+								value="<c:out value="${index.assignProject}" />"
 								placeholder="First Name" />
 						</div>
 						<br>
 						<div class="form-group">
 							<label for="issusID">issusID</label><br> <input
 								type="text" name="issusID" class="form-control"
-								value="<c:out value="${test.testID}" />"
+								value="<c:out value="${index.assignTitle}" />"
 								placeholder="First Name" />
 						</div>
 						<br>

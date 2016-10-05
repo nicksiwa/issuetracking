@@ -60,7 +60,7 @@
 					<h3>View Issue Details</h3>
 				</div>
 				<div class="panel-body">
-					Panel Content <br>
+					
 
 
 					<table class="table table-hover table-responsive table-striped">
@@ -85,18 +85,77 @@
 					</table>
 					<hr>
 					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Title :</label>
-					
-					</div>
-					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Title :</label>
-					
+						<label for="tile" class="control-label col-sm-2">Reporter
+							:</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">someone@example.com</p>
+						</div>
+
+						<label for="tile" class="control-label col-sm-3">Assigned
+							To :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">someone@example.com</p>
+						</div>
 					</div>
 
 					<div class="form-group">
-					
+						<label for="tile" class="control-label col-sm-2">Severity
+							:</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">someone@example.com</p>
+						</div>
+
+						<label for="tile" class="control-label col-sm-3">Priority
+							:</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">someone@example.com</p>
+						</div>
 					</div>
 
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">someone@example.com</p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Description
+							:</label>
+						<div class="col-sm-8 col-lg-6 col-md-6">
+							<textarea name="description" class="form-control" rows="5"
+								id="comment" placeholder="Description">someone@example.com</textarea>
+						</div>
+					</div>
+
+
+					<hr>
+
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2"><a>Change
+								Status To :</a></label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select name="severity" class="form-control">
+								<option value="Minor">Minor</option>
+								<option value="Major">Major</option>
+								<option value="Crash">Crash</option>
+							</select>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2"><a>Assign
+								To :</a></label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select name="severity" class="form-control">
+								<option value="Minor">Minor</option>
+								<option value="Major">Major</option>
+								<option value="Crash">Crash</option>
+							</select>
+						</div>
+					</div>
 
 
 				</div>
@@ -104,7 +163,44 @@
 
 
 
-
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>admin 12/08/2016</b>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Assign to :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">niksf203</p>
+						</div>
+						<label for="tile" class="control-label col-sm-2">Status :</label>
+						<div class="col-sm-3 col-lg-3 col-md-3">
+							<p class="form-control-static">Response "I can't find bug"</p>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+				<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>niksf203 12/08/2016</b>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="tile" class="control-label col-sm-2">Assign to :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<p class="form-control-static">admin</p>
+						</div>
+						<label for="tile" class="control-label col-sm-2">Status :</label>
+						<div class="col-sm-3 col-lg-3 col-md-3">
+							<p class="form-control-static">Resolved "Finish bug fixed"</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 

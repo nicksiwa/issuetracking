@@ -6,8 +6,6 @@ import com.siwa.model.Index;
 
 public interface IndexDAO {
 	
-	public List<Index> getAllIndex();
-
-	public Index getIndexById(String assignName);
-
+	public List<Index> getAllIndex(String assignName);
+	
 }
