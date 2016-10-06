@@ -31,9 +31,10 @@
 				<c:forEach items="${indexs}" var="index">
 					<tr>
 
-						<td><c:out value="${index.assignName}"></c:out></td>
-						<td><c:out value="${index.assignProject}"></c:out></td>
-						<td><c:out value="${index.assignTitle}"></c:out></td>
+						<td><c:out value="${index.issueID}"></c:out></td>
+						<td><c:out value="${index.assign}"></c:out></td>
+						<td><c:out value="${index.project}"></c:out></td>
+						<td><c:out value="${index.title}"></c:out></td>
 				
 
 					</tr>

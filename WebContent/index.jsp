@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,36 +56,27 @@
 		</div>
 	</nav>
 	<div class="container">
-
+	<form action="" class="form-horizontal">
 		<div class="col-md-12">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3>Assigned to Me</h3>
+						<h3>Assigned to Me<span class="pull-right"><h4>${fn:length(indexs)} Issues</h4></span></h3>
+						
 					</div>
 					<div class="panel-body">
-
-						<div class="form-group">
-							<label for="assign">First Name</label><br> <input
-								type="text" name="assign" class="form-control"
-								value="<c:out value="${index.assignName}" />"
-								placeholder="First Name" />
+					 <div class="list-group">
+					 
+					   
+						<c:forEach items="${indexs}" var="index">
+						  <a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading"><c:out value="${index.title}"></c:out></h4>
+							<p class="list-group-item-text">From Project : <c:out value="${index.project}"></c:out></p>
+							<p class="list-group-item-text"><c:out value="${index.updateDate}"></c:out></p>
+						</a>
+						</c:forEach>
+				
 						</div>
-						<br>
-						<div class="form-group">
-							<label for="project">Project Name</label><br> <input
-								type="text" name="project" class="form-control"
-								value="<c:out value="${index.assignProject}" />"
-								placeholder="First Name" />
-						</div>
-						<br>
-						<div class="form-group">
-							<label for="issusID">issusID</label><br> <input
-								type="text" name="issusID" class="form-control"
-								value="<c:out value="${index.assignTitle}" />"
-								placeholder="First Name" />
-						</div>
-						<br>
 						<button type="button" class="btn btn-default">Default</button>
 					</div>
 				</div>
@@ -129,8 +121,8 @@
 				</div>
 			</div>
 		</div>
+	</form>
 	</div>
-
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

@@ -2,55 +2,47 @@ package com.siwa.model;
 
 public class Index {
 	
-	private int indexID;
-	private String assignName;
-	private String assignProject;
-	private String assignTitle;
-	private String reportName;
-	private String reportProject;
+	private int issueID;
+	private String project;
+	private String assign;
+	private String title;
+	private String updateDate;
 	
-	public int getIndexID() {
-		return indexID;
+	
+	public int getIssueID() {
+		return issueID;
 	}
-	public void setIndexID(int indexID) {
-		this.indexID = indexID;
+	public void setIssueID(int issueID) {
+		this.issueID = issueID;
 	}
-	public String getAssignName() {
-		return assignName;
+	public String getProject() {
+		return project;
 	}
-	public void setAssignName(String assignName) {
-		this.assignName = assignName;
+	public void setProject(String project) {
+		this.project = project;
 	}
-	public String getAssignProject() {
-		return assignProject;
+	public String getAssign() {
+		return assign;
 	}
-	public void setAssignProject(String assignProject) {
-		this.assignProject = assignProject;
+	public void setAssign(String assign) {
+		this.assign = assign;
 	}
-	public String getReportName() {
-		return reportName;
+	public String getTitle() {
+		return title;
 	}
-	public void setReportName(String reportName) {
-		this.reportName = reportName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getReportProject() {
-		return reportProject;
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	public void setReportProject(String reportProject) {
-		this.reportProject = reportProject;
-	}
-	public String getAssignTitle() {
-		return assignTitle;
-	}
-	public void setAssignTitle(String assignTitle) {
-		this.assignTitle = assignTitle;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Index [indexID=" + indexID + ", assignName=" + assignName + ", assignProject=" + assignProject
-				+ ", assignTitle=" + assignTitle + ", reportName=" + reportName + ", reportProject=" + reportProject
-				+ "]";
+		return "Index [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
-
 }

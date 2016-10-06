@@ -19,31 +19,57 @@ public class IndexDAOImplementation implements IndexDAO {
 		conn = DBUtil.getConnection();
 	}
 
-
 	@Override
-	public List<Index> getAllIndex(String assignName) {
-		List<Index> indexs = new ArrayList<Index>();
+	public Index getIndexById(String assign) {
+		Index index = new Index();
 		try{
-			String query = "select project,assign,title from issue where assign=?";
+			String query = "select * from issue where assign=?";
 			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
-			ps.setString(1, assignName);
-			
 			while(rs.next()){
-				Index index = new Index();
-				index.setAssignName(rs.getString("assignName"));
-				index.setAssignProject(rs.getString("project"));
-				index.setAssignTitle(rs.getString("title"));
-				indexs.add(index);
+				index.setIssueID(rs.getInt("issueID"));
+				index.setProject(rs.getString("project"));
+				index.setAssign(rs.getString("assign"));
+				index.setTitle(rs.getString("title"));
+				index.setUpdateDate(rs.getString("updateDate"));
 			}
 			rs.close();
 			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return index;
+	}
 
-	
+	@Override
+	public List<Index> getAllIndex(String assign) {
+		List<Index> indexs = new ArrayList<Index>();
+		try{
+			String query = "select * from issue where assign=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, assign);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Index index = new Index();
+				index.setIssueID(rs.getInt("issueID"));
+				index.setProject(rs.getString("project"));
+				index.setAssign(rs.getString("assign"));
+				index.setTitle(rs.getString("title"));
+				index.setUpdateDate(rs.getString("updateDate"));
+				indexs.add(index);
+			}
+			System.out.println(indexs.size());
+			rs.close();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return indexs;
 	}
+
+
+	
+	
 
 }
