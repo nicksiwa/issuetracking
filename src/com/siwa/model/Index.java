@@ -7,6 +7,8 @@ public class Index {
 	private String assign;
 	private String title;
 	private String updateDate;
+	private String reporter;
+	private String status;
 	
 	
 	public int getIssueID() {
@@ -39,10 +41,23 @@ public class Index {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getReporter() {
+		return reporter;
+	}
+	public void setReporter(String reporter) {
+		this.reporter = reporter;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "Index [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", reporter=" + reporter + ", status=" + status + "]";
 	}
+	
 	
 }

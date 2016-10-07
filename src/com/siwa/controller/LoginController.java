@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.IndexDAO;
+import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.LoginDAO;
 import com.siwa.dao.LoginDAOImplementation;
 import com.siwa.model.Login;
@@ -19,11 +21,15 @@ import com.siwa.model.Login;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private LoginDAO dao;
+    private IndexDAO daos;
     public static final String LOGIN = "/login.jsp";
    
     public LoginController() {
        dao = new LoginDAOImplementation();
+       daos = new IndexDAOImplementation();
+      
     }
+
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,6 +66,9 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("username", username);
 			
 			request.setAttribute("username", username);
+			request.setAttribute("indexs", daos.getAllIndex(username));
+			request.setAttribute("reports", daos.getReportByMe(username));
+			request.setAttribute("resolves", daos.getResolveIssue());
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{

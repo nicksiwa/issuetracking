@@ -33,17 +33,17 @@ public class IndexController extends HttpServlet {
 		String action = request.getParameter("action");
 		HttpSession session  = request.getSession();
 		String username = (String) session.getAttribute("username");
+	
 		
 		if(action.equalsIgnoreCase("name")){
 			forward = INDEX;
-			String testName = (String) session.getAttribute("username");
-			Index index = dao.getIndexById(testName);
-			request.setAttribute("index", index);
 			
 		}else{
 			forward = INDEX;
-			String assign = (String) session.getAttribute("username");
-			request.setAttribute("indexs", dao.getAllIndex(assign));
+			
+			request.setAttribute("indexs", dao.getAllIndex(username));
+			request.setAttribute("reports", dao.getReportByMe(username));
+			request.setAttribute("resolves", dao.getResolveIssue());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add New Person</title>
+<title>Login</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,7 +24,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">Home</a></li>
+					<li class="active"><a href="IndexController?action=index">Home</a></li>
 					<li><a href="PersonController?action=listPerson">Person</a></li>
 					<li><a href="ProjectController?action=listProject">Project</a></li>
 					<li><a href="CommentController?action=listComment">Comment</a></li>
