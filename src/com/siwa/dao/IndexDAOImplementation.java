@@ -12,79 +12,84 @@ import com.siwa.model.Index;
 import com.siwa.util.DBUtil;
 
 public class IndexDAOImplementation implements IndexDAO {
-	
+
 	private Connection conn;
 
 	public IndexDAOImplementation() {
 		conn = DBUtil.getConnection();
 	}
 
-
-
 	@Override
 	public List<Index> getAllIndex(String assign) {
 		List<Index> indexs = new ArrayList<Index>();
-		try{
+		try {
 			String query = "select * from issue where assign=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 				Index index = new Index();
 				index.setIssueID(rs.getInt("issueID"));
 				index.setProject(rs.getString("project"));
 				index.setAssign(rs.getString("assign"));
 				index.setTitle(rs.getString("title"));
 				index.setUpdateDate(rs.getString("updateDate"));
+				index.setStatus(rs.getString("status"));
 				indexs.add(index);
+
+				if (index.getStatus().equals("Resolved")) {
+					indexs.remove(index);
+				}
 			}
-			
+
 			rs.close();
 			ps.close();
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return indexs;
 	}
 
-
-
 	@Override
 	public List<Index> getReportByMe(String report) {
 		List<Index> reports = new ArrayList<Index>();
-		try{
+		try {
 			String query = "select * from issue where reporter=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, report);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
+
+			while (rs.next()) {
 				Index index = new Index();
 				index.setIssueID(rs.getInt("issueID"));
 				index.setProject(rs.getString("project"));
 				index.setReporter(rs.getString("reporter"));
 				index.setTitle(rs.getString("title"));
 				index.setUpdateDate(rs.getString("updateDate"));
+				index.setStatus(rs.getString("status"));
 				reports.add(index);
+
+				if (index.getStatus().equals("Resolved")) {
+					reports.remove(index);
+				}
 			}
-			
+
 			rs.close();
 			ps.close();
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return reports;
 	}
 
-
-
 	@Override
 	public List<Index> getResolveIssue() {
 		List<Index> resolves = new ArrayList<Index>();
-		try{
+		try {
 			String query = "select * from issue where status='Resolved'";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
-			while(rs.next()){
+			while (rs.next()) {
 				Index index = new Index();
 				index.setIssueID(rs.getInt("issueID"));
 				index.setProject(rs.getString("project"));
@@ -95,12 +100,10 @@ public class IndexDAOImplementation implements IndexDAO {
 			}
 			rs.close();
 			statement.close();
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return resolves;
 	}
-
-
 
 }

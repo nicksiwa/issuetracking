@@ -95,9 +95,9 @@
 					   
 						<c:forEach items="${reports}" var="index">
 						  <a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading"><c:out value="${index.title}"></c:out></h4>
+							<p class="list-group-item-heading"><h4><c:out value="${index.title}"></c:out></h4><span class="pull-right"><c:out value="${index.updateDate}"></c:out></span></p>
 							<p class="list-group-item-text">From Project : <c:out value="${index.project}"></c:out></p>
-							<p class="list-group-item-text"><c:out value="${index.updateDate}"></c:out></p>
+							
 						</a>
 						</c:forEach>
 				
@@ -120,9 +120,8 @@
 					   
 						<c:forEach items="${resolves}" var="index">
 						  <a href="#" class="list-group-item">
-							<h4 class="list-group-item-heading"><c:out value="${index.title}"></c:out></h4>
+							<p class="list-group-item-heading"><h4><c:out value="${index.title}"></c:out></h4><span class="pull-right"><c:out value="${index.updateDate}"></c:out></span></p>
 							<p class="list-group-item-text">From Project : <c:out value="${index.project}"></c:out></p>
-							<p class="list-group-item-text"><c:out value="${index.updateDate}"></c:out></p>
 						</a>
 						</c:forEach>
 				
