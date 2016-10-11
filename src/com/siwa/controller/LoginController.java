@@ -69,6 +69,7 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("indexs", daos.getAllIndex(username));
 			request.setAttribute("reports", daos.getReportByMe(username));
 			request.setAttribute("resolves", daos.getResolveIssue());
+			request.setAttribute("recents", daos.getRecentlyModified());
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{

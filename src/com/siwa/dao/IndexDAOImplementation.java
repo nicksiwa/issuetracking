@@ -106,4 +106,28 @@ public class IndexDAOImplementation implements IndexDAO {
 		return resolves;
 	}
 
+	@Override
+	public List<Index> getRecentlyModified() {
+		List<Index> recents = new ArrayList<Index>();
+		try{
+			String query = "select * from issue order by updateDate desc";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			while (rs.next()) {
+				Index index = new Index();
+				index.setIssueID(rs.getInt("issueID"));
+				index.setProject(rs.getString("project"));
+				index.setReporter(rs.getString("reporter"));
+				index.setTitle(rs.getString("title"));
+				index.setUpdateDate(rs.getString("updateDate"));
+				recents.add(index);
+			}
+			rs.close();
+			statement.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return recents;
+	}
+
 }

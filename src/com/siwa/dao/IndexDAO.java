@@ -11,5 +11,7 @@ public interface IndexDAO {
 	public List<Index> getReportByMe(String report);
 	
 	public List<Index> getResolveIssue();
+	
+	public List<Index> getRecentlyModified();
  	
 }

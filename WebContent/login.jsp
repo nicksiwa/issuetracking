@@ -24,13 +24,13 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="IndexController?action=index">Home</a></li>
-					<li><a href="PersonController?action=listPerson">Person</a></li>
-					<li><a href="ProjectController?action=listProject">Project</a></li>
-					<li><a href="CommentController?action=listComment">Comment</a></li>
+					<li class="active"><a href="IndexController?action=index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li><a href="PersonController?action=listPerson"><span class="glyphicon glyphicon-user"></span> Person</a></li>
+					<li><a href="ProjectController?action=listProject"><span class="glyphicon glyphicon-tasks"></span> Project</a></li>
+					<li><a href="CommentController?action=listComment"><span class="glyphicon glyphicon-comment"></span> Comment</a></li>
 					<li><a href="TestController?action=listTest">Test</a></li>
 					<li><a href="AssignController?action=listAssign">Assign</a></li>
-					<li><a href="IssueController?action=listIssue">Issue</a></li>
+					<li><a href="IssueController?action=listIssue"><span class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<%

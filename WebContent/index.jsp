@@ -131,14 +131,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-12">
+				<div class="col-md-12">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3>Recently Modified</h3>
+						<h3><span class="glyphicon glyphicon-check"></span> Recently Modified<span class="pull-right"><h4><span class="badge">${fn:length(recents)}</span> Issues</h4></span></h3>
+						
 					</div>
 					<div class="panel-body">
-						Panel Content <br>
+					 <div class="list-group">
+					 
+					   
+						<c:forEach items="${recents}" var="index">
+						  <a href="#" class="list-group-item">
+							<p class="list-group-item-heading"><h4><c:out value="${index.title}"></c:out></h4><span class="pull-right"><c:out value="${index.updateDate}"></c:out></span></p>
+							<p class="list-group-item-text">From Project : <c:out value="${index.project}"></c:out></p>
+						</a>
+						</c:forEach>
+				
+						</div>
 						<button type="button" class="btn btn-default">Default</button>
 					</div>
 				</div>
