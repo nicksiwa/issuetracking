@@ -2,6 +2,7 @@ package com.siwa.dao;
 
 import java.util.List;
 
+import com.siwa.model.Comment;
 import com.siwa.model.Issue;
 import com.siwa.model.Test;
 
@@ -18,5 +19,7 @@ public interface IssueDAO {
 	public Issue getAssignById(int issueID);
 	
 	public List<Issue> getPersonAndProject();
+	
+	public List <Comment> getCommentByIssue(int issueID);
 
 }

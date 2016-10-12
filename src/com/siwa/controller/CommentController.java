@@ -47,7 +47,11 @@ public class CommentController extends HttpServlet {
 			request.setAttribute("comment", comment);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
-		} else {
+		} 
+		else if(action.equalsIgnoreCase("detail")){
+			
+		}
+		else {
 			forward = LIST_COMMENT;
 			request.setAttribute("comments", dao.getAllComment());
 		}

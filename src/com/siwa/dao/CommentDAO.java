@@ -15,5 +15,7 @@ public interface CommentDAO {
 		public List<Comment> getAllComment();
 
 		public Comment getCommentById(int commentID);
+		
+		public Comment getCommentByIssue(int issueID);
 	
 }

@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.siwa.model.Comment;
+import com.siwa.model.Index;
 import com.siwa.model.Issue;
 import com.siwa.util.DBUtil;
 
@@ -156,6 +158,31 @@ public class IssueDAOImplementation implements IssueDAO {
 			e.printStackTrace();
 		}
 		return issuess;
+	}
+
+	@Override
+	public List<Comment> getCommentByIssue(int issueID) {
+		List<Comment> comments = new ArrayList<Comment>();
+		try{
+			String query = "select * from comment where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Comment comment = new Comment();
+				comment.setCommentID(rs.getInt("commentID"));
+				comment.setDescription(rs.getString("description"));
+				comment.setStatus(rs.getString("status"));
+				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setUserComment(rs.getString("userComment"));
+				comments.add(comment);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return comments;
 	}
 
 }

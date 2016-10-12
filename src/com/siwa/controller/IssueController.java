@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.model.Comment;
 import com.siwa.model.Issue;
 
 
@@ -26,6 +27,7 @@ public class IssueController extends HttpServlet {
 	private IssueDAO dao;
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
+	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
 	
 	
     public IssueController() {
@@ -52,6 +54,13 @@ public class IssueController extends HttpServlet {
 			forward = INSERT_OR_EDIT;
 			request.setAttribute("issuess", dao.getPersonAndProject());
 			
+		}else if (action.equalsIgnoreCase("detail")){
+			forward  = ISSUE_DETAIL;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			Issue issue = dao.getAssignById(issueID);
+			request.setAttribute("issue", issue);
+			
+			request.setAttribute("comments", dao.getCommentByIssue(issueID));
 		} else {
 			forward = LIST_ISSUE;
 			request.setAttribute("issues", dao.getAllIssue());

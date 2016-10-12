@@ -115,4 +115,27 @@ public class CommentDAOImplementation implements CommentDAO {
 		return comment;
 	}
 
+	@Override
+	public Comment getCommentByIssue(int issueID) {
+		Comment comment = new Comment();
+		try{
+			String query = "select * from comment where commentID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				comment.setCommentID(rs.getInt("commentID"));
+				comment.setDescription(rs.getString("description"));
+				comment.setStatus(rs.getString("status"));
+				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setUserComment(rs.getString("userComment"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return comment;
+	}
+
 }
