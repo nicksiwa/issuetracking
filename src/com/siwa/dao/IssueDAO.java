@@ -21,5 +21,6 @@ public interface IssueDAO {
 	public List<Issue> getPersonAndProject();
 	
 	public List <Comment> getCommentByIssue(int issueID);
+	
 
 }
