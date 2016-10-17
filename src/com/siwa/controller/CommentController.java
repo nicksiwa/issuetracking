@@ -1,6 +1,10 @@
 package com.siwa.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +16,12 @@ import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
+import com.siwa.dao.EditStatusDAO;
+import com.siwa.dao.EditStatusDAOIM;
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.model.Comment;
+import com.siwa.model.Issue;
 
 
 
@@ -21,13 +30,18 @@ public class CommentController extends HttpServlet {
 
        
 	private CommentDAO dao;
+	private EditStatusDAO dao3;
+	private IssueDAO dao2;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_COMMENT = "/listComment.jsp";
 	public static final String INSERT_OR_EDIT = "/comment.jsp";
+	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
 
   
     public CommentController() {
     	dao = new CommentDAOImplementation();
+    	 dao3 = new EditStatusDAOIM();
+         dao2 = new IssueDAOImplementation();
     }
 
 	
@@ -65,13 +79,9 @@ public class CommentController extends HttpServlet {
 		HttpSession session  = request.getSession();
 		String username = (String) session.getAttribute("username");
 		
-		String description = (request.getParameter("description"));
-		description = new String(description.getBytes("ISO8859-1"), "UTF-8");
-		comment.setDescription(description);
-		
-		String status = (request.getParameter("status"));
-		status = new String(status.getBytes("ISO8859-1"), "UTF-8");
-		comment.setStatus(status);
+		String commentDetail = (request.getParameter("commentDetail"));
+		commentDetail = new String(commentDetail.getBytes("ISO8859-1"), "UTF-8");
+		comment.setCommentDetail(commentDetail);
 		
 		String commentTime = (request.getParameter("commentTime"));
 		commentTime = new String(commentTime.getBytes("ISO8859-1"), "UTF-8");
@@ -89,8 +99,13 @@ public class CommentController extends HttpServlet {
 			comment.setCommentID(Integer.parseInt(commentID));
 			dao.updateComment(comment);
 		}
-		RequestDispatcher view = request.getRequestDispatcher(LIST_COMMENT);
-		request.setAttribute("comments", dao.getAllComment());
+		
+		
+		
+		int issueID2 = Integer.parseInt(request.getParameter("issueID"));
+		request.setAttribute("comments", dao2.getCommentByIssue(issueID2));
+		
+		RequestDispatcher view  = request.getRequestDispatcher(ISSUE_DETAIL);
 		view.forward(request, response);
 		
 	}

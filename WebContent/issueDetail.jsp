@@ -62,6 +62,7 @@
 	<form action="EditStatusController.do" method="post"
 		class="form-horizontal">
 		<div class="container">
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3>
@@ -182,24 +183,31 @@
 					</div>
 
 					<fmt:setLocale value="en_US" />
-					
-						<div class="col-sm-8 col-lg-6 col-md-6">
-							<input type="hidden" name="dueDate" class="form-control"
-								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
+
+					<div class="col-sm-8 col-lg-6 col-md-6">
+						<input type="hidden" name="dueDate" class="form-control"
+							value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
+					</div>
+					<input type="hidden" name="issueID" class="form-control"
+						value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input type="submit" class="btn btn-default" value="Submit" />
 						</div>
-						<input type="hidden" name="issueID" class="form-control"
-							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
-
-
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" class="btn btn-default" value="Submit" />
-							</div>
-						</div>
-</div>
-				
+					</div>
 				</div>
+
+			</div>
+		</div>
+	</form>
+
+
+	<form action="" method="post" class="form-horizontal">
+		<div class="container">
+			<div class="col-md-8">
 				<c:forEach items="${comments}" var="comment">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -212,22 +220,55 @@
 									:</label>
 								<div class="col-sm-3 col-lg-2 col-md-2">
 									<p class="form-control-static">
-										<c:out value="${comment.description}"></c:out>
-									</p>
-								</div>
-								<label for="tile" class="control-label col-sm-2">Status
-									:</label>
-								<div class="col-sm-3 col-lg-3 col-md-3">
-									<p class="form-control-static">
-										<c:out value="${comment.status}"></c:out>
+										<c:out value="${comment.commentDetail}"></c:out>
 									</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
-
 			</div>
+		</div>
+	</form>
+
+
+	<form action="CommentController.do" method="post"
+		class="form-horizontal">
+		<div class="container">
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b><%=username%></b>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<input type="hidden" name="commentID"
+								value="<c:out value="${comment.commentID}" />"
+								readonly="readonly" placeholder="Auto generate ID" />
+
+							<div class="col-sm-12 col-lg-12 col-md-12">
+								<textarea name="description" class="form-control" rows="6"
+									id="comment" placeholder="Leave a comment"></textarea>
+								<input type="hidden" name="commentDetail" class="form-control"
+									value="<c:out value="${comment.commentDetail}" />"
+									placeholder="description" />
+							</div>
+						</div>
+
+						<input type="hidden" id="date" name="commentTime"
+							value="<c:out value="${comment.commentTime}" />"
+							placeholder="Comment Time" />
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<input type="submit" class="btn btn-default" value="Submit" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</form>
 
 	<script src="js/bootstrap.min.js"></script>

@@ -22,12 +22,11 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void addComment(Comment comment) {
 		try{
-			String query = "insert into comment (description,status,commentTime,userComment) values (?,?,?,?)";
+			String query = "insert into comment (commentDetail,commentTime,userComment) values (?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, comment.getDescription());
-			ps.setString(2, comment.getStatus());
-			ps.setString(3, comment.getCommentTime());	
-			ps.setString(4, comment.getUserComment());
+			ps.setString(1, comment.getCommentDetail());
+			ps.setString(2, comment.getCommentTime());	
+			ps.setString(3, comment.getUserComment());
 			ps.executeUpdate();
 			ps.close();
 					
@@ -54,13 +53,12 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void updateComment(Comment comment) {
 		try{
-			String query = "update comment set description=?, status=?, commentTime=?, userComment=? where commentID=?";
+			String query = "update comment set commentDetail=?, commentTime=?, userComment=? where commentID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, comment.getDescription());
-			ps.setString(2, comment.getStatus());
-			ps.setString(3, comment.getCommentTime());
-			ps.setString(4, comment.getUserComment());
-			ps.setInt(5, comment.getCommentID());
+			ps.setString(1, comment.getCommentDetail());
+			ps.setString(2, comment.getCommentTime());
+			ps.setString(3, comment.getUserComment());
+			ps.setInt(4, comment.getCommentID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -78,8 +76,7 @@ public class CommentDAOImplementation implements CommentDAO {
 			while(rs.next()){
 				Comment comment = new Comment();
 				comment.setCommentID(rs.getInt("commentID"));
-				comment.setDescription(rs.getString("description"));
-				comment.setStatus(rs.getString("status"));
+				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comments.add(comment);
@@ -102,8 +99,7 @@ public class CommentDAOImplementation implements CommentDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				comment.setCommentID(rs.getInt("commentID"));
-				comment.setDescription(rs.getString("description"));
-				comment.setStatus(rs.getString("status"));
+				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 			}
@@ -125,8 +121,7 @@ public class CommentDAOImplementation implements CommentDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				comment.setCommentID(rs.getInt("commentID"));
-				comment.setDescription(rs.getString("description"));
-				comment.setStatus(rs.getString("status"));
+				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 			}

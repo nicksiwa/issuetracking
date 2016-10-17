@@ -120,8 +120,12 @@
 					value="<c:out value="${person.position}" />" placeholder="Position" />
 					</div>
 			</div>
-			<br> <br> <input type="submit" class="btn btn-default"
+			<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" class="btn btn-default"
 				value="Submit" />
+				</div>
+</div>
 		</form>
 	</div>
 	<script src="js/bootstrap.min.js"></script>

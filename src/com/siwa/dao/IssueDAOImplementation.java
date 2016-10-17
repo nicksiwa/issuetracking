@@ -171,8 +171,7 @@ public class IssueDAOImplementation implements IssueDAO {
 			while(rs.next()){
 				Comment comment = new Comment();
 				comment.setCommentID(rs.getInt("commentID"));
-				comment.setDescription(rs.getString("description"));
-				comment.setStatus(rs.getString("status"));
+				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comments.add(comment);
