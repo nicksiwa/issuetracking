@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+ <%@ page import="com.siwa.model.Issue"%>
 <!DOCTYPE HTML>
+
+<jsp:useBean id="demo" class="com.siwa.model.Issue" scope="session"/>
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -167,18 +173,23 @@
 								placeholder="description" />
 						</div>
 					</div>
+				
 					<hr>
 					<div class="form-group">
-						<label for="status" class="control-label col-sm-2"><a
-							type="submit">Change Status To : </a></label>
+						<label for="status" class="control-label col-sm-2"><a>Change Status To :  </a></label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="status" class="form-control">
-								<option value="Assign">Assign</option>
-								<option value="Feedback">Feedback</option>
-								<option value="Acknowledged">Acknowledged</option>
-								<option value="Confirmed">Confirmed</option>
-								<option value="Resolved">Resolved</option>
+						
+							
+							<select name="status" class="form-control" id="comboA" onchange="getComboA(this)">
+								<option value="assign">Assign</option>
+								<option value="feedback">Feedback</option>
+								<option value="confirmed">Confirmed</option>
+								<option value="resolved" disabled>Resolved</option>
 							</select>
+							
+							
+							
+						
 						</div>
 					</div>
 
@@ -192,12 +203,6 @@
 						value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
 
 
-
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-default" value="Submit" />
-						</div>
-					</div>
 				</div>
 
 			</div>
@@ -303,6 +308,28 @@
 		var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
 		document.getElementById('date').value = today;
 		console.log(today);
+		
+		
+		function getComboA(sel) {
+		    var value = sel.value;  
+		    var google = "http://localhost:8080/Project/IndexController?action=";
+		    var result = google + value;
+		    
+		    if (window.confirm("Change status to "+value))
+		    {
+				    window.location = result
+		    }
+		    else
+		    {
+		    	
+		    }
+		    
+		
+		}
+		
+		
+		
+		
 	</script>
 </body>
 </html>
