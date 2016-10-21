@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.siwa.model.Comment;
+import com.siwa.model.Issue;
 import com.siwa.util.DBUtil;
 
 public class CommentDAOImplementation implements CommentDAO {
@@ -22,11 +23,13 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void addComment(Comment comment) {
 		try{
-			String query = "insert into comment (commentDetail,commentTime,userComment) values (?,?,?)";
+			String query = "insert into comment (commentDetail,commentTime,userComment,commentStatus,issueID) values (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
 			ps.setString(2, comment.getCommentTime());	
 			ps.setString(3, comment.getUserComment());
+			ps.setString(4, comment.getCommentStatus());
+			ps.setInt(5, comment.getIssueID());
 			ps.executeUpdate();
 			ps.close();
 					
@@ -53,12 +56,14 @@ public class CommentDAOImplementation implements CommentDAO {
 	@Override
 	public void updateComment(Comment comment) {
 		try{
-			String query = "update comment set commentDetail=?, commentTime=?, userComment=? where commentID=?";
+			String query = "update comment set commentDetail=?, commentTime=?, userComment=?, commentStatus=?, issueID=? where commentID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
 			ps.setString(2, comment.getCommentTime());
 			ps.setString(3, comment.getUserComment());
-			ps.setInt(4, comment.getCommentID());
+			ps.setString(4, comment.getCommentStatus());
+			ps.setInt(5, comment.getIssueID());
+			ps.setInt(6, comment.getCommentID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -79,6 +84,8 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
+				comment.setCommentStatus(rs.getString("commentStatus"));
+				comment.setIssueID(rs.getInt("issueID"));
 				comments.add(comment);
 			}
 			rs.close();
@@ -102,6 +109,8 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
+				comment.setCommentStatus(rs.getString("commentStatus"));
+				comment.setIssueID(rs.getInt("issueID"));
 			}
 			rs.close();
 			ps.close();
@@ -124,6 +133,8 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
+				comment.setCommentStatus(rs.getString("commentStatus"));
+				comment.setIssueID(rs.getInt("issueID"));
 			}
 			rs.close();
 			ps.close();
@@ -131,6 +142,24 @@ public class CommentDAOImplementation implements CommentDAO {
 			e.printStackTrace();
 		}
 		return comment;
+	}
+
+	@Override
+	public Issue getIssueById(int issueID) {
+		Issue issue = new Issue();
+		try{
+			String query = "select issueID,status from issue where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setStatus(rs.getString("status"));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issue;
 	}
 
 }

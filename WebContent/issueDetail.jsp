@@ -89,7 +89,8 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><c:out value="${issue.issueID}" /></td>
+								<td id="i"><c:out value="${issue.issueID}" /></td>
+							
 								<td><c:out value="${issue.project}" /><input type="hidden"
 									name="project" class="form-control"
 									value="<c:out value="${issue.project}" />"
@@ -174,6 +175,8 @@
 						</div>
 					</div>
 				
+				
+				
 					<hr>
 					<div class="form-group">
 						<label for="status" class="control-label col-sm-2"><a>Change Status To :  </a></label>
@@ -184,7 +187,7 @@
 								<option value="assign">Assign</option>
 								<option value="feedback">Feedback</option>
 								<option value="confirmed">Confirmed</option>
-								<option value="resolved" disabled>Resolved</option>
+								<option value="resolved">Resolved</option>
 							</select>
 							
 							
@@ -228,6 +231,15 @@
 										<c:out value="${comment.commentDetail}"></c:out>
 									</p>
 								</div>
+								
+								<label for="tile" class="control-label col-sm-2">Status
+									:</label>
+								<div class="col-sm-3 col-lg-2 col-md-2">
+									<p class="form-control-static">
+										<c:out value="${comment.commentStatus}"></c:out>
+									</p>
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -312,8 +324,11 @@
 		
 		function getComboA(sel) {
 		    var value = sel.value;  
-		    var google = "http://localhost:8080/Project/IndexController?action=";
-		    var result = google + value;
+		    var issue = "&issueID=";
+		    var id = $('#i').html();
+		    
+		    var google = "http://localhost:8080/Project/CommentController?action=";
+		    var result = google + value + issue + id;
 		    
 		    if (window.confirm("Change status to "+value))
 		    {

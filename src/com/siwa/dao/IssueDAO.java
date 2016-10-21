@@ -22,5 +22,21 @@ public interface IssueDAO {
 	
 	public List <Comment> getCommentByIssue(int issueID);
 	
+	public void setStatusAssign(Issue issue);
+	
+	public void setStatusFeedback(Issue issue);
+	
+	public void setStatusConfirmed(Issue issue);
+	
+	public void setStatusResolved(Issue issue);
+	
+	public Issue setAssignTemp(int issueID);
+	
+	public Issue setFeedbackTemp(int issueID);
+	
+	public Issue setConfirmedTemp(int issueID);
+	
+	public Issue setResolvedTemp(int issueID);
+	
 
 }

@@ -174,6 +174,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				comment.setCommentDetail(rs.getString("commentDetail"));
 				comment.setCommentTime(rs.getString("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
+				comment.setCommentStatus(rs.getString("commentStatus"));
 				comments.add(comment);
 			}
 			rs.close();
@@ -182,6 +183,65 @@ public class IssueDAOImplementation implements IssueDAO {
 			e.printStackTrace();
 		}
 		return comments;
+	}
+
+	@Override
+	public void setStatusAssign(Issue issue) {
+		try{
+			String query = "update issue set updateDate=?, status='Assign' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, issue.getUpdateDate());
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	
+	}
+
+	@Override
+	public void setStatusFeedback(Issue issue) {
+		try{
+			String query = "update issue set updateDate=?, status='Feedback' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, issue.getUpdateDate());
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void setStatusConfirmed(Issue issue) {
+		try{
+			String query = "update issue set updateDate=?, status='Confirmed' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, issue.getUpdateDate());
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void setStatusResolved(Issue issue) {
+		try{
+			String query = "update issue set updateDate=?, status='Resolved' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, issue.getUpdateDate());
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.CommentDAO;
+import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.EditStatusDAO;
 import com.siwa.dao.EditStatusDAOIM;
 import com.siwa.dao.IssueDAO;
@@ -25,13 +27,19 @@ public class EditStatusController extends HttpServlet {
 	
 	private EditStatusDAO dao;
 	private IssueDAO dao2;
+	private CommentDAO dao3;
 	private static final long serialVersionUID = 1L;
 	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
+	public static final String ASSIGN = "/statusAssign.jsp";
+	public static final String FEEDBACK = "/statusFeedback.jsp";
+	public static final String CONFIRMED = "/statusConfirmed.jsp";
+	public static final String RESOLVED = "/statusResolved.jsp";
       
 	
     public EditStatusController() {
       dao = new EditStatusDAOIM();
       dao2 = new IssueDAOImplementation();
+      dao3 = new CommentDAOImplementation();
     }
 
 
@@ -40,12 +48,23 @@ public class EditStatusController extends HttpServlet {
 		String forward = "";
 		String action = request.getParameter("action");
 		
-		if(action.equalsIgnoreCase("edit")){
-			forward = ISSUE_DETAIL;
+		if(action.equalsIgnoreCase("assign")){
+			forward = ASSIGN;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			Issue issue = dao.getIsuseStatusById(issueID);
-			request.setAttribute("issue", issue);
-			request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+			
+			
+		}else if(action.equalsIgnoreCase("feedback")){
+			forward = FEEDBACK;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			
+		}else if(action.equalsIgnoreCase("confirmed")){
+			forward = CONFIRMED;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			
+		}else if(action.equalsIgnoreCase("resolved")){
+			forward = RESOLVED;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			
 			
 		}else{
 			
@@ -59,8 +78,6 @@ public class EditStatusController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Issue issue = new Issue();
-		
-
 		
 		String project = (request.getParameter("project"));
 		project = new String(project.getBytes("ISO8859-1"), "UTF-8");
