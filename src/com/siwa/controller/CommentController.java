@@ -48,6 +48,7 @@ public class CommentController extends HttpServlet {
 			throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
+		
 
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_COMMENT;
@@ -64,30 +65,34 @@ public class CommentController extends HttpServlet {
 		} else if (action.equalsIgnoreCase("assign")) {
 			forward = ASSIGN;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			Issue issue = dao.getIssueById(issueID);
-			request.setAttribute("issue", issue);
-			
+			Issue issue = new Issue();
 			issue.setIssueID(issueID);
 			dao2.setStatusAssign(issue);
-			
+			issue = dao.getIssueById(issueID);
+			request.setAttribute("issue", issue);
 		} else if (action.equalsIgnoreCase("feedback")) {
 			forward = FEEDBACK;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			Issue issue = dao.getIssueById(issueID);
-			request.setAttribute("issue", issue);
-			
+			Issue issue = new Issue();
 			issue.setIssueID(issueID);
 			dao2.setStatusFeedback(issue);
-			
+			issue = dao.getIssueById(issueID);
+			request.setAttribute("issue", issue);
 		} else if (action.equalsIgnoreCase("confirmed")) {
 			forward = CONFIRMED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			Issue issue = dao.getIssueById(issueID);
+			Issue issue = new Issue();
+			issue.setIssueID(issueID);
+			dao2.setStatusConfirmed(issue);
+			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
 		} else if (action.equalsIgnoreCase("resolved")) {
 			forward = RESOLVED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			Issue issue = dao.getIssueById(issueID);
+			Issue issue = new Issue();
+			issue.setIssueID(issueID);
+			dao2.setStatusResolved(issue);
+			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
 		} else {
 			forward = LIST_COMMENT;
@@ -128,37 +133,35 @@ public class CommentController extends HttpServlet {
 		
 		
 		String status = request.getParameter("status");
-		String a = "Assign";
-		String b = "Feedback";
-		System.out.println(status);
+
 		
 		String updateDate = (request.getParameter("commentTime"));
 		updateDate = new String(updateDate.getBytes("ISO8859-1"), "UTF-8");
 		issue.setUpdateDate(updateDate);
 		
 
-		if (a != status){
+		if (status.equals("Assign")){
 			String commentStatus = "Assign";
 			commentStatus = new String(commentStatus.getBytes("ISO8859-1"), "UTF-8");
 			comment.setCommentStatus(commentStatus);
 			dao.addComment(comment);
 			issue.setIssueID(issueID);
 			dao2.setStatusAssign(issue);
-		}else if (b != status){
+		}else if (status.equals("Feedback")){
 			String commentStatus = "Feedback";
 			commentStatus = new String(commentStatus.getBytes("ISO8859-1"), "UTF-8");
 			comment.setCommentStatus(commentStatus);
 			dao.addComment(comment);
 			issue.setIssueID(issueID);
 			dao2.setStatusFeedback(issue);
-		}else if(status.equals("Assign") || status.equals("Feedback") || status.equals("Resolved")){
+		}else if(status.equals("Confirmed")){
 			String commentStatus = "Confirmed";
 			commentStatus = new String(commentStatus.getBytes("ISO8859-1"), "UTF-8");
 			comment.setCommentStatus(commentStatus);
 			dao.addComment(comment);
 			issue.setIssueID(issueID);
 			dao2.setStatusConfirmed(issue);
-		}else if(status.equals("Assign") || status.equals("Feedback") || status.equals("Confirmed")){
+		}else if(status.equals("Resolved")){
 			String commentStatus = "Resolved";
 			commentStatus = new String(commentStatus.getBytes("ISO8859-1"), "UTF-8");
 			comment.setCommentStatus(commentStatus);

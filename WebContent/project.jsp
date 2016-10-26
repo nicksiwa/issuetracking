@@ -10,95 +10,75 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="IndexController?action=index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-					<li><a href="PersonController?action=listPerson"><span class="glyphicon glyphicon-user"></span> Person</a></li>
-					<li><a href="ProjectController?action=listProject"><span class="glyphicon glyphicon-tasks"></span> Project</a></li>
-					<li><a href="CommentController?action=listComment"><span class="glyphicon glyphicon-comment"></span> Comment</a></li>
-					<li><a href="TestController?action=listTest">Test</a></li>
-					<li><a href="AssignController?action=listAssign">Assign</a></li>
-					<li><a href="IssueController?action=listIssue"><span class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<%
-						String username = (String) session.getAttribute("username");
-						if (username == null) {
-					%>
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
-					<%
-						} else {
-					%>
-					<li><a>Hi, <%=username%></a></li>
-					<li>
-					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-					</li>
-					<%
-						}
-					%>
-				</ul>
-			</div>
-		</div>
-	</nav>
+
+	<jsp:include page="navbar.jsp" />
 
 	<div class="container">
-		<form action="ProjectController.do" method="post" class="form-horizontal">
-			<input type="hidden" name="projectID"
-				value="<c:out value="${project.projectID}" />" readonly="readonly"
-				placeholder="Auto generate ID" /> <br> <br>
-				
-			<div class="form-group">
-				<label for="projectName" class="control-label col-sm-2">Project Name :</label>
-				<div class="col-sm-3 col-lg-2 col-md-2"> <input
-					type="text" name="projectName" class="form-control"
-					value="<c:out value="${project.projectName}" />"
-					placeholder="Project Name" />
-					</div>
-			
-				<label for="status" class="control-label col-sm-2">Project Status :</label>
-				<div class="col-sm-3 col-lg-2 col-md-2"><input
-					type="text" name="status" class="form-control"
-					value="<c:out value="${project.status}" />"
-					placeholder="Project Status" />
-					</div>
-			</div>
-			<fmt:setLocale value="en_US" />
+		<form action="ProjectController.do" method="post"
+			class="form-horizontal">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>
+						<span class="glyphicon glyphicon-tasks"></span> Project
+					</h3>
+				</div>
+				<div class="panel-body">
+
+					<input type="hidden" name="projectID"
+						value="<c:out value="${project.projectID}" />" readonly="readonly"
+						placeholder="Auto generate ID" /> <br> <br>
+
 					<div class="form-group">
-				<label for="startDate" class="control-label col-sm-2">Start Date :</label>
-				<div class="col-sm-3 col-lg-2 col-md-2"><input type="date" name="startDate" class="form-control"
-					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.startDate}" />" />
+						<label for="projectName" class="control-label col-sm-2">Project
+							Name :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<input type="text" name="projectName" class="form-control"
+								value="<c:out value="${project.projectName}" />"
+								placeholder="Project Name" />
+						</div>
+
+						<label for="status" class="control-label col-sm-2">Project
+							Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<input type="text" name="status" class="form-control"
+								value="<c:out value="${project.status}" />"
+								placeholder="Project Status" />
+						</div>
+					</div>
+					<fmt:setLocale value="en_US" />
+					<div class="form-group">
+						<label for="startDate" class="control-label col-sm-2">Start
+							Date :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<input type="date" name="startDate" class="form-control"
+								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.startDate}" />" />
+						</div>
+
+						<label for="finishDate" class="control-label col-sm-2">Finish
+							Date :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<input type="date" name="finishDate" class="form-control"
+								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />
+						</div>
 					</div>
 
-				<label for="finishDate" class="control-label col-sm-2">Finish Date :</label>
-				<div class="col-sm-3 col-lg-2 col-md-2"><input type="date" name="finishDate" class="form-control"
-					value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />
-			</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="description" class="control-label col-sm-2">Description :</label><div class="col-sm-8 col-lg-6 col-md-6">
-				<textarea rows="5" id="comment" name="description" class="form-control" placeholder="Description"><c:out value="${project.description}" /></textarea>
+					<div class="form-group">
+						<label for="description" class="control-label col-sm-2">Description
+							:</label>
+						<div class="col-sm-8 col-lg-6 col-md-6">
+							<textarea rows="5" id="comment" name="description"
+								class="form-control" placeholder="Description"><c:out
+									value="${project.description}" /></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input type="submit" class="btn btn-default" value="Submit" />
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-			<input type="submit" class="btn btn-default"
-				value="Submit" />
-				</div>
-</div>
 		</form>
 	</div>
 	<script src="js/bootstrap.min.js"></script>

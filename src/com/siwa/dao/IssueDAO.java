@@ -30,13 +30,4 @@ public interface IssueDAO {
 	
 	public void setStatusResolved(Issue issue);
 	
-	public Issue setAssignTemp(int issueID);
-	
-	public Issue setFeedbackTemp(int issueID);
-	
-	public Issue setConfirmedTemp(int issueID);
-	
-	public Issue setResolvedTemp(int issueID);
-	
-
 }

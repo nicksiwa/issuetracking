@@ -6,54 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Show All Comments</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="IndexController?action=index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-					<li><a href="PersonController?action=listPerson"><span class="glyphicon glyphicon-user"></span> Person</a></li>
-					<li><a href="ProjectController?action=listProject"><span class="glyphicon glyphicon-tasks"></span> Project</a></li>
-					<li><a href="CommentController?action=listComment"><span class="glyphicon glyphicon-comment"></span> Comment</a></li>
-					<li><a href="TestController?action=listTest">Test</a></li>
-					<li><a href="AssignController?action=listAssign">Assign</a></li>
-					<li><a href="IssueController?action=listIssue"><span class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<%
-						String username = (String) session.getAttribute("username");
-						if (username == null) {
-					%>
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="LoginController"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
-					<%
-						} else {
-					%>
-					<li><a>Hi, <%=username%></a></li>
-					<li>
-					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-					</li>
-					<%
-						}
-					%>
-				</ul>
-			</div>
-		</div>
-	</nav>
 
+	<jsp:include page="navbar.jsp" />
 
 	<div class="container">
 		<br>
@@ -64,10 +22,11 @@
 			<thead>
 				<tr>
 					<th>Comment ID</th>
-					<th>Description</th>
-					<th>Status</th>
+					<th>Comment Detail</th>
+					<th>Comment Status</th>
 					<th>Comment Time</th>
 					<th>Username</th>
+					<th>Issue ID</th>
 					<th colspan="2">Action</th>
 				</tr>
 			</thead>
@@ -75,10 +34,11 @@
 				<c:forEach items="${comments}" var="comment">
 					<tr>
 						<td><c:out value="${comment.commentID}"></c:out></td>
-						<td><c:out value="${comment.description}"></c:out></td>
-						<td><c:out value="${comment.status}"></c:out></td>
+						<td><c:out value="${comment.commentDetail}"></c:out></td>
+						<td><c:out value="${comment.commentStatus}"></c:out></td>
 						<td><c:out value="${comment.commentTime}"></c:out></td>
 						<td><c:out value="${comment.userComment}"></c:out></td>
+						<td><c:out value="${comment.issueID}"></c:out></td>
 						<td><a
 							href="CommentController.do?action=edit&commentID=<c:out value="${comment.commentID }"/>">Update</a></td>
 						<td><a

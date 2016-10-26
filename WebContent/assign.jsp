@@ -10,80 +10,47 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="IndexController?action=index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-					<li><a href="PersonController?action=listPerson"><span class="glyphicon glyphicon-user"></span> Person</a></li>
-					<li><a href="ProjectController?action=listProject"><span class="glyphicon glyphicon-tasks"></span> Project</a></li>
-					<li><a href="CommentController?action=listComment"><span class="glyphicon glyphicon-comment"></span> Comment</a></li>
-					<li><a href="TestController?action=listTest">Test</a></li>
-					<li><a href="AssignController?action=listAssign">Assign</a></li>
-					<li><a href="IssueController?action=listIssue"><span class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<%
-						String username = (String) session.getAttribute("username");
-						if (username == null) {
-					%>
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
-					<%
-						} else {
-					%>
-					<li><a>Hi, <%=username%></a></li>
-					<li>
-					<a href="LoginController?action=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-					</li>
-					<%
-						}
-					%>
-				</ul>
-			</div>
-		</div>
-	</nav>
 
 
+	<jsp:include page="navbar.jsp" />
 
 	<form action="AssignController.do" method="post" class="form-inline">
 		<div class="container">
 
-			<input type="hidden" name="assignID"
-				value="<c:out value="${assign.assignID}" />" readonly="readonly"
-				placeholder="Auto generate ID" /> <br> <br>
-			<div class="form-group">
-				<label for="personID">Person ID</label><br> <input type="text"
-					name="personID" class="form-control"
-					value="<c:out value="${assign.personID}" />"
-					placeholder="Person ID" />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>
+						 Assign
+					</h3>
+				</div>
+				<div class="panel-body">
+					<input type="hidden" name="assignID"
+						value="<c:out value="${assign.assignID}" />" readonly="readonly"
+						placeholder="Auto generate ID" /> <br> <br>
+					<div class="form-group">
+						<label for="personID">Person ID</label><br> <input
+							type="text" name="personID" class="form-control"
+							value="<c:out value="${assign.personID}" />"
+							placeholder="Person ID" />
+					</div>
+					<c:forEach items="${assigns}" var="assign">
+						<c:out value="${assign.assignID}"></c:out>
+					</c:forEach>
+					<br> <br>
+					<div class="form-group">
+						<label for="projectID">Project ID</label><br> <input
+							type="text" name="projectID" class="form-control"
+							value="<c:out value="${assign.projectID}" />"
+							placeholder="Project ID" />
+					</div>
+
+
+
+
+					<br> <br> <input type="submit" class="btn btn-default"
+						value="Submit" />
+				</div>
 			</div>
-			<c:forEach items="${assigns}" var="assign">
-				<c:out value="${assign.assignID}"></c:out>
-			</c:forEach>
-			<br> <br>
-			<div class="form-group">
-				<label for="projectID">Project ID</label><br> <input
-					type="text" name="projectID" class="form-control"
-					value="<c:out value="${assign.projectID}" />"
-					placeholder="Project ID" />
-			</div>
-
-
-
-
-			<br> <br> <input type="submit" class="btn btn-default"
-				value="Submit" />
 
 		</div>
 	</form>
