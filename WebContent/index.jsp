@@ -17,75 +17,34 @@
 
 	<div class="container">
 		<form action="" class="form-horizontal">
-		
-		
-		
-		<div class="col-md-12">
+
+
+
+<div class="col-md-8">
+			
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3>
-								<span class="glyphicon glyphicon-list-alt"></span>Test Show 3 Recent<span class="pull-right"><h4>
-										<span class="badge">${fn:length(recents)}</span> Issues
-									</h4></span>
-							</h3>
-
-						</div>
-						<div class="panel-body">
-							<div class="list-group">
-
-
-								<c:forEach begin="0" end="2" items="${recents}" var="index1">
-									<a
-										href="IssueController.do?action=detail&issueID=<c:out value="${index1.issueID}"/>"
-										class="list-group-item">
-										<p class="list-group-item-heading">
-										<h4>
-											<c:out value="${index1.title}"></c:out>
-										</h4> <span class="pull-right"><c:out
-												value="${index1.updateDate}"></c:out></span>
-										</p>
-										<p class="list-group-item-text">
-											From Project :
-											<c:out value="${index1.project}"></c:out>s
-										</p>
-
-									</a>
-								</c:forEach>
-
-							</div>
-							<button type="button" class="btn btn-default">Default</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-		
-		
-			<div class="col-md-12">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>
-								<span class="glyphicon glyphicon-list-alt"></span> Assigned to
-								Me<span class="pull-right"><h4>
+							<h4>
+								<span class="glyphicon glyphicon-list-alt"></span> <b>Assigned to
+								Me</b><span class="pull-right"><h5>
 										<span class="badge">${fn:length(indexs)}</span> Issues
-									</h4></span>
-							</h3>
+									</h5></span>
+							</h4>
 
 						</div>
 						<div class="panel-body">
 							<div class="list-group">
 
 
-								<c:forEach items="${indexs}" var="index">
+								<c:forEach begin="0" end="2" items="${indexs}" var="index">
 									<a
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<h4>
+										<b>
 											<c:out value="${index.title}"></c:out>
-										</h4> <span class="pull-right"><c:out
+										</b> <span class="pull-right"><c:out
 												value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
@@ -101,31 +60,31 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
+			
+			
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3>
-								<span class="glyphicon glyphicon-edit"></span> Report by Me<span
-									class="pull-right"><h4>
+							<h4>
+								<span class="glyphicon glyphicon-edit"></span> <b>Report by Me</b><span
+									class="pull-right"><h5>
 										<span class="badge">${fn:length(reports)}</span> Issues
-									</h4></span>
-							</h3>
+									</h5></span>
+							</h4>
 
 						</div>
 						<div class="panel-body">
 							<div class="list-group">
 
 
-								<c:forEach items="${reports}" var="index">
+								<c:forEach begin="0" end="2" items="${reports}" var="index">
 									<a
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<h4>
+										<b>
 											<c:out value="${index.title}"></c:out>
-										</h4> <span class="pull-right"><c:out
+										</b> <span class="pull-right"><c:out
 												value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
@@ -141,31 +100,30 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
+			
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3>
-								<span class="glyphicon glyphicon-check"></span> Resolved<span
-									class="pull-right"><h4>
+							<h4>
+								<span class="glyphicon glyphicon-check"></span> <b>Resolved</b><span
+									class="pull-right"><h5>
 										<span class="badge">${fn:length(resolves)}</span> Issues
-									</h4></span>
-							</h3>
+									</h5></span>
+							</h4>
 
 						</div>
 						<div class="panel-body">
 							<div class="list-group">
 
 
-								<c:forEach items="${resolves}" var="index">
+								<c:forEach begin="0" end="2" items="${resolves}" var="index">
 									<a
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<h4>
+										<b>
 											<c:out value="${index.title}"></c:out>
-										</h4> <span class="pull-right"><c:out
+										</b> <span class="pull-right"><c:out
 												value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
@@ -180,31 +138,30 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
+			
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3>
-								<span class="glyphicon glyphicon-time"></span> Recently Modified<span
-									class="pull-right"><h4>
+							<h4>
+								<span class="glyphicon glyphicon-time"></span> <b>Recently Modified</b><span
+									class="pull-right"><h5>
 										<span class="badge">${fn:length(recents)}</span> Issues
-									</h4></span>
-							</h3>
+									</h5></span>
+							</h4>
 
 						</div>
 						<div class="panel-body">
 							<div class="list-group">
 
 
-								<c:forEach items="${recents}" var="index">
+								<c:forEach begin="0" end="2" items="${recents}" var="index">
 									<a
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>	"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<h4>
+										<b>
 											<c:out value="${index.title}"></c:out>
-										</h4> <span class="pull-right"><c:out
+										</b> <span class="pull-right"><c:out
 												value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
@@ -219,6 +176,29 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			
+			<div class="col-md-4">
+			
+					<div class="panel panel-default">
+						<div class="panel-heading">	
+							Project you contribute to <span class="badge">999+</span><span class="pull-right"><a class="btn btn-success btn-xs" role="button">New Issue</a></span>
+							</div>
+						<div class="panel-body">
+						<div class="list-group">
+							<a href="#" class="list-group-item">First item</a>
+							<a href="#" class="list-group-item">First item</a>
+							<a href="#" class="list-group-item">First item</a>
+						</div>
+					</div>
+					</div>
+			
+					<div class="panel panel-default">
+						<div class="panel-heading">	
+							Your feed <span class="badge">999+</span>
+							</div>
+						<div class="panel-body"><a>New Issue</a></div>
+					</div>
 			</div>
 		</form>
 	</div>
