@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -20,14 +21,13 @@
 
 
 
-<div class="col-md-8">
-			
-				<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-7">
+
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
-								<span class="glyphicon glyphicon-list-alt"></span> <b>Assigned to
-								Me</b><span class="pull-right"><h5>
+								<span class="glyphicon glyphicon-list-alt"></span> <b>Assigned
+									to Me</b><span class="pull-right"><h5>
 										<span class="badge">${fn:length(indexs)}</span> Issues
 									</h5></span>
 							</h4>
@@ -40,34 +40,35 @@
 								<c:forEach begin="0" end="2" items="${indexs}" var="index">
 									<a
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-										class="list-group-item">
-										<p class="list-group-item-heading">
-										<b>
-											<c:out value="${index.title}"></c:out>
-										</b> <span class="pull-right"><c:out
-												value="${index.updateDate}"></c:out></span>
+										class="list-group-item" data-toggle="tooltip" data-placement="top" title="Click to change status or view issue detail">
+										<p class="list-group-item-heading ">
+											<b> <c:out value="${index.title}"></c:out>
+											</b> <span class="pull-right"><c:out
+													value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
 											From Project :
 											<c:out value="${index.project}"></c:out>
 										</p>
 
+
 									</a>
 								</c:forEach>
 
 							</div>
-							<button type="button" class="btn btn-default">Default</button>
+							<a href="#" class="btn btn-default" role="button">View all
+								issues</a>
 						</div>
 					</div>
-				</div>
+				
+
+
 			
-			
-				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
-								<span class="glyphicon glyphicon-edit"></span> <b>Report by Me</b><span
-									class="pull-right"><h5>
+								<span class="glyphicon glyphicon-edit"></span> <b>Report by
+									Me</b><span class="pull-right"><h5>
 										<span class="badge">${fn:length(reports)}</span> Issues
 									</h5></span>
 							</h4>
@@ -82,10 +83,9 @@
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<b>
-											<c:out value="${index.title}"></c:out>
-										</b> <span class="pull-right"><c:out
-												value="${index.updateDate}"></c:out></span>
+											<b> <c:out value="${index.title}"></c:out>
+											</b> <span class="pull-right"><c:out
+													value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
 											From Project :
@@ -96,12 +96,13 @@
 								</c:forEach>
 
 							</div>
-							<button type="button" class="btn btn-default">Default</button>
+							<a href="#" class="btn btn-default" role="button">View all
+								issues</a>
 						</div>
 					</div>
-				</div>
-			
-				<div class="col-md-10 col-md-offset-1">
+				
+
+				
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
@@ -121,10 +122,9 @@
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<b>
-											<c:out value="${index.title}"></c:out>
-										</b> <span class="pull-right"><c:out
-												value="${index.updateDate}"></c:out></span>
+											<b> <c:out value="${index.title}"></c:out>
+											</b> <span class="pull-right"><c:out
+													value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
 											From Project :
@@ -134,17 +134,18 @@
 								</c:forEach>
 
 							</div>
-							<button type="button" class="btn btn-default">Default</button>
+							<a href="#" class="btn btn-default" role="button">View all
+								issues</a>
 						</div>
 					</div>
-				</div>
-			
-				<div class="col-md-10 col-md-offset-1">
+				
+
+				
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
-								<span class="glyphicon glyphicon-time"></span> <b>Recently Modified</b><span
-									class="pull-right"><h5>
+								<span class="glyphicon glyphicon-time"></span> <b>Recently
+									Modified</b><span class="pull-right"><h5>
 										<span class="badge">${fn:length(recents)}</span> Issues
 									</h5></span>
 							</h4>
@@ -159,10 +160,9 @@
 										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>	"
 										class="list-group-item">
 										<p class="list-group-item-heading">
-										<b>
-											<c:out value="${index.title}"></c:out>
-										</b> <span class="pull-right"><c:out
-												value="${index.updateDate}"></c:out></span>
+											<b> <c:out value="${index.title}"></c:out>
+											</b> <span class="pull-right"><c:out
+													value="${index.updateDate}"></c:out></span>
 										</p>
 										<p class="list-group-item-text">
 											From Project :
@@ -172,36 +172,67 @@
 								</c:forEach>
 
 							</div>
-							<button type="button" class="btn btn-default">Default</button>
+							<a href="#" class="btn btn-default" role="button">View all
+								issues</a>
 						</div>
 					</div>
-				</div>
+				
 			</div>
-			
-			<div class="col-md-4">
-			
+
+			<div class="col-md-4 col-md-offset-1">
+				
 					<div class="panel panel-default">
-						<div class="panel-heading">	
-							Project you contribute to <span class="badge">999+</span><span class="pull-right"><a class="btn btn-success btn-xs" role="button">New Issue</a></span>
-							</div>
+						<div class="panel-heading">
+							<b>Project you contribute to</b> <span class="badge">999+</span><a
+								href="IssueController.do?action=insert"
+								class="btn btn-success btn-xs pull-right" role="button">New Issue</a>
+						</div>
+
+					<ul class="list-group">
+ 					 	<li class="list-group-item text-primary" ><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">First item</a><span class="badge">12</span></li>
+ 					 	<li class="list-group-item text-primary">Second item <span class="badge">5</span></li>
+ 					 	<li class="list-group-item text-primary">Third item <span class="badge">78</span></li>
+					</ul>
+
+
+					</div>
+					
+				
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<b>Your feed</b> <span class="badge">999+</span>
+						</div>
+						<ul class="list-group">
+ 					 	<li class="list-group-item text-primary" ><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">Edit Front-end </a><span
+								class="pull-right">27/10/2016 13:44:45</span></li>
+ 					 	<li class="list-group-item text-primary">Onii-Chan!!! <span
+								class="pull-right">27/10/2016 13:44:45</span></li>
+ 					 	<li class="list-group-item text-primary">Oh Ahh  <span
+								class="pull-right">27/10/2016 13:44:45</span></li>
+					</ul>
+						
+					</div>
+					
+						<div class="panel panel-default">
+						<div class="panel-heading">
+							<b>Some stat</b>
+						</div>
 						<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">First item</a>
-							<a href="#" class="list-group-item">First item</a>
-							<a href="#" class="list-group-item">First item</a>
+						Some stat
 						</div>
 					</div>
-					</div>
-			
-					<div class="panel panel-default">
-						<div class="panel-heading">	
-							Your feed <span class="badge">999+</span>
-							</div>
-						<div class="panel-body"><a>New Issue</a></div>
-					</div>
+				
 			</div>
 		</form>
+
 	</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

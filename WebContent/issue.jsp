@@ -97,7 +97,7 @@
 					<div class="form-group">
 						<label for="dueDate" class="control-label col-sm-2">Due
 							Date :</label>
-						<div class="col-sm-8 col-lg-6 col-md-6">
+						<div class="col-sm-3 col-lg-2 col-md-2">
 							<input type="date" name="dueDate" class="form-control"
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 						</div>
@@ -109,7 +109,7 @@
 					<div class="form-group">
 						<label for="status" class="control-label col-sm-2">Status
 							:</label>
-						<div class="col-sm-8 col-lg-6 col-md-6">
+						<div class="col-sm-3 col-lg-2 col-md-2">
 							<input type="text" name="status" class="form-control"
 								value="<c:out value="${issue.status}" />" placeholder="Status" />
 						</div>

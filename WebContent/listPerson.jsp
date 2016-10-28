@@ -7,8 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show All Persons</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
+<link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
 <body>
@@ -56,7 +55,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
 	</div>
+	
 
 
 

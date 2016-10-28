@@ -11,13 +11,19 @@ html {
 }
 body {
   margin: 0;
+  padding-bottom: 80px;
 }
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
+footer{
+ position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;
+} 
 header,
 hgroup,
 main,
@@ -5323,6 +5329,41 @@ button.list-group-item {
 .list-group-item.active:focus .list-group-item-text {
   color: #c7ddef;
 }
+
+
+
+.list-group-item-primary {
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+a.list-group-item-primary,
+button.list-group-item-primary {
+  color: #3c763d;
+}
+a.list-group-item-primary .list-group-item-heading,
+button.list-group-item-primary .list-group-item-heading {
+  color: inherit;
+}
+a.list-group-item-primary:hover,
+button.list-group-item-primary:hover,
+a.list-group-item-primary:focus,
+button.list-group-item-primary:focus {
+  color: #3c763d;
+  background-color: #d0e9c6;
+}
+a.list-group-item-primary.active,
+button.list-group-item-primary.active,
+a.list-group-item-primary.active:hover,
+button.list-group-item-primary.active:hover,
+a.list-group-item-primary.active:focus,
+button.list-group-item-primary.active:focus {
+  color: #fff;
+  background-color: #3c763d;
+  border-color: #3c763d;
+}
+
+
+
 .list-group-item-success {
   color: #3c763d;
   background-color: #dff0d8;
