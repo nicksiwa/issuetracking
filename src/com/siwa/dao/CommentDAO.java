@@ -20,5 +20,7 @@ public interface CommentDAO {
 		public Comment getCommentByIssue(int issueID);
 		
 		public Issue getIssueById(int issueID);
+		
+		public int getNoOfRecords();
 	
 }

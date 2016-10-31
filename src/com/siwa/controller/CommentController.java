@@ -49,12 +49,12 @@ public class CommentController extends HttpServlet {
 		String forward = "";
 		String action = request.getParameter("action");
 		
-
+	
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_COMMENT;
 			int commentID = Integer.parseInt(request.getParameter("commentID"));
 			dao.deleteComment(commentID);
-			request.setAttribute("comments", dao.getAllComment());
+			request.setAttribute("comments", dao.getAllComment());   
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int commentID = Integer.parseInt(request.getParameter("commentID"));

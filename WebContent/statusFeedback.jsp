@@ -35,20 +35,34 @@
 						name="issueID" value="<c:out value="${issue.issueID}" />" /><br>
 
 					<div class="form-group">
-						<label for="description" class="control-label col-sm-2">Description:</label>
+						<label for="description" class="control-label col-sm-2">Description :</label>
 						<div class="col-sm-8 col-lg-5 col-md-6">
 							<textarea name="commentDetail" class="form-control" rows="5"
 								placeholder="Description"><c:out
 									value="${comment.commentDetail}" /></textarea>
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<label for="status" class="control-label col-sm-2">To User :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select class="form-control">
+								<option value="assign">Assign</option>
+								<option value="feedback">Feedback</option>
+								<option value="confirmed">Confirmed</option>
+								<option value="resolved">Resolved</option>
+							</select>
+						</div>
+					</div>
 
 					<div class="form-group">
-						<label for="status" class="control-label col-sm-2">Status:</label>
+						<label for="status" class="control-label col-sm-2">Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
 						<p class="form-control-static">
 						<c:out value="${issue.status}" />
 						<input type="hidden" name="status" value="<c:out value="${issue.status}" />" />
 						</p>
+						</div>
 					</div>
 
 					<input type="hidden" id="date" name="commentTime"

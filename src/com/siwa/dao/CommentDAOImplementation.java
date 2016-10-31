@@ -15,6 +15,8 @@ import com.siwa.util.DBUtil;
 public class CommentDAOImplementation implements CommentDAO {
 	
 	private Connection conn;
+	private int noOfRecords;
+	Statement statement;
 
 	public CommentDAOImplementation() {
 		conn = DBUtil.getConnection();
@@ -90,12 +92,19 @@ public class CommentDAOImplementation implements CommentDAO {
 			}
 			rs.close();
 			statement.close();
+		
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return comments;
 	}
 
+	
+	public int getNoOfRecords(){
+		return noOfRecords;
+	}
+	
+	
 	@Override
 	public Comment getCommentById(int commentID) {
 		Comment comment = new Comment();
