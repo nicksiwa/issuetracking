@@ -14,7 +14,7 @@
 
 	<jsp:include page="navbar.jsp" />
 
-	<form action="AssignController.do" method="post" class="form-inline">
+	<form action="AssignController.do" method="post" class="form-horizontal">
 		<div class="container">
 
 			<div class="panel panel-default">
@@ -27,28 +27,37 @@
 					<input type="hidden" name="assignID"
 						value="<c:out value="${assign.assignID}" />" readonly="readonly"
 						placeholder="Auto generate ID" /> <br> <br>
+						
 					<div class="form-group">
-						<label for="personID">Person ID</label><br> <input
-							type="text" name="personID" class="form-control"
-							value="<c:out value="${assign.personID}" />"
-							placeholder="Person ID" />
+						<label for="personID" class="control-label col-sm-2">Person ID : </label>
+						
+						<div class="col-sm-3 col-lg-3 col-md-3">
+							<select name="personID" class="form-control">
+								<c:forEach var="person" items="${persons}">
+									<option><c:out value="${person.personID}" /></option>
+								</c:forEach>
+							</select>
+							</div>
+				
+						<label for="projectID" class="control-label col-sm-2">Project ID : </label>
+						
+						<div class="col-sm-3 col-lg-3 col-md-3">
+							<select name="projectID" class="form-control">
+								<c:forEach var="project" items="${projects}">
+									<option><c:out value="${project.projectID}" /></option>
+								</c:forEach>
+							</select>
+							</div>
 					</div>
-					<c:forEach items="${assigns}" var="assign">
-						<c:out value="${assign.assignID}"></c:out>
-					</c:forEach>
-					<br> <br>
+
+
 					<div class="form-group">
-						<label for="projectID">Project ID</label><br> <input
-							type="text" name="projectID" class="form-control"
-							value="<c:out value="${assign.projectID}" />"
-							placeholder="Project ID" />
+						<div class="col-sm-offset-2 col-sm-10">
+							<input type="submit" class="btn btn-default" value="Submit" />
+						</div>
 					</div>
 
-
-
-
-					<br> <br> <input type="submit" class="btn btn-default"
-						value="Submit" />
+	
 				</div>
 			</div>
 

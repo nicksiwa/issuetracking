@@ -15,5 +15,9 @@ public interface AssignDAO {
 	public List<Assign> getAllAssign();
 
 	public Assign getAssignById(int assignID);
+	
+	public List<Assign> getProject();
+	
+	public List<Assign> getPerson();
 
 }

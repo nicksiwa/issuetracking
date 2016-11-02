@@ -44,6 +44,9 @@ public class AssignController extends HttpServlet {
 			request.setAttribute("assign", assign);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
+			request.setAttribute("projects",dao.getProject());
+			request.setAttribute("persons", dao.getPerson());
+			
 		} else {
 			forward = LIST_ASSIGN;
 			request.setAttribute("assigns", dao.getAllAssign());

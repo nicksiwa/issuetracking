@@ -21,7 +21,7 @@ public class AssignDAOImplementation implements AssignDAO{
 	@Override
 	public void addAssign(Assign assign) {
 		try{
-			String query = "insert into assign (personID,projectID) values (?,?)";
+			String query = "insert into assign (person_ID,project_ID) values (?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, assign.getPersonID());
 			ps.setInt(2, assign.getProjectID());
@@ -50,7 +50,7 @@ public class AssignDAOImplementation implements AssignDAO{
 	@Override
 	public void updateAssign(Assign assign) {
 		try{
-			String query = "update assign set personID=?, projectID=? where assignID=?";
+			String query = "update assign set person_ID=?, project_ID=? where assignID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, assign.getPersonID());
 			ps.setInt(2, assign.getProjectID());
@@ -72,8 +72,8 @@ public class AssignDAOImplementation implements AssignDAO{
 			while(rs.next()){
 				Assign assign = new Assign();
 				assign.setAssignID(rs.getInt("assignID"));
-				assign.setPersonID(rs.getInt("personID"));
-				assign.setProjectID(rs.getInt("projectID"));
+				assign.setPersonID(rs.getInt("person_ID"));
+				assign.setProjectID(rs.getInt("project_ID"));
 				assigns.add(assign);
 			}
 			rs.close();
@@ -94,8 +94,8 @@ public class AssignDAOImplementation implements AssignDAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				assign.setAssignID(rs.getInt("assignID"));
-				assign.setPersonID(rs.getInt("personID"));
-				assign.setProjectID(rs.getInt("projectID"));
+				assign.setPersonID(rs.getInt("person_ID"));
+				assign.setProjectID(rs.getInt("project_ID"));
 			}
 			ps.close();
 			rs.close();
@@ -103,6 +103,46 @@ public class AssignDAOImplementation implements AssignDAO{
 			e.printStackTrace();
 		}
 		return assign;
+	}
+	
+	
+	@Override
+	public List<Assign> getProject() {
+		List<Assign> projects = new ArrayList<Assign>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select projectID from project");
+			while(rs.next()){
+				Assign assign = new Assign();
+				assign.setProjectID(rs.getInt("projectID"));
+				projects.add(assign);
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return projects;
+	}
+	
+	
+	@Override
+	public List<Assign> getPerson() {
+		List<Assign> persons = new ArrayList<Assign>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select personId from person");
+			while(rs.next()){
+				Assign assign = new Assign();
+				assign.setPersonID(rs.getInt("personId"));
+				persons.add(assign);
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return persons;
 	}
 
 }

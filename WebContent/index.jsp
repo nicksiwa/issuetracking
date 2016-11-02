@@ -45,8 +45,8 @@
 									title="Click to change status or view issue detail">
 									<p class="list-group-item-heading ">
 										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font color="gray"><c:out
-													value="${index.updateDate}"></c:out></font></span></small>
+										</b> <small><span class="pull-right"><font
+												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -86,8 +86,8 @@
 									class="list-group-item">
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font color="gray"><c:out
-													value="${index.updateDate}"></c:out></font></span></small>
+										</b> <small><span class="pull-right"><font
+												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -125,8 +125,8 @@
 									class="list-group-item">
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font color="gray"><c:out
-													value="${index.updateDate}"></c:out></font></span></small>
+										</b> <small><span class="pull-right"><font
+												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -163,8 +163,8 @@
 									class="list-group-item">
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font color="gray"><c:out
-													value="${index.updateDate}"></c:out></font></span></small>
+										</b> <small><span class="pull-right"><font
+												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -185,27 +185,19 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Project you contribute to</b> <span class="badge">999+</span><a
-							href="IssueController.do?action=insert"
-							class="btn btn-success btn-xs pull-right" role="button">New
-							Issue</a>
+						<b>Project you contribute to</b> <span class="badge">999+</span>
 					</div>
 
+
+
 					<ul class="list-group">
-						<li class="list-group-item text-primary"><a href="#"
-							data-toggle="tooltip" data-placement="top" title="Hooray!">First
-								item</a><span class="badge">12</span></li>
-						<li class="list-group-item text-primary">Second item <span
-							class="badge">5</span></li>
-						<li class="list-group-item text-primary">Third item <span
-							class="badge">78</span></li>
-							<li class="list-group-item text-primary"><a href="#"
-							data-toggle="tooltip" data-placement="top" title="Hooray!">First
-								item</a><span class="badge">12</span></li>
-						<li class="list-group-item text-primary">Second item <span
-							class="badge">5</span></li>
-						<li class="list-group-item text-primary">Third item <span
-							class="badge">78</span></li>
+						<c:forEach items="${projects}" var="index">
+							<li class="list-group-item text-primary"><c:out
+									value="${index.project}"></c:out><a
+							href="IssueController.do?action=insert"
+							class="btn btn-success btn-xs pull-right" role="button">New
+							Issue</a></li>
+						</c:forEach>
 					</ul>
 
 
@@ -214,25 +206,30 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Your feed</b> <span class="badge">999+</span><a href="#"><span class="pull-right"><small>View all</small></span></a>
+						<b>Your feed</b> <span class="badge">999+</span><a href="#"><span
+							class="pull-right"><small>View all</small></span></a>
 					</div>
 					<ul class="list-group">
 						<li class="list-group-item text-primary"><a href="#"
 							data-toggle="tooltip" data-placement="top" title="Hooray!">Edit
-								Front-end </a><span class="pull-right"><small><font color="gray">27/10/2016
-									13:44:45</font></small></span></li>
+								Front-end </a><span class="pull-right"><small><font
+									color="gray">27/10/2016 13:44:45</font></small></span></li>
 						<li class="list-group-item text-primary">Onii-Chan!!! <span
-							class="pull-right"><small><font color="gray">27/10/2016 13:44:45</font></small></span></li>
+							class="pull-right"><small><font color="gray">27/10/2016
+										13:44:45</font></small></span></li>
 						<li class="list-group-item text-primary">Oh Ahh <span
-							class="pull-right"><small><font color="gray">27/10/2016 13:44:45</font></small></span></li>
-							<li class="list-group-item text-primary"><a href="#"
+							class="pull-right"><small><font color="gray">27/10/2016
+										13:44:45</font></small></span></li>
+						<li class="list-group-item text-primary"><a href="#"
 							data-toggle="tooltip" data-placement="top" title="Hooray!">Edit
-								Front-end </a><span class="pull-right"><small><font color="gray">27/10/2016
-									13:44:45</font></small></span></li>
+								Front-end </a><span class="pull-right"><small><font
+									color="gray">27/10/2016 13:44:45</font></small></span></li>
 						<li class="list-group-item text-primary">Onii-Chan!!! <span
-							class="pull-right"><small><font color="gray">27/10/2016 13:44:45</font></small></span></li>
+							class="pull-right"><small><font color="gray">27/10/2016
+										13:44:45</font></small></span></li>
 						<li class="list-group-item text-primary">Oh Ahh <span
-							class="pull-right"><small><font color="gray">27/10/2016 13:44:45</font></small></span></li>
+							class="pull-right"><small><font color="gray">27/10/2016
+										13:44:45</font></small></span></li>
 					</ul>
 
 				</div>

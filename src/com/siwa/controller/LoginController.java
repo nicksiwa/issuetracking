@@ -70,6 +70,7 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("reports", daos.getReportByMe(username));
 			request.setAttribute("resolves", daos.getResolveIssue());
 			request.setAttribute("recents", daos.getRecentlyModified());
+			request.setAttribute("projects", daos.getProjectByUser(username));
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{
