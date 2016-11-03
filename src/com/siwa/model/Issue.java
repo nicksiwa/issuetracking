@@ -17,6 +17,8 @@ public class Issue {
 	//private Blob attachFile;
 	private String status;
 	private String reporter;
+	
+
 
 	public int getIssueID() {
 		return issueID;

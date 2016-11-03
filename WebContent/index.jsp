@@ -185,7 +185,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Project you contribute to</b> <span class="badge">999+</span>
+						<b>Project you contribute to</b> <span class="badge">${fn:length(projects)}</span>
 					</div>
 
 
@@ -194,7 +194,7 @@
 						<c:forEach items="${projects}" var="index">
 							<li class="list-group-item text-primary"><c:out
 									value="${index.project}"></c:out><a
-							href="IssueController.do?action=insert"
+							href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
 							class="btn btn-success btn-xs pull-right" role="button">New
 							Issue</a></li>
 						</c:forEach>

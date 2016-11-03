@@ -64,6 +64,10 @@ public class IndexController extends HttpServlet {
 		index.setProject(project);
 		
 	
+		String projectID = request.getParameter("projectID");
+		index.setProjectID(Integer.parseInt(projectID));
+		
+		
 		String assign = username;
 		assign = new String(assign.getBytes("ISO8859-1"), "UTF-8");
 		index.setAssign(assign);

@@ -14,11 +14,11 @@ public interface IssueDAO {
 
 	public void updateIssue(Issue issue);
 
-	public List<Issue> getAllIssue();
+	public List <Issue> getAllIssue();
 
 	public Issue getAssignById(int issueID);
 	
-	public List<Issue> getPersonAndProject();
+	public List <Issue> getPersonByProject(int issueID);
 	
 	public List <Comment> getCommentByIssue(int issueID);
 	
@@ -29,5 +29,6 @@ public interface IssueDAO {
 	public void setStatusConfirmed(Issue issue);
 	
 	public void setStatusResolved(Issue issue);
+	
 	
 }

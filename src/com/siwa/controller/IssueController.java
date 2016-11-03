@@ -16,8 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.ProjectDAO;
+import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
+import com.siwa.model.Project;
 
 
 @WebServlet("/IssueController")
@@ -25,6 +28,8 @@ public class IssueController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private IssueDAO dao;
+	private ProjectDAO dao2;
+	
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
 	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
@@ -32,12 +37,14 @@ public class IssueController extends HttpServlet {
 	
     public IssueController() {
        dao = new IssueDAOImplementation();
+       dao2 = new ProjectDAOImplementation();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
+		
 		
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_ISSUE;
@@ -49,10 +56,15 @@ public class IssueController extends HttpServlet {
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = dao.getAssignById(issueID);
 			request.setAttribute("issue", issue);
-			request.setAttribute("issuess", dao.getPersonAndProject());
+			request.setAttribute("issuess", dao.getPersonByProject(issueID));
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
-			request.setAttribute("issuess", dao.getPersonAndProject());
+			
+			int projectID = Integer.parseInt(request.getParameter("project"));
+			Project project = dao2.getProjectName(projectID);
+			request.setAttribute("project", project);
+
+			request.setAttribute("issuess", dao.getPersonByProject(projectID));
 			
 		}else if (action.equalsIgnoreCase("detail")){
 			forward  = ISSUE_DETAIL;

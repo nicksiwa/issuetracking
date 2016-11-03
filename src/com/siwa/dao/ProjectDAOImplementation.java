@@ -121,4 +121,21 @@ public class ProjectDAOImplementation implements ProjectDAO {
 		return project;
 	}
 
+	@Override
+	public Project getProjectName(int projectID) {
+		Project project = new Project();
+		try{
+			String query = "select projectName from project where projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				project.setProjectName(rs.getString("projectName"));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return project;
+	}
+
 }

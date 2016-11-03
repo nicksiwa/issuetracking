@@ -134,12 +134,13 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getProjectByUser(String assign) {
 		List<Index> projects = new ArrayList<Index>();
 		try{
-			String query = "select project.projectName, person.firstName from person join assign on person.personId = assign.person_ID and person.firstName=? join project on assign.project_ID = project.projectID";
+			String query = "select project.projectName, person.firstName, project.projectID from person join assign on person.personId = assign.person_ID and person.firstName=? join project on assign.project_ID = project.projectID";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Index index = new Index();
+				index.setProjectID(rs.getInt("projectID"));
 				index.setProject(rs.getString("projectName"));
 				projects.add(index);
 			}

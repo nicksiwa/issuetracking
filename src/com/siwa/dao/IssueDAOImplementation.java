@@ -140,25 +140,7 @@ public class IssueDAOImplementation implements IssueDAO {
 		return issue;
 	}
 
-	@Override
-	public List<Issue> getPersonAndProject() {
-		List<Issue> issuess = new ArrayList<Issue>();
-		try{
-			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select projectName,firstName from project,person");
-			while(rs.next()){
-				Issue issue = new Issue();
-				issue.setProject(rs.getString("projectName"));
-				issue.setAssign(rs.getString("firstName"));
-				issuess.add(issue);
-			}
-			rs.close();
-			stat.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return issuess;
-	}
+	
 
 	@Override
 	public List<Comment> getCommentByIssue(int issueID) {
@@ -243,6 +225,28 @@ public class IssueDAOImplementation implements IssueDAO {
 		}
 		
 	}
+
+	@Override
+	public List<Issue> getPersonByProject(int issueID) {
+		List<Issue> issuess = new ArrayList<Issue>();
+		try{
+			String query = "select person.firstName from project join assign on project.projectID = assign.project_ID and project.projectID=? join person on assign.person_ID = person.personId";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setAssign(rs.getString("firstName"));
+				issuess.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issuess;
+	}
+
 
 
 }

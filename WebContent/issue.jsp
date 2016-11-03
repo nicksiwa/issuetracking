@@ -33,11 +33,11 @@
 						<label for="description" class="control-label col-sm-2">Project
 							:</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="project" class="form-control">
-								<c:forEach var="issue" items="${issuess}">
-									<option><c:out value="${issue.project}" /></option>
-								</c:forEach>
-							</select>
+					
+							<p class="form-control-static"><c:out value="${project.projectName}" /></p>
+								<input type="hidden" name="project" class="form-control"
+									value="<c:out value="${project.projectName}" />"
+									placeholder="reporter" />
 						</div>
 
 						<label for="description" class="control-label col-sm-2">Assign

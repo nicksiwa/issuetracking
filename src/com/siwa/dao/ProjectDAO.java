@@ -14,4 +14,6 @@ public interface ProjectDAO {
 	public List<Project> getAllProjects();
 
 	public Project getProjectById(int projectID);
+	
+	public Project getProjectName(int projectID);
 }
