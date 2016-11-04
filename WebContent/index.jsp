@@ -58,7 +58,7 @@
 							</c:forEach>
 
 						</div>
-						<a href="#" class="btn btn-default" role="button">View all
+						<a href="IndexController.do?action=allassign" class="btn btn-default" role="button">View all
 							issues</a>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 							</c:forEach>
 
 						</div>
-						<a href="#" class="btn btn-default" role="button">View all
+						<a href="IndexController.do?action=allreport" class="btn btn-default" role="button">View all
 							issues</a>
 					</div>
 				</div>

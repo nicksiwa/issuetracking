@@ -20,6 +20,9 @@ public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String INDEX = "/index.jsp";
 	public static final String LIST_INDEX = "/listIndex.jsp";
+	public static final String ASSIGN = "/assignMeList.jsp";
+	public static final String REPORT = "/reportMeList.jsp";
+	
 	private IndexDAO dao;
        
   
@@ -38,7 +41,17 @@ public class IndexController extends HttpServlet {
 		if(action.equalsIgnoreCase("name")){
 			forward = INDEX;
 			
-		}else{
+		}
+		else if(action.equalsIgnoreCase("allassign")){
+			forward = ASSIGN;
+			request.setAttribute("indexs", dao.getAllIndex(username));
+		}
+		else if(action.equalsIgnoreCase("allreport")){
+			forward = REPORT;
+			request.setAttribute("reports", dao.getReportByMe(username));
+		}
+		
+		else{
 			forward = INDEX;
 			
 			request.setAttribute("indexs", dao.getAllIndex(username));

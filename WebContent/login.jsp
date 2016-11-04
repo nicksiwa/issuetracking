@@ -17,33 +17,36 @@
 
 	<div class="container">
 		<form class="form-horizontal" action="LoginController" method="post">
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Sign In</h3>
-						</div>
 
-						<div class="panel-body">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-heading text-center">
+						<h3>Sign In</h3>
+					</div>
+
+					<div class="panel-body">
+						<div class="col-md-12">
 							<div>
 								<p class="text-danger"><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></p>
 							</div>
 
-							<div class="form-group col-lg-12">
+							<div class="form-group">
 								<input type="text" name="username" class="form-control"
 									placeholder="Username" />
 							</div>
 
-							<div class="form-group col-lg-12">
+							<div class="form-group">
 								<input type="password" name="password" class="form-control"
 									placeholder="Password" />
 							</div>
-							<input type="submit" class="btn btn-default" value="Login" />
+							<div class="form-group">
+								<input type="submit" class="btn btn-default" value="Login" />
+							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
+
 		</form>
 	</div>
 	<script src="js/bootstrap.min.js"></script>

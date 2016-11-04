@@ -23,6 +23,7 @@ public class LoginController extends HttpServlet {
     private LoginDAO dao;
     private IndexDAO daos;
     public static final String LOGIN = "/login.jsp";
+    public static final String REGISTER = "/register.jsp";
    
     public LoginController() {
        dao = new LoginDAOImplementation();
@@ -38,6 +39,9 @@ public class LoginController extends HttpServlet {
 		
 		if(action==null)
 			forward = LOGIN;
+		else if(action.equalsIgnoreCase("signup")){
+			forward = REGISTER;
+		}
 		else if(action.equalsIgnoreCase("logout")){
 			HttpSession session = request.getSession();
 			session.removeAttribute("username");

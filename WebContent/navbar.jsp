@@ -42,16 +42,16 @@
 					String username = (String) session.getAttribute("username");
 					if (username == null) {
 				%>
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="LoginController?action=signup"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
 				<li><a href="LoginController"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
 				<%
 					} else {
 				%>
 				<li><a>Hi, <%=username%></a></li>
 				<li><a href="LoginController?action=logout"><span
-						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
 				<%
 					}
 				%>
