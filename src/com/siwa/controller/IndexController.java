@@ -22,6 +22,8 @@ public class IndexController extends HttpServlet {
 	public static final String LIST_INDEX = "/listIndex.jsp";
 	public static final String ASSIGN = "/assignMeList.jsp";
 	public static final String REPORT = "/reportMeList.jsp";
+	public static final String RESOLVED = "/resolvedList.jsp";
+	public static final String RECENTLY = "/recentlyList.jsp";
 	
 	private IndexDAO dao;
        
@@ -49,6 +51,14 @@ public class IndexController extends HttpServlet {
 		else if(action.equalsIgnoreCase("allreport")){
 			forward = REPORT;
 			request.setAttribute("reports", dao.getReportByMe(username));
+		}
+		else if(action.equalsIgnoreCase("allresolved")){
+			forward = RESOLVED;
+			request.setAttribute("resolves", dao.getResolveIssue());
+		}
+		else if(action.equalsIgnoreCase("allrecently")){
+			forward = RECENTLY;
+			request.setAttribute("recents", dao.getRecentlyModified());
 		}
 		
 		else{

@@ -1,6 +1,7 @@
 package com.siwa.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,19 +19,19 @@ public class LoginDAOImplementation implements LoginDAO {
 	
 	@Override
 	public String authenticateUser(Login login) {
-		
+	
 		String username = login.getUsername();
 		String password = login.getPassword();
-		
 		String usernameDB = "";
 		String passwordDB = "";
 		
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select username,password from user");
+			ResultSet rs = stat.executeQuery("select person.firstName,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID");
 			while(rs.next()){
 				usernameDB = rs.getString("username");
 				passwordDB = rs.getString("password");
+				login.setFirstname(rs.getString("firstName"));
 				if(username.equals(usernameDB) && password.equals(passwordDB)){
 					 return "SUCCESS";
 				}
@@ -38,8 +39,26 @@ public class LoginDAOImplementation implements LoginDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 		return "Invalid username or passward";
+	}
+
+	@Override
+	public Login getFirstNameSession(String username) {
+			Login login = new Login();
+		try{
+			String query = "select person.firstName,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID and `user`.username=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				login.setFirstname(rs.getString("firstName"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return login;
 	}
 
 }

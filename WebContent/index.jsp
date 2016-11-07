@@ -136,7 +136,7 @@
 							</c:forEach>
 
 						</div>
-						<a href="#" class="btn btn-default" role="button">View all
+						<a href="IndexController.do?action=allresolved" class="btn btn-default" role="button">View all
 							issues</a>
 					</div>
 				</div>
@@ -174,7 +174,7 @@
 							</c:forEach>
 
 						</div>
-						<a href="#" class="btn btn-default" role="button">View all
+						<a href="IndexController.do?action=allrecently" class="btn btn-default" role="button">View all
 							issues</a>
 					</div>
 				</div>

@@ -64,6 +64,7 @@ public class PersonController extends HttpServlet {
 		String firstname = (request.getParameter("firstName"));
 		firstname = new String(firstname.getBytes("ISO8859-1"), "UTF-8");
 		person.setFirstName(firstname);
+		
 
 		String lastname = (request.getParameter("lastName"));
 		lastname = new String(lastname.getBytes("ISO8859-1"), "UTF-8");

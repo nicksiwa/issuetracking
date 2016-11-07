@@ -39,6 +39,7 @@ public class LoginController extends HttpServlet {
 		
 		if(action==null)
 			forward = LOGIN;
+			
 		else if(action.equalsIgnoreCase("signup")){
 			forward = REGISTER;
 		}
@@ -62,19 +63,25 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		login.setPassword(password);
 		
-		String userValidate = dao.authenticateUser(login);
+		String firstname = request.getParameter("firstName");
+		login.setFirstname(firstname);
 		
+		
+		String userValidate = dao.authenticateUser(login);
 		if(userValidate.equals("SUCCESS")){
 			
+			login = dao.getFirstNameSession(username);
+			request.setAttribute("login", login);
+			
 			HttpSession session  = request.getSession();
-			session.setAttribute("username", username);
+			session.setAttribute("username", login.getFirstname());
 			
 			request.setAttribute("username", username);
-			request.setAttribute("indexs", daos.getAllIndex(username));
-			request.setAttribute("reports", daos.getReportByMe(username));
+			request.setAttribute("indexs", daos.getAllIndex(login.getFirstname()));
+			request.setAttribute("reports", daos.getReportByMe(login.getFirstname()));
 			request.setAttribute("resolves", daos.getResolveIssue());
 			request.setAttribute("recents", daos.getRecentlyModified());
-			request.setAttribute("projects", daos.getProjectByUser(username));
+			request.setAttribute("projects", daos.getProjectByUser(login.getFirstname()));
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{
