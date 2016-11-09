@@ -1,6 +1,7 @@
 package com.siwa.model;
 
 import java.sql.Blob;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Issue {
@@ -13,10 +14,11 @@ public class Issue {
 	private String severity;
 	private String priority;
 	private Date dueDate;
-	private String updateDate;
+	private Timestamp updateDate;
 	//private Blob attachFile;
 	private String status;
 	private String reporter;
+	private Timestamp createDate;
 	
 
 
@@ -68,13 +70,7 @@ public class Issue {
 		this.dueDate = dueDate;
 	}
 
-	public String getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
+	
 
 	/*public Blob getAttachFile() {
 		return attachFile;
@@ -117,11 +113,28 @@ public class Issue {
 		this.reporter = reporter;
 	}
 
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
+	}
+
+	public Timestamp getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Timestamp updateDate) {
+		this.updateDate = updateDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
-				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter + "]";
+				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter
+				+ ", createDate=" + createDate + "]";
 	}
 	
 }

@@ -112,9 +112,14 @@ public class EditStatusController extends HttpServlet {
 		}
 		
 		
-		String updateDate = (request.getParameter("updateDate"));
-		updateDate = new String(updateDate.getBytes("ISO8859-1"), "UTF-8");
-		issue.setUpdateDate(updateDate);
+		try {
+			Date updateDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("updateDate"));
+			issue.setDueDate(updateDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		String status = (request.getParameter("status"));
 		status = new String(status.getBytes("ISO8859-1"), "UTF-8");

@@ -135,9 +135,7 @@ public class CommentController extends HttpServlet {
 		String status = request.getParameter("status");
 
 		
-		String updateDate = (request.getParameter("commentTime"));
-		updateDate = new String(updateDate.getBytes("ISO8859-1"), "UTF-8");
-		issue.setUpdateDate(updateDate);
+
 		
 
 		if (status.equals("Assign")){

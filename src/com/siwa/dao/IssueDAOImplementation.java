@@ -5,17 +5,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.siwa.model.Comment;
-import com.siwa.model.Index;
 import com.siwa.model.Issue;
 import com.siwa.util.DBUtil;
 
 public class IssueDAOImplementation implements IssueDAO {
 	
 	private Connection conn;
+	java.util.Date date = new java.util.Date();
+	Timestamp timestamp = new Timestamp(date.getTime());
+	
+	
+
 
 	public IssueDAOImplementation() {
 		conn = DBUtil.getConnection();
@@ -23,8 +29,9 @@ public class IssueDAOImplementation implements IssueDAO {
 
 	@Override
 	public void addIssue(Issue issue) {
+		
 		try{
-			String query = "insert into issue (project,assign,title,description,severity,priority,dueDate,updateDate,status,reporter) values (?,?,?,?,?,?,?,?,?,?)";
+			String query = "insert into issue (project,assign,title,description,severity,priority,dueDate,updateDate,status,reporter,createDate) values (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, issue.getProject());
 			ps.setString(2, issue.getAssign());
@@ -33,9 +40,10 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(5, issue.getSeverity());
 			ps.setString(6, issue.getPriority());
 			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
-			ps.setString(8, issue.getUpdateDate());
+			ps.setTimestamp(8, timestamp);
 			ps.setString(9, issue.getStatus());
 			ps.setString(10, issue.getReporter());
+			ps.setTimestamp(11, timestamp);
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -60,6 +68,7 @@ public class IssueDAOImplementation implements IssueDAO {
 
 	@Override
 	public void updateIssue(Issue issue) {
+		
 		try{
 			String query = "update issue set project=?, assign=?, title=?, description=?, severity=?, priority=?, dueDate=?, updateDate=?, status=?, reporter=? where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -70,7 +79,7 @@ public class IssueDAOImplementation implements IssueDAO {
 			ps.setString(5, issue.getSeverity());
 			ps.setString(6, issue.getPriority());
 			ps.setDate(7,new java.sql.Date (issue.getDueDate().getTime()));
-			ps.setString(8, issue.getUpdateDate());
+			ps.setTimestamp(8, timestamp);
 			ps.setString(9, issue.getStatus());
 			ps.setString(10, issue.getReporter());
 			ps.setInt(11, issue.getIssueID());
@@ -98,9 +107,10 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setSeverity(rs.getString("severity"));
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
-				issue.setUpdateDate(rs.getString("updateDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
 				issue.setStatus(rs.getString("status"));
 				issue.setReporter(rs.getString("reporter"));
+				issue.setCreateDate(rs.getTimestamp("createDate"));
 				issues.add(issue);
 			}
 			rs.close();
@@ -128,7 +138,7 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setSeverity(rs.getString("severity"));
 				issue.setPriority(rs.getString("priority"));
 				issue.setDueDate(rs.getDate("dueDate"));
-				issue.setUpdateDate(rs.getString("updateDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
 				issue.setStatus(rs.getString("status"));
 				issue.setReporter(rs.getString("reporter"));
 			}
@@ -169,10 +179,11 @@ public class IssueDAOImplementation implements IssueDAO {
 
 	@Override
 	public void setStatusAssign(Issue issue) {
+		
 		try{
 			String query = "update issue set updateDate=?, status='Assign' where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getUpdateDate());
+			ps.setTimestamp(1, timestamp);
 			ps.setInt(2, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
@@ -184,10 +195,12 @@ public class IssueDAOImplementation implements IssueDAO {
 
 	@Override
 	public void setStatusFeedback(Issue issue) {
+		System.out.println(timestamp);
+	
 		try{
 			String query = "update issue set updateDate=?, status='Feedback' where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getUpdateDate());
+			ps.setTimestamp(1, timestamp);
 			ps.setInt(2, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
@@ -202,7 +215,7 @@ public class IssueDAOImplementation implements IssueDAO {
 		try{
 			String query = "update issue set updateDate=?, status='Confirmed' where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getUpdateDate());
+			ps.setTimestamp(1, timestamp);
 			ps.setInt(2, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
@@ -216,7 +229,7 @@ public class IssueDAOImplementation implements IssueDAO {
 		try{
 			String query = "update issue set updateDate=?, status='Resolved' where issueID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, issue.getUpdateDate());
+			ps.setTimestamp(1, timestamp);
 			ps.setInt(2, issue.getIssueID());
 			ps.executeUpdate();
 			ps.close();
@@ -245,6 +258,37 @@ public class IssueDAOImplementation implements IssueDAO {
 			e.printStackTrace();
 		}
 		return issuess;
+	}
+
+	@Override
+	public List<Issue> getIssueByProject(int projectID) {
+		List<Issue> projects = new ArrayList<Issue>();
+		try{
+			String query = "select * from issue join project on issue.project = project.projectName and project.projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+				projects.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return projects;
 	}
 
 

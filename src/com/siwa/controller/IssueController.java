@@ -1,6 +1,7 @@
 package com.siwa.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.IndexDAO;
+import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.dao.ProjectDAO;
@@ -29,15 +32,19 @@ public class IssueController extends HttpServlet {
        
 	private IssueDAO dao;
 	private ProjectDAO dao2;
+	private IndexDAO dao3;
 	
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
 	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
+	public static final String ISSUE_BY_PROJECT = "/issueByProject.jsp";
+	public static final String REPORT = "/reportMeList.jsp";
 	
 	
     public IssueController() {
        dao = new IssueDAOImplementation();
        dao2 = new ProjectDAOImplementation();
+       dao3 = new IndexDAOImplementation();
     }
 
 	
@@ -73,7 +80,13 @@ public class IssueController extends HttpServlet {
 			request.setAttribute("issue", issue);
 			
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
-		} else {
+		}
+		else if (action.equalsIgnoreCase("project")){
+			forward = ISSUE_BY_PROJECT;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			request.setAttribute("projects", dao.getIssueByProject(projectID));
+		}
+		else {
 			forward = LIST_ISSUE;
 			request.setAttribute("issues", dao.getAllIssue());
 		}
@@ -123,13 +136,22 @@ public class IssueController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String updateDate = (request.getParameter("updateDate"));
-		updateDate = new String(updateDate.getBytes("ISO8859-1"), "UTF-8");
-		issue.setUpdateDate(updateDate);
+		
+		try {
+			Date updateDate = new SimpleDateFormat("mm/dd/yyyy HH:MM:SS a").parse(request.getParameter("updateDate"));
+			issue.setDueDate(updateDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		String status = (request.getParameter("status"));
 		status = new String(status.getBytes("ISO8859-1"), "UTF-8");
 		issue.setStatus(status);
+		
+		
+		
 		
 		String reporter = username;
 		reporter = new String(reporter.getBytes("ISO8859-1"), "UTF-8");
@@ -142,8 +164,8 @@ public class IssueController extends HttpServlet {
 			issue.setIssueID(Integer.parseInt(issueID));
 			dao.updateIssue(issue);
 		}
-		RequestDispatcher view = request.getRequestDispatcher(LIST_ISSUE);
-		request.setAttribute("issues", dao.getAllIssue());
+		RequestDispatcher view = request.getRequestDispatcher(REPORT);
+		request.setAttribute("reports", dao3.getReportByMe(username));
 		view.forward(request, response);
 	}
 

@@ -19,9 +19,9 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>
-						<span class="glyphicon glyphicon-exclamation-sign"></span> Issue
-					</h3>
+					<h4>
+						<span class="glyphicon glyphicon-exclamation-sign"></span> <b>Create Issue : <span class="label label-success"><c:out value="${project.projectName}" /></span></b>
+					</h4>
 				</div>
 				<div class="panel-body">
 
@@ -110,8 +110,12 @@
 						<label for="status" class="control-label col-sm-2">Status
 							:</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="text" name="status" class="form-control"
-								value="<c:out value="${issue.status}" />" placeholder="Status" />
+							<select name="status" class="form-control">
+								<option value="Assign">Assign</option>
+								<option value="Feedback">Feedback</option>
+								<option value="Confirmed">Confirmed</option>
+								<option value="Resolved">Resolved</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">

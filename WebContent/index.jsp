@@ -58,8 +58,8 @@
 							</c:forEach>
 
 						</div>
-						<a href="IndexController.do?action=allassign" class="btn btn-default" role="button">View all
-							issues</a>
+						<a href="IndexController.do?action=allassign"
+							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
 
@@ -98,8 +98,8 @@
 							</c:forEach>
 
 						</div>
-						<a href="IndexController.do?action=allreport" class="btn btn-default" role="button">View all
-							issues</a>
+						<a href="IndexController.do?action=allreport"
+							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
 
@@ -136,8 +136,8 @@
 							</c:forEach>
 
 						</div>
-						<a href="IndexController.do?action=allresolved" class="btn btn-default" role="button">View all
-							issues</a>
+						<a href="IndexController.do?action=allresolved"
+							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
 
@@ -174,8 +174,8 @@
 							</c:forEach>
 
 						</div>
-						<a href="IndexController.do?action=allrecently" class="btn btn-default" role="button">View all
-							issues</a>
+						<a href="IndexController.do?action=allrecently"
+							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
 
@@ -192,11 +192,12 @@
 
 					<ul class="list-group">
 						<c:forEach items="${projects}" var="index">
-							<li class="list-group-item text-primary"><c:out
-									value="${index.project}"></c:out><a
-							href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
-							class="btn btn-success btn-xs pull-right" role="button">New
-							Issue</a></li>
+							<li class="list-group-item text-primary"><a
+								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
+										value="${index.project}"></c:out></a><a
+								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
+								class="btn btn-success btn-xs pull-right" role="button">New
+									Issue</a></li>
 						</c:forEach>
 					</ul>
 

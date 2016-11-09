@@ -24,10 +24,9 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>
-						<span class="glyphicon glyphicon-search"></span> View Issue
-						Details
-					</h3>
+					<h4>
+						<span class="glyphicon glyphicon-search"></span> <b>View Issue Details : <span class="label label-success"><c:out value="${issue.title}" /></span></b>
+					</h4>
 				</div>
 				<div class="panel-body">
 					<table class="table table-hover table-responsive table-striped">

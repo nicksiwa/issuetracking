@@ -1,4 +1,4 @@
-package com.siwa.dao;
+	package com.siwa.dao;
 
 import java.util.List;
 
@@ -30,5 +30,6 @@ public interface IssueDAO {
 	
 	public void setStatusResolved(Issue issue);
 	
+	public List <Issue> getIssueByProject(int projectID);
 	
 }
