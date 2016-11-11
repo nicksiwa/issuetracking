@@ -136,5 +136,5 @@ public class Issue {
 				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter
 				+ ", createDate=" + createDate + "]";
 	}
-	
+
 }

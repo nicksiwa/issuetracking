@@ -1,6 +1,7 @@
 package com.siwa.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -116,9 +117,16 @@ public class CommentController extends HttpServlet {
 		commentDetail = new String(commentDetail.getBytes("ISO8859-1"), "UTF-8");
 		comment.setCommentDetail(commentDetail);
 
-		String commentTime = (request.getParameter("commentTime"));
-		commentTime = new String(commentTime.getBytes("ISO8859-1"), "UTF-8");
-		comment.setCommentTime(commentTime);
+		
+		try {
+			Timestamp commentTime = (Timestamp) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("commentTime"));
+			comment.setCommentTime(commentTime);
+		} catch (ParseException e) {
+			
+		}
+		
+		
+		
 
 		String userComment = username;
 		userComment = new String(userComment.getBytes("ISO8859-1"), "UTF-8");
@@ -133,8 +141,6 @@ public class CommentController extends HttpServlet {
 		
 		
 		String status = request.getParameter("status");
-
-		
 
 		
 

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+label {
+float: left;
+width: 10em;
+margin-right: 1em;
+}
+​
+</style>
+<script type='text/javascript'>
+	function addFields() {
+
+		var number = document.getElementById("num").value;
+		var container = document.getElementById("container");
+
+		while (container.hasChildNodes()) {
+			container.removeChild(container.lastChild);
+		}
+		for (i = 0; i < number; i++) {
+
+			container.appendChild(document.createElement("br"));
+			container.appendChild(document.createTextNode("สัญญาเงินกู้ "
+					+ (i + 1)));
+			container.appendChild(document.createElement("br"));
+			container.appendChild(document.createTextNode("แหล่งเงินกู้  : "));
+
+			var input = document.createElement("select");
+			input.options[input.options.length] = new Option(
+					'--เลือกแหล่งเงินกู้--', 'Value1');
+			input.options[input.options.length] = new Option(
+					'1. ธนาคารกรุงไทย', 'Value1');
+			input.options[input.options.length] = new Option('2. ธนาคารออมสิน',
+					'Value1');
+			input.options[input.options.length] = new Option('3. ธนาคาร ธกส.',
+					'Value1');
+			input.options[input.options.length] = new Option(
+					'4. กองทุนพัฒนาเมือง(ออมสิน)', 'Value1');
+			input.options[input.options.length] = new Option('5. อื่นๆ',
+					'Value1');
+			container.appendChild(input);
+
+			container.appendChild(document.createElement("br"));
+
+			container
+					.appendChild(document
+							.createTextNode("วงเงินที่ ผวจ. หรือ รมว.มท. เห็นชอบ/อนุมัติ : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+			container
+					.appendChild(document
+							.createTextNode("วันที่ ผวจ. หรือ รมว.มท. เห็นชอบ/อนุมัติ : "));
+			var input = document.createElement("input");
+			input.type = "date";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("จำนวนเงินที่ อปท. ทำสัญญากู้เงิน : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("เลขทีสัญญากู้เงิน : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("วันที่ทำสัญญากู้เงิน : "));
+			var input = document.createElement("input");
+			input.type = "date";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document.createTextNode("อัตราดอกเบี้ย : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("ระยะเวลาการกู้(ปี) : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("จำนวนเงินที่ชำระหนี้แล้ว ชำระเงินต้น : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+			container
+					.appendChild(document
+							.createTextNode("จำนวนเงินที่ชำระหนี้แล้ว ชำระดอกเบี้ย : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("รายได้ที่จัดเก็บเอง : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+			container.appendChild(document
+					.createTextNode("สถานะหนี้คงค้าง ณ สิ้นปี : "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "member" + i;
+			container.appendChild(input);
+			container.appendChild(document.createTextNode(" บาท"));
+			container.appendChild(document.createElement("br"));
+
+		}
+	}
+</script>
+</head>
+<body>
+<div >
+<form>
+	<h2 style="text-align: center;">ข้อมูลการกู้เงินและสถานะหนี้คงค้างขององค์กรปกครองส่วนท้องถิ่น</h2>
+	<table align="center">
+		<tr>
+			<td style="text-align: right;">วันที่เริ่มต้น :</td>
+			<td><input type="date" name="startday"></td>
+			<td style="text-align: right;">วันที่สิ้นสุด :</td>
+			<td><input type="date" name="endday"></td>
+		</tr>
+		<tr>
+			<td style="text-align: right;">โครงการ/กิจกรรม :</td>
+			<td><input type="text"></td>
+		</tr>
+		<tr>
+			<td style="text-align: right;">จำนวนสัญญาเงินกู้ :</td>
+			<td><input type="text" value="2" id="num" name="num"> <a
+				href="#" id="filldetails" onclick="addFields()">ตกลง</a></td>
+		</tr>
+	</table>
+	<br>
+
+	<div id="container" />
+
+	<fieldset>
+		<legend> สัญญาเงินกู้ : 1 </legend>
+		<table>
+			<tr>
+				<td style="text-align: right;">แหล่งเงินกู้ :</td>
+				<td><select name="a">
+						<option value="a">--เลือกแหล่งเงินกู้--</option>
+						<option value="a">1. ธนาคารกรุงไทย</option>
+						<option value="a">2. ธนาคารออมสิน</option>
+						<option value="a">3. ธนาคาร ธกส.</option>
+						<option value="a">4. กองทุนพัฒนาเมือง(ออมสิน)</option>
+						<option value="a">5. อื่นๆ</option>
+				</select>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วงเงินที่ ผวจ. หรือ รมว.มท.
+					เห็นชอบ/อนุมัติ :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วันที่ ผวจ. หรือ รมว.มท.
+					เห็นชอบ/อนุมัติ :</td>
+				<td><input type="date" name="endday"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ อปท. ทำสัญญากู้เงิน
+					:</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">เลขทีสัญญากู้เงิน :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วันที่ทำสัญญากู้เงิน :</td>
+				<td><input type="date" name="endday"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">อัตราดอกเบี้ย :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">ระยะเวลาการกู้(ปี) :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ชำระหนี้แล้ว
+					ชำระเงินต้น :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ชำระหนี้แล้ว
+					ชำระดอกเบี้ย :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">รายได้ที่จัดเก็บเอง :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">สถานะหนี้คงค้าง ณ สิ้นปี :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+
+		</table>
+	</fieldset>
+	<br>
+	<fieldset>
+		<legend> สัญญาเงินกู้ : 2 </legend>
+		<table>
+			<tr>
+				<td style="text-align: right;">แหล่งเงินกู้ :</td>
+				<td><select name="a">
+						<option value="a">--เลือกแหล่งเงินกู้--</option>
+						<option value="a">1. ธนาคารกรุงไทย</option>
+						<option value="a">2. ธนาคารออมสิน</option>
+						<option value="a">3. ธนาคาร ธกส.</option>
+						<option value="a">4. กองทุนพัฒนาเมือง(ออมสิน)</option>
+						<option value="a">5. อื่นๆ</option>
+				</select>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วงเงินที่ ผวจ. หรือ รมว.มท.
+					เห็นชอบ/อนุมัติ :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วันที่ ผวจ. หรือ รมว.มท.
+					เห็นชอบ/อนุมัติ :</td>
+				<td><input type="date" name="endday"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ อปท. ทำสัญญากู้เงิน
+					:</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">เลขทีสัญญากู้เงิน :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">วันที่ทำสัญญากู้เงิน :</td>
+				<td><input type="date" name="endday"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">อัตราดอกเบี้ย :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">ระยะเวลาการกู้(ปี) :</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ชำระหนี้แล้ว
+					ชำระเงินต้น :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">จำนวนเงินที่ชำระหนี้แล้ว
+					ชำระดอกเบี้ย :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">รายได้ที่จัดเก็บเอง :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">สถานะหนี้คงค้าง ณ สิ้นปี :</td>
+				<td><input type="text"> บาท</td>
+			</tr>
+
+		</table>
+	</fieldset>
+
+	<br>
+	<table align="center">
+		<tr>
+			<td style="text-align: right;"><button>บันทึกข้อมูล</button></td>
+			<td><button>ยกเลิก</button></td>
+		</tr>
+	</table>
+	</form>
+	</div>
+</body>
+</html>

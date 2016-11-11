@@ -138,10 +138,10 @@ public class IssueController extends HttpServlet {
 		
 		
 		try {
-			Date updateDate = new SimpleDateFormat("mm/dd/yyyy HH:MM:SS a").parse(request.getParameter("updateDate"));
-			issue.setDueDate(updateDate);
+			Timestamp updateDate = (Timestamp) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("updateDate"));
+			issue.setUpdateDate(updateDate);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			
 		}
 		
 		

@@ -113,7 +113,7 @@ public class EditStatusController extends HttpServlet {
 		
 		
 		try {
-			Date updateDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("updateDate"));
+			Date updateDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(request.getParameter("updateDate"));
 			issue.setDueDate(updateDate);
 		} catch (ParseException e) {
 			e.printStackTrace();

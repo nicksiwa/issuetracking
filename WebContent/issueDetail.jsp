@@ -25,7 +25,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4>
-						<span class="glyphicon glyphicon-search"></span> <b>View Issue Details : <span class="label label-success"><c:out value="${issue.title}" /></span></b>
+						<span class="glyphicon glyphicon-search"></span> <b>View Issue
+							Details : <span class="label label-success"><c:out
+									value="${issue.title}" /></span>
+						</b>
 					</h4>
 				</div>
 				<div class="panel-body">
@@ -53,7 +56,9 @@
 								<fmt:setLocale value="en_US" />
 								<td><fmt:formatDate pattern="dd/MM/yyyy"
 										value="${issue.dueDate}" /></td>
-								<td><c:out value="${issue.updateDate}" /><input
+								<td><fmt:parseDate value="${issue.updateDate}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /><input
 									type="hidden" id="date" name="updateDate" class="form-control"
 									value="<c:out value="${issue.updateDate}" />"
 									placeholder="updateDate" /></td>
@@ -174,7 +179,10 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>
-								<c:out value="${comment.commentTime}"></c:out></b>
+								<fmt:parseDate value="${comment.commentTime}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
+								</b>
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
@@ -209,7 +217,9 @@
 			<div class="col-md-8">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-					<%String username = (String) session.getAttribute("username"); %>
+						<%
+							String username = (String) session.getAttribute("username");
+						%>
 						<b><%=username%></b>
 					</div>
 					<div class="panel-body">

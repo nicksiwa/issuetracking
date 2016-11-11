@@ -36,7 +36,9 @@
 						<td><c:out value="${comment.commentID}"></c:out></td>
 						<td><c:out value="${comment.commentDetail}"></c:out></td>
 						<td><c:out value="${comment.commentStatus}"></c:out></td>
-						<td><c:out value="${comment.commentTime}"></c:out></td>
+						<td><fmt:parseDate value="${comment.commentTime}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
 						<td><c:out value="${comment.userComment}"></c:out></td>
 						<td><c:out value="${comment.issueID}"></c:out></td>
 						<td><a

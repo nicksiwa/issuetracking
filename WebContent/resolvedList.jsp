@@ -23,8 +23,9 @@
 					title="Click to change status or view issue detail">
 					<p class="list-group-item-heading ">
 						<b> <c:out value="${index.title}"></c:out>
-						</b> <small><span class="pull-right"><font color="gray"><c:out
-										value="${index.updateDate}"></c:out></font></span></small>
+						</b> <small><span class="pull-right"><font color="gray"><fmt:parseDate value="${index.updateDate}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></font></span></small>
 					</p>
 					<p class="list-group-item-text">
 						From Project :

@@ -102,7 +102,7 @@
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 						</div>
 					</div>
-					<input type="hidden" id="date" name="updateDate"
+					<input type="hidden" name="updateDate"
 						value="<c:out value="${issue.updateDate}" />"
 						placeholder="Comment Time" />
 
@@ -134,33 +134,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth() + 1; //January is 0!
-
-		var yyyy = today.getFullYear();
-		var hh = today.getHours();
-		var mn = today.getMinutes();
-		var ss = today.getSeconds();
-		if (dd < 10) {
-			dd = '0' + dd
-		}
-		if (mm < 10) {
-			mm = '0' + mm
-		}
-		if (ss < 10) {
-			ss = '0' + ss
-		}
-		if (mn < 10) {
-			mn = '0' + mn
-		}
-		if (hh < 10) {
-			hh = '0' + hh
-		}
-		var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
-		document.getElementById('date').value = today;
-		console.log(today);
-	</script>
+	
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,12 @@ public class CommentDAOImplementation implements CommentDAO {
 
 	@Override
 	public void addComment(Comment comment) {
+		java.util.Date date= new java.util.Date();
 		try{
 			String query = "insert into comment (commentDetail,commentTime,userComment,commentStatus,issueID) values (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
-			ps.setString(2, comment.getCommentTime());	
+			ps.setTimestamp(2, new Timestamp(date.getTime()));	
 			ps.setString(3, comment.getUserComment());
 			ps.setString(4, comment.getCommentStatus());
 			ps.setInt(5, comment.getIssueID());
@@ -57,11 +59,12 @@ public class CommentDAOImplementation implements CommentDAO {
 
 	@Override
 	public void updateComment(Comment comment) {
+		java.util.Date date= new java.util.Date();
 		try{
 			String query = "update comment set commentDetail=?, commentTime=?, userComment=?, commentStatus=?, issueID=? where commentID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
-			ps.setString(2, comment.getCommentTime());
+			ps.setTimestamp(2, new Timestamp(date.getTime()));
 			ps.setString(3, comment.getUserComment());
 			ps.setString(4, comment.getCommentStatus());
 			ps.setInt(5, comment.getIssueID());
@@ -84,7 +87,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				Comment comment = new Comment();
 				comment.setCommentID(rs.getInt("commentID"));
 				comment.setCommentDetail(rs.getString("commentDetail"));
-				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setCommentTime(rs.getTimestamp("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));
@@ -116,7 +119,7 @@ public class CommentDAOImplementation implements CommentDAO {
 			while(rs.next()){
 				comment.setCommentID(rs.getInt("commentID"));
 				comment.setCommentDetail(rs.getString("commentDetail"));
-				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setCommentTime(rs.getTimestamp("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));
@@ -140,7 +143,7 @@ public class CommentDAOImplementation implements CommentDAO {
 			while(rs.next()){
 				comment.setCommentID(rs.getInt("commentID"));
 				comment.setCommentDetail(rs.getString("commentDetail"));
-				comment.setCommentTime(rs.getString("commentTime"));
+				comment.setCommentTime(rs.getTimestamp("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));

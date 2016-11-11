@@ -80,35 +80,7 @@
 			</div>
 		</form>
 	</div>
-
-	<script>
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth() + 1; //January is 0!
-
-		var yyyy = today.getFullYear();
-		var hh = today.getHours();
-		var mn = today.getMinutes();
-		var ss = today.getSeconds();
-		if (dd < 10) {
-			dd = '0' + dd
-		}
-		if (mm < 10) {
-			mm = '0' + mm
-		}
-		if (ss < 10) {
-			ss = '0' + ss
-		}
-		if (mn < 10) {
-			mn = '0' + mn
-		}
-		if (hh < 10) {
-			hh = '0' + hh
-		}
-		var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
-		document.getElementById('date').value = today;
-		console.log(today);
-	</script>
+	
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

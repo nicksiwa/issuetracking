@@ -46,7 +46,9 @@
 						<fmt:setLocale value="en_US" />
 						<td><fmt:formatDate pattern="dd/MM/yyyy"
 								value="${issue.dueDate}" /></td>
-						<td><c:out value="${issue.updateDate}"></c:out></td>
+						<td><fmt:parseDate value="${issue.updateDate}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
 						<td><c:out value="${issue.status}"></c:out></td>
 						<td><c:out value="${issue.reporter}"></c:out></td>
 			

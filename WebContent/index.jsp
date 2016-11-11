@@ -46,7 +46,12 @@
 									<p class="list-group-item-heading ">
 										<b> <c:out value="${index.title}"></c:out>
 										</b> <small><span class="pull-right"><font
-												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
+												color="gray"> <fmt:parseDate
+														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" />
+											</font></span></small>
+
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -87,7 +92,11 @@
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
 										</b> <small><span class="pull-right"><font
-												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
+												color="gray"> <fmt:parseDate
+														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" />
+											</font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -126,7 +135,11 @@
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
 										</b> <small><span class="pull-right"><font
-												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
+												color="gray"> <fmt:parseDate
+														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" />
+											</font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
@@ -164,7 +177,11 @@
 									<p class="list-group-item-heading">
 										<b> <c:out value="${index.title}"></c:out>
 										</b> <small><span class="pull-right"><font
-												color="gray"><c:out value="${index.updateDate}"></c:out></font></span></small>
+												color="gray"> <fmt:parseDate
+														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" />
+											</font></span></small>
 									</p>
 									<p class="list-group-item-text">
 										From Project :
