@@ -134,7 +134,7 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getProjectByUser(String assign) {
 		List<Index> projects = new ArrayList<Index>();
 		try{
-			String query = "select project.projectName, person.firstName, project.projectID from person join assign on person.personId = assign.person_ID and person.firstName=? join project on assign.project_ID = project.projectID";
+			String query = "select project.status, project.projectName, person.firstName, project.projectID from person join assign on person.personId = assign.person_ID and person.firstName=? join project on assign.project_ID = project.projectID";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
@@ -142,7 +142,12 @@ public class IndexDAOImplementation implements IndexDAO {
 				Index index = new Index();
 				index.setProjectID(rs.getInt("projectID"));
 				index.setProject(rs.getString("projectName"));
+				index.setProjectStatus(rs.getString("status"));
 				projects.add(index);
+				
+				if (index.getProjectStatus().equals("Closed")) {
+					projects.remove(index);
+				}
 			}
 			rs.close();
 			ps.close();
@@ -150,6 +155,32 @@ public class IndexDAOImplementation implements IndexDAO {
 			e.printStackTrace();
 		}
 		return projects;
+	}
+
+	@Override
+	public List<Index> getPublicProject() {
+		List<Index> publics = new ArrayList<Index>();
+		try{
+			String query = "select * from project where viewStatus='Public'";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			while(rs.next()){
+				Index index = new Index();
+				index.setProjectID(rs.getInt("projectID"));
+				index.setProject(rs.getString("projectName"));
+				index.setProjectStatus(rs.getString("status"));
+				publics.add(index);
+				
+				if (index.getProjectStatus().equals("Closed")) {
+					publics.remove(index);
+				}
+			}
+			rs.close();
+			statement.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return publics;
 	}
 
 }

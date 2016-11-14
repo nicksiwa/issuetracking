@@ -87,7 +87,9 @@ public class ProjectController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
+		String viewStatus = (request.getParameter("viewStatus"));
+		viewStatus = new String(viewStatus.getBytes("ISO8859-1"), "UTF-8");
+		project.setViewStatus(viewStatus);
 
 		String projectID = request.getParameter("projectID");
 

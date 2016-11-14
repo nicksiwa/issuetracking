@@ -10,6 +10,7 @@ public class Project {
 	private String description;
 	private Date startDate;
 	private Date finishDate;
+	private String viewStatus;
 	
 	
 	public int getProjectID() {
@@ -50,11 +51,16 @@ public class Project {
 		this.finishDate = finishDate;
 	}
 	
-	
-	public String toString(){
-		return "Project [projectID=" + projectID + ",projectName="+projectName+",status="
-				+status+",description="+description+",startDate="+startDate+"]";
+	public String getViewStatus() {
+		return viewStatus;
 	}
-	
-	
+	public void setViewStatus(String viewStatus) {
+		this.viewStatus = viewStatus;
+	}
+	@Override
+	public String toString() {
+		return "Project [projectID=" + projectID + ", projectName=" + projectName + ", status=" + status
+				+ ", description=" + description + ", startDate=" + startDate + ", finishDate=" + finishDate
+				+ ", viewStatus=" + viewStatus + "]";
+	}
 }

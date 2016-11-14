@@ -69,6 +69,7 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("resolves", dao.getResolveIssue());
 			request.setAttribute("recents", dao.getRecentlyModified());
 			request.setAttribute("projects", dao.getProjectByUser(username));
+			request.setAttribute("publics", dao.getPublicProject());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

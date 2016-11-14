@@ -15,5 +15,7 @@ public interface IndexDAO {
 	public List<Index> getRecentlyModified();
 	
 	public List<Index> getProjectByUser(String assign);
+	
+	public List<Index> getPublicProject();
  	
 }

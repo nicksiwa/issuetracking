@@ -22,13 +22,14 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void addProject(Project project) {
 		try{
-			String query = "insert into project (projectName, status, description, startDate, finishDate) values (?,?,?,?,?)";
+			String query = "insert into project (projectName, status, description, startDate, finishDate, viewStatus) values (?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getStatus());
 			ps.setString(3, project.getDescription());
 			ps.setDate(4,new java.sql.Date( project.getStartDate().getTime()));
 			ps.setDate(5,new java.sql.Date( project.getFinishDate().getTime()));
+			ps.setString(6, project.getViewStatus());
 		
 			ps.executeUpdate();
 			ps.close();	
@@ -54,15 +55,15 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void updateProject(Project project) {
 		try{
-			String query = "update project set projectName=?, status=?, description=?, startDate=?, finishDate=? where projectID=?";
+			String query = "update project set projectName=?, status=?, description=?, startDate=?, finishDate=?, viewStatus=? where projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getStatus());
 			ps.setString(3, project.getDescription());
 			ps.setDate(4,new java.sql.Date( project.getStartDate().getTime()));
 			ps.setDate(5,new java.sql.Date( project.getFinishDate().getTime()));
-	
-			ps.setInt(6, project.getProjectID());
+			ps.setString(6, project.getViewStatus());
+			ps.setInt(7, project.getProjectID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -85,7 +86,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				project.setDescription(rs.getString("description"));
 				project.setStartDate(rs.getDate("startDate"));
 				project.setFinishDate(rs.getDate("finishDate"));
-				
+				project.setViewStatus(rs.getString("viewStatus"));
 				projects.add(project);
 			}
 			rs.close();
@@ -111,6 +112,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				project.setDescription(rs.getString("description"));
 				project.setStartDate(rs.getDate("startDate"));
 				project.setFinishDate(rs.getDate("finishDate"));
+				project.setViewStatus(rs.getString("viewStatus"));
 		
 			}
 			rs.close();

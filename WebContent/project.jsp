@@ -41,9 +41,10 @@
 						<label for="status" class="control-label col-sm-2">Project
 							Status :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="text" name="status" class="form-control"
-								value="<c:out value="${project.status}" />"
-								placeholder="Project Status" />
+							<select name="status" class="form-control">
+								<option value="Development">Development</option>
+								<option value="Closed">Closed</option>							
+							</select>
 						</div>
 					</div>
 					<fmt:setLocale value="en_US" />
@@ -60,6 +61,18 @@
 						<div class="col-sm-3 col-lg-2 col-md-2">
 							<input type="date" name="finishDate" class="form-control"
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />
+						</div>
+					</div>
+
+					<div class="form-group">
+
+						<label for="viewStatus" class="control-label col-sm-2">View
+							Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select name="viewStatus" class="form-control">
+								<option value="Public">Public</option>
+								<option value="Private">Private</option>							
+							</select>
 						</div>
 					</div>
 

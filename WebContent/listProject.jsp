@@ -27,6 +27,7 @@
 					<th>Description</th>
 					<th>Start Date</th>
 					<th>Finish Date</th>
+					<th>View Status</th>
 					<th colspan="2">Action</th>
 				</tr>
 			</thead>
@@ -42,6 +43,7 @@
 								value="${project.startDate}" /></td>
 						<td><fmt:formatDate pattern="dd/MM/yyy"
 								value="${project.finishDate}" /></td>
+						<td><c:out value="${project.viewStatus}"></c:out></td>
 						<td><a
 							href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>">Update</a></td>
 						<td><a

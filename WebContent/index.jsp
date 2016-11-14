@@ -220,6 +220,27 @@
 
 
 				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Public project</b> <span class="badge">${fn:length(publics)}</span>
+					</div>
+
+
+
+					<ul class="list-group">
+						<c:forEach items="${publics}" var="index">
+							<li class="list-group-item text-primary"><a
+								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
+										value="${index.project}"></c:out></a><a
+								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
+								class="btn btn-success btn-xs pull-right" role="button">New
+									Issue</a></li>
+						</c:forEach>
+					</ul>
+
+
+				</div>
 
 
 				<div class="panel panel-default">

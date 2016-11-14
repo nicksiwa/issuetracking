@@ -68,7 +68,6 @@
     <filter-name>AdminFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
   <servlet>
     <servlet-name>IndexController</servlet-name>
     <servlet-class>com.siwa.controller.IndexController</servlet-class>
@@ -77,7 +76,6 @@
     <servlet-name>IndexController</servlet-name>
     <url-pattern>/IndexController.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>EditStatusController</servlet-name>
     <servlet-class>com.siwa.controller.EditStatusController</servlet-class>
