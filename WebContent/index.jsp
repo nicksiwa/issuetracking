@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet">
-
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 
 </head>
 <body>
@@ -200,6 +200,13 @@
 
 			<div class="col-md-4 col-md-offset-1">
 
+
+					<div id="ghapidata" class="clearfix"></div>
+						<input type="hidden" value="niksf203" id="user"> 
+						<input type="hidden" id="a">
+
+
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Project you contribute to</b> <span class="badge">${fn:length(projects)}</span>
@@ -220,7 +227,7 @@
 
 
 				</div>
-				
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Public project</b> <span class="badge">${fn:length(publics)}</span>
@@ -273,13 +280,7 @@
 
 				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<b>Some stat</b>
-					</div>
-					<div class="panel-body">Some stat</div>
-				</div>
-
+			
 			</div>
 		</form>
 
@@ -296,5 +297,83 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		var username = document.getElementById('user').value;
+		var requri = 'https://api.github.com/users/' + username;
+		var repouri = 'https://api.github.com/users/' + username + '/repos';
+
+		requestJSON(
+				requri,
+				function(json) {
+					if (json.message == "Not Found" || username == '') {
+						$('#ghapidata').html("<h2>No User Info Found</h2>");
+					}
+
+					else {
+						// else we have a user and we display their info
+						var fullname = json.name;
+						var username = json.login;
+						var aviurl = json.avatar_url;
+						var profileurl = json.html_url;
+						var location = json.location;
+						var followersnum = json.followers;
+						var followingnum = json.following;
+						var reposnum = json.public_repos;
+						
+						document.getElementById("a").value = fullname;
+
+						if (fullname == undefined) {
+							fullname = username;
+						}
+
+						var outhtml = '<div class="panel panel-default"><div class="panel-heading"><b>GitHub API</b></div><div class="panel-body"><h3>'
+								+ fullname
+								+ ' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'
+								+ username + '</a>)</span></h3>';
+						outhtml = outhtml
+								+ '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
+						outhtml = outhtml + '<p>Followers: ' + followersnum
+								+ ' - Following: ' + followingnum
+								+ '<br>Repos: ' + reposnum + '</p></div>';
+						outhtml = outhtml + '<div class="repolist clearfix">';
+
+						var repositories;
+						$.getJSON(repouri, function(json) {
+							repositories = json;
+							outputPageContent();
+						});
+
+						function outputPageContent() {
+							if (repositories.length == 0) {
+								outhtml = outhtml + '<p>No repos!</p></div>';
+							} else {
+								outhtml = outhtml
+										+ '<p><strong>Repos List:</strong></p> <ul>';
+								$
+										.each(
+												repositories,
+												function(index) {
+													outhtml = outhtml
+															+ '<li><a href="'+repositories[index].html_url+'" target="_blank">'
+															+ repositories[index].name
+															+ '</a></li>';
+												});
+								outhtml = outhtml + '</ul></div></div></div>';
+							}
+							$('#ghapidata').html(outhtml);
+						} // end outputPageContent()
+					} // end else statement
+				}); // end requestJSON Ajax call
+
+		function requestJSON(url, callback) {
+			$.ajax({
+				url : url,
+				complete : function(xhr) {
+					callback.call(null, xhr.responseJSON);
+				}
+			});
+		}
+	</script>
 </body>
 </html>

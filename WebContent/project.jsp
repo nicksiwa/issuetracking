@@ -43,6 +43,7 @@
 						<div class="col-sm-3 col-lg-2 col-md-2">
 							<select name="status" class="form-control">
 								<option value="Development">Development</option>
+								
 								<option value="Closed">Closed</option>							
 							</select>
 						</div>
