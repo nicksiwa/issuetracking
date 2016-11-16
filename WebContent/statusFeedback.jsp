@@ -46,11 +46,11 @@
 					<div class="form-group">
 						<label for="status" class="control-label col-sm-2">To User :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select class="form-control">
-								<option value="assign">Assign</option>
-								<option value="feedback">Feedback</option>
-								<option value="confirmed">Confirmed</option>
-								<option value="resolved">Resolved</option>
+							<select class="form-control" name="commentAssign">
+							<option value="-">-</option>
+								<c:forEach var="person" items="${persons}">
+									<option><c:out value="${person.firstName}" /></option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>

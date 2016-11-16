@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
+import com.siwa.model.Person;
 
 public interface CommentDAO {
 	
@@ -22,5 +23,9 @@ public interface CommentDAO {
 		public Issue getIssueById(int issueID);
 		
 		public int getNoOfRecords();
+		
+		public List<Person> getPersonById(int issueID);
+		
+		public List<Comment> getFeedbackByUser(String user);
 	
 }

@@ -9,8 +9,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.siwa.model.Assign;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
+import com.siwa.model.Person;
 import com.siwa.util.DBUtil;
 
 public class CommentDAOImplementation implements CommentDAO {
@@ -27,13 +29,14 @@ public class CommentDAOImplementation implements CommentDAO {
 	public void addComment(Comment comment) {
 		java.util.Date date= new java.util.Date();
 		try{
-			String query = "insert into comment (commentDetail,commentTime,userComment,commentStatus,issueID) values (?,?,?,?,?)";
+			String query = "insert into comment (commentDetail,commentTime,userComment,commentStatus,issueID,commentAssign) values (?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
 			ps.setTimestamp(2, new Timestamp(date.getTime()));	
 			ps.setString(3, comment.getUserComment());
 			ps.setString(4, comment.getCommentStatus());
 			ps.setInt(5, comment.getIssueID());
+			ps.setString(6, comment.getCommentAssign());
 			ps.executeUpdate();
 			ps.close();
 					
@@ -61,14 +64,15 @@ public class CommentDAOImplementation implements CommentDAO {
 	public void updateComment(Comment comment) {
 		java.util.Date date= new java.util.Date();
 		try{
-			String query = "update comment set commentDetail=?, commentTime=?, userComment=?, commentStatus=?, issueID=? where commentID=?";
+			String query = "update comment set commentDetail=?, commentTime=?, userComment=?, commentStatus=?, issueID=?, commentAssign=? where commentID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, comment.getCommentDetail());
 			ps.setTimestamp(2, new Timestamp(date.getTime()));
 			ps.setString(3, comment.getUserComment());
 			ps.setString(4, comment.getCommentStatus());
 			ps.setInt(5, comment.getIssueID());
-			ps.setInt(6, comment.getCommentID());
+			ps.setString(6, comment.getCommentAssign());
+			ps.setInt(7, comment.getCommentID());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -91,6 +95,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));
+				comment.setCommentAssign(rs.getString("commentAssign"));
 				comments.add(comment);
 			}
 			rs.close();
@@ -168,10 +173,58 @@ public class CommentDAOImplementation implements CommentDAO {
 				issue.setIssueID(rs.getInt("issueID"));
 				issue.setStatus(rs.getString("status"));
 			}
+			rs.close();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return issue;
+	}
+
+	
+	
+	@Override
+	public List<Person> getPersonById(int issueID) {
+		List<Person> persons = new ArrayList<Person>();
+		try{
+			String query = "select person.firstName from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID join issue on project.projectName = issue.project and issue.issueID=?";			
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Person person = new Person();
+				person.setFirstName(rs.getString("firstName"));
+				persons.add(person);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return persons;
+	}
+
+	@Override
+	public List<Comment> getFeedbackByUser(String user) {
+		List<Comment> feedback = new ArrayList<Comment>();
+		try{
+			String query = "select `comment`.commentDetail,`comment`.commentTime,`comment`.userComment from `comment` where `comment`.commentAssign=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Comment comment = new Comment();
+				comment.setCommentDetail(rs.getString("commentDetail"));
+				comment.setCommentTime(rs.getTimestamp("commentTime"));
+				comment.setUserComment(rs.getString("userComment"));
+				feedback.add(comment);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return feedback;
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.CommentDAO;
+import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.LoginDAO;
@@ -22,12 +24,14 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private LoginDAO dao;
     private IndexDAO daos;
+    private CommentDAO dao2;
     public static final String LOGIN = "/login.jsp";
     public static final String REGISTER = "/register.jsp";
    
     public LoginController() {
        dao = new LoginDAOImplementation();
        daos = new IndexDAOImplementation();
+       dao2 = new CommentDAOImplementation();
       
     }
 
@@ -83,6 +87,8 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("recents", daos.getRecentlyModified());
 			request.setAttribute("projects", daos.getProjectByUser(login.getFirstname()));
 			request.setAttribute("publics", daos.getPublicProject());
+			request.setAttribute("feedback", dao2.getFeedbackByUser(login.getFirstname()));
+			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{

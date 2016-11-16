@@ -10,6 +10,7 @@ public class Comment {
 	private String userComment;
 	private String commentStatus;
 	private int issueID;
+	private String commentAssign;
 	
 	public int getCommentID() {
 		return commentID;
@@ -51,10 +52,17 @@ public class Comment {
 	public void setCommentTime(Timestamp commentTime) {
 		this.commentTime = commentTime;
 	}
+	public String getCommentAssign() {
+		return commentAssign;
+	}
+	public void setCommentAssign(String commentAssign) {
+		this.commentAssign = commentAssign;
+	}
 	@Override
 	public String toString() {
 		return "Comment [commentID=" + commentID + ", commentDetail=" + commentDetail + ", commentTime=" + commentTime
-				+ ", userComment=" + userComment + ", commentStatus=" + commentStatus + ", issueID=" + issueID + "]";
+				+ ", userComment=" + userComment + ", commentStatus=" + commentStatus + ", issueID=" + issueID
+				+ ", commentAssign=" + commentAssign + "]";
 	}
 	
 }

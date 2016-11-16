@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.CommentDAO;
+import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.model.Index;
@@ -26,10 +28,12 @@ public class IndexController extends HttpServlet {
 	public static final String RECENTLY = "/recentlyList.jsp";
 	
 	private IndexDAO dao;
-       
+	private CommentDAO dao2;
+    
   
     public IndexController() {
         dao = new IndexDAOImplementation();
+        dao2 = new CommentDAOImplementation();
     }
 
 
@@ -70,6 +74,8 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("recents", dao.getRecentlyModified());
 			request.setAttribute("projects", dao.getProjectByUser(username));
 			request.setAttribute("publics", dao.getPublicProject());
+			
+			request.setAttribute("feedback", dao2.getFeedbackByUser(username));
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

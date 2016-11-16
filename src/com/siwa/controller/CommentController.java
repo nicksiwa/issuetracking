@@ -79,6 +79,7 @@ public class CommentController extends HttpServlet {
 			dao2.setStatusFeedback(issue);
 			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
+			request.setAttribute("persons", dao.getPersonById(issueID));
 		} else if (action.equalsIgnoreCase("confirmed")) {
 			forward = CONFIRMED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
@@ -139,6 +140,10 @@ public class CommentController extends HttpServlet {
 		
 		Issue issue = new Issue();
 		
+		String commentAssign = (request.getParameter("commentAssign"));
+		commentAssign = new String(commentAssign.getBytes("ISO8859-1"), "UTF-8");
+		comment.setCommentAssign(commentAssign);
+		
 		
 		String status = request.getParameter("status");
 
@@ -178,6 +183,8 @@ public class CommentController extends HttpServlet {
 			dao.updateComment(comment);
 		}
 
+		
+		
 		issueID = Integer.parseInt(request.getParameter("issueID"));
 		issue = dao2.getAssignById(issueID);
 		

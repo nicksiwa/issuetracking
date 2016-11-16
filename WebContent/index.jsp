@@ -252,30 +252,16 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Your feed</b> <span class="badge">999+</span><a href="#"><span
+						<b>Your feed</b> <span class="badge">${fn:length(feedback)}</span><a href="#"><span
 							class="pull-right"><small>View all</small></span></a>
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item text-primary"><a href="#"
-							data-toggle="tooltip" data-placement="top" title="Hooray!">Edit
-								Front-end </a><span class="pull-right"><small><font
-									color="gray">27/10/2016 13:44:45</font></small></span></li>
-						<li class="list-group-item text-primary">Onii-Chan!!! <span
-							class="pull-right"><small><font color="gray">27/10/2016
-										13:44:45</font></small></span></li>
-						<li class="list-group-item text-primary">Oh Ahh <span
-							class="pull-right"><small><font color="gray">27/10/2016
-										13:44:45</font></small></span></li>
-						<li class="list-group-item text-primary"><a href="#"
-							data-toggle="tooltip" data-placement="top" title="Hooray!">Edit
-								Front-end </a><span class="pull-right"><small><font
-									color="gray">27/10/2016 13:44:45</font></small></span></li>
-						<li class="list-group-item text-primary">Onii-Chan!!! <span
-							class="pull-right"><small><font color="gray">27/10/2016
-										13:44:45</font></small></span></li>
-						<li class="list-group-item text-primary">Oh Ahh <span
-							class="pull-right"><small><font color="gray">27/10/2016
-										13:44:45</font></small></span></li>
+					
+					<c:forEach items="${feedback}" var="index">
+
+					
+						<li class="list-group-item text-primary"><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!"><c:out value="${index.commentDetail}"/> <c:out value="${index.userComment}"/></a><span class="pull-right"><small><font color="gray"><c:out value="${index.commentTime}"/></font></small></span></li>
+							</c:forEach>
 					</ul>
 
 				</div>
@@ -327,7 +313,7 @@
 							fullname = username;
 						}
 
-						var outhtml = '<div class="panel panel-default"><div class="panel-heading"><b>GitHub API</b></div><div class="panel-body"><h3>'
+						var outhtml = '<div class="panel panel-default"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
 								+ fullname
 								+ ' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'
 								+ username + '</a>)</span></h3>';
