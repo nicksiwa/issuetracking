@@ -195,24 +195,18 @@
 							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="col-md-4 col-md-offset-1">
 
-
-					<div id="ghapidata" class="clearfix"></div>
-						<input type="hidden" value="niksf203" id="user"> 
-						<input type="hidden" id="a">
-
-
+				<div id="ghapidata" class="clearfix"></div>
+				<input type="hidden" value="niksf203" id="user"> <input
+					type="hidden" id="a">
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Project you contribute to</b> <span class="badge">${fn:length(projects)}</span>
 					</div>
-
-
 
 					<ul class="list-group">
 						<c:forEach items="${projects}" var="index">
@@ -224,16 +218,12 @@
 									Issue</a></li>
 						</c:forEach>
 					</ul>
-
-
 				</div>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Public project</b> <span class="badge">${fn:length(publics)}</span>
 					</div>
-
-
 
 					<ul class="list-group">
 						<c:forEach items="${publics}" var="index">
@@ -245,28 +235,30 @@
 									Issue</a></li>
 						</c:forEach>
 					</ul>
-
-
 				</div>
-
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Your feed</b> <span class="badge">${fn:length(feedback)}</span><a href="#"><span
-							class="pull-right"><small>View all</small></span></a>
+						<b>Your feed</b> <span class="badge">${fn:length(feedback)}</span><a
+							href="#"><span class="pull-right"><small>View
+									all</small></span></a>
 					</div>
 					<ul class="list-group">
-					
-					<c:forEach items="${feedback}" var="index">
 
-					
-						<li class="list-group-item text-primary"><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!"><c:out value="${index.commentDetail}"/> <c:out value="${index.userComment}"/></a><span class="pull-right"><small><font color="gray"><c:out value="${index.commentTime}"/></font></small></span></li>
-							</c:forEach>
+						<c:forEach items="${feedback}" var="index">
+							<li class="list-group-item">
+							<c:out value="${index.userComment}" /> 
+							<a href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />" data-toggle="tooltip" data-placement="top" title="Hooray!">
+							<c:out value="${index.commentDetail}" /></a>
+							<span class="pull-right"><small><font color="gray">
+							<fmt:parseDate value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm" 
+							var="myDate" /> <fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
+						</c:forEach>
 					</ul>
 
 				</div>
 
-			
+
 			</div>
 		</form>
 
@@ -306,7 +298,7 @@
 						var followersnum = json.followers;
 						var followingnum = json.following;
 						var reposnum = json.public_repos;
-						
+
 						document.getElementById("a").value = fullname;
 
 						if (fullname == undefined) {

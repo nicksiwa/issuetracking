@@ -25,7 +25,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="IndexController?action=index"><span
-						class="glyphicon glyphicon-home"></span> Home</a></li>
+						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 				<li><a href="PersonController?action=listPerson"><span
 						class="glyphicon glyphicon-user"></span> Person</a></li>
 				<li><a href="ProjectController?action=listProject"><span
@@ -33,7 +33,8 @@
 				<li><a href="CommentController?action=listComment"><span
 						class="glyphicon glyphicon-comment"></span> Comment</a></li>
 				
-				<li><a href="AssignController?action=listAssign">Assign</a></li>
+				<li><a href="AssignController?action=listAssign"><span
+						class="glyphicon glyphicon-info-sign"></span> Assign</a></li>
 				<li><a href="IssueController?action=listIssue"><span
 						class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
 			</ul>
