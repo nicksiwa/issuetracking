@@ -311,9 +311,9 @@
 								+ username + '</a>)</span></h3>';
 						outhtml = outhtml
 								+ '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
-						outhtml = outhtml + '<p>Followers: ' + followersnum
-								+ ' - Following: ' + followingnum
-								+ '<br>Repos: ' + reposnum + '</p></div>';
+						outhtml = outhtml + '<p>Followers : <span class="badge">' + followersnum
+								+ '</span> | Following : <span class="badge">' + followingnum
+								+ '</span><br>Repositories : <span class="badge">'+ reposnum +'</span></p></div>';
 						outhtml = outhtml + '<div class="repolist clearfix">';
 
 						var repositories;
@@ -327,7 +327,7 @@
 								outhtml = outhtml + '<p>No repos!</p></div>';
 							} else {
 								outhtml = outhtml
-										+ '<p><strong>Repos List:</strong></p> <ul>';
+										+ '<p><strong>Repositories List : </strong></p> <ul>';
 								$
 										.each(
 												repositories,

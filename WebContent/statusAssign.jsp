@@ -53,6 +53,18 @@
 						</div>
 					</div>
 
+					<div class="form-group" style="display: none;">
+						<label for="status" class="control-label col-sm-2">To User :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select class="form-control" name="commentAssign">
+							<option value="-">-</option>
+								<c:forEach var="person" items="${persons}">
+									<option><c:out value="${person.firstName}" /></option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					
 					<input type="hidden" id="date" name="commentTime"
 						value="<c:out value="${comment.commentTime}" />"
 						placeholder="Comment Time" />
