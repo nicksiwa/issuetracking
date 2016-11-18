@@ -13,6 +13,7 @@
 <title><c:out value="${issue.title}" /> : <c:out
 		value="${issue.project}" /></title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 
@@ -284,7 +285,7 @@
 		}
 		var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
 		document.getElementById('date').value = today;
-		console.log(today);
+		
 
 		function getComboA(sel) {
 			var value = sel.value;

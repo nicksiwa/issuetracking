@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show All Persons</title>
 <link href="css/bootstrap.css" rel="stylesheet">
-
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 
