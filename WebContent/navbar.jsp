@@ -9,7 +9,6 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-
 </head>
 
 <body>
@@ -44,7 +43,7 @@
 					String username = (String) session.getAttribute("username");
 					if (username == null) {
 				%>
-				<li><a href="LoginController?action=signup"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="RegisterController.do?action=signup&id=1"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
 				<li><a href="LoginController"><span
 						class="glyphicon glyphicon-log-in"></span> Sign In</a></li>

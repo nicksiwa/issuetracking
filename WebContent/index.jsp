@@ -10,6 +10,7 @@
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 
 </head>
 <body>
@@ -22,6 +23,7 @@
 
 
 			<div class="col-md-7">
+
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -68,6 +70,51 @@
 					</div>
 				</div>
 
+
+
+<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							<span class="glyphicon glyphicon-list-alt"></span> <b>Unassigned</b><small><span class="pull-right"> <span
+									class="badge">${fn:length(indexs)}</span> Issues
+							</span></small>
+						</h4>
+
+					</div>
+					<div class="panel-body">
+						<div class="list-group">
+
+
+							<c:forEach begin="0" end="2" items="${indexs}" var="index">
+								<a
+									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+									class="list-group-item" data-toggle="tooltip"
+									data-placement="top"
+									title="Click to change status or view issue detail">
+									<p class="list-group-item-heading ">
+										<b> <c:out value="${index.title}"></c:out>
+										</b> <small><span class="pull-right"><font
+												color="gray"> <fmt:parseDate
+														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" />
+											</font></span></small>
+
+									</p>
+									<p class="list-group-item-text">
+										From Project :
+										<c:out value="${index.project}"></c:out>
+									</p>
+
+
+								</a>
+							</c:forEach>
+
+						</div>
+						<a href="IndexController.do?action=allassign"
+							class="btn btn-default" role="button">View all issues</a>
+					</div>
+				</div>
 
 
 
@@ -257,6 +304,10 @@
 					</ul>
 
 				</div>
+				
+				<div>
+				<canvas id="myChart" width="5" height="4"></canvas>
+				</div>
 
 
 			</div>
@@ -353,5 +404,42 @@
 			});
 		}
 	</script>
+	
+	<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+    datasets: [{
+      label: 'BugTracking',
+      data: [12, 19, 3, 17, 6, 3, 7],
+      backgroundColor: "rgba(153,255,51,0.4)"
+    }, {
+      label: 'Hai to Gensou',
+      data: [2, 29, 5, 5, 2, 3, 10],
+      backgroundColor: "rgba(255,153,0,0.4)"
+    }, {
+        label: 'Project 1',
+        data: [14, 12, 2, 3, 17, 20, 9],
+        backgroundColor: "rgba(130,35,35,0.4)"
+      }
+    
+    
+    ]
+  }, options: {
+	  title: {
+          display: true,
+          text: 'Custom Chart Title'
+      },
+      responsive: true
+  }
+  
+});
+
+
+</script>
+	
+	
 </body>
 </html>

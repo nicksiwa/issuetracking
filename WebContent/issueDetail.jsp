@@ -124,7 +124,7 @@
 						<label for="description" class="control-label col-sm-2">Description
 							:</label>
 						<div class="col-sm-8 col-lg-6 col-md-6">
-							<textarea name="description" class="form-control" rows="5"
+							<textarea readonly name="description" class="form-control" rows="5"
 								id="comment" placeholder="Description"><c:out
 									value="${issue.description}"></c:out></textarea>
 							<input type="hidden" name="description" class="form-control"
@@ -137,13 +137,17 @@
 
 					<hr>
 					<div class="form-group">
-						<label for="status" class="control-label col-sm-2"><a>Change
+						<label for="status" class="control-label col-sm-2"><a data-toggle="tooltip"
+									data-placement="top"
+									title="Select issue status" >Change
 								Status To : </a></label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
 
 
 							<select name="status" class="form-control" id="comboA"
-								onchange="getComboA(this)">
+								onchange="getComboA(this)" data-toggle="tooltip"
+									data-placement="top"
+									title="Select issue status then go to comment page">
 								<option value="assign">Assign</option>
 								<option value="feedback">Feedback</option>
 								<option value="confirmed">Confirmed</option>

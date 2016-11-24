@@ -2,46 +2,88 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="java.sql.*" %> 
+<%@ page import="java.io.*" %> 
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<script src="js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript">
+          $(document).ready(function(){
+              $(".uname").change(function(){
+                  var uname = $(this).val();
+                  if(uname.length >= 3){
+                      $(".status").html("<img src='images/loading.gif'><font color=gray> Checking availability...</font>");
+                      
+                  }
+                  else{
+                       
+                      $(".status").html("<font color=red>Username should be <b>3</b> character long.</font>");
+                  }
+                  
+              });
+          });
+          
+          
+        </script>
+        
+        
+        
+
 </head>
 
 <body>
 
+
 	<jsp:include page="navbar.jsp" />
 
-	<form action="TestController.do" method="post">
 		<div>
-			<input type="hidden" name="testID"
-				value="<c:out value="${test.testID}" />" readonly="readonly"
-				placeholder="Auto generate ID" /> <br> <br>
-			<div class="form-group">
+		<label class="flable">User Name :</label> <input type="text"
+			class="uname" />&nbsp;<span class="status"></span>
+			<%
+			String str = "<script>document.writeln(uname)</script>";
+		    out.println("value: " + str);
+			
+	 try {
+
+        String connectionURL = "jdbc:mysql://localhost/projectdb";
+        Connection connection = null;
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        connection = DriverManager.getConnection(connectionURL, "root", "password");
+        String uname = request.getParameter("uname");
+	
+        PreparedStatement ps = connection.prepareStatement("select username from user where username=?");
+        ps.setString(1,uname);
+        
+        
+        ResultSet rs = ps.executeQuery();
+         
+        if (!rs.next()) {
+        	String msg = uname+" is avaliable";
+        	System.out.println(msg);
+        	out.println(msg);
+        	request.setAttribute("m", msg);	               
+   
+        }
+        else{
+        out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
+        System.out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
+        }
+        out.println();
 
 
-				<select name="testName" class="form-control">
-					<c:forEach var="test" items="${testss}">
-						<option><c:out value="${test.testName}" /></option>
-					</c:forEach>
-				</select> <select name="testProject" class="form-control">
-					<c:forEach var="test" items="${testss}">
-						<option><c:out value="${test.testProject}" /></option>
-					</c:forEach>
-				</select>
 
+    } catch (Exception ex) {
 
-			</div>
-			<br> <input type="submit" class="btn btn-default" value="Submit" />
-		</div>
+        out.println("Error ->" + ex.getMessage());
 
-	</form>
-	<script src="js/bootstrap.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    } finally {
+        out.close();
+    } %>
+    </div>
 </body>
 </html>

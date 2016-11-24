@@ -208,7 +208,7 @@ public class CommentDAOImplementation implements CommentDAO {
 	public List<Comment> getFeedbackByUser(String user) {
 		List<Comment> feedback = new ArrayList<Comment>();
 		try{
-			String query = "select `comment`.commentDetail,`comment`.commentTime,`comment`.userComment,`comment`.issueID from `comment` where `comment`.commentAssign=?";
+			String query = "select `comment`.commentDetail,`comment`.commentTime,`comment`.userComment,`comment`.issueID from `comment` where `comment`.commentAssign=? order by commentTime desc";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();

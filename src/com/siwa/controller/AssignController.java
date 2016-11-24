@@ -59,11 +59,13 @@ public class AssignController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Assign assign = new Assign();
 		
-		String personID = request.getParameter("personID");
-		assign.setPersonID(Integer.parseInt(personID));
+		String personName = request.getParameter("personName");
+		personName = new String(personName.getBytes("ISO8859-1"), "UTF-8");
+		assign.setPersonName(personName);
 		
-		String projectID = request.getParameter("projectID");
-		assign.setProjectID(Integer.parseInt(projectID));
+		String projectName = request.getParameter("projectName");
+		projectName = new String(projectName.getBytes("ISO8859-1"), "UTF-8");
+		assign.setProjectName(projectName);
 		
 		String assignID = request.getParameter("assignID");
 		if(assignID == null || assignID.isEmpty())

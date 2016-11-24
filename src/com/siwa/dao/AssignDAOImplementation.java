@@ -21,12 +21,20 @@ public class AssignDAOImplementation implements AssignDAO{
 	@Override
 	public void addAssign(Assign assign) {
 		try{
-			String query = "insert into assign (person_ID,project_ID) values (?,?)";
+			String query = "set @person_id = (select person.personId from person where person.firstName = ?)";
+			String query2 = "set @project_id = (select project.projectID from project where project.projectName = ?)";
+			String query3 = "insert into assign (person_ID,project_ID) values (@person_id,@project_id)";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, assign.getPersonID());
-			ps.setInt(2, assign.getProjectID());
-			ps.executeUpdate();
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			PreparedStatement ps3 = conn.prepareStatement(query3);
+			ps.setString(1, assign.getPersonName());
+			ps2.setString(1, assign.getProjectName());
+			ps.executeQuery();
+			ps2.executeQuery();
+			ps3.executeUpdate();
 			ps.close();
+			ps2.close();
+			ps3.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -111,10 +119,10 @@ public class AssignDAOImplementation implements AssignDAO{
 		List<Assign> projects = new ArrayList<Assign>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select projectID from project");
+			ResultSet rs = stat.executeQuery("select projectName from project");
 			while(rs.next()){
 				Assign assign = new Assign();
-				assign.setProjectID(rs.getInt("projectID"));
+				assign.setProjectName(rs.getString("projectName"));
 				projects.add(assign);
 			}
 			rs.close();
@@ -131,10 +139,10 @@ public class AssignDAOImplementation implements AssignDAO{
 		List<Assign> persons = new ArrayList<Assign>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select personId from person");
+			ResultSet rs = stat.executeQuery("select firstName from person");
 			while(rs.next()){
 				Assign assign = new Assign();
-				assign.setPersonID(rs.getInt("personId"));
+				assign.setPersonName(rs.getString("firstName"));
 				persons.add(assign);
 			}
 			rs.close();

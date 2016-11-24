@@ -9,13 +9,16 @@
 <title>Login</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 
+<script src="js/jquery.js" type="text/javascript"></script>
+	
 </head>
 <body>
 
 	<jsp:include page="navbar.jsp" />
+	
 
+	
 	<div class="container">
 		<form class="form-horizontal" action="LoginController" method="post">
 
@@ -32,13 +35,19 @@
 							</div>
 
 							<div class="form-group">
+							<div class="input-group">
+							 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<input type="text" name="username" class="form-control"
 									placeholder="Username" />
+									</div>
 							</div>
 
 							<div class="form-group">
+							<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 								<input type="password" name="password" class="form-control"
 									placeholder="Password" />
+									</div>
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-default" value="Login" />
@@ -50,11 +59,6 @@
 
 		</form>
 	</div>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-3.1.0.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

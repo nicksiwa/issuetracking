@@ -107,8 +107,6 @@ public class IssueController extends HttpServlet {
 		project = new String(project.getBytes("ISO8859-1"), "UTF-8");
 		issue.setProject(project);
 		
-		
-		
 		String assign = (request.getParameter("assign"));
 		assign = new String(assign.getBytes("ISO8859-1"), "UTF-8");
 		issue.setAssign(assign);

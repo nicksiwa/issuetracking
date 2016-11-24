@@ -2,6 +2,7 @@ package com.siwa.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.siwa.model.Register;
@@ -50,6 +51,54 @@ public class RegisterDAOImplementation implements RegisterDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public Register checkUser(String user) {
+		Register register = new Register();
+		try{
+			String query = "select username from user where username=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				register.setUsername(rs.getString("username"));
+			}
+			
+			   if (!rs.next()) {
+	                System.out.println("<font color=green><b>"+user+"</b> is avaliable");
+	               
+	            }
+	            else{
+	            	System.out.println("<font color=red><b>"+user+"</b> is already in use</font>");
+	            }
+			   System.out.println();
+			ps.close();
+			rs.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Register getId(int id) {
+		Register re = new Register();
+		try{
+			String query = "select username from user where userID=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next()){
+				re.setUsername(rs.getString("username"));
+				
+			}
+			rs.close();
+			preparedStatement.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return re;
 	}
 
 }

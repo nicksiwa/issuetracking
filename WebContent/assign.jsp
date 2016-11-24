@@ -30,22 +30,22 @@
 						placeholder="Auto generate ID" /> <br> <br>
 						
 					<div class="form-group">
-						<label for="personID" class="control-label col-sm-2">Person ID : </label>
+						<label for="personName" class="control-label col-sm-2">Person Name : </label>
 						
 						<div class="col-sm-3 col-lg-3 col-md-3">
-							<select name="personID" class="form-control">
+							<select name="personName" class="form-control">
 								<c:forEach var="person" items="${persons}">
-									<option><c:out value="${person.personID}" /></option>
+									<option><c:out value="${person.personName}" /></option>
 								</c:forEach>
 							</select>
 							</div>
 				
-						<label for="projectID" class="control-label col-sm-2">Project ID : </label>
+						<label for="projectName" class="control-label col-sm-2">Project ID : </label>
 						
 						<div class="col-sm-3 col-lg-3 col-md-3">
-							<select name="projectID" class="form-control">
+							<select name="projectName" class="form-control">
 								<c:forEach var="project" items="${projects}">
-									<option><c:out value="${project.projectID}" /></option>
+									<option><c:out value="${project.projectName}" /></option>
 								</c:forEach>
 							</select>
 							</div>

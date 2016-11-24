@@ -2,7 +2,12 @@ package com.siwa.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,69 +49,56 @@ public class TestController extends HttpServlet {
 		
 		
 		if (action.equalsIgnoreCase("delete")) {
-			forward = LIST_TEST;
-			int testID = Integer.parseInt(request.getParameter("testID"));
-			dao.deleteTest(testID);
-			request.setAttribute("tests", dao.getAllTest());
-		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
-			int testID = Integer.parseInt(request.getParameter("personId"));
-		
 			
-		} else if (action.equalsIgnoreCase("insert")) {
-			forward = INSERT_OR_EDIT;
-			request.setAttribute("testss", dao.getPersonAndProject());
-			
-			
-			
-		} else if (action.equalsIgnoreCase("status")) {
-			forward = STATUS;
-			String status = request.getParameter("status");
-			Test test = dao.getTestByStatus(status);
-			request.setAttribute("test", test);
 		} else {
-			forward = INDEX;
-			String testName = (String) session.getAttribute("username");
-			Test test = dao.getTestById(testName);
-			request.setAttribute("test", test);
+			forward = INSERT_OR_EDIT;
+			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Test test = new Test();
+		response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+
+            String connectionURL = "jdbc:mysql://localhost/projectdb"; // students is my database name
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(connectionURL, "root", "password");
+            String uname = request.getParameter("uname");
 		
-		HttpSession session  = request.getSession();
-		String username = (String) session.getAttribute("username");
-	
-		String testName = (username);
-		testName = new String(testName.getBytes("ISO8859-1"), "UTF-8");
-		test.setTestName(testName);
-	
-		
-		
-		
-		String testProject = (request.getParameter("testProject"));
-		testProject = new String(testProject.getBytes("ISO8859-1"), "UTF-8");
-		test.setTestProject(testProject);
+            PreparedStatement ps = connection.prepareStatement("select username from user where username=?");
+            ps.setString(1,uname);
             
-           
-		
-		
-            String testID = request.getParameter("testID");
-        	
-    		if (testID == null || testID.isEmpty())
-    			dao.addTest(test);
-    		else {
-    			test.setTestID(Integer.parseInt(testID));
-    			dao.updateTest(test);
-    		}
-    		RequestDispatcher view = request.getRequestDispatcher(LIST_TEST);
-    		request.setAttribute("tests", dao.getAllTest());
-    		view.forward(request, response);
-    		
+            
+            ResultSet rs = ps.executeQuery();
+             
+            if (!rs.next()) {
+            	String msg = uname+" is avaliable";
+            	System.out.println(msg);
+            	out.println(msg);
+            	request.setAttribute("m", msg);	               
+       
+            }
+            else{
+            out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
+            System.out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
+            }
+            out.println();
+
+
+
+        } catch (Exception ex) {
+
+            out.println("Error ->" + ex.getMessage());
+
+        } finally {
+            out.close();
         }
+	}
 
 	}
 

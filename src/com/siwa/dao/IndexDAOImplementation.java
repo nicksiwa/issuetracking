@@ -23,7 +23,7 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getAllIndex(String assign) {
 		List<Index> indexs = new ArrayList<Index>();
 		try {
-			String query = "select * from issue where assign=?";
+			String query = "select * from issue where assign=? order by updateDate desc";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
@@ -54,7 +54,7 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getReportByMe(String report) {
 		List<Index> reports = new ArrayList<Index>();
 		try {
-			String query = "select * from issue where reporter=?";
+			String query = "select * from issue where reporter=? order by updateDate desc";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, report);
 			ResultSet rs = ps.executeQuery();
@@ -86,7 +86,7 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getResolveIssue() {
 		List<Index> resolves = new ArrayList<Index>();
 		try {
-			String query = "select * from issue where status='Resolved'";
+			String query = "select * from issue where status='Resolved' order by updateDate desc";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
