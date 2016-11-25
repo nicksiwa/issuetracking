@@ -24,6 +24,7 @@ public class ProjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_PROJECT = "/listProject.jsp";
 	public static final String INSERT_OR_EDIT = "/project.jsp";
+	public static final String MANAGE = "/projectManage.jsp";
 
 	public ProjectController() {
 		dao = new ProjectDAOImplementation();
@@ -36,7 +37,7 @@ public class ProjectController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equalsIgnoreCase("delete")) {
-			forward = LIST_PROJECT;
+			forward = MANAGE;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			dao.deleteProject(projectID);
 			request.setAttribute("projects", dao.getAllProjects());
@@ -47,8 +48,13 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("project", project);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
-		} else {
-			forward = LIST_PROJECT;
+		} 
+		else if(action.equalsIgnoreCase("manage")){
+			forward = MANAGE;
+			request.setAttribute("projects", dao.getAllProjects());
+		}
+		else {
+			forward = MANAGE;
 			request.setAttribute("projects", dao.getAllProjects());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -99,7 +105,7 @@ public class ProjectController extends HttpServlet {
 			project.setProjectID(Integer.parseInt(projectID));
 			dao.updateProject(project);
 		}
-		RequestDispatcher view = request.getRequestDispatcher(LIST_PROJECT);
+		RequestDispatcher view = request.getRequestDispatcher(MANAGE);
 		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);
 	}

@@ -21,20 +21,18 @@
 		
 
 			<div class="col-md-12">
-			<a href="" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> New Project</a>
+			<a href="" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;New Project</a>
 			<br>
 				<table class="table table-bordered table-striped">
 					<tbody>
-						<%
-							for (int i = 0; i < 10; i++) {
-						%>
-
+						<c:forEach items="${projects}" var="project">
+						<input id="i" type="hidden" value="<c:out value="${project.projectID}" />">
 						<tr>
-							<th style="padding: 30px;"><a>First Name</a> <span
+							<th style="padding: 30px;"><a><c:out value="${project.projectName}"></c:out></a> <span
 								class="pull-right"><a class="text-muted" href="#"><span
 										class="glyphicon glyphicon-cog"></span></a>&nbsp;&nbsp;&nbsp;<a
-									class="text-info" href="#"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;<a
-									class="text-danger" href="#"><span class="glyphicon glyphicon-trash"></span></a></span></th>
+									class="text-info" href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
+									<a href="ProjectController.do?action=delete&projectID=<c:out value="${project.projectID }"/>" class="text-danger" ><span class="glyphicon glyphicon-trash"></span></a></span></th>
 							<td style="padding: 30px;">
 								<div class="col-md-4">&nbsp;&nbsp;&nbsp;
 								<span class="label label-success">5</span>
@@ -49,15 +47,27 @@
 								</td>
 
 						</tr>
-						<%
-							}
-						%>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-
 		</form>
+		
 	</div>
+<script>
+function myFunction() {
+	var id = $('#i').html();
+	var link = "http://localhost:8080/Project/ProjectController.do?action=delete&projectID=";
+	var result = link + id;
+	  var ask = window.confirm("Are you sure you want to delete this post?");
+	    if (ask) {
+	        window.alert("This post was successfully deleted.");
+	        document.location.href = result;
+	    }else{
+	    	
+	    }
+}
 
+</script>
 </body>
 </html>
