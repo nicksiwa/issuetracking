@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.siwa.model.Assign;
+import com.siwa.model.Person;
 import com.siwa.model.Project;
 import com.siwa.util.DBUtil;
 
@@ -138,6 +140,72 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			e.printStackTrace();
 		}
 		return project;
+	}
+
+
+	@Override
+	public List<Assign> getPerson() {
+		List<Assign> persons = new ArrayList<Assign>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select firstName from person");
+			while(rs.next()){
+				Assign assign = new Assign();
+				assign.setPersonName(rs.getString("firstName"));
+				persons.add(assign);
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return persons;
+	}
+
+	@Override
+	public void addCollaborators(Assign assign) {
+		try{
+			String query = "set @person_id = (select person.personId from person where person.firstName = ?)";
+			String query2 = "set @project_id = (select project.projectID from project where project.projectName = ?)";
+			String query3 = "insert into assign (person_ID,project_ID) values (@person_id,@project_id)";
+			PreparedStatement ps = conn.prepareStatement(query);
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			PreparedStatement ps3 = conn.prepareStatement(query3);
+			ps.setString(1, assign.getPersonName());
+			ps2.setString(1, assign.getProjectName());
+			ps.executeQuery();
+			ps2.executeQuery();
+			ps3.executeUpdate();
+			ps.close();
+			ps2.close();
+			ps3.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<Person> getCollaborators(int projectID) {
+		List<Person> cols = new ArrayList<Person>();
+		try{
+			String query = "select person.firstName,person.lastName,person.position from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID and project.projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Person person = new Person();
+				person.setFirstName(rs.getString("firstName"));
+				person.setLastName(rs.getString("lastName"));
+				person.setPosition(rs.getString("position"));
+				cols.add(person);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return cols;
 	}
 
 }

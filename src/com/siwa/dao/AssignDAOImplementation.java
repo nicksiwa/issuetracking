@@ -21,7 +21,7 @@ public class AssignDAOImplementation implements AssignDAO{
 	@Override
 	public void addAssign(Assign assign) {
 		try{
-			String query = "set @person_id = (select person.personId from person where person.firstName = ?)";
+			String query = "set @person_id = (select person.personId from person where CONCAT_WS (' ',firstName, lastName) like ?)";
 			String query2 = "set @project_id = (select project.projectID from project where project.projectName = ?)";
 			String query3 = "insert into assign (person_ID,project_ID) values (@person_id,@project_id)";
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -139,10 +139,10 @@ public class AssignDAOImplementation implements AssignDAO{
 		List<Assign> persons = new ArrayList<Assign>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select firstName from person");
+			ResultSet rs = stat.executeQuery("select CONCAT_WS (' ',firstName, lastName) as full_name from person");
 			while(rs.next()){
 				Assign assign = new Assign();
-				assign.setPersonName(rs.getString("firstName"));
+				assign.setPersonName(rs.getString("full_name"));
 				persons.add(assign);
 			}
 			rs.close();

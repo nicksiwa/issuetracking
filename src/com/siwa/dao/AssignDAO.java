@@ -19,5 +19,5 @@ public interface AssignDAO {
 	public List<Assign> getProject();
 	
 	public List<Assign> getPerson();
-
+	
 }

@@ -15,57 +15,88 @@
 	<jsp:include page="navbar.jsp" />
 
 	<div class="container">
-		<form class="form-inline">
+		<form class="form-inline" action="AssignController.do"  method="post">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Collaborators<small><span class="pull-right">Push access to the project</span></small></h4>
+					<h4>
+						<strong>Collaborators</strong><small><span
+							class="pull-right">Push access to the project</span></small>
+					</h4>
 				</div>
 				<div class="panel-body">
 
 
 					<div class="form-group">
 						<div class="form-group">
-							<label for="email">Email:</label> <input type="email"
-								class="form-control" id="email" placeholder="Enter email">
+						
+<input type="hidden" name="projectName"
+								value="<c:out value="${project.projectName}" />" readonly="readonly"
+								placeholder="Auto generate ID" />
+								
+							<input type="hidden" name="assignID"
+								value="<c:out value="${assign.assignID}" />" readonly="readonly"
+								placeholder="Auto generate ID" /> <label for="email">Name
+								:</label> <select name="personName" class="form-control">
+								<c:forEach var="person" items="${persons}">
+									<option><c:out value="${person.personName}" /></option>
+								</c:forEach>
+							</select>
+
 						</div>
-						<button type="submit" class="btn btn-default">Add collaborator</button>
+						<button type="submit" class="btn btn-default">Add
+							collaborator</button>
+
+						<table class="table table-hover table-responsive table-striped">
+							<thead>
+								<tr>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Position</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${cols}" var="person">
+									<tr>
+										<td><c:out value="${person.firstName}" /></td>
+										<td><c:out value="${person.lastName}" /></td>
+										<td><c:out value="${person.position}" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 
 					</div>
 				</div>
 			</div>
 		</form>
 
-		<form action="#" method="post" class="form-horizontal">
+		<form action="3.jsp" method="post" class="form-horizontal">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>Assign</h3>
+					<h4>
+						<strong>Project Configuration</strong>
+					</h4>
 				</div>
 				<div class="panel-body">
-					<input type="hidden" name="assignID"
-						value="<c:out value="${assign.assignID}" />" readonly="readonly"
-						placeholder="Auto generate ID" /> <br> <br>
 
 					<div class="form-group">
-						<label for="personName" class="control-label col-sm-2">Person
-							Name : </label>
+						<label for="status" class="control-label col-sm-2">Project
+							Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select name="status" class="form-control">
+								<option value="Development">Development</option>
 
-						<div class="col-sm-3 col-lg-3 col-md-3">
-							<select name="personName" class="form-control">
-								<c:forEach var="person" items="${persons}">
-									<option><c:out value="${person.personName}" /></option>
-								</c:forEach>
+								<option value="Closed">Closed</option>
 							</select>
 						</div>
 
-						<label for="projectName" class="control-label col-sm-2">Project
-							ID : </label>
-
-						<div class="col-sm-3 col-lg-3 col-md-3">
-							<select name="projectName" class="form-control">
-								<c:forEach var="project" items="${projects}">
-									<option><c:out value="${project.projectName}" /></option>
-								</c:forEach>
+						<label for="viewStatus" class="control-label col-sm-2">View
+							Status :</label>
+						<div class="col-sm-3 col-lg-2 col-md-2">
+							<select name="viewStatus" class="form-control">
+								<option value="Public">Public</option>
+								<option value="Private">Private</option>
 							</select>
 						</div>
 					</div>

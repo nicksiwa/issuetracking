@@ -13,21 +13,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.siwa.dao.AssignDAO;
+import com.siwa.dao.AssignDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
+import com.siwa.model.Assign;
 import com.siwa.model.Project;
 
 @WebServlet("/ProjectController")
 public class ProjectController extends HttpServlet {
 	
 	private ProjectDAO dao;
+	private AssignDAO dao2;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_PROJECT = "/listProject.jsp";
 	public static final String INSERT_OR_EDIT = "/project.jsp";
 	public static final String MANAGE = "/projectManage.jsp";
+	public static final String CONFIG = "/configProject.jsp";
 
 	public ProjectController() {
 		dao = new ProjectDAOImplementation();
+		dao2 = new AssignDAOImplementation();
 	}
 
 	@Override
@@ -52,6 +58,13 @@ public class ProjectController extends HttpServlet {
 		else if(action.equalsIgnoreCase("manage")){
 			forward = MANAGE;
 			request.setAttribute("projects", dao.getAllProjects());
+		}else if(action.equalsIgnoreCase("config")){
+			forward = CONFIG;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectName(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("cols",dao.getCollaborators(projectID));
+			request.setAttribute("persons", dao2.getPerson());
 		}
 		else {
 			forward = MANAGE;
@@ -108,5 +121,7 @@ public class ProjectController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(MANAGE);
 		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);
+	
+	
 	}
 }

@@ -29,7 +29,7 @@
 						<input id="i" type="hidden" value="<c:out value="${project.projectID}" />">
 						<tr>
 							<th style="padding: 30px;"><a><c:out value="${project.projectName}"></c:out></a> <span
-								class="pull-right"><a class="text-muted" href="#"><span
+								class="pull-right"><a class="text-muted" href="ProjectController.do?action=config&projectID=<c:out value="${project.projectID }"/>"><span
 										class="glyphicon glyphicon-cog"></span></a>&nbsp;&nbsp;&nbsp;<a
 									class="text-info" href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
 									<a href="ProjectController.do?action=delete&projectID=<c:out value="${project.projectID }"/>" class="text-danger" ><span class="glyphicon glyphicon-trash"></span></a></span></th>
