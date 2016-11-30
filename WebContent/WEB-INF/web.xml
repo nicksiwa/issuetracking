@@ -92,14 +92,23 @@
     <servlet-name>RegisterController</servlet-name>
     <url-pattern>/RegisterController.do</url-pattern>
   </servlet-mapping>
- 
- 	<servlet>
-        <servlet-name>check</servlet-name>
-        <servlet-class>com.siwa.controller.CheckAvailability</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>check</servlet-name>
-        <url-pattern>/check</url-pattern>
-    </servlet-mapping>
- 
+  <servlet>
+    <servlet-name>check</servlet-name>
+    <servlet-class>com.siwa.controller.CheckAvailability</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>check</servlet-name>
+    <url-pattern>/check</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>ConfigProject</servlet-name>
+    <servlet-class>com.siwa.controller.ConfigProject</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfigProject</servlet-name>
+    <url-pattern>/ConfigProject.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

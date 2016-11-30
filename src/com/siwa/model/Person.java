@@ -12,6 +12,8 @@ public class Person {
 	private String tel;
 	private String position;
 	private Date birthDate;
+	private int assignID;
+	private int projectID;
 
 	public int getPersonId() {
 		return personId;
@@ -77,9 +79,27 @@ public class Person {
 		this.birthDate = birthDate;
 	}
 
-	public String toString() {
-		return "Person [personId=" + personId + ",firstName=" + firstName + ", lastName=" + lastName + ",birthDate="
-				+ birthDate + ", gender=" + gender + ",address=" + address + ",tel=" + tel + ",position=" + position
-				+ "]";
+	public int getAssignID() {
+		return assignID;
 	}
+
+	public void setAssignID(int assignID) {
+		this.assignID = assignID;
+	}
+
+	public int getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(int projectID) {
+		this.projectID = projectID;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [personId=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
+				+ gender + ", address=" + address + ", tel=" + tel + ", position=" + position + ", birthDate="
+				+ birthDate + ", assignID=" + assignID + ", projectID=" + projectID + "]";
+	}
+	
 }

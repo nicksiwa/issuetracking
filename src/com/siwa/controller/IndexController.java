@@ -74,6 +74,7 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("recents", dao.getRecentlyModified());
 			request.setAttribute("projects", dao.getProjectByUser(username));
 			request.setAttribute("publics", dao.getPublicProject());
+			request.setAttribute("unassign", dao.getUnassignIssue());
 			
 			request.setAttribute("feedback", dao2.getFeedbackByUser(username));
 		}

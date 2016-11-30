@@ -24,4 +24,7 @@ public interface ProjectDAO {
 	public void addCollaborators(Assign assign);
 	
 	public List<Person> getCollaborators(int projectID);
+	
+	public void configProject(Project project);
+	
 }

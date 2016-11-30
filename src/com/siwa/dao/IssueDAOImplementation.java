@@ -243,13 +243,13 @@ public class IssueDAOImplementation implements IssueDAO {
 	public List<Issue> getPersonByProject(int issueID) {
 		List<Issue> issuess = new ArrayList<Issue>();
 		try{
-			String query = "select person.firstName from project join assign on project.projectID = assign.project_ID and project.projectID=? join person on assign.person_ID = person.personId";
+			String query = "select CONCAT_WS (' ',firstName, lastName) as full_name from project join assign on project.projectID = assign.project_ID and project.projectID=? join person on assign.person_ID = person.personId";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, issueID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Issue issue = new Issue();
-				issue.setAssign(rs.getString("firstName"));
+				issue.setAssign(rs.getString("full_name"));
 				issuess.add(issue);
 			}
 			rs.close();

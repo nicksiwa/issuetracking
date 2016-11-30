@@ -10,7 +10,8 @@
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 
 </head>
 <body>
@@ -28,7 +29,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-list-alt"></span> <b>Assigned
+							<span class="glyphicon glyphicon-th-list"></span> <b>Assigned
 								to Me</b><small><span class="pull-right"> <span
 									class="badge">${fn:length(indexs)}</span> Issues
 							</span></small>
@@ -72,11 +73,12 @@
 
 
 
-<div class="panel panel-default">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-list-alt"></span> <b>Unassigned</b><small><span class="pull-right"> <span
-									class="badge">${fn:length(indexs)}</span> Issues
+							<span class="glyphicon glyphicon-globe"></span> <b>Unassigned</b><small><span
+								class="pull-right"> <span class="badge">${fn:length(unassign)}</span>
+									Issues
 							</span></small>
 						</h4>
 
@@ -85,7 +87,7 @@
 						<div class="list-group">
 
 
-							<c:forEach begin="0" end="2" items="${indexs}" var="index">
+							<c:forEach begin="0" end="2" items="${unassign}" var="index">
 								<a
 									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 									class="list-group-item" data-toggle="tooltip"
@@ -293,21 +295,22 @@
 					<ul class="list-group">
 
 						<c:forEach items="${feedback}" var="index">
-							<li class="list-group-item">
-							<c:out value="${index.userComment}" /> 
-							<a href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />" data-toggle="tooltip" data-placement="top" title="Hooray!">
-							<c:out value="${index.commentDetail}" /></a>
-							<span class="pull-right"><small><font color="gray">
-							<fmt:parseDate value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm" 
-							var="myDate" /> <fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
+							<li class="list-group-item"><c:out
+									value="${index.userComment}" /> <a
+								href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />"
+								data-toggle="tooltip" data-placement="top" title="Hooray!">
+									<c:out value="${index.commentDetail}" />
+							</a> <span class="pull-right"><small><font
+										color="gray"> <fmt:parseDate
+												value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm"
+												var="myDate" /> <fmt:formatDate value="${myDate}"
+												pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
 						</c:forEach>
 					</ul>
 
 				</div>
-				
-				<div>
-				<canvas id="myChart" width="5" height="4"></canvas>
-				</div>
+
+
 
 
 			</div>
@@ -362,9 +365,13 @@
 								+ username + '</a>)</span></h3>';
 						outhtml = outhtml
 								+ '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
-						outhtml = outhtml + '<p>Followers : <span class="badge">' + followersnum
-								+ '</span> | Following : <span class="badge">' + followingnum
-								+ '</span><br>Repositories : <span class="badge">'+ reposnum +'</span></p></div>';
+						outhtml = outhtml
+								+ '<p>Followers : <span class="badge">'
+								+ followersnum
+								+ '</span> | Following : <span class="badge">'
+								+ followingnum
+								+ '</span><br>Repositories : <span class="badge">'
+								+ reposnum + '</span></p></div>';
 						outhtml = outhtml + '<div class="repolist clearfix">';
 
 						var repositories;
@@ -404,42 +411,40 @@
 			});
 		}
 	</script>
-	
+
 	<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    datasets: [{
-      label: 'BugTracking',
-      data: [12, 19, 3, 17, 6, 3, 7],
-      backgroundColor: "rgba(153,255,51,0.4)"
-    }, {
-      label: 'Hai to Gensou',
-      data: [2, 29, 5, 5, 2, 3, 10],
-      backgroundColor: "rgba(255,153,0,0.4)"
-    }, {
-        label: 'Project 1',
-        data: [14, 12, 2, 3, 17, 20, 9],
-        backgroundColor: "rgba(130,35,35,0.4)"
-      }
-    
-    
-    ]
-  }, options: {
-	  title: {
-          display: true,
-          text: 'Custom Chart Title'
-      },
-      responsive: true
-  }
-  
-});
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type : 'line',
+			data : {
+				labels : [ 'M', 'T', 'W', 'T', 'F', 'S', 'S' ],
+				datasets : [ {
+					label : 'BugTracking',
+					data : [ 12, 19, 3, 17, 6, 3, 7 ],
+					backgroundColor : "rgba(153,255,51,0.4)"
+				}, {
+					label : 'Hai to Gensou',
+					data : [ 2, 29, 5, 5, 2, 3, 10 ],
+					backgroundColor : "rgba(255,153,0,0.4)"
+				}, {
+					label : 'Project 1',
+					data : [ 14, 12, 2, 3, 17, 20, 9 ],
+					backgroundColor : "rgba(130,35,35,0.4)"
+				}
+
+				]
+			},
+			options : {
+				title : {
+					display : true,
+					text : 'Custom Chart Title'
+				},
+				responsive : true
+			}
+
+		});
+	</script>
 
 
-</script>
-	
-	
 </body>
 </html>

@@ -187,13 +187,13 @@ public class CommentDAOImplementation implements CommentDAO {
 	public List<Person> getPersonById(int issueID) {
 		List<Person> persons = new ArrayList<Person>();
 		try{
-			String query = "select person.firstName from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID join issue on project.projectName = issue.project and issue.issueID=?";			
+			String query = "select CONCAT_WS (' ',firstName, lastName) as full_name from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID join issue on project.projectName = issue.project and issue.issueID=?";			
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, issueID);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Person person = new Person();
-				person.setFirstName(rs.getString("firstName"));
+				person.setFirstName(rs.getString("full_name"));
 				persons.add(person);
 			}
 			rs.close();

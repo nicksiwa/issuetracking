@@ -134,7 +134,7 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getProjectByUser(String assign) {
 		List<Index> projects = new ArrayList<Index>();
 		try{
-			String query = "select project.status, project.projectName, person.firstName, project.projectID from person join assign on person.personId = assign.person_ID and person.firstName=? join project on assign.project_ID = project.projectID";
+			String query = "select project.status, project.projectName, person.firstName, project.projectID from person join assign on person.personId = assign.person_ID and CONCAT_WS (' ',firstName, lastName) like ? join project on assign.project_ID = project.projectID";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, assign);
 			ResultSet rs = ps.executeQuery();
@@ -181,6 +181,30 @@ public class IndexDAOImplementation implements IndexDAO {
 			e.printStackTrace();
 		}
 		return publics;
+	}
+
+	@Override
+	public List<Index> getUnassignIssue() {
+		List<Index> unassign = new ArrayList<Index>();
+		try{
+			String query = "select * from issue where assign='-' order by updateDate desc";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			while(rs.next()){
+				Index index = new Index();
+				index.setIssueID(rs.getInt("issueID"));
+				index.setProject(rs.getString("project"));
+				index.setReporter(rs.getString("reporter"));
+				index.setTitle(rs.getString("title"));
+				index.setUpdateDate(rs.getString("updateDate"));
+				unassign.add(index);
+			}
+			rs.close();
+			statement.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return unassign;
 	}
 
 }

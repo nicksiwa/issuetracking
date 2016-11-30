@@ -45,7 +45,9 @@
 							To :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
 							<select name="assign" class="form-control">
+									<option>-</option>
 								<c:forEach var="issue" items="${issuess}">
+									
 									<option><c:out value="${issue.assign}" /></option>
 								</c:forEach>
 							</select>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -66,12 +67,17 @@
 						</div>
 					</div>
 					<br>
+					
+					<c:set var="gender" value="${person.gender}" />
+
 					<div class="form-group">
 						<label for="gender" class="control-label col-sm-2">Gender
 							:</label>
 						<div class="col-sm-3 col-lg-3 col-md-3">
-							Male <input type="radio" name="gender" value="Male" checked />
-							Female <input type="radio" name="gender" value="Female" />
+							Male<input type="radio" name="gender" value="Male"
+								<c:if test="${gender=='Male'}">checked</c:if>> 
+								Female <input type="radio" name="gender" value="Female"
+								<c:if test="${gender=='Female'}">checked</c:if>>
 						</div>
 					</div>
 					<br>

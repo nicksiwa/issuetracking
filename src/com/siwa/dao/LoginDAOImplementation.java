@@ -27,11 +27,11 @@ public class LoginDAOImplementation implements LoginDAO {
 		
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select person.firstName,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID");
+			ResultSet rs = stat.executeQuery("select CONCAT_WS (' ',firstName, lastName) as full_name,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID");
 			while(rs.next()){
 				usernameDB = rs.getString("username");
 				passwordDB = rs.getString("password");
-				login.setFirstname(rs.getString("firstName"));
+				login.setFirstname(rs.getString("full_name"));
 				if(username.equals(usernameDB) && password.equals(passwordDB)){
 					 return "SUCCESS";
 				}
@@ -46,12 +46,12 @@ public class LoginDAOImplementation implements LoginDAO {
 	public Login getFirstNameSession(String username) {
 			Login login = new Login();
 		try{
-			String query = "select person.firstName,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID and `user`.username=?";
+			String query = "select CONCAT_WS (' ',firstName, lastName) as full_name,`user`.username, `user`.`password` from person join `user` on person.user_ID = `user`.userID and `user`.username=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				login.setFirstname(rs.getString("firstName"));
+				login.setFirstname(rs.getString("full_name"));
 			}
 			rs.close();
 			ps.close();

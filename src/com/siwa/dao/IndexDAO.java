@@ -17,5 +17,7 @@ public interface IndexDAO {
 	public List<Index> getProjectByUser(String assign);
 	
 	public List<Index> getPublicProject();
+	
+	public List<Index> getUnassignIssue();
  	
 }

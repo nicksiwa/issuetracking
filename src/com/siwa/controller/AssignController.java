@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.siwa.dao.AssignDAO;
 import com.siwa.dao.AssignDAOImplementation;
+import com.siwa.dao.ProjectDAO;
+import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Assign;
+import com.siwa.model.Project;
 
 
 
@@ -19,12 +22,15 @@ import com.siwa.model.Assign;
 public class AssignController extends HttpServlet {
 	
 	private AssignDAO dao;
+	private ProjectDAO dao2;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_ASSIGN = "/listAssign.jsp";
 	public static final String INSERT_OR_EDIT = "/assign.jsp";
+	public static final String CONFIG = "/configProject.jsp";
  
     public AssignController() {
     	dao = new AssignDAOImplementation();
+    	dao2 = new ProjectDAOImplementation();
     }
 
 
@@ -33,10 +39,21 @@ public class AssignController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equalsIgnoreCase("delete")) {
-			forward = LIST_ASSIGN;
+			forward = CONFIG;
 			int assignID = Integer.parseInt(request.getParameter("assignID"));
+			
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			
 			dao.deleteAssign(assignID);
-			request.setAttribute("assigns", dao.getAllAssign());
+			
+			Project project3 = dao2.getProjectName(projectID);
+			Project project2 = dao2.getProjectById(projectID);
+			request.setAttribute("project", project3);
+			request.setAttribute("project2", project2);
+			request.setAttribute("cols",dao2.getCollaborators(projectID));
+			request.setAttribute("persons", dao.getPerson());
+			
+			
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int assignID = Integer.parseInt(request.getParameter("assignID"));
@@ -75,8 +92,15 @@ public class AssignController extends HttpServlet {
 			dao.updateAssign(assign);
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher(LIST_ASSIGN);
-		request.setAttribute("assigns", dao.getAllAssign());
+		RequestDispatcher view = request.getRequestDispatcher(CONFIG);
+		int projectID2 = Integer.parseInt(request.getParameter("projectID"));
+		Project project3 = dao2.getProjectName(projectID2);
+		Project project2 = dao2.getProjectById(projectID2);
+		request.setAttribute("project", project3);
+		request.setAttribute("project2", project2);
+		request.setAttribute("cols",dao2.getCollaborators(projectID2));
+		request.setAttribute("persons", dao.getPerson());
+		
 		view.forward(request, response);
 	}
 

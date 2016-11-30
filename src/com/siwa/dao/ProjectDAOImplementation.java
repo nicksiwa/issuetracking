@@ -129,11 +129,12 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	public Project getProjectName(int projectID) {
 		Project project = new Project();
 		try{
-			String query = "select projectName from project where projectID=?";
+			String query = "select projectName,projectID from project where projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, projectID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				project.setProjectID(rs.getInt("projectID"));
 				project.setProjectName(rs.getString("projectName"));
 			}
 		}catch(SQLException e){
@@ -189,7 +190,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	public List<Person> getCollaborators(int projectID) {
 		List<Person> cols = new ArrayList<Person>();
 		try{
-			String query = "select person.firstName,person.lastName,person.position from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID and project.projectID=?";
+			String query = "select person.firstName,person.lastName,person.position,assign.assignID,project.projectID from person join assign on person.personId = assign.person_ID join project on assign.project_ID = project.projectID and project.projectID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, projectID);
 			ResultSet rs = ps.executeQuery();
@@ -198,6 +199,8 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				person.setFirstName(rs.getString("firstName"));
 				person.setLastName(rs.getString("lastName"));
 				person.setPosition(rs.getString("position"));
+				person.setAssignID(rs.getInt("assignID"));
+				person.setProjectID(rs.getInt("projectID"));
 				cols.add(person);
 			}
 			rs.close();
@@ -207,5 +210,23 @@ public class ProjectDAOImplementation implements ProjectDAO {
 		}
 		return cols;
 	}
+
+	@Override
+	public void configProject(Project project) {
+		try{
+			String query = "update project set status=?, viewStatus=? where projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, project.getStatus());
+			ps.setString(2, project.getViewStatus());
+			ps.setInt(3, project.getProjectID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 
 }

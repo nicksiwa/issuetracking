@@ -62,7 +62,9 @@ public class ProjectController extends HttpServlet {
 			forward = CONFIG;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			Project project = dao.getProjectName(projectID);
+			Project project2 = dao.getProjectById(projectID);
 			request.setAttribute("project", project);
+			request.setAttribute("project2", project2);
 			request.setAttribute("cols",dao.getCollaborators(projectID));
 			request.setAttribute("persons", dao2.getPerson());
 		}
@@ -77,7 +79,7 @@ public class ProjectController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		Project project = new Project();
 
 		String projectName = (request.getParameter("projectName"));
@@ -114,10 +116,12 @@ public class ProjectController extends HttpServlet {
 
 		if (projectID == null || projectID.isEmpty())
 			dao.addProject(project);
+		
 		else {
 			project.setProjectID(Integer.parseInt(projectID));
 			dao.updateProject(project);
 		}
+		
 		RequestDispatcher view = request.getRequestDispatcher(MANAGE);
 		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);

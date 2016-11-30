@@ -17,12 +17,14 @@
 
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
+	
+	
 		<form action="" class="form-horizontal">
 		
 
 			<div class="col-md-12">
-			<a href="" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;New Project</a>
-			<br>
+			<a href="ProjectController.do?action=insert" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> &nbsp;New Project</a>
+			<hr>
 				<table class="table table-bordered table-striped">
 					<tbody>
 						<c:forEach items="${projects}" var="project">
@@ -52,8 +54,8 @@
 				</table>
 			</div>
 		</form>
-		
-	</div>
+		</div>
+	
 <script>
 function myFunction() {
 	var id = $('#i').html();

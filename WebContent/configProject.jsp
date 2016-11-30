@@ -15,103 +15,146 @@
 	<jsp:include page="navbar.jsp" />
 
 	<div class="container">
-		<form class="form-inline" action="AssignController.do"  method="post">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4>
-						<strong>Collaborators</strong><small><span
-							class="pull-right">Push access to the project</span></small>
-					</h4>
-				</div>
-				<div class="panel-body">
 
 
-					<div class="form-group">
-						<div class="form-group">
-						
-<input type="hidden" name="projectName"
-								value="<c:out value="${project.projectName}" />" readonly="readonly"
-								placeholder="Auto generate ID" />
-								
-							<input type="hidden" name="assignID"
-								value="<c:out value="${assign.assignID}" />" readonly="readonly"
-								placeholder="Auto generate ID" /> <label for="email">Name
-								:</label> <select name="personName" class="form-control">
-								<c:forEach var="person" items="${persons}">
-									<option><c:out value="${person.personName}" /></option>
-								</c:forEach>
-							</select>
+		<div class="col-md-12">
 
+		
+			<div class="col-md-12">
+				<form class="form-inline" action="AssignController.do" method="post">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								<strong>Collaborators</strong><small><span
+									class="pull-right">Push access to the project</span></small>
+							</h4>
 						</div>
-						<button type="submit" class="btn btn-default">Add
-							collaborator</button>
+						<div class="panel-body">
 
-						<table class="table table-hover table-responsive table-striped">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Position</th>
-								</tr>
-							</thead>
-							<tbody>
+
+							<div class="form-group col-md-offset-1">
+
+								<input type="hidden" name="projectName"
+									value="<c:out value="${project.projectName}" />"
+									readonly="readonly" placeholder="Auto generate ID" /> 
+									<input type="hidden" name="projectID"
+									value="<c:out value="${project.projectID}" />"
+									readonly="readonly" placeholder="Auto generate ID" />
+									<input
+									type="hidden" name="assignID"
+									value="<c:out value="${assign.assignID}" />"
+									readonly="readonly" placeholder="Auto generate ID" /> <label
+									for="email">Name :</label> <select name="personName"
+									class="form-control">
+									<c:forEach var="person" items="${persons}">
+										<option><c:out value="${person.personName}" /></option>
+									</c:forEach>
+								</select>
+
+
+								<button type="submit" class="btn btn-default">Add
+									collaborator</button>
+							</div>
+							<hr>
+							<ul class="list-group">
 								<c:forEach items="${cols}" var="person">
-									<tr>
-										<td><c:out value="${person.firstName}" /></td>
-										<td><c:out value="${person.lastName}" /></td>
-										<td><c:out value="${person.position}" /></td>
-									</tr>
+									<li class="list-group-item">
+										<h4 class="list-group-item-heading">
+											<c:out value="${person.firstName}" />
+											<c:out value="${person.lastName}" />
+											<a href="AssignController.do?action=delete&assignID=<c:out value="${person.assignID}"/>&projectID=<c:out value="${person.projectID}"/>"><span
+												class="pull-right glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Remove <c:out value="${person.firstName}" /> <c:out value="${person.lastName}" /> as a collaborator"></span></a>
+										</h4>
+										<p class="list-group-item-text">
+											<c:out value="${person.position}" />
+										</p>
+									</li>
 								</c:forEach>
-							</tbody>
-						</table>
+							</ul>
 
+
+
+						</div>
 					</div>
-				</div>
+				</form>
+
+				<form action="ConfigProject.do" method="post"
+					class="form-horizontal">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								<strong>Project Configuration</strong>
+							</h4>
+						</div>
+						<div class="panel-body">
+
+
+
+							<div class="form-group">
+								<div>
+
+									<c:set var="status" value="${project2.status}" />
+
+									<div class="radio col-md-offset-1">
+										<label><input type="radio" name="status"
+											value="Development"
+											<c:if test="${status=='Development'}">checked</c:if>><span
+											class="glyphicon glyphicon-wrench"></span> Development <br>&nbsp;&nbsp;&nbsp;&nbsp;<small>This
+												project can create issue.</small></label>
+									</div>
+									<div class="radio col-md-offset-1">
+										<label><input type="radio" name="status"
+											value="Closed"
+											<c:if test="${status=='Closed'}">checked</c:if>><span
+											class="glyphicon glyphicon-folder-close"></span> Closed <br>&nbsp;&nbsp;&nbsp;&nbsp;<small>This
+												project can't create issue.</small></label>
+									</div>
+								</div>
+
+								<hr>
+
+								<div>
+
+									<c:set var="viewStatus" value="${project2.viewStatus}" />
+
+									<div class="radio col-md-offset-1">
+										<label><input type="radio" name="viewStatus"
+											value="Public"
+											<c:if test="${viewStatus=='Public'}">checked</c:if>><span
+											class="glyphicon glyphicon-globe"></span> Public <br>&nbsp;&nbsp;&nbsp;&nbsp;<small>Anyone
+												can see this project.</small></label>
+									</div>
+									<div class="radio col-md-offset-1">
+										<label> <input type="radio" name="viewStatus"
+											value="Private"
+											<c:if test="${viewStatus=='Private'}">checked</c:if>><span
+											class="glyphicon glyphicon-lock"></span> Private <br>&nbsp;&nbsp;&nbsp;&nbsp;<small>You
+												choose who can see this project.</small></label>
+									</div>
+
+								</div>
+							</div>
+
+							<input type="hidden" name="projectID"
+								value="<c:out value="${project2.projectID}" />">
+
+
+
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<input type="submit" class="btn btn-default" value="Submit" />
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+
+				</form>
 			</div>
-		</form>
-
-		<form action="3.jsp" method="post" class="form-horizontal">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4>
-						<strong>Project Configuration</strong>
-					</h4>
-				</div>
-				<div class="panel-body">
-
-					<div class="form-group">
-						<label for="status" class="control-label col-sm-2">Project
-							Status :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="status" class="form-control">
-								<option value="Development">Development</option>
-
-								<option value="Closed">Closed</option>
-							</select>
-						</div>
-
-						<label for="viewStatus" class="control-label col-sm-2">View
-							Status :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="viewStatus" class="form-control">
-								<option value="Public">Public</option>
-								<option value="Private">Private</option>
-							</select>
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-default" value="Submit" />
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-		</form>
+		</div>
 	</div>
 
 
