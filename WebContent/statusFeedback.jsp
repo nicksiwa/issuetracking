@@ -23,10 +23,10 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>
+					<h4><strong>
 						<span class="glyphicon glyphicon-search"></span> Change Status to
-						Feedback
-					</h3>
+						Feedback</strong>
+					</h4>
 				</div>
 				<div class="panel-body">
 

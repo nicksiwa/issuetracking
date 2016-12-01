@@ -197,7 +197,12 @@ public class IndexDAOImplementation implements IndexDAO {
 				index.setReporter(rs.getString("reporter"));
 				index.setTitle(rs.getString("title"));
 				index.setUpdateDate(rs.getString("updateDate"));
+				index.setStatus(rs.getString("status"));
 				unassign.add(index);
+				
+				if (index.getStatus().equals("Resolved")) {
+					unassign.remove(index);
+				}
 			}
 			rs.close();
 			statement.close();

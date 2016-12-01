@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,11 +17,23 @@
 
 	<div class="container">
 
-
 		<div class="col-md-12">
-
-		
-			<div class="col-md-12">
+			<div class="col-md-4">
+				<div >
+					
+					<h4>BugTracking</h4>
+					<div class="col-md-12">
+								<span class="label label-success">${fn:length(assignResolved)}</span>
+								<span class="label label-default">${fn:length(assignNo)}</span>&nbsp;&nbsp;&nbsp;<a href="#">Assigned to Me</a></div>
+								<div class="col-md-12">
+								<span class="label label-success">${fn:length(unassignResolved)}</span>
+								<span class="label label-default">${fn:length(unassign)}</span>&nbsp;&nbsp;&nbsp;<a href="#">Unassigned</a></div>
+								<div class="col-md-12">
+								<span class="label label-success">${fn:length(issueResolved)}</span>
+								<span class="label label-default">${fn:length(issueUn)}</span>&nbsp;&nbsp;&nbsp;<a href="#">All Issue</a></div>
+				</div>
+			</div>
+			<div class="col-md-8">
 				<form class="form-inline" action="AssignController.do" method="post">
 
 					<div class="panel panel-default">
@@ -30,51 +43,50 @@
 									class="pull-right">Push access to the project</span></small>
 							</h4>
 						</div>
+						<ul class="list-group">
+							<c:forEach items="${cols}" var="person">
+								<li class="list-group-item">
+									<h5 class="list-group-item-heading">
+									<strong>
+										<c:out value="${person.firstName}" />
+										<c:out value="${person.lastName}" /></strong>
+
+										<a
+											href="AssignController.do?action=delete&assignID=<c:out value="${person.assignID}"/>&projectID=<c:out value="${person.projectID}"/>"><span
+											class="pull-right glyphicon glyphicon-remove text-danger"
+											data-toggle="tooltip" data-placement="top"
+											title="Remove <c:out value="${person.firstName}" /> <c:out value="${person.lastName}" /> as a collaborator"></span></a>
+									</h5>
+									<p class="list-group-item-text">
+										<small><c:out value="${person.position}" /></small>
+									</p>
+								</li>
+							</c:forEach>
+						</ul>
+
 						<div class="panel-body">
-
-
 							<div class="form-group col-md-offset-1">
-
 								<input type="hidden" name="projectName"
 									value="<c:out value="${project.projectName}" />"
-									readonly="readonly" placeholder="Auto generate ID" /> 
-									<input type="hidden" name="projectID"
+									readonly="readonly" placeholder="Auto generate ID" /> <input
+									type="hidden" name="projectID"
 									value="<c:out value="${project.projectID}" />"
-									readonly="readonly" placeholder="Auto generate ID" />
-									<input
+									readonly="readonly" placeholder="Auto generate ID" /> <input
 									type="hidden" name="assignID"
 									value="<c:out value="${assign.assignID}" />"
-									readonly="readonly" placeholder="Auto generate ID" /> <label
-									for="email">Name :</label> <select name="personName"
-									class="form-control">
-									<c:forEach var="person" items="${persons}">
-										<option><c:out value="${person.personName}" /></option>
-									</c:forEach>
-								</select>
-
+									readonly="readonly" placeholder="Auto generate ID" />
+								<div class="input-group">
+									<span class="input-group-addon">Name</span> <select
+										name="personName" class="form-control">
+										<c:forEach var="person" items="${persons}">
+											<option><c:out value="${person.personName}" /></option>
+										</c:forEach>
+									</select>
+								</div>
 
 								<button type="submit" class="btn btn-default">Add
 									collaborator</button>
 							</div>
-							<hr>
-							<ul class="list-group">
-								<c:forEach items="${cols}" var="person">
-									<li class="list-group-item">
-										<h4 class="list-group-item-heading">
-											<c:out value="${person.firstName}" />
-											<c:out value="${person.lastName}" />
-											<a href="AssignController.do?action=delete&assignID=<c:out value="${person.assignID}"/>&projectID=<c:out value="${person.projectID}"/>"><span
-												class="pull-right glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Remove <c:out value="${person.firstName}" /> <c:out value="${person.lastName}" /> as a collaborator"></span></a>
-										</h4>
-										<p class="list-group-item-text">
-											<c:out value="${person.position}" />
-										</p>
-									</li>
-								</c:forEach>
-							</ul>
-
-
-
 						</div>
 					</div>
 				</form>

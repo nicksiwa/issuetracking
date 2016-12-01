@@ -12,9 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.AssignDAO;
 import com.siwa.dao.AssignDAOImplementation;
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Assign;
@@ -25,6 +28,7 @@ public class ProjectController extends HttpServlet {
 	
 	private ProjectDAO dao;
 	private AssignDAO dao2;
+	private IssueDAO dao3;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_PROJECT = "/listProject.jsp";
 	public static final String INSERT_OR_EDIT = "/project.jsp";
@@ -34,6 +38,7 @@ public class ProjectController extends HttpServlet {
 	public ProjectController() {
 		dao = new ProjectDAOImplementation();
 		dao2 = new AssignDAOImplementation();
+		dao3 = new IssueDAOImplementation();
 	}
 
 	@Override
@@ -67,6 +72,16 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("project2", project2);
 			request.setAttribute("cols",dao.getCollaborators(projectID));
 			request.setAttribute("persons", dao2.getPerson());
+			
+			HttpSession session  = request.getSession();
+			String user = (String) session.getAttribute("username");
+			
+			request.setAttribute("assignResolved", dao.getIssueByAssignResolved(projectID, user));
+			request.setAttribute("assignNo", dao.getIssueByAssign(projectID, user));
+			request.setAttribute("unassign", dao.getIssueByUnAssign(projectID));
+			request.setAttribute("unassignResolved", dao.getIssueByUnAssignResolved(projectID));
+			request.setAttribute("issueUn", dao.getAllIssue(projectID));
+			request.setAttribute("issueResolved", dao.getAllIssueByResolved(projectID));
 		}
 		else {
 			forward = MANAGE;

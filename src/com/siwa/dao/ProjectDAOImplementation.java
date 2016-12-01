@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.siwa.model.Assign;
+import com.siwa.model.Issue;
 import com.siwa.model.Person;
 import com.siwa.model.Project;
 import com.siwa.util.DBUtil;
@@ -225,6 +226,138 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public List<Issue> getIssueByAssignResolved(int projectID,String user) {
+		List<Issue> assignResolved = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` = 'Resolved' and project.projectID=? and issue.assign=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ps.setString(2, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				assignResolved.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return assignResolved;
+	}
+
+	@Override
+	public List<Issue> getIssueByAssign(int projectID,String user) {
+		List<Issue> assignNo = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` != 'Resolved' and project.projectID=? and issue.assign=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ps.setString(2, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				assignNo.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return assignNo;
+	}
+
+	@Override
+	public List<Issue> getIssueByUnAssign(int projectID) {
+		List<Issue> unassign = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` != 'Resolved' and project.projectID=? and issue.assign='-'";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				unassign.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return unassign;
+	}
+
+	@Override
+	public List<Issue> getIssueByUnAssignResolved(int projectID) {
+		List<Issue> unassignResolved = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` = 'Resolved' and project.projectID=? and issue.assign='-'";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				unassignResolved.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return unassignResolved;
+	}
+
+	@Override
+	public List<Issue> getAllIssue(int projectID) {
+		List<Issue> issueUn = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` != 'Resolved' and project.projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				issueUn.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issueUn;
+	}
+
+	@Override
+	public List<Issue> getAllIssueByResolved(int projectID) {
+		List<Issue> issueResolved = new ArrayList<Issue>();
+		try{
+			String query = "select issue.title,issue.`status` from issue join project on issue.project = project.projectName where issue.`status` = 'Resolved' and project.projectID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setTitle(rs.getString("title"));
+				issueResolved.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issueResolved;
 	}
 
 	

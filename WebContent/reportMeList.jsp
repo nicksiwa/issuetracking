@@ -17,25 +17,45 @@
 	<div class="container">
 		<form action="" class="form-horizontal">
 
-			<c:forEach items="${reports}" var="index">
-				<a
-					href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-					class="list-group-item" data-toggle="tooltip" data-placement="top"
-					title="Click to change status or view issue detail">
-					<p class="list-group-item-heading ">
-						<b> <c:out value="${index.title}"></c:out>
-						</b> <small><span class="pull-right"><font color="gray"><fmt:parseDate value="${index.updateDate}"
-										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
-										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></font></span></small>
-					</p>
-					<p class="list-group-item-text">
-						From Project :
-						<c:out value="${index.project}"></c:out>
-					</p>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>
+						<span class="glyphicon glyphicon-globe"></span> <b>Report by
+							Me</b><small><span class="pull-right"> <span
+								class="badge">${fn:length(reports)}</span> Issues
+						</span></small>
+					</h4>
+
+				</div>
+				<div class="panel-body">
+					<div class="list-group">
+
+						<c:forEach items="${reports}" var="index">
+							<a
+								href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+								class="list-group-item" data-toggle="tooltip"
+								data-placement="top"
+								title="Click to change status or view issue detail">
+								<p class="list-group-item-heading ">
+									<b> <c:out value="${index.title}"></c:out>
+									</b> <small><span class="pull-right"><font
+											color="gray"><fmt:parseDate
+													value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"
+													var="myDate" /> <fmt:formatDate value="${myDate}"
+													pattern="dd/MM/yyyy HH:mm:ss" /></font></span></small>
+								</p>
+								<p class="list-group-item-text">
+									From Project :
+									<c:out value="${index.project}"></c:out>
+								</p>
 
 
-				</a>
-			</c:forEach>
+							</a>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
 
 		</form>
 	</div>

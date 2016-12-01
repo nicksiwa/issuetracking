@@ -20,9 +20,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4>
-						<span class="glyphicon glyphicon-globe"></span> <b>Assigned to
-							Me</b><small><span class="pull-right"> <span
-								class="badge">${fn:length(indexs)}</span> Issues
+						<span class="glyphicon glyphicon-globe"></span> <b>Unassigned</b><small><span class="pull-right"> <span
+								class="badge">${fn:length(unassign)}</span> Issues
 						</span></small>
 					</h4>
 
@@ -30,7 +29,7 @@
 				<div class="panel-body">
 					<div class="list-group">
 
-						<c:forEach items="${indexs}" var="index">
+						<c:forEach items="${unassign}" var="index">
 							<a
 								href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 								class="list-group-item" data-toggle="tooltip"

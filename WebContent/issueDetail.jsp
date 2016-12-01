@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><c:out value="${issue.title}" /> : <c:out
 		value="${issue.project}" /></title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
@@ -100,7 +100,7 @@
 									placeholder="severity" />
 							</p>
 						</div>
-
+					
 						<label for="tile" class="control-label col-sm-3">Priority
 							:</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
@@ -120,6 +120,7 @@
 							</p>
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label for="description" class="control-label col-sm-2">Description
 							:</label>
@@ -137,14 +138,10 @@
 
 					<hr>
 					<div class="form-group">
-						<label for="status" class="control-label col-sm-2"><a data-toggle="tooltip"
-									data-placement="top"
-									title="Select issue status" >Change
-								Status To : </a></label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-
-
-							<select name="status" class="form-control" id="comboA"
+					<label for="description" class="control-label col-sm-2"></label>
+					<div class="col-sm-5 col-lg-6 col-md-5">
+							<div class="input-group">
+							<span class="input-group-addon">Change Status To</span><select name="status" class="form-control" id="comboA"
 								onchange="getComboA(this)" data-toggle="tooltip"
 									data-placement="top"
 									title="Select issue status then go to comment page">
@@ -153,10 +150,7 @@
 								<option value="confirmed">Confirmed</option>
 								<option value="resolved">Resolved</option>
 							</select>
-
-
-
-
+						</div>
 						</div>
 					</div>
 

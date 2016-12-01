@@ -23,6 +23,9 @@
 
 
 
+
+
+
 			<div class="col-md-7">
 
 
@@ -30,7 +33,7 @@
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-th-list"></span> <b>Assigned
-								to Me</b><small><span class="pull-right"> <span
+								to me</b><small><span class="pull-right"> <span
 									class="badge">${fn:length(indexs)}</span> Issues
 							</span></small>
 						</h4>
@@ -39,35 +42,41 @@
 					<div class="panel-body">
 						<div class="list-group">
 
+							<c:choose>
+								<c:when test="${fn:length(indexs)=='0'}">
+      								  No have any issues 
+   								</c:when>
+								<c:otherwise>
 
-							<c:forEach begin="0" end="2" items="${indexs}" var="index">
-								<a
-									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-									class="list-group-item" data-toggle="tooltip"
-									data-placement="top"
-									title="Click to change status or view issue detail">
-									<p class="list-group-item-heading ">
-										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font
-												color="gray"> <fmt:parseDate
-														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-														var="myDate" /> <fmt:formatDate value="${myDate}"
-														pattern="dd/MM/yyyy HH:mm" />
-											</font></span></small>
+									<c:forEach begin="0" end="2" items="${indexs}" var="index">
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+											class="list-group-item" data-toggle="tooltip"
+											data-placement="top"
+											title="Click to change status or view issue detail">
+											<p class="list-group-item-heading ">
+												<b> <c:out value="${index.title}"></c:out>
+												</b> <small><span class="pull-right"><font
+														color="gray"> <fmt:parseDate
+																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" /> <fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" />
+													</font></span></small>
 
-									</p>
-									<p class="list-group-item-text">
-										From Project :
-										<c:out value="${index.project}"></c:out>
-									</p>
+											</p>
+											<p class="list-group-item-text">
+												From Project :
+												<c:out value="${index.project}"></c:out>
+											</p>
 
-
-								</a>
-							</c:forEach>
-
+										</a>
+									</c:forEach>
+									<br>
+									<a href="IndexController.do?action=allassign"
+										class="btn btn-default" role="button">View all issues</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
-						<a href="IndexController.do?action=allassign"
-							class="btn btn-default" role="button">View all issues</a>
 					</div>
 				</div>
 
@@ -86,35 +95,44 @@
 					<div class="panel-body">
 						<div class="list-group">
 
+							<c:choose>
+								<c:when test="${fn:length(unassign)=='0'}">
+      								  No have any issues 
+   								</c:when>
+								<c:otherwise>
 
-							<c:forEach begin="0" end="2" items="${unassign}" var="index">
-								<a
-									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-									class="list-group-item" data-toggle="tooltip"
-									data-placement="top"
-									title="Click to change status or view issue detail">
-									<p class="list-group-item-heading ">
-										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font
-												color="gray"> <fmt:parseDate
-														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-														var="myDate" /> <fmt:formatDate value="${myDate}"
-														pattern="dd/MM/yyyy HH:mm" />
-											</font></span></small>
+									<c:forEach begin="0" end="2" items="${unassign}" var="index">
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+											class="list-group-item" data-toggle="tooltip"
+											data-placement="top"
+											title="Click to change status or view issue detail">
+											<p class="list-group-item-heading ">
+												<b> <c:out value="${index.title}"></c:out>
+												</b> <small><span class="pull-right"><font
+														color="gray"> <fmt:parseDate
+																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" /> <fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" />
+													</font></span></small>
 
-									</p>
-									<p class="list-group-item-text">
-										From Project :
-										<c:out value="${index.project}"></c:out>
-									</p>
+											</p>
+											<p class="list-group-item-text">
+												From Project :
+												<c:out value="${index.project}"></c:out>
+											</p>
+										</a>
 
+									</c:forEach>
+									<br>
+									<a href="IndexController.do?action=allunassign"
+										class="btn btn-default" role="button">View all issues</a>
 
-								</a>
-							</c:forEach>
+								</c:otherwise>
+							</c:choose>
 
 						</div>
-						<a href="IndexController.do?action=allassign"
-							class="btn btn-default" role="button">View all issues</a>
+
 					</div>
 				</div>
 
@@ -124,7 +142,7 @@
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-edit"></span> <b>Report by
-								Me</b><span class="pull-right"><small> <span
+								me</b><span class="pull-right"><small> <span
 									class="badge">${fn:length(reports)}</span> Issues
 							</small></span>
 						</h4>
@@ -133,31 +151,39 @@
 					<div class="panel-body">
 						<div class="list-group">
 
+							<c:choose>
+								<c:when test="${fn:length(reports)=='0'}">
+      								  No have any issues 
+   								</c:when>
+								<c:otherwise>
 
-							<c:forEach begin="0" end="2" items="${reports}" var="index">
-								<a
-									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-									class="list-group-item">
-									<p class="list-group-item-heading">
-										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font
-												color="gray"> <fmt:parseDate
-														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-														var="myDate" /> <fmt:formatDate value="${myDate}"
-														pattern="dd/MM/yyyy HH:mm" />
-											</font></span></small>
-									</p>
-									<p class="list-group-item-text">
-										From Project :
-										<c:out value="${index.project}"></c:out>
-									</p>
+									<c:forEach begin="0" end="2" items="${reports}" var="index">
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+											class="list-group-item">
+											<p class="list-group-item-heading">
+												<b> <c:out value="${index.title}"></c:out>
+												</b> <small><span class="pull-right"><font
+														color="gray"> <fmt:parseDate
+																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" /> <fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" />
+													</font></span></small>
+											</p>
+											<p class="list-group-item-text">
+												From Project :
+												<c:out value="${index.project}"></c:out>
+											</p>
 
-								</a>
-							</c:forEach>
-
+										</a>
+									</c:forEach>
+									<br>
+									<a href="IndexController.do?action=allreport"
+										class="btn btn-default" role="button">View all issues</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
-						<a href="IndexController.do?action=allreport"
-							class="btn btn-default" role="button">View all issues</a>
+
 					</div>
 				</div>
 
@@ -176,30 +202,39 @@
 					<div class="panel-body">
 						<div class="list-group">
 
+							<c:choose>
+								<c:when test="${fn:length(resolves)=='0'}">
+      								  No have any issues 
+   								</c:when>
+								<c:otherwise>
 
-							<c:forEach begin="0" end="2" items="${resolves}" var="index">
-								<a
-									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
-									class="list-group-item">
-									<p class="list-group-item-heading">
-										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font
-												color="gray"> <fmt:parseDate
-														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-														var="myDate" /> <fmt:formatDate value="${myDate}"
-														pattern="dd/MM/yyyy HH:mm" />
-											</font></span></small>
-									</p>
-									<p class="list-group-item-text">
-										From Project :
-										<c:out value="${index.project}"></c:out>
-									</p>
-								</a>
-							</c:forEach>
+									<c:forEach begin="0" end="2" items="${resolves}" var="index">
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+											class="list-group-item">
+											<p class="list-group-item-heading">
+												<b> <c:out value="${index.title}"></c:out>
+												</b> <small><span class="pull-right"><font
+														color="gray"> <fmt:parseDate
+																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" /> <fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" />
+													</font></span></small>
+											</p>
+											<p class="list-group-item-text">
+												From Project :
+												<c:out value="${index.project}"></c:out>
+											</p>
+										</a>
+									</c:forEach>
+									<br>
+									<a href="IndexController.do?action=allresolved"
+										class="btn btn-default" role="button">View all issues</a>
+								</c:otherwise>
+							</c:choose>
 
 						</div>
-						<a href="IndexController.do?action=allresolved"
-							class="btn btn-default" role="button">View all issues</a>
+
 					</div>
 				</div>
 
@@ -209,7 +244,7 @@
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-time"></span> <b>Recently
-								Modified</b><span class="pull-right"><small> <span
+								modified</b><span class="pull-right"><small> <span
 									class="badge">${fn:length(recents)}</span> Issues
 							</small></span>
 						</h4>
@@ -219,29 +254,39 @@
 						<div class="list-group">
 
 
-							<c:forEach begin="0" end="2" items="${recents}" var="index">
-								<a
-									href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>	"
-									class="list-group-item">
-									<p class="list-group-item-heading">
-										<b> <c:out value="${index.title}"></c:out>
-										</b> <small><span class="pull-right"><font
-												color="gray"> <fmt:parseDate
-														value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-														var="myDate" /> <fmt:formatDate value="${myDate}"
-														pattern="dd/MM/yyyy HH:mm" />
-											</font></span></small>
-									</p>
-									<p class="list-group-item-text">
-										From Project :
-										<c:out value="${index.project}"></c:out>
-									</p>
-								</a>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${fn:length(recents)=='0'}">
+      								  No have any issues 
+   								</c:when>
+								<c:otherwise>
+
+									<c:forEach begin="0" end="2" items="${recents}" var="index">
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>	"
+											class="list-group-item">
+											<p class="list-group-item-heading">
+												<b> <c:out value="${index.title}"></c:out>
+												</b> <small><span class="pull-right"><font
+														color="gray"> <fmt:parseDate
+																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" /> <fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" />
+													</font></span></small>
+											</p>
+											<p class="list-group-item-text">
+												From Project :
+												<c:out value="${index.project}"></c:out>
+											</p>
+										</a>
+									</c:forEach>
+									<br>
+									<a href="IndexController.do?action=allrecently"
+										class="btn btn-default" role="button">View all issues</a>
+								</c:otherwise>
+							</c:choose>
 
 						</div>
-						<a href="IndexController.do?action=allrecently"
-							class="btn btn-default" role="button">View all issues</a>
+
 					</div>
 				</div>
 			</div>
@@ -264,7 +309,7 @@
 										value="${index.project}"></c:out></a><a
 								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
 								class="btn btn-success btn-xs pull-right" role="button">New
-									Issue</a></li>
+									issue</a></li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -281,7 +326,7 @@
 										value="${index.project}"></c:out></a><a
 								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
 								class="btn btn-success btn-xs pull-right" role="button">New
-									Issue</a></li>
+									issue</a></li>
 						</c:forEach>
 					</ul>
 				</div>

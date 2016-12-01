@@ -26,6 +26,7 @@ public class IndexController extends HttpServlet {
 	public static final String REPORT = "/reportMeList.jsp";
 	public static final String RESOLVED = "/resolvedList.jsp";
 	public static final String RECENTLY = "/recentlyList.jsp";
+	public static final String UNASSIGN = "/unassignList.jsp";
 	
 	private IndexDAO dao;
 	private CommentDAO dao2;
@@ -63,6 +64,10 @@ public class IndexController extends HttpServlet {
 		else if(action.equalsIgnoreCase("allrecently")){
 			forward = RECENTLY;
 			request.setAttribute("recents", dao.getRecentlyModified());
+		}
+		else if(action.equalsIgnoreCase("allunassign")){
+			forward = UNASSIGN;
+			request.setAttribute("unassign", dao.getUnassignIssue());
 		}
 		
 		else{

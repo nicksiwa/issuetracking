@@ -20,9 +20,9 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>
-						<span class="glyphicon glyphicon-tasks"></span> Project
-					</h3>
+					<h4>
+						<strong><span class="glyphicon glyphicon-tasks"></span> Project : <span class="label label-success"><c:out value="${project.projectName}" /></span></strong>
+					</h4>
 				</div>
 				<div class="panel-body">
 
