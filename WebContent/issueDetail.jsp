@@ -36,11 +36,11 @@
 					<table class="table table-hover table-responsive table-striped">
 						<thead>
 							<tr>
-								<th>Issue ID</th>
+								<th>Issue id</th>
 								<th>Project</th>
 								<th>Title</th>
-								<th>Due Date</th>
-								<th>Update Date</th>
+								<th>Due date</th>
+								<th>Update date</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -80,7 +80,7 @@
 						</div>
 
 						<label for="tile" class="control-label col-sm-3">Assigned
-							To :</label>
+							to :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
 							<p class="form-control-static">
 								<c:out value="${issue.assign}" />
@@ -141,7 +141,7 @@
 					<label for="description" class="control-label col-sm-2"></label>
 					<div class="col-sm-5 col-lg-6 col-md-5">
 							<div class="input-group">
-							<span class="input-group-addon">Change Status To</span><select name="status" class="form-control" id="comboA"
+							<span class="input-group-addon">Change status to</span><select name="status" class="form-control" id="comboA"
 								onchange="getComboA(this)" data-toggle="tooltip"
 									data-placement="top"
 									title="Select issue status then go to comment page">
@@ -179,7 +179,7 @@
 						<div class="panel-heading">
 							<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>
 								<fmt:parseDate value="${comment.commentTime}"
-										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate
 										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
 								</b>
 						</div>

@@ -26,10 +26,11 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="IndexController?action=index"><span
 						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+						<li><a href="ProjectController?action=listProject"><span
+						class="glyphicon glyphicon-tasks"></span> Project</a></li>
 				<li><a href="PersonController?action=listPerson"><span
 						class="glyphicon glyphicon-user"></span> Person</a></li>
-				<li><a href="ProjectController?action=listProject"><span
-						class="glyphicon glyphicon-tasks"></span> Project</a></li>
+				
 				<li><a href="CommentController?action=listComment"><span
 						class="glyphicon glyphicon-comment"></span> Comment</a></li>
 				

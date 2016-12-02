@@ -24,8 +24,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4><strong>
-						<span class="glyphicon glyphicon-search"></span> Change Status to
-						Confirmed</strong>
+						<span class="glyphicon glyphicon-search"></span> Change status to
+						confirmed</strong>
 					</h4>
 				</div>
 				<div class="panel-body">

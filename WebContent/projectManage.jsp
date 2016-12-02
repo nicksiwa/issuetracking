@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Projects</title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <style>
@@ -54,14 +54,14 @@
 										<p class="list-group-item-heading text-primary lead">
 											<strong><c:out value="${project.projectName}"></c:out></strong>
 											<span class="pull-right"><small><a
-													class="text-muted"
+													class="text-muted" data-toggle="tooltip" title="Project configuration"
 													href="ProjectController.do?action=config&projectID=<c:out value="${project.projectID }"/>"><span
 														class="glyphicon glyphicon-cog"></span></a></small>&nbsp;&nbsp;&nbsp;<small><a
-													class="text-info"
+													class="text-info" data-toggle="tooltip" title="Edit project"
 													href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>"><span
 														class="glyphicon glyphicon-edit"></span></a></small>&nbsp;&nbsp; <small><a
 													href="ProjectController.do?action=delete&projectID=<c:out value="${project.projectID }"/>"
-													class="text-danger"><span
+													class="text-danger" data-toggle="tooltip" title="Delete this project"><span
 														class="glyphicon glyphicon-trash"></span></a></small></span>
 										</p>
 
@@ -83,7 +83,11 @@
 			</div>
 		</form>
 	</div>
-
+	<script>
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 	<script>
 		function myFunction() {
 			var id = $('#i').html();
@@ -99,5 +103,10 @@
 			}
 		}
 	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

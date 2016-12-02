@@ -24,8 +24,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4><strong>
-						<span class="glyphicon glyphicon-search"></span> Change Status to
-						Feedback</strong>
+						<span class="glyphicon glyphicon-search"></span> Change status to
+						feedback</strong>
 					</h4>
 				</div>
 				<div class="panel-body">
@@ -45,7 +45,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="status" class="control-label col-sm-2">To User :</label>
+						<label for="status" class="control-label col-sm-2">Feedback to :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
 							<select class="form-control" name="commentAssign">
 							<option value="-">-</option>

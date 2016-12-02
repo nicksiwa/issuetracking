@@ -59,7 +59,7 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 
@@ -112,7 +112,7 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 
@@ -166,7 +166,7 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 											</p>
@@ -189,7 +189,7 @@
 
 
 
-				<div class="panel panel-default">
+				<div class="panel panel-success">
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-check"></span> <b>Resolved</b><span
@@ -204,7 +204,7 @@
 
 							<c:choose>
 								<c:when test="${fn:length(resolves)=='0'}">
-      								  No have any issues 
+      								  No have any issues
    								</c:when>
 								<c:otherwise>
 
@@ -217,7 +217,7 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 											</p>
@@ -237,58 +237,7 @@
 
 					</div>
 				</div>
-
-
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>
-							<span class="glyphicon glyphicon-time"></span> <b>Recently
-								modified</b><span class="pull-right"><small> <span
-									class="badge">${fn:length(recents)}</span> Issues
-							</small></span>
-						</h4>
-
-					</div>
-					<div class="panel-body">
-						<div class="list-group">
-
-
-							<c:choose>
-								<c:when test="${fn:length(recents)=='0'}">
-      								  No have any issues 
-   								</c:when>
-								<c:otherwise>
-
-									<c:forEach begin="0" end="2" items="${recents}" var="index">
-										<a
-											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>	"
-											class="list-group-item">
-											<p class="list-group-item-heading">
-												<b> <c:out value="${index.title}"></c:out>
-												</b> <small><span class="pull-right"><font
-														color="gray"> <fmt:parseDate
-																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <fmt:formatDate value="${myDate}"
-																pattern="dd/MM/yyyy HH:mm" />
-													</font></span></small>
-											</p>
-											<p class="list-group-item-text">
-												From Project :
-												<c:out value="${index.project}"></c:out>
-											</p>
-										</a>
-									</c:forEach>
-									<br>
-									<a href="IndexController.do?action=allrecently"
-										class="btn btn-default" role="button">View all issues</a>
-								</c:otherwise>
-							</c:choose>
-
-						</div>
-
-					</div>
-				</div>
+			
 			</div>
 
 			<div class="col-md-4 col-md-offset-1">
@@ -303,6 +252,14 @@
 					</div>
 
 					<ul class="list-group">
+					
+					<c:choose>
+								<c:when test="${fn:length(projects)=='0'}">
+      								<li class="list-group-item">No have any projects</li>
+      								  
+   								</c:when>
+								<c:otherwise>
+					
 						<c:forEach items="${projects}" var="index">
 							<li class="list-group-item text-primary"><a
 								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
@@ -311,6 +268,9 @@
 								class="btn btn-success btn-xs pull-right" role="button">New
 									issue</a></li>
 						</c:forEach>
+						
+						</c:otherwise></c:choose>
+						
 					</ul>
 				</div>
 
@@ -320,14 +280,20 @@
 					</div>
 
 					<ul class="list-group">
+					
+					<c:choose>
+							<c:when test="${fn:length(publics)=='0'}">
+								<li class="list-group-item">No have any projects</li>
+							</c:when>
+							<c:otherwise>
 						<c:forEach items="${publics}" var="index">
 							<li class="list-group-item text-primary"><a
 								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
-										value="${index.project}"></c:out></a><a
-								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
-								class="btn btn-success btn-xs pull-right" role="button">New
-									issue</a></li>
+										value="${index.project}"></c:out></a>
+										<span class="pull-right"><a href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>" class="btn btn-success btn-xs" role="button">New issue</a></span></li>
 						</c:forEach>
+						</c:otherwise></c:choose>
+						
 					</ul>
 				</div>
 
@@ -338,6 +304,12 @@
 									all</small></span></a>
 					</div>
 					<ul class="list-group">
+			
+							<c:choose>
+								<c:when test="${fn:length(feedback)=='0'}">
+      								<li class="list-group-item">No have any feedbacks</li> 
+   								</c:when>
+								<c:otherwise>
 
 						<c:forEach items="${feedback}" var="index">
 							<li class="list-group-item"><c:out
@@ -348,16 +320,14 @@
 							</a> <span class="pull-right"><small><font
 										color="gray"> <fmt:parseDate
 												value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm"
-												var="myDate" /> <fmt:formatDate value="${myDate}"
+												var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
 												pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
 						</c:forEach>
+						</c:otherwise></c:choose>
+					
 					</ul>
 
 				</div>
-
-
-
-
 			</div>
 		</form>
 

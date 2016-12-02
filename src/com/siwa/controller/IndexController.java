@@ -52,6 +52,7 @@ public class IndexController extends HttpServlet {
 		else if(action.equalsIgnoreCase("allassign")){
 			forward = ASSIGN;
 			request.setAttribute("indexs", dao.getAllIndex(username));
+			
 		}
 		else if(action.equalsIgnoreCase("allreport")){
 			forward = REPORT;
@@ -68,6 +69,7 @@ public class IndexController extends HttpServlet {
 		else if(action.equalsIgnoreCase("allunassign")){
 			forward = UNASSIGN;
 			request.setAttribute("unassign", dao.getUnassignIssue());
+			
 		}
 		
 		else{
