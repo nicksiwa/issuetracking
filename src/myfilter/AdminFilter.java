@@ -34,8 +34,12 @@ public class AdminFilter implements Filter {
 			throws IOException, ServletException {
 
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = req.getSession();
+		HttpServletResponse res = (HttpServletResponse) response;
+		HttpSession session = req.getSession(false);
+
+		boolean loggedIn = session != null && session.getAttribute("username") != null;
+		boolean loginRequest = req.getRequestURI().endsWith("/LoginController");
+		boolean regisRequest = req.getRequestURI().endsWith("/RegisterController");
 
 		if (req.getRequestURI().indexOf("/css") > 0) {
 			chain.doFilter(request, response);
@@ -43,18 +47,16 @@ public class AdminFilter implements Filter {
 			chain.doFilter(request, response);
 		} else if (req.getRequestURI().indexOf("/fonts") > 0) {
 			chain.doFilter(request, response);
-		} 
-		else if (session.getAttribute("username") == null && req.getRequestURI().endsWith("/RegisterController.do")) {
-			req.getRequestDispatcher("/register.jsp").forward(request, response);
-			
-		} 
-		else if (session.getAttribute("username") == null && !req.getRequestURI().endsWith("/LoginController")) {
-			req.getRequestDispatcher("/login.jsp").forward(request, response);
-			
-		} 
-		 
-		else
+		}
+
+		else if (loggedIn || loginRequest || regisRequest) {
 			chain.doFilter(request, response);
+		}
+
+		else {
+			req.getRequestDispatcher("/login.jsp").forward(request, response);
+		}
+
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

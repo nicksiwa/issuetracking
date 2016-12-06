@@ -44,7 +44,7 @@
 					String username = (String) session.getAttribute("username");
 					if (username == null) {
 				%>
-				<li><a href="RegisterController.do?action=signup&id=1"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="RegisterController"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
 				<li><a href="LoginController"><span
 						class="glyphicon glyphicon-log-in"></span> Sign In</a></li>

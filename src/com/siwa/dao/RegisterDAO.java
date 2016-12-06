@@ -10,4 +10,8 @@ public interface RegisterDAO {
 	public Register checkUser(String user);
 	
 	public Register getId(int id);
+	
+	public String checkUsername(Register regis);
+	
+	public Register getUserPrimaryKey(String username);
 }

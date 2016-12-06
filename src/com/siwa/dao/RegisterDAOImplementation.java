@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.siwa.model.Register;
 import com.siwa.util.DBUtil;
@@ -99,6 +100,47 @@ public class RegisterDAOImplementation implements RegisterDAO {
 			e.printStackTrace();
 		}
 		return re;
+	}
+
+	@Override
+	public String checkUsername(Register regis) {
+		String username = regis.getUsername();
+		String usernameDB ="";
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select username from user");
+			while(rs.next()){
+				usernameDB = rs.getString("username");
+				if(username.equals(usernameDB)){
+					return usernameDB+" is not available";
+					
+				}
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return "Available";
+		
+	}
+
+	@Override
+	public Register getUserPrimaryKey(String username) {
+		Register regis = new Register();
+		try{
+			String query = "select `user`.userID from user where `user`.username = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				regis.setUserID(rs.getInt("userID"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return regis;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.siwa.dao.RegisterDAO;
 import com.siwa.dao.RegisterDAOImplementation;
@@ -29,10 +30,8 @@ public class RegisterController extends HttpServlet {
 		String forward = "";
 		String action = request.getParameter("action");
 		
-		 if(action.equalsIgnoreCase("signup")){
+		if(action==null)
 			forward = REGISTER;
-			
-		}
 		
 		 RequestDispatcher view = request.getRequestDispatcher(forward);
 		 view.forward(request, response);
@@ -47,8 +46,25 @@ public class RegisterController extends HttpServlet {
 		username = new String(username.getBytes("ISO8859-1"), "UTF-8");
 		register.setUsername(username);
 		
+		String password = (request.getParameter("password"));
+		password = new String(password.getBytes("ISO8859-1"), "UTF-8");
+		register.setPassword(password);
 
-		
+		String checkUser = dao.checkUsername(register);
+		if(checkUser.equals("Available")){
+			dao.registerUser(register);
+			
+			HttpSession session  = request.getSession();
+			session.setAttribute("username", register.getUsername());
+			register = dao.getUserPrimaryKey(username);
+			request.setAttribute("register", register);
+			
+			request.getRequestDispatcher("/register2.jsp").forward(request, response);
+		}else{
+			request.setAttribute("Message", checkUser);
+			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			
+		}
 		
 		
 	}

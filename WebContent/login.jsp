@@ -49,7 +49,7 @@
 									placeholder="Password" />
 									</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group pull-right">
 								<input type="submit" class="btn btn-default" value="Login" />
 							</div>
 						</div>

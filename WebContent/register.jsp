@@ -17,7 +17,7 @@
 	<div class="container">
 
 	
-		<form action="register2.jsp" class="form-horizontal">
+		<form action="RegisterController" class="form-horizontal" method="post">
 			<div class="col-md-6 col-md-offset-3">
 
 				<div class="panel panel-default">
@@ -25,7 +25,7 @@
 						<h3>
 							Registration <small>Create your account</small>
 						</h3>
-						Already have an account? <a href="#">Sign In</a>
+						Already have an account? <a href="LoginController">Sign In</a>
 						
 
 			
@@ -36,7 +36,8 @@
 								<label for="description" class="control-label col-md-4">Username
 									: </label>
 								<div class="col-md-8">
-									<input type="text" name="username" class="form-control" value="<c:out value="${register.username}" />" />
+									<input type="text" name="username" class="form-control" />
+									<p class="text-danger"><%=(request.getAttribute("Message") == null) ? "" : request.getAttribute("Message")%></p>
 								</div>
 							</div>
 						</div>
@@ -45,7 +46,7 @@
 								<label for="description" class="control-label col-md-4">Password
 									: </label>
 								<div class="col-md-8">
-									<input type="text" name="username" class="form-control"
+									<input type="password" name="password" class="form-control"
 										id="password" />
 								</div>
 							</div>
@@ -55,22 +56,18 @@
 								<label for="description" class="control-label col-md-4">Confirm
 									Password : </label>
 								<div class="col-md-8">
-									<input type="text" name="username" class="form-control"
+									<input type="password" class="form-control"
 										id="confirmpassword" onChange="checkPasswordMatch();" />
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<p class="text-danger" id="divCheckPasswordMatch"></p>
+											<p class="text-danger" id="divCheckPasswordMatch"></p>
 								<p class="text-success" id="divCheckPasswordMatcha"></p>
 								<p class="text-danger" id="divCheckPasswordCount"></p>
-								<div class="form-group">
+								</div>
+								
+							</div>
+							<div class="form-group pull-right">
 									<input type="submit" class="btn btn-default" value="Next"
 										id="myBtn" />
 								</div>
-							</div>
 						</div>
 					</div>
 				</div>
