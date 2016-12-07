@@ -20,7 +20,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">WebSiteName</a>
+			<a class="navbar-brand" href="#">IssueTracking</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
@@ -28,16 +28,7 @@
 						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 						<li><a href="ProjectController?action=listProject"><span
 						class="glyphicon glyphicon-tasks"></span> Project</a></li>
-				<li><a href="PersonController?action=listPerson"><span
-						class="glyphicon glyphicon-user"></span> Person</a></li>
 				
-				<li><a href="CommentController?action=listComment"><span
-						class="glyphicon glyphicon-comment"></span> Comment</a></li>
-				
-				<li><a href="AssignController?action=listAssign"><span
-						class="glyphicon glyphicon-info-sign"></span> Assign</a></li>
-				<li><a href="IssueController?action=listIssue"><span
-						class="glyphicon glyphicon-exclamation-sign"></span> Issue</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<%

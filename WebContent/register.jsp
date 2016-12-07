@@ -16,8 +16,9 @@
 
 	<div class="container">
 
-	
-		<form action="RegisterController" class="form-horizontal" method="post">
+
+		<form action="RegisterController" class="form-horizontal"
+			method="post">
 			<div class="col-md-6 col-md-offset-3">
 
 				<div class="panel panel-default">
@@ -26,52 +27,60 @@
 							Registration <small>Create your account</small>
 						</h3>
 						Already have an account? <a href="LoginController">Sign In</a>
-						
 
-			
+
+
 					</div>
 					<div class="panel-body">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="description" class="control-label col-md-4">Username
-									: </label>
-								<div class="col-md-8">
-									<input type="text" name="username" class="form-control" />
-									<p class="text-danger"><%=(request.getAttribute("Message") == null) ? "" : request.getAttribute("Message")%></p>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input type="text"
+										name="username" class="form-control" placeholder="Username" />
+
+
+								</div>
+								<p class="text-danger"><%=(request.getAttribute("Message") == null) ? "" : request.getAttribute("Message")%></p>
+							</div>
+						</div>
+
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span> <input type="password"
+										name="password" class="form-control" id="password"
+										placeholder="Password" />
 								</div>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="description" class="control-label col-md-4">Password
-									: </label>
-								<div class="col-md-8">
-									<input type="password" name="password" class="form-control"
-										id="password" />
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span> <input type="password"
+										class="form-control" id="confirmpassword"
+										onChange="checkPasswordMatch();"
+										placeholder="Confirm password" />
+
 								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="description" class="control-label col-md-4">Confirm
-									Password : </label>
-								<div class="col-md-8">
-									<input type="password" class="form-control"
-										id="confirmpassword" onChange="checkPasswordMatch();" />
-											<p class="text-danger" id="divCheckPasswordMatch"></p>
+
+								<p class="text-danger" id="divCheckPasswordMatch"></p>
 								<p class="text-success" id="divCheckPasswordMatcha"></p>
 								<p class="text-danger" id="divCheckPasswordCount"></p>
-								</div>
-								
+
+
 							</div>
 							<div class="form-group pull-right">
-									<input type="submit" class="btn btn-default" value="Next"
-										id="myBtn" />
-								</div>
+								<input type="submit" class="btn btn-default" value="Next"
+									id="myBtn" />
+							</div>
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
 		</form>
 	</div>
 
@@ -91,11 +100,13 @@
 				$("#divCheckPasswordMatch").html("Passwords do not match!");
 				$("#divCheckPasswordMatcha").html("");
 				document.getElementById("myBtn").disabled = true;
-				
-			} else if (password.length < 8){
-				$("#divCheckPasswordCount").html("You have entered less than 8 characters for password!");
+
+			} else if (password.length < 8) {
+				$("#divCheckPasswordCount")
+						.html(
+								"You have entered less than 8 characters for password!");
 			}
-			
+
 			else {
 				$("#divCheckPasswordMatcha").html("Passwords match.");
 				$("#divCheckPasswordMatch").html("");
@@ -110,6 +121,6 @@
 	</script>
 
 
-	
+
 </body>
 </html>

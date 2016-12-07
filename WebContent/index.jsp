@@ -374,7 +374,7 @@
 							fullname = username;
 						}
 
-						var outhtml = '<div class="panel panel-default"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
+						var outhtml = '<div class="panel panel-default" style="display: none;"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
 								+ fullname
 								+ ' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'
 								+ username + '</a>)</span></h3>';
