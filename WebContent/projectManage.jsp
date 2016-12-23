@@ -39,10 +39,11 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-					
+
 						<a href="ProjectController.do?action=insert"
 							class="btn btn-success"><span
-							class="glyphicon glyphicon-plus"></span> New project</a><hr>
+							class="glyphicon glyphicon-plus"></span> New project</a>
+						<hr>
 						<div class="panel panel-default">
 							<ul class="list-group">
 
@@ -53,21 +54,38 @@
 
 										<p class="list-group-item-heading text-primary lead">
 											<strong><c:out value="${project.projectName}"></c:out></strong>
+
+
+
+
 											<span class="pull-right"><small><a
-													class="text-muted" data-toggle="tooltip" title="Project configuration"
+													class="text-muted" data-toggle="tooltip"
+													title="Project configuration"
 													href="ProjectController.do?action=config&projectID=<c:out value="${project.projectID }"/>"><span
 														class="glyphicon glyphicon-cog"></span></a></small>&nbsp;&nbsp;&nbsp;<small><a
-													class="text-info" data-toggle="tooltip" title="Edit project"
+													class="text-info" data-toggle="tooltip"
+													title="Edit project"
 													href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>"><span
 														class="glyphicon glyphicon-edit"></span></a></small>&nbsp;&nbsp; <small><a
 													href="ProjectController.do?action=delete&projectID=<c:out value="${project.projectID }"/>"
-													class="text-danger" data-toggle="tooltip" title="Delete this project"><span
+													class="text-danger" data-toggle="tooltip"
+													title="Delete this project"><span
 														class="glyphicon glyphicon-trash"></span></a></small></span>
-										</p>
 
+										</p>
 										<p class="list-group-item-text ">
+
 											<c:out value="${project.description}"></c:out>
-										</p></li>
+										<div class="progress">
+											<div class="progress-bar progress-bar-success"
+												role="progressbar" aria-valuenow="50" aria-valuemin="0"
+												aria-valuemax="100" style="width: 50%">
+											50%</div>
+										</div>
+										</p>
+										
+										
+										</li>
 								</c:forEach>
 
 							</ul>

@@ -330,7 +330,7 @@
 				</div>
 			</div>
 		</form>
-
+	
 	</div>
 
 	<script>
@@ -369,12 +369,13 @@
 						var reposnum = json.public_repos;
 
 						document.getElementById("a").value = fullname;
+						
 
 						if (fullname == undefined) {
 							fullname = username;
 						}
 
-						var outhtml = '<div class="panel panel-default" style="display: none;"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
+						var outhtml = '<div class="panel panel-default"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
 								+ fullname
 								+ ' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'
 								+ username + '</a>)</span></h3>';
@@ -400,17 +401,17 @@
 								outhtml = outhtml + '<p>No repos!</p></div>';
 							} else {
 								outhtml = outhtml
-										+ '<p><strong>Repositories List : </strong></p> <ul>';
+										+ '<p><strong>Repositories List : </strong></p></div></div> <ul class="list-group">';
 								$
 										.each(
 												repositories,
 												function(index) {
 													outhtml = outhtml
-															+ '<li><a href="'+repositories[index].html_url+'" target="_blank">'
+															+ '<li class="list-group-item"><a href="'+repositories[index].html_url+'" target="_blank">'
 															+ repositories[index].name
-															+ '</a></li>';
+															+ '</a><span class="pull-right"><a href="" class="btn btn-success btn-xs" role="button">New issue</a></span></li>';
 												});
-								outhtml = outhtml + '</ul></div></div></div>';
+								outhtml = outhtml + '</ul></div>';
 							}
 							$('#ghapidata').html(outhtml);
 						} // end outputPageContent()

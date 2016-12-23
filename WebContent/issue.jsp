@@ -57,7 +57,7 @@
 					<div class="form-group">
 						<label for="tile" class="control-label col-sm-2">Title :</label>
 						<div class="col-sm-8 col-lg-6 col-md-6">
-							<input type="text" name="title" class="form-control"
+							<input type="text" name="title" class="form-control" required
 								value="<c:out value="${issue.title}" />" placeholder="Title" />
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<label for="description" class="control-label col-sm-2">Description
 							:</label>
 						<div class="col-sm-8 col-lg-6 col-md-6">
-							<textarea name="description" class="form-control" rows="5"
+							<textarea name="description" class="form-control" rows="5" required
 								id="comment" placeholder="Description"><c:out
 									value="${issue.description}" /></textarea>
 						</div>
@@ -101,7 +101,7 @@
 						<label for="dueDate" class="control-label col-sm-2">Due
 							Date :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="date" name="dueDate" class="form-control"
+							<input type="date" name="dueDate" class="form-control" required
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 						</div>
 					</div>

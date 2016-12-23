@@ -14,6 +14,7 @@
 		value="${issue.project}" /></title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+
 </head>
 <body>
 
@@ -22,150 +23,179 @@
 	<form action="EditStatusController.do" method="post"
 		class="form-horizontal">
 		<div class="container">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4>
-						<span class="glyphicon glyphicon-search"></span> <b>View Issue
-							Details : <span class="label label-success"><c:out
-									value="${issue.title}" /></span>
-						</b>
-					</h4>
-				</div>
-				<div class="panel-body">
-					<table class="table table-hover table-responsive table-striped">
-						<thead>
-							<tr>
-								<th>Issue id</th>
-								<th>Project</th>
-								<th>Title</th>
-								<th>Due date</th>
-								<th>Update date</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td id="i"><c:out value="${issue.issueID}" /></td>
-
-								<td><c:out value="${issue.project}" /><input type="hidden"
-									name="project" class="form-control"
-									value="<c:out value="${issue.project}" />"
-									placeholder="project" /></td>
-								<td><c:out value="${issue.title}" /><input type="hidden"
-									name="title" class="form-control"
-									value="<c:out value="${issue.title}" />" placeholder="title" /></td>
-								<fmt:setLocale value="en_US" />
-								<td><fmt:formatDate pattern="dd/MM/yyyy"
-										value="${issue.dueDate}" /></td>
-								<td><fmt:parseDate value="${issue.updateDate}"
-										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
-										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /><input
-									type="hidden" id="date" name="updateDate" class="form-control"
-									value="<c:out value="${issue.updateDate}" />"
-									placeholder="updateDate" /></td>
-							</tr>
-						</tbody>
-					</table>
-					<hr>
-					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Reporter
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<p class="form-control-static">
-								<c:out value="${issue.reporter}"></c:out>
-								<input type="hidden" name="reporter" class="form-control"
-									value="<c:out value="${issue.reporter}" />"
-									placeholder="reporter" />
-							</p>
-						</div>
-
-						<label for="tile" class="control-label col-sm-3">Assigned
-							to :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<p class="form-control-static">
-								<c:out value="${issue.assign}" />
-								<input type="hidden" name="assign" class="form-control"
-									value="<c:out value="${issue.assign}" />" placeholder="assign" />
-							</p>
-						</div>
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							<span class="glyphicon glyphicon-search"></span> <b>View
+								Issue Details : <span class="label label-success"><c:out
+										value="${issue.title}" /></span>
+							</b>
+						</h4>
 					</div>
-					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Severity
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<p class="form-control-static">
-								<c:out value="${issue.severity}"></c:out>
-								<input type="hidden" name="severity" class="form-control"
-									value="<c:out value="${issue.severity}" />"
-									placeholder="severity" />
-							</p>
+					<div class="panel-body">
+						<table class="table table-hover table-responsive table-striped">
+							<thead>
+								<tr>
+									<th>Issue id</th>
+									<th>Project</th>
+									<th>Title</th>
+									<th>Due date</th>
+									<th>Update date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="i"><c:out value="${issue.issueID}" /></td>
+
+									<td><c:out value="${issue.project}" /><input
+										type="hidden" name="project" class="form-control"
+										value="<c:out value="${issue.project}" />"
+										placeholder="project" /></td>
+									<td><c:out value="${issue.title}" /><input type="hidden"
+										name="title" class="form-control"
+										value="<c:out value="${issue.title}" />" placeholder="title" /></td>
+									<fmt:setLocale value="en_US" />
+									<td><fmt:formatDate pattern="dd/MM/yyyy"
+											value="${issue.dueDate}" /></td>
+									<td><fmt:parseDate value="${issue.updateDate}"
+											pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+											value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /><input
+										type="hidden" id="date" name="updateDate" class="form-control"
+										value="<c:out value="${issue.updateDate}" />"
+										placeholder="updateDate" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="form-group">
+							<label for="tile" class="control-label col-sm-2">Reporter
+								:</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<p class="form-control-static">
+									<c:out value="${issue.reporter}"></c:out>
+									<input type="hidden" name="reporter" class="form-control"
+										value="<c:out value="${issue.reporter}" />"
+										placeholder="reporter" />
+								</p>
+							</div>
+
+							<label for="tile" class="control-label col-sm-3">Assigned
+								to :</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<p class="form-control-static">
+									<c:out value="${issue.assign}" />
+									<input type="hidden" name="assign" class="form-control"
+										value="<c:out value="${issue.assign}" />" placeholder="assign" />
+								</p>
+							</div>
 						</div>
-					
-						<label for="tile" class="control-label col-sm-3">Priority
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<p class="form-control-static">
-								<c:out value="${issue.priority}"></c:out>
-								<input type="hidden" name="priority" class="form-control"
-									value="<c:out value="${issue.priority}" />"
-									placeholder="priority" />
-							</p>
+						<div class="form-group">
+							<label for="tile" class="control-label col-sm-2">Severity
+								:</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<p class="form-control-static">
+									<c:out value="${issue.severity}"></c:out>
+									<input type="hidden" name="severity" class="form-control"
+										value="<c:out value="${issue.severity}" />"
+										placeholder="severity" />
+								</p>
+							</div>
+
+							<label for="tile" class="control-label col-sm-3">Priority
+								:</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<p class="form-control-static">
+									<c:out value="${issue.priority}"></c:out>
+									<input type="hidden" name="priority" class="form-control"
+										value="<c:out value="${issue.priority}" />"
+										placeholder="priority" />
+								</p>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Status :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<p class="form-control-static">
-								<c:out value="${issue.status}"></c:out>
-							</p>
+						<div class="form-group">
+							<label for="tile" class="control-label col-sm-2">Status :</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<p class="form-control-static">
+									<c:out value="${issue.status}"></c:out>
+								</p>
+							</div>
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="description" class="control-label col-sm-2">Description
-							:</label>
+
+						<div class="form-group">
+							<label for="description" class="control-label col-sm-2">Description
+								:</label>
+							<div class="col-sm-8 col-lg-6 col-md-6">
+								<textarea readonly name="description" class="form-control"
+									rows="5" id="comment" placeholder="Description"><c:out
+										value="${issue.description}"></c:out></textarea>
+								<input type="hidden" name="description" class="form-control"
+									value="<c:out value="${issue.description}" />"
+									placeholder="description" />
+							</div>
+						</div>
+
+
+
+						<hr>
+						<div class="form-group">
+							<label for="description" class="control-label col-sm-2"></label>
+							<div class="col-sm-5 col-lg-6 col-md-5">
+								<div class="input-group">
+									<span class="input-group-addon">Change status to</span><select
+										name="status" class="form-control" id="comboA"
+										onchange="getComboA(this)" data-toggle="tooltip"
+										data-placement="top"
+										title="Select issue status then go to comment page">
+										<option value="assign">Assign</option>
+										<option value="feedback">Feedback</option>
+										<option value="confirmed">Confirmed</option>
+										<option value="resolved">Resolved</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<fmt:setLocale value="en_US" />
+
 						<div class="col-sm-8 col-lg-6 col-md-6">
-							<textarea readonly name="description" class="form-control" rows="5"
-								id="comment" placeholder="Description"><c:out
-									value="${issue.description}"></c:out></textarea>
-							<input type="hidden" name="description" class="form-control"
-								value="<c:out value="${issue.description}" />"
-								placeholder="description" />
+							<input type="hidden" name="dueDate" class="form-control"
+								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
 						</div>
+						<input type="hidden" name="issueID" class="form-control"
+							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+
+
 					</div>
-
-
-
-					<hr>
-					<div class="form-group">
-					<label for="description" class="control-label col-sm-2"></label>
-					<div class="col-sm-5 col-lg-6 col-md-5">
-							<div class="input-group">
-							<span class="input-group-addon">Change status to</span><select name="status" class="form-control" id="comboA"
-								onchange="getComboA(this)" data-toggle="tooltip"
-									data-placement="top"
-									title="Select issue status then go to comment page">
-								<option value="assign">Assign</option>
-								<option value="feedback">Feedback</option>
-								<option value="confirmed">Confirmed</option>
-								<option value="resolved">Resolved</option>
-							</select>
-						</div>
-						</div>
-					</div>
-
-					<fmt:setLocale value="en_US" />
-
-					<div class="col-sm-8 col-lg-6 col-md-6">
-						<input type="hidden" name="dueDate" class="form-control"
-							value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
-					</div>
-					<input type="hidden" name="issueID" class="form-control"
-						value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
-
 
 				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
 
+					<div class="panel-body">
+						Project Issue Tracking
+						<div class="progress">	
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
+								aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+								50%</div>
+						</div>
+					</div>
+						<ul class="list-group">
+						<li class="list-group-item text-primary">
+						Issue 1<span class="pull-right"><span class="label label-success">Resolved</span></span>
+						</li>
+						<li class="list-group-item text-primary">
+						Issue 2<span class="pull-right"><span class="label label-danger">Feedback</span></span>
+						</li>
+						<li class="list-group-item text-primary">
+						Issue 3<span class="pull-right"><span class="label label-danger">Feedback</span></span>
+						</li>
+						<li class="list-group-item text-primary">
+						Issue 4<span class="pull-right"><span class="label label-success">Resolved</span></span>
+						</li>
+						</ul>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -179,15 +209,15 @@
 						<div class="panel-heading">
 							<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>
 								<fmt:parseDate value="${comment.commentTime}"
-										pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate
-										value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
-								</b>
+									pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span
+								class="glyphicon glyphicon-time"></span> <fmt:formatDate
+									value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /> </b>
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="tile" class="control-label col-sm-2">Description
 									:</label>
-								<div class="col-sm-3 col-lg-2 col-md-2">
+								<div class="col-sm-6 col-lg-4 col-md-4">
 									<p class="form-control-static">
 										<c:out value="${comment.commentDetail}"></c:out>
 									</p>
@@ -283,7 +313,6 @@
 		}
 		var today = dd + '/' + mm + '/' + yyyy + " " + hh + ":" + mn + ":" + ss;
 		document.getElementById('date').value = today;
-		
 
 		function getComboA(sel) {
 			var value = sel.value;

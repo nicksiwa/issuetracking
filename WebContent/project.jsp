@@ -34,7 +34,7 @@
 						<label for="projectName" class="control-label col-sm-2">Project
 							Name :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="text" name="projectName" class="form-control"
+							<input type="text" name="projectName" class="form-control" required
 								value="<c:out value="${project.projectName}" />"
 								placeholder="Project Name" />
 						</div>
@@ -54,14 +54,14 @@
 						<label for="startDate" class="control-label col-sm-2">Start
 							Date :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="date" name="startDate" class="form-control"
+							<input type="date" name="startDate" class="form-control" required
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.startDate}" />" />
 						</div>
 
 						<label for="finishDate" class="control-label col-sm-2">Finish
 							Date :</label>
 						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="date" name="finishDate" class="form-control"
+							<input type="date" name="finishDate" class="form-control" required
 								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />
 						</div>
 					</div>

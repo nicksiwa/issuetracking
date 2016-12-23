@@ -6,9 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+
 
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
@@ -282,6 +286,51 @@ public class IssueDAOImplementation implements IssueDAO {
 				issue.setStatus(rs.getString("status"));
 				issue.setReporter(rs.getString("reporter"));
 				projects.add(issue);
+				
+				
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = new Date();
+				
+				System.out.println(df.format(rs.getDate("dueDate")));
+				System.out.println(df.format(date));
+				
+				String dateStart = df.format(rs.getDate("dueDate"));
+				String dateStop = df.format(date); 
+				
+				
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+
+				Date d1 = null;
+				Date d2 = null;
+
+				try {
+					d1 = format.parse(dateStart);
+					d2 = format.parse(dateStop);
+
+					//in milliseconds
+					long diff = d2.getTime() - d1.getTime();
+
+					long diffSeconds = diff / 1000 % 60;
+					long diffMinutes = diff / (60 * 1000) % 60;
+					long diffHours = diff / (60 * 60 * 1000) % 24;
+					long diffDays = diff / (24 * 60 * 60 * 1000);
+
+					System.out.print(diffDays + " days, ");
+					System.out.print(diffHours + " hours, ");
+					System.out.print(diffMinutes + " minutes, ");
+					System.out.print(diffSeconds + " seconds.");
+					//เอาค่าที่ได้ จะเซฟลงเบสหรือส่งไปแสดงหน้าเว็บก็ได้
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
 			}
 			rs.close();
 			ps.close();

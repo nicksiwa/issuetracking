@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
@@ -24,6 +26,7 @@ import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
 import com.siwa.model.Project;
+
 
 
 @WebServlet("/IssueController")
@@ -130,6 +133,7 @@ public class IssueController extends HttpServlet {
 		try {
 			Date dueDate = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(request.getParameter("dueDate"));
 			issue.setDueDate(dueDate);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -141,6 +145,8 @@ public class IssueController extends HttpServlet {
 		} catch (ParseException e) {
 			
 		}
+		
+		
 		
 		
 		
