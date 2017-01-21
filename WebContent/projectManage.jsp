@@ -53,7 +53,7 @@
 										value="<c:out value="${project.projectID}" />">
 
 										<p class="list-group-item-heading text-primary lead">
-											<strong><c:out value="${project.projectName}"></c:out></strong>
+											<a href="ProjectController.do?action=main"><strong><c:out value="${project.projectName}"></c:out></strong></a>
 
 
 
@@ -76,12 +76,7 @@
 										<p class="list-group-item-text ">
 
 											<c:out value="${project.description}"></c:out>
-										<div class="progress">
-											<div class="progress-bar progress-bar-success"
-												role="progressbar" aria-valuenow="50" aria-valuemin="0"
-												aria-valuemax="100" style="width: 50%">
-											50%</div>
-										</div>
+		
 										</p>
 										
 										

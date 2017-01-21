@@ -9,123 +9,195 @@
 <title>Add New Issue</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="js/dropzone.js"></script>
+
 
 </head>
 <body>
 
 	<jsp:include page="navbar.jsp" />
 
+
 	<form action="IssueController.do" method="post" class="form-horizontal">
 		<div class="container">
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4>
-						<span class="glyphicon glyphicon-exclamation-sign"></span> <b>Create Issue : <span class="label label-success"><c:out value="${project.projectName}" /></span></b>
-					</h4>
-				</div>
-				<div class="panel-body">
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							<span class="glyphicon glyphicon-exclamation-sign"></span> <b>Create
+								Issue : <span class="label label-success"><c:out
+										value="${project.projectName}" /></span>
+							</b>
+						</h4>
+					</div>
+					<div class="panel-body">
 
-					<input type="hidden" name="issueID"
-						value="<c:out value="${issue.issueID}" />" readonly="readonly"
-						placeholder="Auto generate ID" /> <br> <br>
+						<input type="hidden" name="issueID"
+							value="<c:out value="${issue.issueID}" />" readonly="readonly"
+							placeholder="Auto generate ID" /> <br> <br>
 
-					<div class="form-group">
-						<label for="description" class="control-label col-sm-2">Project
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-					
-							<p class="form-control-static"><c:out value="${project.projectName}" /></p>
+						<div class="form-group">
+							<label for="description" class="control-label col-sm-2">Project
+								:</label>
+							<div class="col-sm-3 col-md-4">
+
+								<p class="form-control-static">
+									<c:out value="${project.projectName}" />
+								</p>
 								<input type="hidden" name="project" class="form-control"
 									value="<c:out value="${project.projectName}" />"
 									placeholder="reporter" />
-						</div>
+							</div>
 
-						<label for="description" class="control-label col-sm-2">Assign
-							To :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="assign" class="form-control">
+							<label for="description" class="control-label col-sm-2">Assign
+								to :</label>
+							<div class="col-sm-3 col-md-4">
+								<select name="assign" class="form-control">
 									<option>-</option>
-								<c:forEach var="issue" items="${issuess}">
-									
-									<option><c:out value="${issue.assign}" /></option>
-								</c:forEach>
-							</select>
+									<c:forEach var="issue" items="${issuess}">
+
+										<option><c:out value="${issue.assign}" /></option>
+									</c:forEach>
+								</select>
+							</div>
 						</div>
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="tile" class="control-label col-sm-2">Title :</label>
-						<div class="col-sm-8 col-lg-6 col-md-6">
-							<input type="text" name="title" class="form-control" required
-								value="<c:out value="${issue.title}" />" placeholder="Title" />
+						<br>
+						<div class="form-group">
+							<label for="tile" class="control-label col-sm-2">Title :</label>
+							<div class="col-sm-8 col-md-10">
+								<input type="text" name="title" class="form-control" required
+									value="<c:out value="${issue.title}" />" placeholder="Title" />
+							</div>
 						</div>
-					</div>
+	
+
+						<div class="form-group">
+							<label for="description" class="control-label col-sm-2">Description
+								:</label>
+							<div class="col-sm-8 col-md-10">
+								<textarea name="description" class="form-control" rows="10"
+									cols="80" required id="description" placeholder="Description"><c:out
+										value="${issue.description}" /></textarea>
+								<script>
+									CKEDITOR.replace('description');
+								</script>
+								<br>
+								<input type="file" name="file" />
+							</div>
+						</div>
+						
 
 
-					<div class="form-group">
-						<label for="description" class="control-label col-sm-2">Description
-							:</label>
-						<div class="col-sm-8 col-lg-6 col-md-6">
-							<textarea name="description" class="form-control" rows="5" required
-								id="comment" placeholder="Description"><c:out
-									value="${issue.description}" /></textarea>
-						</div>
-					</div>
+						<br>
 
-					<br>
+						<div class="form-group">
+							<label for="severity" class="control-label col-sm-2">Severity
+								:</label>
+							<div class="col-sm-3 col-md-4">
+								<select name="severity" class="form-control">
+									<option value="Minor">Minor</option>
+									<option value="Major">Major</option>
+									<option value="Crash">Crash</option>
+								</select>
+							</div>
 
-					<div class="form-group">
-						<label for="severity" class="control-label col-sm-2">Severity
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="severity" class="form-control">
-								<option value="Minor">Minor</option>
-								<option value="Major">Major</option>
-								<option value="Crash">Crash</option>
-							</select>
+							<label for="priority" class="control-label col-sm-2">Priority
+								:</label>
+							<div class="col-sm-3 col-md-4">
+								<select name="priority" class="form-control">
+									<option value="Low">Low</option>
+									<option value="Normal">Normal</option>
+									<option value="High">High</option>
+								</select>
+							</div>
 						</div>
+						<fmt:setLocale value="en_US" />
+						<div class="form-group">
+							<label for="dueDate" class="control-label col-sm-2">Due
+								Date :</label>
+							<div class="col-sm-3 col-md-4">
+								<input type="date" name="dueDate" class="form-control" required
+									value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
+							</div>
+						</div>
+						<input type="hidden" name="updateDate"
+							value="<c:out value="${issue.updateDate}" />"
+							placeholder="Comment Time" />
 
-						<label for="priority" class="control-label col-sm-2">Priority
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="priority" class="form-control">
-								<option value="Low">Low</option>
-								<option value="Normal">Normal</option>
-								<option value="High">High</option>
-							</select>
+						<div class="form-group">
+							<label for="status" class="control-label col-sm-2">Status
+								:</label>
+							<div class="col-sm-3 col-md-4">
+								<select name="status" class="form-control">
+									<option value="Assign">Open</option>
+									<option value="Assign">Assign</option>
+									<option value="Feedback">Feedback</option>
+									<option value="Confirmed">Confirmed</option>
+									<option value="Resolved">Resolved</option>
+									<option value="Resolved">Closed</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<input type="submit" class="btn btn-default" value="Submit" />
+							</div>
 						</div>
 					</div>
-					<fmt:setLocale value="en_US" />
-					<div class="form-group">
-						<label for="dueDate" class="control-label col-sm-2">Due
-							Date :</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<input type="date" name="dueDate" class="form-control" required
-								value="<fmt:formatDate pattern="yyyy-MM-dd" value="${issue.dueDate}" />" />
-						</div>
-					</div>
-					<input type="hidden" name="updateDate"
-						value="<c:out value="${issue.updateDate}" />"
-						placeholder="Comment Time" />
+				</div>
+			</div>
+				<div class="col-md-3">
+				<div class="panel panel-default">
 
-					<div class="form-group">
-						<label for="status" class="control-label col-sm-2">Status
-							:</label>
-						<div class="col-sm-3 col-lg-2 col-md-2">
-							<select name="status" class="form-control">
-								<option value="Assign">Assign</option>
-								<option value="Feedback">Feedback</option>
-								<option value="Confirmed">Confirmed</option>
-								<option value="Resolved">Resolved</option>
-							</select>
-						</div>
+					<div class="panel-body">
+					<label for="status" class="control-label">Select project milestone</label>
+						
+						<select name="status" class="form-control">
+										<option value="assign">Milestone 1</option>
+										<option value="feedback">Milestone 2</option>
+										<option value="confirmed">Milestone 3</option>
+										<option value="resolved">Milestone 4</option>
+									</select>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-default" value="Submit" />
-						</div>
+						<ul class="list-group">
+						<li class="list-group-item text-primary">
+						Milestone 1 <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						<li class="list-group-item text-primary">
+						Milestone 2 <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						</ul>
+				</div>
+			</div>
+							<div class="col-md-3">
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+					
+						<label for="status" class="control-label">Select issue label</label>
+						
+						<select name="status" class="form-control">
+										<option value="assign">Bug</option>
+										<option value="feedback">Help wanted</option>
+										<option value="confirmed">Question</option>
+										<option value="resolved">Feature</option>
+									</select>
 					</div>
+						<ul class="list-group">
+						<li class="list-group-item text-primary list-group-item-danger">
+						Bug <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						<li class="list-group-item text-primary list-group-item-success">
+						Help wanted <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						<li class="list-group-item text-primary list-group-item-warning">
+						Question <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						<li class="list-group-item text-primary list-group-item-info">
+						Feature <span class="pull-right glyphicon glyphicon-remove"></span>
+						</li>
+						</ul>
 				</div>
 			</div>
 		</div>
@@ -137,6 +209,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
 </body>
 </html>

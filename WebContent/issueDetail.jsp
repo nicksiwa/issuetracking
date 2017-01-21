@@ -122,19 +122,16 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label for="description" class="control-label col-sm-2">Description
-								:</label>
-							<div class="col-sm-8 col-lg-6 col-md-6">
-								<textarea readonly name="description" class="form-control"
-									rows="5" id="comment" placeholder="Description"><c:out
+						<textarea readonly name="description" class="form-control"
+									rows="5" id="description" placeholder="Description"><c:out
 										value="${issue.description}"></c:out></textarea>
-								<input type="hidden" name="description" class="form-control"
-									value="<c:out value="${issue.description}" />"
-									placeholder="description" />
-							</div>
-						</div>
-
+						
+					<script>
+					
+						CKEDITOR.replace('description', {toolbarStartupExpanded : false});
+						
+						
+					</script>
 
 
 						<hr>

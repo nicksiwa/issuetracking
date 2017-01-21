@@ -41,6 +41,12 @@
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
+						
+						<a class="list-group-item list-group-item-danger">
+						<p class="list-group-item-heading "><b>Have bug <span class="label label-danger">Bug</span> <span class="label label-info">Feature</span></b><small><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 26/12/2016 15:30</span></small></p>
+						<p class="list-group-item-text">From Project : Issue Tracking <span class="pull-right"><span class="glyphicon glyphicon-alert"></span> Pass due date by 3 day</span></p>
+						
+						</a>
 
 							<c:choose>
 								<c:when test="${fn:length(indexs)=='0'}">
@@ -49,13 +55,12 @@
 								<c:otherwise>
 
 									<c:forEach begin="0" end="2" items="${indexs}" var="index">
-										<a
-											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+										<a href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 											class="list-group-item" data-toggle="tooltip"
 											data-placement="top"
 											title="Click to change status or view issue detail">
 											<p class="list-group-item-heading ">
-												<b> <c:out value="${index.title}"></c:out>
+												<b> <c:out value="${index.title}"></c:out> <span class="label label-success">Help wanted</span> <span class="label label-warning">Question</span> <span class="label label-info">Feature</span>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
@@ -108,7 +113,7 @@
 											data-placement="top"
 											title="Click to change status or view issue detail">
 											<p class="list-group-item-heading ">
-												<b> <c:out value="${index.title}"></c:out>
+												<b> <c:out value="${index.title}"></c:out> <span class="label label-danger">Bug</span> <span class="label label-warning">Question</span>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"

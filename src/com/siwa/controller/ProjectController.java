@@ -25,7 +25,7 @@ import com.siwa.model.Project;
 
 @WebServlet("/ProjectController")
 public class ProjectController extends HttpServlet {
-	
+
 	private ProjectDAO dao;
 	private AssignDAO dao2;
 	private IssueDAO dao3;
@@ -34,6 +34,10 @@ public class ProjectController extends HttpServlet {
 	public static final String INSERT_OR_EDIT = "/project.jsp";
 	public static final String MANAGE = "/projectManage.jsp";
 	public static final String CONFIG = "/configProject.jsp";
+	public static final String MAIN = "/projectMain.jsp";
+	public static final String TASK = "/projectTask.jsp";
+	public static final String GRAPH = "/projectGraph.jsp";
+	public static final String MILE = "/milestone.jsp";
 
 	public ProjectController() {
 		dao = new ProjectDAOImplementation();
@@ -59,29 +63,39 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("project", project);
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
-		} 
-		else if(action.equalsIgnoreCase("manage")){
+		} else if (action.equalsIgnoreCase("manage")) {
 			forward = MANAGE;
 			request.setAttribute("projects", dao.getAllProjects());
-		}else if(action.equalsIgnoreCase("config")){
+		} else if (action.equalsIgnoreCase("config")) {
 			forward = CONFIG;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			Project project = dao.getProjectName(projectID);
 			Project project2 = dao.getProjectById(projectID);
 			request.setAttribute("project", project);
 			request.setAttribute("project2", project2);
-			request.setAttribute("cols",dao.getCollaborators(projectID));
+			request.setAttribute("cols", dao.getCollaborators(projectID));
 			request.setAttribute("persons", dao2.getPerson());
-			
-			HttpSession session  = request.getSession();
+
+			HttpSession session = request.getSession();
 			String user = (String) session.getAttribute("username");
-			
+
 			request.setAttribute("assignResolved", dao.getIssueByAssignResolved(projectID, user));
 			request.setAttribute("assignNo", dao.getIssueByAssign(projectID, user));
 			request.setAttribute("unassign", dao.getIssueByUnAssign(projectID));
 			request.setAttribute("unassignResolved", dao.getIssueByUnAssignResolved(projectID));
 			request.setAttribute("issueUn", dao.getAllIssue(projectID));
 			request.setAttribute("issueResolved", dao.getAllIssueByResolved(projectID));
+		} else if (action.equalsIgnoreCase("main")) {
+			forward = MAIN;
+		} 
+		else if(action.equalsIgnoreCase("task")){
+			forward = TASK;
+		}
+		else if(action.equalsIgnoreCase("graph")){
+			forward = GRAPH;
+		}
+		else if(action.equalsIgnoreCase("milestone")){
+			forward = MILE;
 		}
 		else {
 			forward = MANAGE;
@@ -94,7 +108,7 @@ public class ProjectController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Project project = new Project();
 
 		String projectName = (request.getParameter("projectName"));
@@ -110,14 +124,14 @@ public class ProjectController extends HttpServlet {
 		project.setDescription(description);
 
 		try {
-			Date startDate = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(request.getParameter("startDate"));
+			Date startDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(request.getParameter("startDate"));
 			project.setStartDate(startDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
-			Date finishDate = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(request.getParameter("finishDate"));
+			Date finishDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(request.getParameter("finishDate"));
 			project.setFinishDate(finishDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -131,16 +145,15 @@ public class ProjectController extends HttpServlet {
 
 		if (projectID == null || projectID.isEmpty())
 			dao.addProject(project);
-		
+
 		else {
 			project.setProjectID(Integer.parseInt(projectID));
 			dao.updateProject(project);
 		}
-		
+
 		RequestDispatcher view = request.getRequestDispatcher(MANAGE);
 		request.setAttribute("projects", dao.getAllProjects());
 		view.forward(request, response);
-	
-	
+
 	}
 }
