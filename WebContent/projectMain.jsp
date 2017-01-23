@@ -24,7 +24,7 @@
 				<li><a href="ProjectController.do?action=task">Project task</a></li>
 			</ul>
 			<br>
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<table class="table table-hover table-responsive table-striped">
 					<thead>
 						<tr>

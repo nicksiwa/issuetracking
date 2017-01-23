@@ -149,8 +149,11 @@
 										<option value="confirmed">Confirmed</option>
 										<option value="resolved">Resolved</option>
 									</select>
+									
 								</div>
 							</div>
+							
+							<input type="submit" class="btn btn-success" value="Close issue" />
 						</div>
 
 						<fmt:setLocale value="en_US" />

@@ -9,6 +9,8 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -24,8 +26,19 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="IndexController?action=index"><span
-						class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+
+	
+	<li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+						class="glyphicon glyphicon-dashboard"></span> Dashboard
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="IndexController?action=index"><span
+						class="glyphicon glyphicon-info-sign"></span> Opened issue	</a></li>
+          <li><a href="issueClosed.jsp"><span
+						class="glyphicon glyphicon-ok-sign"></span> Closed issue</a></li>
+        </ul>
+      </li>
 						<li><a href="ProjectController?action=listProject"><span
 						class="glyphicon glyphicon-tasks"></span> Project</a></li>
 				
@@ -42,7 +55,7 @@
 				<%
 					} else {
 				%>
-				<li><a>Hi, <%=username%></a></li>
+				<li><a href="profile.jsp">Hi, <%=username%></a></li>
 				<li><a href="LoginController?action=logout"><span
 						class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
 				<%
@@ -52,5 +65,7 @@
 		</div>
 	</div>
 </nav>
+
+
 </body>
 </html>
