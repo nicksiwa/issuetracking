@@ -38,6 +38,7 @@ public class ProjectController extends HttpServlet {
 	public static final String TASK = "/projectTask.jsp";
 	public static final String GRAPH = "/projectGraph.jsp";
 	public static final String MILE = "/milestone.jsp";
+	public static final String LABEL = "/projectLabels.jsp";
 
 	public ProjectController() {
 		dao = new ProjectDAOImplementation();
@@ -96,6 +97,9 @@ public class ProjectController extends HttpServlet {
 		}
 		else if(action.equalsIgnoreCase("milestone")){
 			forward = MILE;
+		}
+		else if(action.equalsIgnoreCase("label")){
+			forward = LABEL;
 		}
 		else {
 			forward = MANAGE;
