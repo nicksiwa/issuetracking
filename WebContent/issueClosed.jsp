@@ -18,12 +18,12 @@
 			<div class="col-md-7">
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h4>
+						<h4><font color="white">
 							<span class="glyphicon glyphicon-ok"></span> <b>Closed
 								issue</b><small><span class="pull-right"> <span
-									class="badge">10</span> Issues
+									class="badge">10 issue</span>
 							</span></small>
-						</h4>
+						</font></h4>
 
 					</div>
 					<div class="panel-body">

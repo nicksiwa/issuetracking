@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+ 
+ 
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
@@ -26,16 +27,19 @@
 
 
 
-			<div class="col-md-7">
+			<div class="col-md-8">
 
 
-				<div class="panel panel-default">
+				<div class="panel panel-warning">
 					<div class="panel-heading">
+					
 						<h4>
+						<font color="white">
 							<span class="glyphicon glyphicon-th-list"></span> <b>Assigned
 								to me</b><small><span class="pull-right"> <span
-									class="badge">${fn:length(indexs)}</span> Issues
+									class="badge">${fn:length(indexs)} issue</span>
 							</span></small>
+							</font>
 						</h4>
 
 					</div>
@@ -44,7 +48,7 @@
 						
 						<a class="list-group-item list-group-item-danger">
 						<p class="list-group-item-heading "><b>Have bug <span class="label label-danger">Bug</span> <span class="label label-info">Feature</span></b><small><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 26/12/2016 15:30</span></small></p>
-						<p class="list-group-item-text">From Project : Issue Tracking <span class="pull-right"><span class="glyphicon glyphicon-alert"></span> Pass due date by 3 day</span></p>
+						From Project : Issue Tracking <span class="pull-right"><span class="glyphicon glyphicon-alert"></span> Pass due date by 3 day</span>
 						
 						</a>
 
@@ -69,10 +73,10 @@
 													</font></span></small>
 
 											</p>
-											<p class="list-group-item-text">
+											
 												From Project :
 												<c:out value="${index.project}"></c:out>
-											</p>
+											
 
 										</a>
 									</c:forEach>
@@ -87,14 +91,14 @@
 
 
 
-				<div class="panel panel-default">
+				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h4>
+						<h4><font color="white">
 							<span class="glyphicon glyphicon-globe"></span> <b>Unassigned</b><small><span
-								class="pull-right"> <span class="badge">${fn:length(unassign)}</span>
-									Issues
+								class="pull-right"> <span class="badge">${fn:length(unassign)} issue</span>
+									
 							</span></small>
-						</h4>
+						</font></h4>
 
 					</div>
 					<div class="panel-body">
@@ -122,10 +126,10 @@
 													</font></span></small>
 
 											</p>
-											<p class="list-group-item-text">
+											
 												From Project :
 												<c:out value="${index.project}"></c:out>
-											</p>
+											
 										</a>
 
 									</c:forEach>
@@ -143,14 +147,14 @@
 
 
 
-				<div class="panel panel-default">
+				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h4>
+						<h4><font color="white">
 							<span class="glyphicon glyphicon-edit"></span> <b>Report by
 								me</b><span class="pull-right"><small> <span
-									class="badge">${fn:length(reports)}</span> Issues
+									class="badge">${fn:length(reports)} issue</span>
 							</small></span>
-						</h4>
+						</font></h4>
 
 					</div>
 					<div class="panel-body">
@@ -175,10 +179,10 @@
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 											</p>
-											<p class="list-group-item-text">
+											
 												From Project :
 												<c:out value="${index.project}"></c:out>
-											</p>
+										
 
 										</a>
 									</c:forEach>
@@ -196,12 +200,12 @@
 
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h4>
+						<h4><font color="white">
 							<span class="glyphicon glyphicon-check"></span> <b>Resolved</b><span
-								class="pull-right"><small> <span class="badge">${fn:length(resolves)}</span>
-									Issues
+								class="pull-right"><small> <span class="badge">${fn:length(resolves)} issue</span>
+									
 							</small></span>
-						</h4>
+						</font></h4>
 
 					</div>
 					<div class="panel-body">
@@ -226,10 +230,10 @@
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 											</p>
-											<p class="list-group-item-text">
+											
 												From Project :
 												<c:out value="${index.project}"></c:out>
-											</p>
+											
 										</a>
 									</c:forEach>
 									<br>
@@ -245,7 +249,7 @@
 			
 			</div>
 
-			<div class="col-md-4 col-md-offset-1">
+			<div class="col-md-4">
 
 				<div id="ghapidata" class="clearfix"></div>
 				<input type="hidden" value="niksf203" id="user"> <input

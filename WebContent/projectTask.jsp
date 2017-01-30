@@ -33,7 +33,7 @@
 
 	<div class="container">
 		<form action="" class="form-horizontal">
-			<h2><span class="label label-default">Project name</span><small> project owner</small></h2>
+			<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
 			<br>
 			<ul class="nav nav-tabs">
 				<li><a href="ProjectController.do?action=main">Project road
@@ -51,7 +51,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> <b>To do </b><span
+							<span class="glyphicon glyphicon-th-list"></span> To do <span
 								class="badge">1</span> <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
@@ -85,7 +85,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> <b>Doing </b><span
+							<span class="glyphicon glyphicon-th-list"></span> Doing <span
 								class="badge">1</span> <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
@@ -106,7 +106,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> <b>Done </b><span
+							<span class="glyphicon glyphicon-th-list"></span> Done <span
 								class="badge">1</span> <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>

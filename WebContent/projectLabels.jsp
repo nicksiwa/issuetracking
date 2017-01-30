@@ -15,7 +15,7 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 		<form action="" class="form-horizontal">
-			<h2><span class="label label-default">Project name</span><small> project owner</small></h2>
+			<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
 			<br>
 			<ul class="nav nav-tabs">
 				<li><a href="ProjectController.do?action=main">Project road
@@ -41,41 +41,41 @@
 					</div>
 					<ul class="list-group">
 						<li class="list-group-item">
-							<h3>
+							<h4>
 								<span class="label label-danger"><span
 									class="glyphicon glyphicon-tag"></span> Bug</span> <small><span
-									class="pull-right"><span
-										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-										class="glyphicon glyphicon-remove"></span></span></small>
-							</h3>
+									class="pull-right"><a href=""><span
+										class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span
+										class="glyphicon glyphicon-remove"></span></a></span></small>
+							</h4>
 
 						</li>
 						<li class="list-group-item">
-							<h3>
+							<h4>
 								<span class="label label-success"><span
 									class="glyphicon glyphicon-tag"></span> Help wanted</span> <small><span
-									class="pull-right"><span
-										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-										class="glyphicon glyphicon-remove"></span></span></small>
-							</h3>
+									class="pull-right"><a href=""><span
+										class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span
+										class="glyphicon glyphicon-remove"></span></a></span></small>
+							</h4>
 						</li>
 						<li class="list-group-item">
-							<h3>
+							<h4>
 								<span class="label label-warning"><span
 									class="glyphicon glyphicon-tag"></span> Question</span> <small><span
-									class="pull-right"><span
-										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-										class="glyphicon glyphicon-remove"></span></span></small>
-							</h3>
+									class="pull-right"><a href=""><span
+										class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span
+										class="glyphicon glyphicon-remove"></span></a></span></small>
+							</h4>
 						</li>
 						<li class="list-group-item">
-							<h3>
+							<h4>
 								<span class="label label-info"><span
 									class="glyphicon glyphicon-tag"></span> Feature</span> <small><span
-									class="pull-right"><span
-										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-										class="glyphicon glyphicon-remove"></span></span></small>
-							</h3>
+									class="pull-right"><a href=""><span
+										class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span
+										class="glyphicon glyphicon-remove"></span></a></span></small>
+							</h4>
 						</li>
 
 					</ul>
@@ -94,7 +94,9 @@
 						</div>
 						<div class="modal-body">
 							<label for="comment">Title :</label> <input type="text"
-								class="form-control"> <br> <a href=""><span
+								class="form-control"> <br> 
+								<label for="comment">Select type :</label>
+								<a href=""><span
 								class="label label-default">Default Label</span></a> <a href=""><span
 								class="label label-primary">Primary Label</span></a> <a href=""><span
 								class="label label-success">Success Label</span></a> <a href=""><span

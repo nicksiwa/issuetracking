@@ -16,7 +16,7 @@
 
 	<div class="container">
 		<form action="" class="form-horizontal">
-		<h2><span class="label label-default">Project name</span><small> project owner</small></h2>
+		<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
 		<br>
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="ProjectController.do?action=main">Project road map</a></li>

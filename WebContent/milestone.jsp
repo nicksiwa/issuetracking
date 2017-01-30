@@ -11,12 +11,13 @@
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
+
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 		<form action="" class="form-horizontal">
-			<h2><span class="label label-default">Project name</span><small> project owner</small></h2>
+			<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
 			<br>
 			<ul class="nav nav-tabs">
 				<li><a href="ProjectController.do?action=main">Project road
@@ -43,7 +44,9 @@
 					<ul class="list-group">
 						<li class="list-group-item">
 
-							<div class="col-md-6">Milestone 1</div>
+							<div class="col-md-6"><h5>Milestone 1 </h5>
+							<p>milestone description</p>
+							</div>
 
 							<div class="col-md-6">
 								<div class="progress">
@@ -57,8 +60,10 @@
 
 						<li class="list-group-item">
 
-							<div class="col-md-6">Milestone 2</div>
-
+							<div class="col-md-6"><h5>Milestone 2</h5>
+							<p>milestone description</p>
+							</div>
+							
 							<div class="col-md-6">
 								<div class="progress">
 									<div class="progress-bar progress-bar-success"
