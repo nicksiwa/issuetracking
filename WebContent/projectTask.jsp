@@ -112,6 +112,7 @@
 								data-target="#myModal"></span></a>
 						</h4>
 
+
 					</div>
 
 					<div class="panel-body" id="div3" ondrop="drop(event)"
