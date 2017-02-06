@@ -321,8 +321,7 @@
 								<c:otherwise>
 
 						<c:forEach items="${feedback}" var="index">
-							<li class="list-group-item"><c:out
-									value="${index.userComment}" /> <a
+							<li class="list-group-item"><c:out value="${index.userComment}" /> <a
 								href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />"
 								data-toggle="tooltip" data-placement="top" title="Hooray!">
 									<c:out value="${index.commentDetail}" />

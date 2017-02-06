@@ -108,13 +108,21 @@
     <servlet-name>ConfigProject</servlet-name>
     <url-pattern>/ConfigProject.do</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>RegisterDetailController</servlet-name>
     <servlet-class>com.siwa.controller.RegisterDetailController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterDetailController</servlet-name>
     <url-pattern>/RegisterDetailController.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>TaskController</servlet-name>
+    <servlet-class>com.siwa.controller.TaskController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskController</servlet-name>
+    <url-pattern>/TaskController.do</url-pattern>
   </servlet-mapping>
 </web-app>

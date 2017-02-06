@@ -15,41 +15,59 @@
 	<jsp:include page="navbar.jsp" />
 	<form action="IssueController.do" method="post" class="form-horizontal">
 		<div class="container">
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h4><font color="white">
-							<span class="glyphicon glyphicon-ok"></span> <b>Closed
-								issue</b><small><span class="pull-right"> <span
-									class="badge">10 issue</span>
-							</span></small>
-						</font></h4>
+						<h4>
+							<font color="white"> <span class="glyphicon glyphicon-ok"></span>
+								<b>Closed issue</b><small><span class="pull-right">
+										<span class="badge">10 issue</span>
+
+								</span></small>
+							</font>
+						</h4>
 
 					</div>
 					<div class="panel-body">
-						<div class="list-group">
+						
 
-							<%
+						
+
+
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Issue name</th>
+										<th>Project name</th>
+										<th>Date</th>
+										<th> <label><input type="checkbox" value="" onchange="checkAll(this)" name="chk[]">Select all</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
 								for (int i = 0; i <= 10; i++) {
 							%>
-							<a href="reopen.jsp" class="list-group-item">
-								<p class="list-group-item-heading ">
-									<b>Have bug <span class="label label-danger">Bug</span> <span
-										class="label label-info">Feature</span></b><small><span
-										class="pull-right"><span
-											class="glyphicon glyphicon-time"></span> 26/12/2016 15:30</span></small>
-								</p>
-								<p class="list-group-item-text">From Project : Issue
-									Tracking</p>
-							</a>
-							<%
+
+									<tr>
+										<td><a href="reopen.jsp">Have bug <span
+												class="label label-danger">Bug</span> <span
+												class="label label-info">Feature</span></a></td>
+										<td>Issue Tracking</td>
+										<td>26/12/2016 15:30</td>
+										<td><label><input type="checkbox" value=""></label></td>
+									</tr>
+	<%
 								}
 							%>
+								</tbody>
+							</table>
+							<div class="col-md-offset-5">
+						<button type="button" class="btn btn-danger">Delete select</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 col-md-offset-1">
+			<div class="col-md-4">
 				<div id="ghapidata" class="clearfix"></div>
 				<input type="hidden" value="niksf203" id="user"> <input
 					type="hidden" id="a">
@@ -137,6 +155,25 @@
 				}
 			});
 		}
+	</script>
+	<script>
+	 function checkAll(ele) {
+	     var checkboxes = document.getElementsByTagName('input');
+	     if (ele.checked) {
+	         for (var i = 0; i < checkboxes.length; i++) {
+	             if (checkboxes[i].type == 'checkbox') {
+	                 checkboxes[i].checked = true;
+	             }
+	         }
+	     } else {
+	         for (var i = 0; i < checkboxes.length; i++) {
+	             console.log(i)
+	             if (checkboxes[i].type == 'checkbox') {
+	                 checkboxes[i].checked = false;
+	             }
+	         }
+	     }
+	 }
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>

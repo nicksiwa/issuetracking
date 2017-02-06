@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -33,7 +34,10 @@
 
 	<div class="container">
 		<form action="" class="form-horizontal">
-			<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
+			<h2>
+				<span class="label label-primary">Project name</span><small>
+					project owner</small>
+			</h2>
 			<br>
 			<ul class="nav nav-tabs">
 				<li><a href="ProjectController.do?action=main">Project road
@@ -41,9 +45,10 @@
 				<li><a href="ProjectController.do?action=milestone">Project
 						milestone</a></li>
 				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
-				<li class="active"><a href="ProjectController.do?action=task">Project
+				<li class="active"><a href="TaskController.do?action=task">Project
 						task</a></li>
-						<li><a href="ProjectController.do?action=label">Issue labels</a></li>
+				<li><a href="ProjectController.do?action=label">Issue
+						labels</a></li>
 			</ul>
 			<br>
 			<div class="col-md-4">
@@ -52,7 +57,7 @@
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-th-list"></span> To do <span
-								class="badge">1</span> <a href="#"><span
+								class="badge">${fn:length(tasks)}</span> <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
 						</h4>
@@ -63,19 +68,24 @@
 						ondragover="allowDrop(event)">
 
 						<ul class="list-group">
+						
+						<c:choose>
+							<c:when test="${fn:length(tasks)=='0'}">
+								<li class="list-group-item">No have any task</li>
+							</c:when>
+							<c:otherwise>
+						
+							<c:forEach items="${tasks}" var="task">
+							
 							<li class="list-group-item" draggable="true"
 								ondragstart="drag(event)" id="drag1">
-								<p class="list-group-item-heading text-primary lead">Task 1</p>
-								<p class="list-group-item-text ">Add by Siwa <span class="pull-right glyphicon glyphicon-time"> 20/01/2017 20:13</span></p>
+								<p class="list-group-item-heading text-primary lead"><c:out value="${task.taskDetail}" /></p>
+								Add by <c:out value="${task.createBy}" /> <span class="pull-right glyphicon glyphicon-time">
+									<fmt:formatDate value="${task.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span>
 							</li>
-						</ul>
-
-						<ul class="list-group">
-							<li class="list-group-item" draggable="true"
-								ondragstart="drag(event)" id="drag2">
-								<p class="list-group-item-heading text-primary lead">Task 2</p>
-								<p class="list-group-item-text ">Add by Siwa <span class="pull-right glyphicon glyphicon-time"> 20/01/2017 20:13</span></p>
-							</li>
+							
+								</c:forEach>
+							</c:otherwise></c:choose>
 						</ul>
 					</div>
 
@@ -126,7 +136,7 @@
 
 		</form>
 
-		<form action="" class="form-horizontal">
+		<form action="TaskController.do" method="post" class="form-horizontal">
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 
@@ -137,13 +147,18 @@
 							<h4 class="modal-title">Add task</h4>
 						</div>
 						<div class="modal-body">
+							<input type="hidden" name="taskID"
+								value="<c:out value="${task.taskID}" />" readonly="readonly"
+								placeholder="Auto generate ID" /> <input type="hidden"
+								name="createDate" value="<c:out value="${task.createDate}" />"
+								placeholder="Comment Time" />
 
-							<textarea class="form-control" rows="5" id="comment" placeholder="Enter a task"></textarea>
+							<textarea name="taskDetail" class="form-control" rows="5"
+								id="comment" placeholder="Enter a task"></textarea>
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Add</button>
+							<input type="submit" class="btn btn-default" value="Add" />
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 						</div>

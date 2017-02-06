@@ -41,13 +41,29 @@
 			data : {
 				labels : [ 'M', 'T', 'W', 'T', 'F', 'S', 'S' ],
 				datasets : [ {
-					label : 'Closed issue',
+					label : 'Closed',
 					data : [ 12, 19, 3, 17, 6, 3, 7 ],
 					backgroundColor : "rgba(153,255,51,0.4)"
 				}, {
-					label : 'Opened issue',
-					data : [ 2, 29, 5, 5, 2, 3, 10 ],
+					label : 'Opened',
+					data : [ 2, 22, 5, 5, 2, 3, 10 ],
 					backgroundColor : "rgba(255,153,0,0.4)"
+				}, {
+					label : 'Assigned',
+					data : [ 1, 2, 4, 0, 0, 1, 3 ],
+					backgroundColor : "rgba(204,153,255,0.4)"
+				}, {
+					label : 'Feedback',
+					data : [ 5, 9, 7, 11, 20, 6, 0 ],
+					backgroundColor : "rgba(255,255,0,0.4)"
+				}, {
+					label : 'Confirmed',
+					data : [ 1, 0, 0, 7, 0, 0, 0 ],
+					backgroundColor : "rgba(255,0,0,0.4)"
+				}, {
+					label : 'Resolved',
+					data : [ 6, 7, 3, 10, 1, 7, 21 ],
+					backgroundColor : "rgba(0,0,255,0.4)"
 				}
 
 				]
@@ -55,7 +71,7 @@
 			options : {
 				title : {
 					display : true,
-					text : 'Custom Chart Title'
+					text : 'Issue status by week'
 				},
 				responsive : true
 			}

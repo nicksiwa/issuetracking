@@ -81,12 +81,16 @@
 								<p class="form-control-static">Closed</p>
 							</div>
 						</div>
-
+<div class="form-group">
+<label for="tile" class="control-label col-sm-2">Description :</label>
+<div class="col-sm-3 col-lg-2 col-md-2">
 						<textarea readonly name="description" class="form-control"
 							rows="5" id="description" placeholder="Description">Issue detail</textarea>
+						</div></div>
 						<br>
 						<div class="form-group">
-							<div class="pull-right col-sm-3 col-lg-2 col-md-2">
+						<label for="tile" class="control-label col-sm-2"></label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
 								<input type="submit" class="btn btn-success"
 									value="Reopen issue" />
 							</div>

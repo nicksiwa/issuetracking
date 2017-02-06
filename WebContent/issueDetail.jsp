@@ -121,11 +121,13 @@
 								</p>
 							</div>
 						</div>
-
+<div class="form-group">
+<label for="tile" class="control-label col-sm-2">Description :</label>
+<div class="col-sm-3 col-lg-2 col-md-2">
 						<textarea readonly name="description" class="form-control"
 									rows="5" id="description" placeholder="Description"><c:out
 										value="${issue.description}"></c:out></textarea>
-						
+					</div>	
 					<script>
 					
 						CKEDITOR.replace('description', {toolbarStartupExpanded : false});
@@ -133,7 +135,7 @@
 						
 					</script>
 
-
+	</div>
 						<hr>
 						<div class="form-group">
 							<label for="description" class="control-label col-sm-2"></label>
