@@ -116,13 +116,29 @@
     <servlet-name>RegisterDetailController</servlet-name>
     <url-pattern>/RegisterDetailController.do</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>TaskController</servlet-name>
     <servlet-class>com.siwa.controller.TaskController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TaskController</servlet-name>
     <url-pattern>/TaskController.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MilestoneController</servlet-name>
+    <servlet-class>com.siwa.controller.MilestoneController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MilestoneController</servlet-name>
+    <url-pattern>/MilestoneController.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>LabelController</servlet-name>
+    <servlet-class>com.siwa.controller.LabelController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LabelController</servlet-name>
+    <url-pattern>/LabelController.do</url-pattern>
   </servlet-mapping>
 </web-app>

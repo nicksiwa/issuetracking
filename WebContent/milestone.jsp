@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,7 +24,7 @@
 				<li><a href="ProjectController.do?action=main">Project road
 						map</a></li>
 				<li class="active"><a
-					href="ProjectController.do?action=milestone">Project milestone</a></li>
+					href="MilestoneController.do?action=milestone">Project milestone</a></li>
 				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
 				<li><a href="ProjectController.do?action=task">Project task</a></li>
 				<li><a href="ProjectController.do?action=label">Issue labels</a></li>
@@ -42,10 +43,19 @@
 					</div>
 
 					<ul class="list-group">
+					
+					<c:choose>
+							<c:when test="${fn:length(milestones)=='0'}">
+								<li class="list-group-item">No have any milestone</li>
+							</c:when>
+							<c:otherwise>
+						
+							<c:forEach items="${milestones}" var="milestone">
+					
 						<li class="list-group-item">
 
-							<div class="col-md-6"><h5>Milestone 1 </h5>
-							<p>milestone description</p>
+							<div class="col-md-6"><h5><c:out value="${milestone.milestoneName}" /></h5>
+							<p><c:out value="${milestone.milestoneDescription}" /></p>
 							</div>
 
 							<div class="col-md-6">
@@ -57,22 +67,8 @@
 								50 % complete&nbsp;&nbsp;1 open&nbsp;&nbsp;1 close
 							</div> <br> <br> <br>
 						</li>
-
-						<li class="list-group-item">
-
-							<div class="col-md-6"><h5>Milestone 2</h5>
-							<p>milestone description</p>
-							</div>
-							
-							<div class="col-md-6">
-								<div class="progress">
-									<div class="progress-bar progress-bar-success"
-										role="progressbar" aria-valuenow="50" aria-valuemin="0"
-										aria-valuemax="100" style="width: 50%">50%</div>
-								</div>
-								50 % complete&nbsp;&nbsp;1 open&nbsp;&nbsp;1 close
-							</div> <br> <br> <br>
-						</li>
+						</c:forEach>
+							</c:otherwise></c:choose>
 					</ul>
 
 				</div>
@@ -80,7 +76,7 @@
 
 			</div>
 		</form>
-		<form action="" class="form-horizontal">
+		<form action="MilestoneController.do" method="post" class="form-horizontal">
 		<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 
@@ -91,16 +87,17 @@
 							<h4 class="modal-title">New milestone</h4>
 						</div>
 						<div class="modal-body">
+						
+						
 						<label for="comment">Title :</label>
-							<input type="text" class="form-control">
+							<input type="text" name="milestoneName" class="form-control">
 							<br>
 							<label for="comment">Description :</label>
-							<textarea class="form-control" rows="5" id="comment"></textarea>
+							<textarea class="form-control" name="milestoneDescription" rows="5" id="comment"></textarea>
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Add</button>
+						<input type="submit" class="btn btn-default" value="Add" />
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 						</div>

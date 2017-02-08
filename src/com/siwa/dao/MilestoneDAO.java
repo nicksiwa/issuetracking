@@ -1,0 +1,15 @@
+package com.siwa.dao;
+
+import java.util.List;
+
+import com.siwa.model.Milestone;
+
+public interface MilestoneDAO {
+	
+	public void addMilestone(Milestone milestone);
+	
+	public void deleteMilestone(int milestoneID);
+	
+	public List<Milestone> getAllMilestone();
+
+}
