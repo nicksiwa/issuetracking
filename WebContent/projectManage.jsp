@@ -59,7 +59,7 @@
 										value="<c:out value="${project.projectID}" />">
 
 										<p class="list-group-item-heading text-primary lead">
-											<a href="ProjectController.do?action=main"><strong><c:out
+											<a href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>"><strong><c:out
 														value="${project.projectName}"></c:out></strong></a> <span
 												class="pull-right"><small><a
 													class="text-muted" data-toggle="tooltip"

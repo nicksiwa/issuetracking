@@ -32,4 +32,6 @@ public interface IssueDAO {
 	
 	public List <Issue> getIssueByProject(int projectID);
 	
+	public Issue getIssueByLastInsert();
+	
 }

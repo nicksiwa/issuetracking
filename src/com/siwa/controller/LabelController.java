@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.siwa.dao.LabelDAO;
 import com.siwa.dao.LabelDAOImplementation;
+import com.siwa.dao.ProjectDAO;
+import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Label;
+import com.siwa.model.Project;
 
 
 @WebServlet("/LabelController")
@@ -19,9 +22,11 @@ public class LabelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public static final String LABEL = "/projectLabels.jsp"; 
     private LabelDAO dao;
+    private ProjectDAO dao2;
 
     public LabelController() {
        dao = new LabelDAOImplementation();
+       dao2 = new ProjectDAOImplementation();
     }
 
 	
@@ -31,19 +36,20 @@ public class LabelController extends HttpServlet {
 		
 		if(action.equalsIgnoreCase("delete")){
 			forward = LABEL;
-			int labelID = Integer.parseInt(request.getParameter("labelID"));
-			dao.deleteLabel(labelID);
-			request.setAttribute("labels", dao.getAllLabel());
 			
 		}else if(action.equalsIgnoreCase("insert")){
 			forward = LABEL;
 			
 		}else if(action.equalsIgnoreCase("label")){
 			forward = LABEL;
-			request.setAttribute("labels", dao.getAllLabel());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("labels", dao.getAllLabelByProjectId(projectID));
 		}else{
 			forward = LABEL;
-			request.setAttribute("labels", dao.getAllLabel());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			request.setAttribute("labels", dao.getAllLabelByProjectId(projectID));
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
@@ -61,6 +67,9 @@ public class LabelController extends HttpServlet {
 		labelType = new String(labelType.getBytes("ISO8859-1"), "UTF-8");
 		label.setLabelType(labelType);
 		
+		int labelProject = Integer.parseInt((request.getParameter("projectID")));
+		label.setLabelProject(labelProject);
+		
 		String labelID = request.getParameter("labelID");
 		if(labelID == null || labelID.isEmpty()){
 			dao.addLabel(label);
@@ -68,7 +77,10 @@ public class LabelController extends HttpServlet {
 			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(LABEL);
-		request.setAttribute("labels", dao.getAllLabel());
+		int projectID = Integer.parseInt(request.getParameter("projectID"));
+		Project project = dao2.getProjectById(projectID);
+		request.setAttribute("project", project);
+		request.setAttribute("labels", dao.getAllLabelByProjectId(projectID));
 		view.forward(request, response);
 	}
 

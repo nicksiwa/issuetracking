@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.siwa.model.Issue"%>
 <!DOCTYPE HTML>
 
@@ -121,21 +122,21 @@
 								</p>
 							</div>
 						</div>
-<div class="form-group">
-<label for="tile" class="control-label col-sm-2">Description :</label>
-<div class="col-sm-3 col-lg-2 col-md-2">
-						<textarea readonly name="description" class="form-control"
+						<div class="form-group">
+							<label for="tile" class="control-label col-sm-2">Description
+								:</label>
+							<div class="col-sm-3 col-lg-2 col-md-2">
+								<textarea readonly name="description" class="form-control"
 									rows="5" id="description" placeholder="Description"><c:out
 										value="${issue.description}"></c:out></textarea>
-					</div>	
-					<script>
-					
-						CKEDITOR.replace('description', {toolbarStartupExpanded : false});
-						
-						
-					</script>
+							</div>
+							<script>
+								CKEDITOR.replace('description', {
+									toolbarStartupExpanded : false
+								});
+							</script>
 
-	</div>
+						</div>
 						<hr>
 						<div class="form-group">
 							<label for="description" class="control-label col-sm-2"></label>
@@ -151,10 +152,10 @@
 										<option value="confirmed">Confirmed</option>
 										<option value="resolved">Resolved</option>
 									</select>
-									
+
 								</div>
 							</div>
-							
+
 							<input type="submit" class="btn btn-success" value="Close issue" />
 						</div>
 
@@ -172,33 +173,74 @@
 
 				</div>
 			</div>
+
+
+
 			<div class="col-md-3">
 				<div class="panel panel-default">
 
 					<div class="panel-body">
-						Project Issue Tracking
-						<div class="progress">	
-							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
-								aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-								50%</div>
-						</div>
+						<label for="status" class="control-label">Select project
+							milestone</label> <select name="status" class="form-control">
+							<option value="assign">Milestone 1</option>
+							<option value="feedback">Milestone 2</option>
+							<option value="confirmed">Milestone 3</option>
+							<option value="resolved">Milestone 4</option>
+						</select>
 					</div>
-						<ul class="list-group">
-						<li class="list-group-item text-primary">
-						Issue 1<span class="pull-right"><span class="label label-success">Resolved</span></span>
+					<ul class="list-group">
+						<li class="list-group-item text-primary">Milestone 1 <span
+							class="pull-right glyphicon glyphicon-remove"></span>
 						</li>
-						<li class="list-group-item text-primary">
-						Issue 2<span class="pull-right"><span class="label label-danger">Feedback</span></span>
+						<li class="list-group-item text-primary">Milestone 2 <span
+							class="pull-right glyphicon glyphicon-remove"></span>
 						</li>
-						<li class="list-group-item text-primary">
-						Issue 3<span class="pull-right"><span class="label label-danger">Feedback</span></span>
-						</li>
-						<li class="list-group-item text-primary">
-						Issue 4<span class="pull-right"><span class="label label-success">Resolved</span></span>
-						</li>
-						</ul>
+					</ul>
 				</div>
 			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+
+						<label for="status" class="control-label">Select issue
+							label</label> <select name="status" class="form-control">
+							<c:forEach items="${labels}" var="label">
+							<option value="assign"><c:out value="${label.labelName}" /></option>
+							</c:forEach>
+							
+						</select>
+					</div>
+					<ul class="list-group">
+						<c:choose>
+							<c:when test="${fn:length(labels)=='0'}">
+								<li class="list-group-item">No have any label</li>
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach items="${labels}" var="label">
+
+									<li class="list-group-item">
+										
+											<span class="label <c:out value="${label.labelType}" />"><span
+												class="glyphicon glyphicon-tag"></span> <c:out
+													value="${label.labelName}" /></span> <small><span
+												class="pull-right"><a
+													href=""><span class="glyphicon glyphicon-remove"></span></a></span></small>
+										 <input id="i" type="hidden" name="projectID"
+										value="<c:out value="${label.labelProject}" />">
+
+									</li>
+
+
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+			</div>
+
+
 		</div>
 	</form>
 

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.siwa.model.Index;
 import com.siwa.model.Label;
 import com.siwa.util.DBUtil;
 
@@ -63,6 +64,77 @@ public class LabelDAOImplementation implements LabelDAO {
 			}
 			rs.close();
 			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return labels;
+	}
+	@Override
+	public Label getLabelByProjectId(int projectID) {
+		Label label = new Label();
+		try{
+			String query = "select * from label where labelProject=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				label.setLabelID(rs.getInt("labelID"));
+				label.setLabelName(rs.getString("labelName"));
+				label.setLabelType(rs.getString("labelType"));
+				label.setLabelProject(rs.getInt("labelProject"));
+			}
+			ps.close();
+			rs.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return label;
+	}
+	@Override
+	public List<Label> getAllLabelByProjectId(int projectID) {
+		List<Label> labels = new ArrayList<Label>();
+		try{
+			String query = "select * from label where labelProject=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Label label = new Label();
+				label.setLabelID(rs.getInt("labelID"));
+				label.setLabelName(rs.getString("labelName"));
+				label.setLabelType(rs.getString("labelType"));
+				label.setLabelProject(rs.getInt("labelProject"));
+				labels.add(label);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return labels;
+	}
+	@Override
+	public List<Label> getAllLabelByProjectName(String projectName) {
+		List<Label> labels = new ArrayList<Label>();
+		try{
+			String query2 = "set @project_id = (select project.projectID from project where project.projectName = ?)";
+			String query = "select * from label where labelProject=@project_id";
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps2.setString(1, projectName);
+			ps2.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Label label = new Label();
+				label.setLabelID(rs.getInt("labelID"));
+				label.setLabelName(rs.getString("labelName"));
+				label.setLabelType(rs.getString("labelType"));
+				label.setLabelProject(rs.getInt("labelProject"));
+				labels.add(label);
+			}
+			rs.close();
+			ps2.close();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

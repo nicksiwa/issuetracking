@@ -21,7 +21,7 @@
 	<form action="IssueController.do" method="post" class="form-horizontal">
 		<div class="container">
 
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
@@ -70,7 +70,7 @@
 									value="<c:out value="${issue.title}" />" placeholder="Title" />
 							</div>
 						</div>
-	
+
 
 						<div class="form-group">
 							<label for="description" class="control-label col-sm-2">Description
@@ -82,11 +82,10 @@
 								<script>
 									CKEDITOR.replace('description');
 								</script>
-								<br>
-								<input type="file" name="file" />
+								<br> <input type="file" name="file" />
 							</div>
 						</div>
-						
+
 
 
 						<br>
@@ -147,59 +146,9 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-md-3">
-				<div class="panel panel-default">
 
-					<div class="panel-body">
-					<label for="status" class="control-label">Select project milestone</label>
-						
-						<select name="status" class="form-control">
-										<option value="assign">Milestone 1</option>
-										<option value="feedback">Milestone 2</option>
-										<option value="confirmed">Milestone 3</option>
-										<option value="resolved">Milestone 4</option>
-									</select>
-					</div>
-						<ul class="list-group">
-						<li class="list-group-item text-primary">
-						Milestone 1 <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						<li class="list-group-item text-primary">
-						Milestone 2 <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						</ul>
-				</div>
-			</div>
-							<div class="col-md-3">
-				<div class="panel panel-default">
 
-					<div class="panel-body">
-					
-						<label for="status" class="control-label">Select issue label</label>
-						
-						<select name="status" class="form-control">
-										<option value="assign">Bug</option>
-										<option value="feedback">Help wanted</option>
-										<option value="confirmed">Question</option>
-										<option value="resolved">Feature</option>
-									</select>
-					</div>
-						<ul class="list-group">
-						<li class="list-group-item text-primary list-group-item-danger">
-						Bug <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						<li class="list-group-item text-primary list-group-item-success">
-						Help wanted <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						<li class="list-group-item text-primary list-group-item-warning">
-						Question <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						<li class="list-group-item text-primary list-group-item-info">
-						Feature <span class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						</ul>
-				</div>
-			</div>
+
 		</div>
 	</form>
 

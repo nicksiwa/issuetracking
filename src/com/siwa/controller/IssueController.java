@@ -21,10 +21,13 @@ import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.LabelDAO;
+import com.siwa.dao.LabelDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
+import com.siwa.model.Person;
 import com.siwa.model.Project;
 
 
@@ -36,6 +39,7 @@ public class IssueController extends HttpServlet {
 	private IssueDAO dao;
 	private ProjectDAO dao2;
 	private IndexDAO dao3;
+	private LabelDAO dao4;
 	
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
@@ -48,6 +52,7 @@ public class IssueController extends HttpServlet {
        dao = new IssueDAOImplementation();
        dao2 = new ProjectDAOImplementation();
        dao3 = new IndexDAOImplementation();
+       dao4 = new LabelDAOImplementation();
     }
 
 	
@@ -168,9 +173,12 @@ public class IssueController extends HttpServlet {
 			issue.setIssueID(Integer.parseInt(issueID));
 			dao.updateIssue(issue);
 		}
-		RequestDispatcher view = request.getRequestDispatcher(REPORT);
-		request.setAttribute("reports", dao3.getReportByMe(username));
+		RequestDispatcher view = request.getRequestDispatcher(ISSUE_DETAIL);
+		issue = dao.getIssueByLastInsert();
+		request.setAttribute("issue", issue);
+		request.setAttribute("labels", dao4.getAllLabelByProjectName(project));
 		view.forward(request, response);
+		
 	}
 
 }

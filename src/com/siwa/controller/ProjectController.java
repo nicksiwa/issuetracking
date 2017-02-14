@@ -89,21 +89,39 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("issueResolved", dao.getAllIssueByResolved(projectID));
 		} else if (action.equalsIgnoreCase("main")) {
 			forward = MAIN;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		} 
 		else if(action.equalsIgnoreCase("task")){
 			forward = TASK;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		}
 		else if(action.equalsIgnoreCase("graph")){
 			forward = GRAPH;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		}
 		else if(action.equalsIgnoreCase("milestone")){
 			forward = MILE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		}
 		else if(action.equalsIgnoreCase("label")){
 			forward = LABEL;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		}
 		else if(action.equalsIgnoreCase("github")){
 			forward = GITHUB;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao.getProjectById(projectID);
+			request.setAttribute("project", project);
 		}
 		else {
 			forward = MANAGE;

@@ -11,4 +11,10 @@ public interface LabelDAO {
 	public void deleteLabel(int labelID);
 	
 	public List<Label> getAllLabel();
+	
+	public Label getLabelByProjectId(int projectID);
+	
+	public List<Label> getAllLabelByProjectId(int projectID);
+	
+	public List<Label> getAllLabelByProjectName(String projectName);
 }

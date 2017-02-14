@@ -340,6 +340,38 @@ public class IssueDAOImplementation implements IssueDAO {
 		return projects;
 	}
 
+	@Override
+	public Issue getIssueByLastInsert() {
+		Issue issue = new Issue();
+		try{
+			String query = "SET @last_id_in_issue = LAST_INSERT_ID()";
+			String query2 = "SELECT * FROM issue WHERE issueID = @last_id_in_issue";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.executeQuery();
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			ResultSet rs = ps2.executeQuery();
+			while(rs.next()){
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+			}
+			rs.close();
+			ps.close();
+			ps2.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issue;
+	}
+
 
 
 }
