@@ -89,7 +89,7 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">New milestone</h4>
-						</div>
+							</div>
 						<div class="modal-body">
 						<label for="comment">Title :</label>
 							<input type="text" class="form-control">

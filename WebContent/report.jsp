@@ -2,17 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Show All Issue</title>
+<title>Report</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
+<jsp:include page="navbar.jsp" />
 <body>
-	<jsp:include page="navbar.jsp" />
 <style>
 table {
     font-family: arial, sans-serif;
@@ -30,7 +30,7 @@ th {
     color: white;
     text-align: center;
     }
-    tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: #dddddd;
 }
 select{
@@ -51,8 +51,14 @@ width: 18%;
     cursor: pointer;
 }
 </style>
-	<div class="container">
-		<div class="panel-heading">
+	<script>
+		// $(function() {
+		//	$('input[name=birthDate]').datepicker();
+	// 	});
+	</script>
+	
+	<div class="container">			
+			<div class="panel-heading">
 					<h3>
 						<span class="glyphicon glyphicon-file"></span> Report	
 					</h3>	
@@ -114,68 +120,74 @@ width: 18%;
 		<button class="button">Submit</button>
 		</h5> 	 
 	</div>
-	<div class="col-md-12">
-	    <h5 class="select">Please Severity : &nbsp;  &nbsp; &nbsp;  	
-	     <select> 
-			  <option selected >------Select severity------</option>
-			  <option value="01">Good</option>
-			  <option value="02">February</option>
-			  <option value="3">March</option>
-			  <option value="4">April</option>
-			  <option value="5">May</option>
-	
-		</select>
-		 &nbsp;  &nbsp; &nbsp;
-		<button class="button">Submit</button>
-		</h5> 	 
-	</div>
-		<p>
-			<a href="IssueController.do?action=insert">Add Issue</a>
-		</p>
-		<table class="table table-hover table-responsive table-striped">
-			<thead>
-				<tr>
-					<th>ProjectName</th>
-					<th>Project</th>
-					<th>Assign To</th>
-					<th>Severity</th>
-					<th>Description</th>
-					<th>Status</th>
-					<th>Create Date</th>
-					<th>StartDate </th>
-					<th>FisnishDate </th>
-					
-					
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${issues}" var="issue">
-					<tr>
-
-						<td><c:out value="${project.projectName}"></c:out></td>
-						<td><c:out value="${issue.project}"></c:out></td>
-						<td><c:out value="${issue.assign}"></c:out></td>
-						<td><c:out value="${issue.severity}"></c:out></td>
-						<td><c:out value="${issue.description}"></c:out></td>
-						<td><c:out value="${issue.status}"></c:out></td>
-						<td><fmt:formatDate value="${issue.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
-						
-						<fmt:setLocale value="en_US" />
-						
-						<td><fmt:formatDate value="${issue.updateDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
-						
-						
-						
-						
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-3.1.0.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<div class="panel-body" >
+		<table>
+			  <tr>
+			    <th>Project Name</th>
+			    <th>Name</th>
+			    <th>Date</th>
+			    <th>Severity</th>
+			    <th>Discripsion</th>
+			    <th>Status</th>
+			    
+			  </tr>
+			  <tr>
+			    <td>Issue </td>
+			    <td>Santipong Kimseng  </td>
+			    <td>12 December 2015</td>
+			    <td>50%</td>
+			    <td>Bug issue</td>
+			    <td>Edited</td>
+			  </tr>
+			  <tr>
+			    <td>Bug Error</td>
+			    <td>Siwa Khongsuphap</td>
+			    <td>24 September 2015</td>
+			    <td>60%</td>
+			     <td>Bug issue</td>
+			    <td>Non Edited</td>
+			  </tr>
+			  <tr>
+			    <td>Bug Error</td>
+			    <td>Pamon Intason</td>
+			    <td>20 May 2016</td>
+			    <td>80%</td>
+			     <td>Bug issue</td>
+			    <td>Edited</td>
+			  </tr>
+			  <tr>
+			    <td>Issue</td>
+			    <td>Santipong Kimseng </td>
+			    <td>21 September 2014</td>
+			    <td>20%</td>
+			     <td>Bug issue</td>
+			    <td>Edited</td>
+			  </tr>
+			  <tr>
+			    <td>Bug Error</td>
+			    <td>Siwa Khongsuphap</td>
+			    <td>6 April 2016</td>
+			    <td>63%</td>
+			     <td>Bug issue</td>
+			    <td>Non Edit</td>
+			  </tr>
+			  <tr>
+			    <td>Bug Error</td>
+			    <td>Santipong Kimseng</td>
+			    <td>10 August 2017</td>
+			    <td>44%</td>
+			     <td>Bug issue</td>
+			    <td>Non Edit</td>
+			  </tr>
+			</table>
+			</div>
+		</body>
+	</html>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/jquery-3.1.0.min.js"></script>
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script
+				src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

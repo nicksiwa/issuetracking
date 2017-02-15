@@ -59,7 +59,7 @@ public class IssueController extends HttpServlet {
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_ISSUE;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
-			dao.deleteIssue(issueID);
+			dao.deleteIssue(issueID);	
 			request.setAttribute("issues", dao.getAllIssue());
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
