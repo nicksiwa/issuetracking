@@ -84,6 +84,9 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("unassign", dao.getUnassignIssue());
 			
 			request.setAttribute("feedback", dao2.getFeedbackByUser(username));
+			
+			request.setAttribute("label", dao.getLabelByIssueId(username));
+			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

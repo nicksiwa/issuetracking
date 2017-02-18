@@ -63,7 +63,7 @@
 													href=""><span class="glyphicon glyphicon-remove"></span></a></span></small>
 										</h4>
 										
-<input id="i" type="hidden" name="projectID" value="<c:out value="${label.labelProject}" />">
+										<input id="i" type="hidden" name="projectID" value="<c:out value="${label.labelProject}" />">
 
 									</li>
 

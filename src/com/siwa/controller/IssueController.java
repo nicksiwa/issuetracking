@@ -23,6 +23,8 @@ import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.dao.LabelDAO;
 import com.siwa.dao.LabelDAOImplementation;
+import com.siwa.dao.MilestoneDAO;
+import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Comment;
@@ -40,6 +42,7 @@ public class IssueController extends HttpServlet {
 	private ProjectDAO dao2;
 	private IndexDAO dao3;
 	private LabelDAO dao4;
+	private MilestoneDAO dao5;
 	
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
@@ -53,6 +56,7 @@ public class IssueController extends HttpServlet {
        dao2 = new ProjectDAOImplementation();
        dao3 = new IndexDAOImplementation();
        dao4 = new LabelDAOImplementation();
+       dao5 = new MilestoneDAOImplementation();
     }
 
 	
@@ -86,7 +90,10 @@ public class IssueController extends HttpServlet {
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = dao.getAssignById(issueID);
 			request.setAttribute("issue", issue);
-			
+			request.setAttribute("labels", dao4.getAllLabelByIssueID(issueID));
+			request.setAttribute("labelAssigns", dao4.getAssignLabel(issueID));
+			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
+			request.setAttribute("milestoneAssigns", dao5.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
 		}
 		else if (action.equalsIgnoreCase("project")){

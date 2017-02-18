@@ -140,5 +140,55 @@ public class LabelDAOImplementation implements LabelDAO {
 		}
 		return labels;
 	}
+	@Override
+	public List<Label> getAllLabelByIssueID(int issueID) {
+		List<Label> labels = new ArrayList<Label>();
+		try{
+			String query = "set @project_id =(select project.projectID from project join issue on issue.project = project.projectName and issue.issueID = ?)";
+			String query2 = "select * from label where labelProject=@project_id";
+			PreparedStatement ps = conn.prepareStatement(query);
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			ps.setInt(1, issueID);
+			ps.executeQuery();
+			ResultSet rs = ps2.executeQuery();
+			while(rs.next()){
+				Label label = new Label();
+				label.setLabelID(rs.getInt("labelID"));
+				label.setLabelName(rs.getString("labelName"));
+				label.setLabelType(rs.getString("labelType"));
+				label.setLabelProject(rs.getInt("labelProject"));
+				labels.add(label);
+			}
+			rs.close();
+			ps2.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return labels;
+	}
+	@Override
+	public List<Label> getAssignLabel(int issueID) {
+		List<Label> labelAssigns = new ArrayList<Label>();
+		try{
+			String query = "select label.labelID,label.labelName,label.labelType,label.labelProject from label join assignlabel on label.labelID = assignlabel.labelID join issue on assignlabel.issueID = issue.issueID and issue.issueID = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Label label = new Label();
+				label.setLabelID(rs.getInt("labelID"));
+				label.setLabelName(rs.getString("labelName"));
+				label.setLabelType(rs.getString("labelType"));
+				label.setLabelProject(rs.getInt("labelProject"));
+				labelAssigns.add(label);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return labelAssigns;
+	}
 
 }

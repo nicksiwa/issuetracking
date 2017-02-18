@@ -17,4 +17,8 @@ public interface LabelDAO {
 	public List<Label> getAllLabelByProjectId(int projectID);
 	
 	public List<Label> getAllLabelByProjectName(String projectName);
+	
+	public List<Label> getAllLabelByIssueID(int issueID);
+	
+	public List<Label> getAssignLabel(int issueID);
 }

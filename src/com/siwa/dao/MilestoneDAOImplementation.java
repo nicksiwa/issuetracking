@@ -71,4 +71,78 @@ public class MilestoneDAOImplementation implements MilestoneDAO {
 		return milestones;
 	}
 
+	@Override
+	public List<Milestone> getAllMilestoneByProjectId(int projectID) {
+		List<Milestone> milestones = new ArrayList<Milestone>();
+		try{
+			String query = "select * from milestone where milestoneProject=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Milestone milestone = new Milestone();
+				milestone.setMilestoneID(rs.getInt("milestoneID"));
+				milestone.setMilestoneName(rs.getString("milestoneName"));
+				milestone.setMilestoneDescription(rs.getString("milestoneDescription"));
+				milestone.setMilestoneProject(rs.getInt("milestoneProject"));
+				milestones.add(milestone);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return milestones;
+	}
+
+	@Override
+	public List<Milestone> getMilestoneByIssueId(int issueID) {
+		List<Milestone> milestones = new ArrayList<Milestone>();
+		try{
+			String query = "set @project_id =(select project.projectID from project join issue on issue.project = project.projectName and issue.issueID = ?)";
+			String query2 = "select * from milestone where milestoneProject=@project_id";
+			PreparedStatement ps = conn.prepareStatement(query);
+			PreparedStatement ps2 = conn.prepareStatement(query2);
+			ps.setInt(1, issueID);
+			ps.executeQuery();
+			ResultSet rs = ps2.executeQuery();
+			while(rs.next()){
+				Milestone milestone = new Milestone();
+				milestone.setMilestoneID(rs.getInt("milestoneID"));
+				milestone.setMilestoneName(rs.getString("milestoneName"));
+				milestone.setMilestoneDescription(rs.getString("milestoneDescription"));
+				milestone.setMilestoneProject(rs.getInt("milestoneProject"));
+				milestones.add(milestone);
+			}
+			rs.close();
+			ps2.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return milestones;
+	}
+
+	@Override
+	public List<Milestone> getAssignMilestone(int issueID) {
+		List<Milestone> milestonesAssigns = new ArrayList<Milestone>();
+		try{
+			String query = "select milestone.milestoneID,milestone.milestoneName,milestone.milestoneDescription,milestone.milestoneProject from milestone join assignmilestone on milestone.milestoneID = assignmilestone.milestoneID join issue on assignmilestone.issueID = issue.issueID and issue.issueID = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Milestone milestone = new Milestone();
+				milestone.setMilestoneID(rs.getInt("milestoneID"));
+				milestone.setMilestoneName(rs.getString("milestoneName"));
+				milestone.setMilestoneDescription(rs.getString("milestoneDescription"));
+				milestone.setMilestoneProject(rs.getInt("milestoneProject"));
+				milestonesAssigns.add(milestone);
+			}
+			ps.close();
+			rs.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return milestonesAssigns;
+	}
+
 }

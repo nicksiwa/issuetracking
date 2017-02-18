@@ -132,13 +132,30 @@
     <servlet-name>MilestoneController</servlet-name>
     <url-pattern>/MilestoneController.do</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>LabelController</servlet-name>
     <servlet-class>com.siwa.controller.LabelController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LabelController</servlet-name>
     <url-pattern>/LabelController.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AssignLabelController</servlet-name>
+    <servlet-class>com.siwa.controller.AssignLabelController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AssignLabelController</servlet-name>
+    <url-pattern>/AssignLabelController.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>AssignMilestoneController</servlet-name>
+    <servlet-class>com.siwa.controller.AssignMilestoneController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AssignMilestoneController</servlet-name>
+    <url-pattern>/AssignMilestoneController.do</url-pattern>
   </servlet-mapping>
 </web-app>

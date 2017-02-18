@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
- 
- 
+
+
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
@@ -32,25 +32,20 @@
 
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-					
+
 						<h4>
-						<font color="white">
-							<span class="glyphicon glyphicon-th-list"></span> <b>Assigned
-								to me</b><small><span class="pull-right"> <span
-									class="badge">${fn:length(indexs)} issue</span>
-							</span></small>
+							<font color="white"> <span
+								class="glyphicon glyphicon-th-list"></span> <b>Assigned to
+									me</b><small><span class="pull-right"> <span
+										class="badge">${fn:length(indexs)} issue</span>
+								</span></small>
 							</font>
 						</h4>
 
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
-						
-						<a class="list-group-item list-group-item-danger">
-						<p class="list-group-item-heading "><b>Have bug <span class="label label-danger">Bug</span> <span class="label label-info">Feature</span></b><small><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 26/12/2016 15:30</span></small></p>
-						From Project : Issue Tracking <span class="pull-right"><span class="glyphicon glyphicon-alert"></span> Pass due date by 3 day</span>
-						
-						</a>
+
 
 							<c:choose>
 								<c:when test="${fn:length(indexs)=='0'}">
@@ -59,25 +54,35 @@
 								<c:otherwise>
 
 									<c:forEach begin="0" end="2" items="${indexs}" var="index">
-										<a href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
+										<a
+											href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}"/>"
 											class="list-group-item" data-toggle="tooltip"
 											data-placement="top"
 											title="Click to change status or view issue detail">
 											<p class="list-group-item-heading ">
-												<b> <c:out value="${index.title}"></c:out> <span class="label label-success">Help wanted</span> <span class="label label-warning">Question</span> <span class="label label-info">Feature</span>
+												<b> <c:out value="${index.title}"></c:out>
+												&nbsp;&nbsp;
+											<c:forEach items="${label}" var="label">
+												<c:choose>
+													<c:when test="${index.issueID==label.issueID }">
+														<span class="label <c:out value="${label.labelType}"/>">
+															<c:out value="${label.labelName}" />
+														</span>&nbsp;
+													</c:when>
+												</c:choose>
+											</c:forEach>
+
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+															<fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 
-											</p>
+											</p> From Project : <c:out value="${index.project}"></c:out> 
 											
-												From Project :
-												<c:out value="${index.project}"></c:out>
 											
-
 										</a>
 									</c:forEach>
 									<br>
@@ -91,14 +96,62 @@
 
 
 
+
+
+
+
+
+
+
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h4><font color="white">
-							<span class="glyphicon glyphicon-globe"></span> <b>Unassigned</b><small><span
-								class="pull-right"> <span class="badge">${fn:length(unassign)} issue</span>
-									
-							</span></small>
-						</font></h4>
+
+						<h4>
+							<font color="white"> <span
+								class="glyphicon glyphicon-th-list"></span> <b>Test</b><small><span
+									class="pull-right"> <span class="badge">${fn:length(labels)}
+											issue</span>
+								</span></small>
+							</font>
+						</h4>
+
+					</div>
+					<div class="panel-body">
+													<a class="list-group-item list-group-item-danger">
+								<p class="list-group-item-heading ">
+									<b>Have bug <span class="label label-danger">Bug</span> <span
+										class="label label-info">Feature</span></b><small><span
+										class="pull-right"><span
+											class="glyphicon glyphicon-time"></span> 26/12/2016 15:30</span></small>
+								</p> From Project : Issue Tracking <span class="pull-right"><span
+									class="glyphicon glyphicon-alert"></span> Pass due date by 3
+									day</span>
+
+							</a>
+
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h4>
+							<font color="white"> <span
+								class="glyphicon glyphicon-globe"></span> <b>Unassigned</b><small><span
+									class="pull-right"> <span class="badge">${fn:length(unassign)}
+											issue</span>
+
+								</span></small>
+							</font>
+						</h4>
 
 					</div>
 					<div class="panel-body">
@@ -117,19 +170,19 @@
 											data-placement="top"
 											title="Click to change status or view issue detail">
 											<p class="list-group-item-heading ">
-												<b> <c:out value="${index.title}"></c:out> <span class="label label-danger">Bug</span> <span class="label label-warning">Question</span>
+												<b> <c:out value="${index.title}"></c:out> <span
+													class="label label-danger">Bug</span> <span
+													class="label label-warning">Question</span>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+															<fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
 
-											</p>
-											
-												From Project :
-												<c:out value="${index.project}"></c:out>
-											
+											</p> From Project : <c:out value="${index.project}"></c:out>
+
 										</a>
 
 									</c:forEach>
@@ -149,12 +202,14 @@
 
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h4><font color="white">
-							<span class="glyphicon glyphicon-edit"></span> <b>Report by
-								me</b><span class="pull-right"><small> <span
-									class="badge">${fn:length(reports)} issue</span>
-							</small></span>
-						</font></h4>
+						<h4>
+							<font color="white"> <span
+								class="glyphicon glyphicon-edit"></span> <b>Report by me</b><span
+								class="pull-right"><small> <span class="badge">${fn:length(reports)}
+											issue</span>
+								</small></span>
+							</font>
+						</h4>
 
 					</div>
 					<div class="panel-body">
@@ -175,14 +230,12 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+															<fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
-											</p>
-											
-												From Project :
-												<c:out value="${index.project}"></c:out>
-										
+											</p> From Project : <c:out value="${index.project}"></c:out>
+
 
 										</a>
 									</c:forEach>
@@ -200,12 +253,15 @@
 
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h4><font color="white">
-							<span class="glyphicon glyphicon-check"></span> <b>Resolved</b><span
-								class="pull-right"><small> <span class="badge">${fn:length(resolves)} issue</span>
-									
-							</small></span>
-						</font></h4>
+						<h4>
+							<font color="white"> <span
+								class="glyphicon glyphicon-check"></span> <b>Resolved</b><span
+								class="pull-right"><small> <span class="badge">${fn:length(resolves)}
+											issue</span>
+
+								</small></span>
+							</font>
+						</h4>
 
 					</div>
 					<div class="panel-body">
@@ -226,14 +282,12 @@
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
+																var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+															<fmt:formatDate value="${myDate}"
 																pattern="dd/MM/yyyy HH:mm" />
 													</font></span></small>
-											</p>
-											
-												From Project :
-												<c:out value="${index.project}"></c:out>
-											
+											</p> From Project : <c:out value="${index.project}"></c:out>
+
 										</a>
 									</c:forEach>
 									<br>
@@ -246,7 +300,7 @@
 
 					</div>
 				</div>
-			
+
 			</div>
 
 			<div class="col-md-4">
@@ -261,25 +315,26 @@
 					</div>
 
 					<ul class="list-group">
-					
-					<c:choose>
-								<c:when test="${fn:length(projects)=='0'}">
-      								<li class="list-group-item">No have any projects</li>
-      								  
-   								</c:when>
-								<c:otherwise>
-					
-						<c:forEach items="${projects}" var="index">
-							<li class="list-group-item text-primary"><a
-								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
-										value="${index.project}"></c:out></a><a
-								href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
-								class="btn btn-success btn-xs pull-right" role="button">New
-									issue</a></li>
-						</c:forEach>
-						
-						</c:otherwise></c:choose>
-						
+
+						<c:choose>
+							<c:when test="${fn:length(projects)=='0'}">
+								<li class="list-group-item">No have any projects</li>
+
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach items="${projects}" var="index">
+									<li class="list-group-item text-primary"><a
+										href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
+												value="${index.project}"></c:out></a><a
+										href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
+										class="btn btn-success btn-xs pull-right" role="button">New
+											issue</a></li>
+								</c:forEach>
+
+							</c:otherwise>
+						</c:choose>
+
 					</ul>
 				</div>
 
@@ -289,20 +344,22 @@
 					</div>
 
 					<ul class="list-group">
-					
-					<c:choose>
+
+						<c:choose>
 							<c:when test="${fn:length(publics)=='0'}">
 								<li class="list-group-item">No have any projects</li>
 							</c:when>
 							<c:otherwise>
-						<c:forEach items="${publics}" var="index">
-							<li class="list-group-item text-primary"><a
-								href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
-										value="${index.project}"></c:out></a>
-										<span class="pull-right"><a href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>" class="btn btn-success btn-xs" role="button">New issue</a></span></li>
-						</c:forEach>
-						</c:otherwise></c:choose>
-						
+								<c:forEach items="${publics}" var="index">
+									<li class="list-group-item text-primary"><a
+										href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
+												value="${index.project}"></c:out></a> <span class="pull-right"><a
+											href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
+											class="btn btn-success btn-xs" role="button">New issue</a></span></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
 					</ul>
 				</div>
 
@@ -313,32 +370,35 @@
 									all</small></span></a>
 					</div>
 					<ul class="list-group">
-			
-							<c:choose>
-								<c:when test="${fn:length(feedback)=='0'}">
-      								<li class="list-group-item">No have any feedbacks</li> 
-   								</c:when>
-								<c:otherwise>
 
-						<c:forEach items="${feedback}" var="index">
-							<li class="list-group-item"><c:out value="${index.userComment}" /> <a
-								href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />"
-								data-toggle="tooltip" data-placement="top" title="Hooray!">
-									<c:out value="${index.commentDetail}" />
-							</a> <span class="pull-right"><small><font
-										color="gray"> <fmt:parseDate
-												value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm"
-												var="myDate" /> <span class="glyphicon glyphicon-time"></span> <fmt:formatDate value="${myDate}"
-												pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
-						</c:forEach>
-						</c:otherwise></c:choose>
-					
+						<c:choose>
+							<c:when test="${fn:length(feedback)=='0'}">
+								<li class="list-group-item">No have any feedbacks</li>
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach items="${feedback}" var="index">
+									<li class="list-group-item"><c:out
+											value="${index.userComment}" /> <a
+										href="IssueController.do?action=detail&issueID=<c:out value="${index.issueID}" />"
+										data-toggle="tooltip" data-placement="top" title="Hooray!">
+											<c:out value="${index.commentDetail}" />
+									</a> <span class="pull-right"><small><font
+												color="gray"> <fmt:parseDate
+														value="${index.commentTime}" pattern="yyyy-MM-dd HH:mm"
+														var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+													<fmt:formatDate value="${myDate}"
+														pattern="dd/MM/yyyy HH:mm" /></font></small></span></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
 					</ul>
 
 				</div>
 			</div>
 		</form>
-	
+
 	</div>
 
 	<script>
@@ -377,7 +437,6 @@
 						var reposnum = json.public_repos;
 
 						document.getElementById("a").value = fullname;
-						
 
 						if (fullname == undefined) {
 							fullname = username;

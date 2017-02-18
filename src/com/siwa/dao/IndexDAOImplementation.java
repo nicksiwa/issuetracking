@@ -35,10 +35,12 @@ public class IndexDAOImplementation implements IndexDAO {
 				index.setTitle(rs.getString("title"));
 				index.setUpdateDate(rs.getString("updateDate"));
 				index.setStatus(rs.getString("status"));
+				
 				indexs.add(index);
 
 				if (index.getStatus().equals("Resolved")) {
 					indexs.remove(index);
+					
 				}
 			}
 
@@ -189,6 +191,7 @@ public class IndexDAOImplementation implements IndexDAO {
 		try{
 			String query = "select * from issue where assign='-' order by updateDate desc";
 			Statement statement = conn.createStatement();
+			
 			ResultSet rs = statement.executeQuery(query);
 			while(rs.next()){
 				Index index = new Index();
@@ -210,6 +213,29 @@ public class IndexDAOImplementation implements IndexDAO {
 			e.printStackTrace();
 		}
 		return unassign;
+	}
+
+	@Override
+	public List<Index> getLabelByIssueId(String user) {
+		List<Index> label = new ArrayList<Index>();
+		try{
+			String query = "select label.labelName, label.labelType,issue.issueID from issue join assignlabel on issue.issueID = assignlabel.issueID and issue.assign = ? join label on assignlabel.labelID = label.labelID";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Index index = new Index();
+				index.setIssueID(rs.getInt("issueID"));
+				index.setLabelName(rs.getString("labelName"));
+				index.setLabelType(rs.getString("labelType"));	
+				label.add(index);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return label;
 	}
 
 }

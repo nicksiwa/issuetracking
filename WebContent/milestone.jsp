@@ -24,7 +24,7 @@
 				<li><a href="ProjectController.do?action=main">Project road
 						map</a></li>
 				<li class="active"><a
-					href="MilestoneController.do?action=milestone">Project milestone</a></li>
+					href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project milestone</a></li>
 				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
 				<li><a href="ProjectController.do?action=task">Project task</a></li>
 				<li><a href="ProjectController.do?action=label">Issue labels</a></li>
@@ -94,7 +94,7 @@
 							<br>
 							<label for="comment">Description :</label>
 							<textarea class="form-control" name="milestoneDescription" rows="5" id="comment"></textarea>
-
+		<input id="i" type="hidden" name="projectID" value="<c:out value="${project.projectID}" />">
 						</div>
 						<div class="modal-footer">
 						<input type="submit" class="btn btn-default" value="Add" />

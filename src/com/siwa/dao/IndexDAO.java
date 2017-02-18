@@ -19,5 +19,7 @@ public interface IndexDAO {
 	public List<Index> getPublicProject();
 	
 	public List<Index> getUnassignIssue();
+	
+	public List<Index> getLabelByIssueId(String user);
  	
 }

@@ -20,10 +20,10 @@
 <body>
 
 	<jsp:include page="navbar.jsp" />
+	<div class="container">
+		<form action="EditStatusController.do" method="post"
+			class="form-horizontal">
 
-	<form action="EditStatusController.do" method="post"
-		class="form-horizontal">
-		<div class="container">
 			<div class="col-md-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -175,76 +175,115 @@
 			</div>
 
 
+		</form>
+
+		<form action="AssignMilestoneController.do" method="post" class="form-horizontal">
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
 
 					<div class="panel-body">
 						<label for="status" class="control-label">Select project
-							milestone</label> <select name="status" class="form-control">
-							<option value="assign">Milestone 1</option>
-							<option value="feedback">Milestone 2</option>
-							<option value="confirmed">Milestone 3</option>
-							<option value="resolved">Milestone 4</option>
+							milestone</label> <select name="milestoneName" class="form-control">
+							<c:forEach items="${milestones}" var="milestone">
+								<option><c:out
+										value="${milestone.milestoneName}" />
+
+										</option>
+										
+							</c:forEach>
 						</select>
+						
+						<input type="hidden" name="issueID" class="form-control"
+							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+						
+						<input type="hidden" name="assignMilestonelID" class="form-control"
+							value="" placeholder="issueID" />
+						
+						<button type="submit" class="btn btn-default">Add
+									milestone</button>
+						
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item text-primary">Milestone 1 <span
-							class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
-						<li class="list-group-item text-primary">Milestone 2 <span
-							class="pull-right glyphicon glyphicon-remove"></span>
-						</li>
+						<c:choose>
+							<c:when test="${fn:length(milestoneAssigns)=='0'}">
+								<li class="list-group-item">No have any milestone</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${milestoneAssigns}" var="milestone">
+								<li class="list-group-item">
+								<c:out value="${milestone.milestoneName}" />
+								<small><span
+											class="pull-right"><a href=""><span
+													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
+										type="hidden" name="projectID"
+										value="<c:out value="${milestone.milestoneProject}" />">
+								</li>
+								</c:forEach>
+							</c:otherwise>
+							</c:choose>
 					</ul>
 				</div>
 			</div>
+
+		</form>
+
+		<form action="AssignLabelController.do" method="post" class="form-horizontal">
 			<div class="col-md-3">
 				<div class="panel panel-default">
 
 					<div class="panel-body">
 
 						<label for="status" class="control-label">Select issue
-							label</label> <select name="status" class="form-control">
+							label</label> <select name="labelName" class="form-control">
 							<c:forEach items="${labels}" var="label">
-							<option value="assign"><c:out value="${label.labelName}" /></option>
+								<option><c:out
+										value="${label.labelName}" />
+
+										</option>
+										
 							</c:forEach>
-							
+
 						</select>
+						
+						<input type="hidden" name="issueID" class="form-control"
+							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+							
+							<input type="hidden" name="assignLabelID" class="form-control"
+							value="" placeholder="issueID" />
+						
+						<button type="submit" class="btn btn-default">Add
+									label</button>
 					</div>
+					
 					<ul class="list-group">
 						<c:choose>
-							<c:when test="${fn:length(labels)=='0'}">
+							<c:when test="${fn:length(labelAssigns)=='0'}">
 								<li class="list-group-item">No have any label</li>
 							</c:when>
 							<c:otherwise>
 
-								<c:forEach items="${labels}" var="label">
-
-									<li class="list-group-item">
-										
-											<span class="label <c:out value="${label.labelType}" />"><span
-												class="glyphicon glyphicon-tag"></span> <c:out
-													value="${label.labelName}" /></span> <small><span
-												class="pull-right"><a
-													href=""><span class="glyphicon glyphicon-remove"></span></a></span></small>
-										 <input id="i" type="hidden" name="projectID"
-										value="<c:out value="${label.labelProject}" />">
-
-									</li>
-
-
-								</c:forEach>
+						<c:forEach items="${labelAssigns}" var="label">
+						<li class="list-group-item"><span
+										class="label <c:out value="${label.labelType}" />"><span
+											class="glyphicon glyphicon-tag"></span> <c:out
+												value="${label.labelName}" /></span> <small><span
+											class="pull-right"><a href=""><span
+													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
+										type="hidden" name="projectID"
+										value="<c:out value="${label.labelProject}" />"></li>
+						</c:forEach>
+								
 							</c:otherwise>
 						</c:choose>
+						
+						
 					</ul>
 				</div>
 			</div>
 
-
-		</div>
-	</form>
-
-
+		</form>
+	</div>
 	<form action="" method="post" class="form-horizontal">
 		<div class="container">
 			<div class="col-md-8">

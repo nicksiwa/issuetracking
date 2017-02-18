@@ -11,6 +11,9 @@ public class Index {
 	private String status;
 	private int projectID;
 	private String projectStatus;
+	private String labelName;
+	private String labelType;
+	private int labelID;
 	
 	
 	public int getIssueID() {
@@ -67,11 +70,33 @@ public class Index {
 	public void setProjectStatus(String projectStatus) {
 		this.projectStatus = projectStatus;
 	}
+	
+	public String getLabelName() {
+		return labelName;
+	}
+	public void setLabelName(String labelName) {
+		this.labelName = labelName;
+	}
+	public String getLabelType() {
+		return labelType;
+	}
+	public void setLabelType(String labelType) {
+		this.labelType = labelType;
+	}
+
+	public int getLabelID() {
+		return labelID;
+	}
+	public void setLabelID(int labelID) {
+		this.labelID = labelID;
+	}
 	@Override
 	public String toString() {
 		return "Index [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", updateDate=" + updateDate + ", reporter=" + reporter + ", status=" + status + ", projectID="
-				+ projectID + ", projectStatus=" + projectStatus + "]";
+				+ projectID + ", projectStatus=" + projectStatus + ", labelName=" + labelName + ", labelType="
+				+ labelType + ", labelID=" + labelID + "]";
 	}
+	
 	
 }

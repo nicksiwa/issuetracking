@@ -11,17 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.siwa.dao.MilestoneDAO;
 import com.siwa.dao.MilestoneDAOImplementation;
+import com.siwa.dao.ProjectDAO;
+import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Milestone;
+import com.siwa.model.Project;
 
 
 @WebServlet("/MilestoneController")
 public class MilestoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MilestoneDAO dao;
+    private ProjectDAO dao2;
     public static final String MILE = "/milestone.jsp";
 
     public MilestoneController() {
       dao = new MilestoneDAOImplementation();
+      dao2 = new ProjectDAOImplementation();
     }
 
 	
@@ -35,10 +40,16 @@ public class MilestoneController extends HttpServlet {
 			forward = MILE;
 		}else if(action.equalsIgnoreCase("milestone")){
 			forward = MILE;
-			request.setAttribute("milestones", dao.getAllMilestone());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
 		}else{
 			forward = MILE;
-			request.setAttribute("milestones", dao.getAllMilestone());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
@@ -57,6 +68,9 @@ public class MilestoneController extends HttpServlet {
 		milestoneDescription = new String(milestoneDescription.getBytes("ISO8859-1"), "UTF-8");
 		milestone.setMilestoneDescription(milestoneDescription);
 		
+		int milestoneProject = Integer.parseInt((request.getParameter("projectID")));
+		milestone.setMilestoneProject(milestoneProject);
+		
 		String milestoneID = request.getParameter("milestoneID");
 		if(milestoneID == null || milestoneID.isEmpty()){
 			dao.addMilestone(milestone);
@@ -65,7 +79,10 @@ public class MilestoneController extends HttpServlet {
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(MILE);
-		request.setAttribute("milestones", dao.getAllMilestone());
+		int projectID = Integer.parseInt(request.getParameter("projectID"));
+		Project project = dao2.getProjectById(projectID);
+		request.setAttribute("project", project);
+		request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
 		view.forward(request, response);
 	}
 
