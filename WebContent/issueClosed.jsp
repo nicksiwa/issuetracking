@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +22,7 @@
 						<h4>
 							<font color="white"> <span class="glyphicon glyphicon-ok"></span>
 								<b>Closed issue</b><small><span class="pull-right">
-										<span class="badge">10 issue</span>
+										<span class="badge">${fn:length(issues)} issue</span>
 
 								</span></small>
 							</font>
@@ -30,35 +31,40 @@
 					</div>
 					<div class="panel-body">
 						
-
-						
-
-
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th>Issue name</th>
 										<th>Project name</th>
-										<th>Date</th>
-										<th> <label><input type="checkbox" value="" onchange="checkAll(this)" name="chk[]">Select all</label></th>
+										<th>Update date</th>
+										<th> <label><input type="checkbox" value="" onchange="checkAll(this)" name="chk[]"><b>Select all</b></label></th>
 									</tr>
 								</thead>
 								<tbody>
-									<%
-								for (int i = 0; i <= 10; i++) {
-							%>
+									<c:forEach items="${issues}" var="issue">
 
 									<tr>
-										<td><a href="reopen.jsp">Have bug <span
-												class="label label-danger">Bug</span> <span
-												class="label label-info">Feature</span></a></td>
-										<td>Issue Tracking</td>
-										<td>26/12/2016 15:30</td>
+										<td><a href="IssueController.do?action=closed&issueID=<c:out value="${issue.issueID}"/>"><c:out value="${issue.title}"></c:out>	</a>
+										&nbsp;&nbsp;
+											<c:forEach items="${label}" var="label">
+											<c:choose>
+													<c:when test="${issue.issueID==label.issueID }">
+														<span class="label <c:out value="${label.labelType}"/>">
+															<c:out value="${label.labelName}" />
+														</span>&nbsp;
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</td>
+										<td><c:out value="${issue.project}"></c:out> </td>
+										<fmt:parseDate
+																value="${issue.updateDate}" pattern="yyyy-MM-dd HH:mm"
+																var="myDate" />
+										<td><fmt:formatDate value="${myDate}"
+																pattern="dd/MM/yyyy HH:mm" /></td>
 										<td><label><input type="checkbox" value=""></label></td>
 									</tr>
-	<%
-								}
-							%>
+</c:forEach>
 								</tbody>
 							</table>
 							<div class="col-md-offset-5">

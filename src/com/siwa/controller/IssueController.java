@@ -49,6 +49,7 @@ public class IssueController extends HttpServlet {
 	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
 	public static final String ISSUE_BY_PROJECT = "/issueByProject.jsp";
 	public static final String REPORT = "/reportMeList.jsp";
+	public static final String ISSUE_DETAIL_CLOSED = "/reopen.jsp";
 	
 	
     public IssueController() {
@@ -100,6 +101,17 @@ public class IssueController extends HttpServlet {
 			forward = ISSUE_BY_PROJECT;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			request.setAttribute("projects", dao.getIssueByProject(projectID));
+		}
+		else if(action.equalsIgnoreCase("closed")){
+			forward = ISSUE_DETAIL_CLOSED;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			Issue issue = dao.getAssignById(issueID);
+			request.setAttribute("issue", issue);
+			request.setAttribute("labels", dao4.getAllLabelByIssueID(issueID));
+			request.setAttribute("labelAssigns", dao4.getAssignLabel(issueID));
+			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
+			request.setAttribute("milestoneAssigns", dao5.getAssignMilestone(issueID));
+			request.setAttribute("comments", dao.getCommentByIssue(issueID));
 		}
 		else {
 			forward = LIST_ISSUE;

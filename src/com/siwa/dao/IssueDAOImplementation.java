@@ -169,6 +169,8 @@ public class IssueDAOImplementation implements IssueDAO {
 				comment.setCommentTime(rs.getTimestamp("commentTime"));
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
+				comment.setCommentIcon(rs.getString("commentIcon"));
+				comment.setCommentIconColor(rs.getString("commentIconColor"));
 				comments.add(comment);
 			}
 			rs.close();
@@ -370,6 +372,67 @@ public class IssueDAOImplementation implements IssueDAO {
 			e.printStackTrace();
 		}
 		return issue;
+	}
+
+	@Override
+	public void setStatusClose(Issue issue) {
+		java.util.Date date= new java.util.Date();
+		try{
+			String query = "update issue set updateDate=?, status='Closed' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setTimestamp(1, new Timestamp(date.getTime()));
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<Issue> getAllIssueClosed() {
+		List<Issue> issues = new ArrayList<Issue>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select * from issue where status='Closed'");
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+				issue.setCreateDate(rs.getTimestamp("createDate"));
+				issues.add(issue);
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issues;
+	}
+
+	@Override
+	public void setStatusReOpen(Issue issue) {
+		java.util.Date date= new java.util.Date();
+		try{
+			String query = "update issue set updateDate=?, status='Reopen' where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setTimestamp(1, new Timestamp(date.getTime()));
+			ps.setInt(2, issue.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 

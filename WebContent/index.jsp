@@ -23,12 +23,7 @@
 		<form action="" class="form-horizontal">
 
 
-
-
-
-
 			<div class="col-md-8">
-
 
 				<div class="panel panel-warning">
 					<div class="panel-heading">
@@ -170,9 +165,16 @@
 											data-placement="top"
 											title="Click to change status or view issue detail">
 											<p class="list-group-item-heading ">
-												<b> <c:out value="${index.title}"></c:out> <span
-													class="label label-danger">Bug</span> <span
-													class="label label-warning">Question</span>
+												<b> <c:out value="${index.title}"></c:out> &nbsp;&nbsp;
+											<c:forEach items="${label}" var="label">
+												<c:choose>
+													<c:when test="${index.issueID==label.issueID }">
+														<span class="label <c:out value="${label.labelType}"/>">
+															<c:out value="${label.labelName}" />
+														</span>&nbsp;
+													</c:when>
+												</c:choose>
+											</c:forEach>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
@@ -227,6 +229,16 @@
 											class="list-group-item">
 											<p class="list-group-item-heading">
 												<b> <c:out value="${index.title}"></c:out>
+												&nbsp;&nbsp;
+											<c:forEach items="${label}" var="label">
+												<c:choose>
+													<c:when test="${index.issueID==label.issueID }">
+														<span class="label <c:out value="${label.labelType}"/>">
+															<c:out value="${label.labelName}" />
+														</span>&nbsp;
+													</c:when>
+												</c:choose>
+											</c:forEach>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"
@@ -279,6 +291,16 @@
 											class="list-group-item">
 											<p class="list-group-item-heading">
 												<b> <c:out value="${index.title}"></c:out>
+												&nbsp;&nbsp;
+											<c:forEach items="${label}" var="label">
+												<c:choose>
+													<c:when test="${index.issueID==label.issueID }">
+														<span class="label <c:out value="${label.labelType}"/>">
+															<c:out value="${label.labelName}" />
+														</span>&nbsp;
+													</c:when>
+												</c:choose>
+											</c:forEach>
 												</b> <small><span class="pull-right"><font
 														color="gray"> <fmt:parseDate
 																value="${index.updateDate}" pattern="yyyy-MM-dd HH:mm"

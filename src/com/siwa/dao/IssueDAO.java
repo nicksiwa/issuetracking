@@ -34,4 +34,10 @@ public interface IssueDAO {
 	
 	public Issue getIssueByLastInsert();
 	
+	public void setStatusClose(Issue issue);
+	
+	public List <Issue> getAllIssueClosed();
+	
+	public void setStatusReOpen(Issue issue);
+	
 }

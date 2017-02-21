@@ -11,6 +11,8 @@ public class Comment {
 	private String commentStatus;
 	private int issueID;
 	private String commentAssign;
+	private String commentIcon;
+	private String commentIconColor;
 	
 	public int getCommentID() {
 		return commentID;
@@ -58,11 +60,26 @@ public class Comment {
 	public void setCommentAssign(String commentAssign) {
 		this.commentAssign = commentAssign;
 	}
+	
+	public String getCommentIcon() {
+		return commentIcon;
+	}
+	public void setCommentIcon(String commentIcon) {
+		this.commentIcon = commentIcon;
+	}
+	
+	public String getCommentIconColor() {
+		return commentIconColor;
+	}
+	public void setCommentIconColor(String commentIconColor) {
+		this.commentIconColor = commentIconColor;
+	}
 	@Override
 	public String toString() {
 		return "Comment [commentID=" + commentID + ", commentDetail=" + commentDetail + ", commentTime=" + commentTime
 				+ ", userComment=" + userComment + ", commentStatus=" + commentStatus + ", issueID=" + issueID
-				+ ", commentAssign=" + commentAssign + "]";
+				+ ", commentAssign=" + commentAssign + ", commentIcon=" + commentIcon + ", commentIconColor="
+				+ commentIconColor + "]";
 	}
 	
 }

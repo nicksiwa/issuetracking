@@ -19,8 +19,14 @@ import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.EditStatusDAO;
 import com.siwa.dao.EditStatusDAOIM;
+import com.siwa.dao.IndexDAO;
+import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.LabelDAO;
+import com.siwa.dao.LabelDAOImplementation;
+import com.siwa.dao.MilestoneDAO;
+import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
 
@@ -30,6 +36,10 @@ public class CommentController extends HttpServlet {
 	private CommentDAO dao;
 	private EditStatusDAO dao3;
 	private IssueDAO dao2;
+	private IndexDAO dao4;
+	private LabelDAO dao5;
+	private MilestoneDAO dao6;
+	
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_COMMENT = "/listComment.jsp";
 	public static final String INSERT_OR_EDIT = "/comment.jsp";
@@ -38,18 +48,23 @@ public class CommentController extends HttpServlet {
 	public static final String FEEDBACK = "/statusFeedback.jsp";
 	public static final String CONFIRMED = "/statusConfirmed.jsp";
 	public static final String RESOLVED = "/statusResolved.jsp";
+	public static final String CLOSED = "/issueClosed.jsp";
 
 	public CommentController() {
 		dao = new CommentDAOImplementation();
 		dao3 = new EditStatusDAOIM();
 		dao2 = new IssueDAOImplementation();
+		dao4 = new IndexDAOImplementation();
+		dao5 = new LabelDAOImplementation();
+		dao6 = new MilestoneDAOImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
-		
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
 	
 		if (action.equalsIgnoreCase("delete")) {
 			forward = LIST_COMMENT;
@@ -96,7 +111,53 @@ public class CommentController extends HttpServlet {
 			dao2.setStatusResolved(issue);
 			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
-		} else {
+		} 
+		else if(action.equalsIgnoreCase("closed")){
+			forward = CLOSED;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			Issue issue = new Issue();
+			issue.setIssueID(issueID);
+			dao2.setStatusClose(issue);
+			
+			Comment comment = new Comment();
+			comment.setUserComment(username);
+			comment.setIssueID(issueID);
+			dao.addCommentClose(comment);
+		
+			request.setAttribute("issues", dao2.getAllIssueClosed());
+			request.setAttribute("label", dao4.getLabelByIssueId(username));
+			
+			
+			
+		} 
+		else if(action.equalsIgnoreCase("closedissue")){
+			forward = CLOSED;
+			request.setAttribute("issues", dao2.getAllIssueClosed());
+			request.setAttribute("label", dao4.getLabelByIssueId(username));
+			
+		}
+		else if(action.equalsIgnoreCase("reopenissue")){
+			forward = ISSUE_DETAIL;
+			int issueID = Integer.parseInt(request.getParameter("issueID"));
+			Issue issue = new Issue();
+			issue.setIssueID(issueID);
+			dao2.setStatusReOpen(issue);
+			issue = dao2.getAssignById(issueID);
+			
+			Comment comment = new Comment();
+			comment.setUserComment(username);
+			comment.setIssueID(issueID);
+			dao.addCommentRepone(comment);
+			
+			request.setAttribute("issue", issue);
+			request.setAttribute("labels", dao5.getAllLabelByIssueID(issueID));
+			request.setAttribute("labelAssigns", dao5.getAssignLabel(issueID));
+			request.setAttribute("milestones", dao6.getMilestoneByIssueId(issueID));
+			request.setAttribute("milestoneAssigns", dao6.getAssignMilestone(issueID));
+			request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+			
+		}
+		else {
 			forward = LIST_COMMENT;
 			request.setAttribute("comments", dao.getAllComment());
 		}

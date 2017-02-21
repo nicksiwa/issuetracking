@@ -27,5 +27,9 @@ public interface CommentDAO {
 		public List<Person> getPersonById(int issueID);
 		
 		public List<Comment> getFeedbackByUser(String user);
+		
+		public void addCommentClose(Comment comment);
+		
+		public void addCommentRepone(Comment comment);
 	
 }

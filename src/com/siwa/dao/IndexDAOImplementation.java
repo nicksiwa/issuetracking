@@ -38,7 +38,7 @@ public class IndexDAOImplementation implements IndexDAO {
 				
 				indexs.add(index);
 
-				if (index.getStatus().equals("Resolved")) {
+				if (index.getStatus().equals("Resolved")||index.getStatus().equals("Closed")) {
 					indexs.remove(index);
 					
 				}
@@ -71,7 +71,7 @@ public class IndexDAOImplementation implements IndexDAO {
 				index.setStatus(rs.getString("status"));
 				reports.add(index);
 
-				if (index.getStatus().equals("Resolved")) {
+				if (index.getStatus().equals("Resolved")||index.getStatus().equals("Closed")) {
 					reports.remove(index);
 				}
 			}
@@ -203,7 +203,7 @@ public class IndexDAOImplementation implements IndexDAO {
 				index.setStatus(rs.getString("status"));
 				unassign.add(index);
 				
-				if (index.getStatus().equals("Resolved")) {
+				if (index.getStatus().equals("Resolved")||index.getStatus().equals("Closed")) {
 					unassign.remove(index);
 				}
 			}
@@ -219,9 +219,9 @@ public class IndexDAOImplementation implements IndexDAO {
 	public List<Index> getLabelByIssueId(String user) {
 		List<Index> label = new ArrayList<Index>();
 		try{
-			String query = "select label.labelName, label.labelType,issue.issueID from issue join assignlabel on issue.issueID = assignlabel.issueID and issue.assign = ? join label on assignlabel.labelID = label.labelID";
+			String query = "select label.labelName, label.labelType,issue.issueID from issue join assignlabel on issue.issueID = assignlabel.issueID join label on assignlabel.labelID = label.labelID";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, user);
+		
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Index index = new Index();

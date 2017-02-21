@@ -128,6 +128,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));
+				comment.setCommentIcon(rs.getString("commentIcon"));
 			}
 			rs.close();
 			ps.close();
@@ -152,6 +153,7 @@ public class CommentDAOImplementation implements CommentDAO {
 				comment.setUserComment(rs.getString("userComment"));
 				comment.setCommentStatus(rs.getString("commentStatus"));
 				comment.setIssueID(rs.getInt("issueID"));
+				comment.setCommentIcon(rs.getString("commentIcon"));
 			}
 			rs.close();
 			ps.close();
@@ -226,6 +228,39 @@ public class CommentDAOImplementation implements CommentDAO {
 			e.printStackTrace();
 		}
 		return feedback;
+	}
+
+	@Override
+	public void addCommentClose(Comment comment) {
+		java.util.Date date= new java.util.Date();
+		try{
+			String query = "insert into comment (commentDetail,commentTime,userComment,issueID,commentIcon,commentIconColor) values ('closed issue on',?,?,?,'glyphicon-ban-circle','red')";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setTimestamp(1, new Timestamp(date.getTime()));	
+			ps.setString(2, comment.getUserComment());
+			ps.setInt(3, comment.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void addCommentRepone(Comment comment) {
+		java.util.Date date= new java.util.Date();
+		try{
+			String query = "insert into comment (commentDetail,commentTime,userComment,issueID,commentIcon,commentIconColor) values ('re-opened issue on',?,?,?,'glyphicon-repeat','green')";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setTimestamp(1, new Timestamp(date.getTime()));	
+			ps.setString(2, comment.getUserComment());
+			ps.setInt(3, comment.getIssueID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 }

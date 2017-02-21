@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -20,8 +21,8 @@
 					<div class="panel-heading">
 						<h4>
 							<span class="glyphicon glyphicon-search"></span> <b>View
-								Issue Details : <span class="label label-success">Project
-									name</span>
+								Issue Details : <span class="label label-success"><c:out
+										value="${issue.title}" /></span>
 							</b>
 						</h4>
 					</div>
@@ -38,13 +39,24 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td id="i">10</td>
+									<td id="i"><c:out value="${issue.issueID}" /></td>
 
-									<td>Project name</td>
-									<td>Issue title</td>
-
-									<td>17/12/2016</td>
-									<td>22/01/2017 22:13:29</td>
+									<td><c:out value="${issue.project}" /><input
+										type="hidden" name="project" class="form-control"
+										value="<c:out value="${issue.project}" />"
+										placeholder="project" /></td>
+									<td><c:out value="${issue.title}" /><input type="hidden"
+										name="title" class="form-control"
+										value="<c:out value="${issue.title}" />" placeholder="title" /></td>
+<fmt:setLocale value="en_US" />
+									<td><fmt:formatDate pattern="dd/MM/yyyy"
+											value="${issue.dueDate}" /></td>
+									<td><fmt:parseDate value="${issue.updateDate}"
+											pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <fmt:formatDate
+											value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /><input
+										type="hidden" id="date" name="updateDate" class="form-control"
+										value="<c:out value="${issue.updateDate}" />"
+										placeholder="updateDate" /></td>
 								</tr>
 							</tbody>
 						</table>
@@ -53,76 +65,118 @@
 							<label for="tile" class="control-label col-sm-2">Reporter
 								:</label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<p class="form-control-static">Siwa Khongsuphap</p>
+								<p class="form-control-static"><c:out value="${issue.reporter}"></c:out>
+									<input type="hidden" name="reporter" class="form-control"
+										value="<c:out value="${issue.reporter}" />"
+										placeholder="reporter" /></p>
 							</div>
 
 							<label for="tile" class="control-label col-sm-3">Assigned
 								to :</label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<p class="form-control-static">Siwa Khongsuphap</p>
+								<p class="form-control-static"><c:out value="${issue.assign}" />
+									<input type="hidden" name="assign" class="form-control"
+										value="<c:out value="${issue.assign}" />" placeholder="assign" /></p>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="tile" class="control-label col-sm-2">Severity
 								:</label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<p class="form-control-static">Minor</p>
+								<p class="form-control-static"><c:out value="${issue.severity}"></c:out>
+									<input type="hidden" name="severity" class="form-control"
+										value="<c:out value="${issue.severity}" />"
+										placeholder="severity" /></p>
 							</div>
 
 							<label for="tile" class="control-label col-sm-3">Priority
 								:</label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<p class="form-control-static">Low</p>
+								<p class="form-control-static"><c:out value="${issue.priority}"></c:out>
+									<input type="hidden" name="priority" class="form-control"
+										value="<c:out value="${issue.priority}" />"
+										placeholder="priority" /></p>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="tile" class="control-label col-sm-2">Status :</label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<p class="form-control-static">Closed</p>
+								<p class="form-control-static"><c:out value="${issue.status}"></c:out></p>
 							</div>
 						</div>
 <div class="form-group">
 <label for="tile" class="control-label col-sm-2">Description :</label>
 <div class="col-sm-3 col-lg-2 col-md-2">
 						<textarea readonly name="description" class="form-control"
-							rows="5" id="description" placeholder="Description">Issue detail</textarea>
+									rows="5" id="description" placeholder="Description"><c:out
+										value="${issue.description}"></c:out></textarea>
 						</div></div>
 						<br>
 						<div class="form-group">
 						<label for="tile" class="control-label col-sm-2"></label>
 							<div class="col-sm-3 col-lg-2 col-md-2">
-								<input type="submit" class="btn btn-success"
-									value="Reopen issue" />
+							<a href="CommentController.do?action=reopenissue&issueID=<c:out value="${issue.issueID}"/>" class="btn btn-success" role="button">Reopen issue</a>
+
 							</div>
 						</div>
 
 					</div>
 				</div>
 			</div>
+			
+			
+				<div class="col-md-3">
+				<div class="panel panel-default">
+
+					<ul class="list-group">
+						<c:choose>
+							<c:when test="${fn:length(milestoneAssigns)=='0'}">
+								<li class="list-group-item">No have any milestone</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${milestoneAssigns}" var="milestone">
+								<li class="list-group-item">
+								<c:out value="${milestone.milestoneName}" />
+								<small><span
+											class="pull-right"><a href=""><span
+													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
+										type="hidden" name="projectID"
+										value="<c:out value="${milestone.milestoneProject}" />">
+								</li>
+								</c:forEach>
+							</c:otherwise>
+							</c:choose>
+					</ul>
+				</div>
+			</div>
+			
 			<div class="col-md-3">
 				<div class="panel panel-default">
 
-					<div class="panel-body">
-						Project Issue Tracking
-						<div class="progress">
-							<div class="progress-bar progress-bar-success" role="progressbar"
-								aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-								style="width: 50%">50%</div>
-						</div>
-					</div>
+
+					
 					<ul class="list-group">
-						<li class="list-group-item text-primary">Issue 1<span
-							class="pull-right"><span class="label label-success">Resolved</span></span>
-						</li>
-						<li class="list-group-item text-primary">Issue 2<span
-							class="pull-right"><span class="label label-danger">Feedback</span></span>
-						</li>
-						<li class="list-group-item text-primary">Issue 3<span
-							class="pull-right"><span class="label label-danger">Feedback</span></span>
-						</li>
-						<li class="list-group-item text-primary">Issue 4<span
-							class="pull-right"><span class="label label-success">Resolved</span></span>
-						</li>
+						<c:choose>
+							<c:when test="${fn:length(labelAssigns)=='0'}">
+								<li class="list-group-item">No have any label</li>
+							</c:when>
+							<c:otherwise>
+
+						<c:forEach items="${labelAssigns}" var="label">
+						<li class="list-group-item"><span
+										class="label <c:out value="${label.labelType}" />"><span
+											class="glyphicon glyphicon-tag"></span> <c:out
+												value="${label.labelName}" /></span> <small><span
+											class="pull-right"><a href=""><span
+													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
+										type="hidden" name="projectID"
+										value="<c:out value="${label.labelProject}" />"></li>
+						</c:forEach>
+								
+							</c:otherwise>
+						</c:choose>
+						
+						
 					</ul>
 				</div>
 			</div>

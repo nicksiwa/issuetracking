@@ -35,7 +35,7 @@
         <ul class="dropdown-menu">
           <li><a href="IndexController?action=index"><span
 						class="glyphicon glyphicon-info-sign"></span> Opened issue	</a></li>
-          <li><a href="issueClosed.jsp"><span
+          <li><a href="CommentController.do?action=closedissue"><span
 						class="glyphicon glyphicon-ok-sign"></span> Closed issue</a></li>
         </ul>
       </li>

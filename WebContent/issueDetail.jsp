@@ -156,7 +156,10 @@
 								</div>
 							</div>
 
-							<input type="submit" class="btn btn-success" value="Close issue" />
+
+							<a
+								href="CommentController.do?action=closed&issueID=<c:out value="${issue.issueID}"/>"
+								class="btn btn-success" role="button">Close issue</a>
 						</div>
 
 						<fmt:setLocale value="en_US" />
@@ -177,7 +180,8 @@
 
 		</form>
 
-		<form action="AssignMilestoneController.do" method="post" class="form-horizontal">
+		<form action="AssignMilestoneController.do" method="post"
+			class="form-horizontal">
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
@@ -186,23 +190,20 @@
 						<label for="status" class="control-label">Select project
 							milestone</label> <select name="milestoneName" class="form-control">
 							<c:forEach items="${milestones}" var="milestone">
-								<option><c:out
-										value="${milestone.milestoneName}" />
+								<option><c:out value="${milestone.milestoneName}" />
 
-										</option>
-										
+								</option>
+
 							</c:forEach>
-						</select>
-						
-						<input type="hidden" name="issueID" class="form-control"
+						</select> <input type="hidden" name="issueID" class="form-control"
 							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
-						
-						<input type="hidden" name="assignMilestonelID" class="form-control"
-							value="" placeholder="issueID" />
-						
+
+						<input type="hidden" name="assignMilestonelID"
+							class="form-control" value="" placeholder="issueID" />
+
 						<button type="submit" class="btn btn-default">Add
-									milestone</button>
-						
+							milestone</button>
+
 					</div>
 					<ul class="list-group">
 						<c:choose>
@@ -211,24 +212,24 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${milestoneAssigns}" var="milestone">
-								<li class="list-group-item">
-								<c:out value="${milestone.milestoneName}" />
-								<small><span
+									<li class="list-group-item"><c:out
+											value="${milestone.milestoneName}" /> <small><span
 											class="pull-right"><a href=""><span
 													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
 										type="hidden" name="projectID"
 										value="<c:out value="${milestone.milestoneProject}" />">
-								</li>
+									</li>
 								</c:forEach>
 							</c:otherwise>
-							</c:choose>
+						</c:choose>
 					</ul>
 				</div>
 			</div>
 
 		</form>
 
-		<form action="AssignLabelController.do" method="post" class="form-horizontal">
+		<form action="AssignLabelController.do" method="post"
+			class="form-horizontal">
 			<div class="col-md-3">
 				<div class="panel panel-default">
 
@@ -237,25 +238,21 @@
 						<label for="status" class="control-label">Select issue
 							label</label> <select name="labelName" class="form-control">
 							<c:forEach items="${labels}" var="label">
-								<option><c:out
-										value="${label.labelName}" />
+								<option><c:out value="${label.labelName}" />
 
-										</option>
-										
+								</option>
+
 							</c:forEach>
 
-						</select>
-						
-						<input type="hidden" name="issueID" class="form-control"
+						</select> <input type="hidden" name="issueID" class="form-control"
 							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
-							
-							<input type="hidden" name="assignLabelID" class="form-control"
+
+						<input type="hidden" name="assignLabelID" class="form-control"
 							value="" placeholder="issueID" />
-						
-						<button type="submit" class="btn btn-default">Add
-									label</button>
+
+						<button type="submit" class="btn btn-default">Add label</button>
 					</div>
-					
+
 					<ul class="list-group">
 						<c:choose>
 							<c:when test="${fn:length(labelAssigns)=='0'}">
@@ -263,8 +260,8 @@
 							</c:when>
 							<c:otherwise>
 
-						<c:forEach items="${labelAssigns}" var="label">
-						<li class="list-group-item"><span
+								<c:forEach items="${labelAssigns}" var="label">
+									<li class="list-group-item"><span
 										class="label <c:out value="${label.labelType}" />"><span
 											class="glyphicon glyphicon-tag"></span> <c:out
 												value="${label.labelName}" /></span> <small><span
@@ -272,12 +269,12 @@
 													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
 										type="hidden" name="projectID"
 										value="<c:out value="${label.labelProject}" />"></li>
-						</c:forEach>
-								
+								</c:forEach>
+
 							</c:otherwise>
 						</c:choose>
-						
-						
+
+
 					</ul>
 				</div>
 			</div>
@@ -287,37 +284,55 @@
 	<form action="" method="post" class="form-horizontal">
 		<div class="container">
 			<div class="col-md-8">
+
 				<c:forEach items="${comments}" var="comment">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>
-								<fmt:parseDate value="${comment.commentTime}"
-									pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span
-								class="glyphicon glyphicon-time"></span> <fmt:formatDate
-									value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /> </b>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="tile" class="control-label col-sm-2">Description
-									:</label>
-								<div class="col-sm-6 col-lg-4 col-md-4">
-									<p class="form-control-static">
-										<c:out value="${comment.commentDetail}"></c:out>
-									</p>
+					<c:choose>
+						<c:when test="${comment.commentDetail=='closed issue on'||comment.commentDetail=='re-opened issue on'}">
+						<span class="glyphicon <c:out value="${comment.commentIcon}"/>" style="color:<c:out value="${comment.commentIconColor}"/>"></span>
+							
+							<c:out value="${comment.userComment}"></c:out>
+							<c:out value="${comment.commentDetail}"></c:out>
+							<fmt:parseDate value="${comment.commentTime}"
+								pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
+							<span class="glyphicon glyphicon-time"></span>
+							<fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
+							<br>
+						</c:when>
+						<c:otherwise>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>
+										<fmt:parseDate value="${comment.commentTime}"
+											pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span
+										class="glyphicon glyphicon-time"></span> <fmt:formatDate
+											value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /> </b>
 								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label for="tile" class="control-label col-sm-2">Description
+											:</label>
+										<div class="col-sm-6 col-lg-4 col-md-4">
+											<p class="form-control-static">
+												<c:out value="${comment.commentDetail}"></c:out>
+											</p>
+										</div>
 
-								<label for="tile" class="control-label col-sm-2">Status
-									:</label>
-								<div class="col-sm-3 col-lg-2 col-md-2">
-									<p class="form-control-static">
-										<c:out value="${comment.commentStatus}"></c:out>
-									</p>
+										<label for="tile" class="control-label col-sm-2">Status
+											:</label>
+										<div class="col-sm-3 col-lg-2 col-md-2">
+											<p class="form-control-static">
+												<c:out value="${comment.commentStatus}"></c:out>
+											</p>
+										</div>
+
+									</div>
 								</div>
-
 							</div>
-						</div>
-					</div>
+
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
+
 			</div>
 		</div>
 	</form>
