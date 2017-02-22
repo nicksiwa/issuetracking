@@ -50,7 +50,7 @@ public class IssueController extends HttpServlet {
 	public static final String ISSUE_BY_PROJECT = "/issueByProject.jsp";
 	public static final String REPORT = "/reportMeList.jsp";
 	public static final String ISSUE_DETAIL_CLOSED = "/reopen.jsp";
-	
+	public static final String CLOSED = "/issueClosed.jsp";
 	
     public IssueController() {
        dao = new IssueDAOImplementation();
@@ -64,13 +64,15 @@ public class IssueController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
-		
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
 		
 		if (action.equalsIgnoreCase("delete")) {
-			forward = LIST_ISSUE;
+			forward = CLOSED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			dao.deleteIssue(issueID);
-			request.setAttribute("issues", dao.getAllIssue());
+			request.setAttribute("issues", dao.getAllIssueClosed());
+			request.setAttribute("label", dao3.getLabelByIssueId(username));
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));

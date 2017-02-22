@@ -281,6 +281,7 @@
 
 		</form>
 	</div>
+	
 	<form action="" method="post" class="form-horizontal">
 		<div class="container">
 			<div class="col-md-8">
@@ -288,17 +289,19 @@
 				<c:forEach items="${comments}" var="comment">
 					<c:choose>
 						<c:when test="${comment.commentDetail=='closed issue on'||comment.commentDetail=='re-opened issue on'}">
-						<span class="glyphicon <c:out value="${comment.commentIcon}"/>" style="color:<c:out value="${comment.commentIconColor}"/>"></span>
-							
-							<c:out value="${comment.userComment}"></c:out>
+						<br>
+					<div>
+						<span class="glyphicon <c:out value="${comment.commentIcon}"/>" style="color:<c:out value="${comment.commentIconColor}"/>; font-size:1.5em;"></span>
+						&nbsp;
+							<b><c:out value="${comment.userComment}"></c:out></b>
 							<c:out value="${comment.commentDetail}"></c:out>
 							<fmt:parseDate value="${comment.commentTime}"
 								pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
-							<span class="glyphicon glyphicon-time"></span>
-							<fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
+							<fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></div>
 							<br>
 						</c:when>
 						<c:otherwise>
+						<br>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<b><c:out value="${comment.userComment}"></c:out><span>&nbsp&nbsp&nbsp</span>

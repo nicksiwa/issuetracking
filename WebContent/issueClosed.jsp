@@ -30,46 +30,43 @@
 
 					</div>
 					<div class="panel-body">
-						
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>Issue name</th>
-										<th>Project name</th>
-										<th>Update date</th>
-										<th> <label><input type="checkbox" value="" onchange="checkAll(this)" name="chk[]"><b>Select all</b></label></th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${issues}" var="issue">
+
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Issue name</th>
+									<th>Project name</th>
+									<th>Update date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${issues}" var="issue">
 
 									<tr>
-										<td><a href="IssueController.do?action=closed&issueID=<c:out value="${issue.issueID}"/>"><c:out value="${issue.title}"></c:out>	</a>
-										&nbsp;&nbsp;
-											<c:forEach items="${label}" var="label">
-											<c:choose>
+										<td><a
+											href="IssueController.do?action=closed&issueID=<c:out value="${issue.issueID}"/>"><c:out
+													value="${issue.title}"></c:out> </a> &nbsp;&nbsp; <c:forEach
+												items="${label}" var="label">
+												<c:choose>
 													<c:when test="${issue.issueID==label.issueID }">
 														<span class="label <c:out value="${label.labelType}"/>">
 															<c:out value="${label.labelName}" />
 														</span>&nbsp;
 													</c:when>
 												</c:choose>
-											</c:forEach>
-										</td>
-										<td><c:out value="${issue.project}"></c:out> </td>
-										<fmt:parseDate
-																value="${issue.updateDate}" pattern="yyyy-MM-dd HH:mm"
-																var="myDate" />
+											</c:forEach></td>
+										<td><c:out value="${issue.project}"></c:out></td>
+										<fmt:parseDate value="${issue.updateDate}"
+											pattern="yyyy-MM-dd HH:mm" var="myDate" />
 										<td><fmt:formatDate value="${myDate}"
-																pattern="dd/MM/yyyy HH:mm" /></td>
-										<td><label><input type="checkbox" value=""></label></td>
+												pattern="dd/MM/yyyy HH:mm" /></td>
+										<td><a
+											href="IssueController.do?action=delete&issueID=<c:out value="${issue.issueID}"/>">Delete</a></td>
 									</tr>
-</c:forEach>
-								</tbody>
-							</table>
-							<div class="col-md-offset-5">
-						<button type="button" class="btn btn-danger">Delete select</button>
-						</div>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -163,23 +160,23 @@
 		}
 	</script>
 	<script>
-	 function checkAll(ele) {
-	     var checkboxes = document.getElementsByTagName('input');
-	     if (ele.checked) {
-	         for (var i = 0; i < checkboxes.length; i++) {
-	             if (checkboxes[i].type == 'checkbox') {
-	                 checkboxes[i].checked = true;
-	             }
-	         }
-	     } else {
-	         for (var i = 0; i < checkboxes.length; i++) {
-	             console.log(i)
-	             if (checkboxes[i].type == 'checkbox') {
-	                 checkboxes[i].checked = false;
-	             }
-	         }
-	     }
-	 }
+		function checkAll(ele) {
+			var checkboxes = document.getElementsByTagName('input');
+			if (ele.checked) {
+				for (var i = 0; i < checkboxes.length; i++) {
+					if (checkboxes[i].type == 'checkbox') {
+						checkboxes[i].checked = true;
+					}
+				}
+			} else {
+				for (var i = 0; i < checkboxes.length; i++) {
+					console.log(i)
+					if (checkboxes[i].type == 'checkbox') {
+						checkboxes[i].checked = false;
+					}
+				}
+			}
+		}
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>

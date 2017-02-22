@@ -395,7 +395,7 @@ public class IssueDAOImplementation implements IssueDAO {
 		List<Issue> issues = new ArrayList<Issue>();
 		try{
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select * from issue where status='Closed'");
+			ResultSet rs = stat.executeQuery("select * from issue where status='Closed' order by updateDate desc");
 			while(rs.next()){
 				Issue issue = new Issue();
 				issue.setIssueID(rs.getInt("issueID"));
