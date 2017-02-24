@@ -11,7 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.siwa.dao.AssignLabelDAO;
 import com.siwa.dao.AssignLabelDAOImplementation;
+import com.siwa.dao.CommentDAO;
+import com.siwa.dao.CommentDAOImplementation;
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.LabelDAO;
+import com.siwa.dao.LabelDAOImplementation;
+import com.siwa.dao.MilestoneDAO;
+import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.model.AssignLabel;
+import com.siwa.model.Issue;
 
 
 @WebServlet("/AssignLabelController")
@@ -19,9 +28,17 @@ public class AssignLabelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String DETAIL = "/issueDetail.jsp";
     private AssignLabelDAO dao;
+    private IssueDAO dao2;
+    private LabelDAO dao3;
+    private MilestoneDAO dao4;
+    private CommentDAO dao5;
   
     public AssignLabelController() {
        dao = new AssignLabelDAOImplementation();
+       dao2 = new IssueDAOImplementation();
+       dao3 = new LabelDAOImplementation();
+       dao4 = new MilestoneDAOImplementation();
+       dao5 = new CommentDAOImplementation();
     }
 
 	
@@ -60,6 +77,7 @@ public class AssignLabelController extends HttpServlet {
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(DETAIL);
+		
 		
 		view.forward(request, response);
 	}

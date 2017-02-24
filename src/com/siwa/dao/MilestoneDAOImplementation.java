@@ -145,4 +145,18 @@ public class MilestoneDAOImplementation implements MilestoneDAO {
 		return milestonesAssigns;
 	}
 
+	@Override
+	public void updatePercent(Milestone milestone) {
+		try{
+			String query = "update milestone set milestonePercent=? where milestoneID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, milestone.getMilestonePercent());
+			ps.setInt(2, milestone.getMilestoneID());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+
 }

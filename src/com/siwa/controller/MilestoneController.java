@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.dao.MilestoneDAO;
 import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.dao.ProjectDAO;
@@ -22,11 +24,13 @@ public class MilestoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MilestoneDAO dao;
     private ProjectDAO dao2;
+    private IssueDAO dao3;
     public static final String MILE = "/milestone.jsp";
 
     public MilestoneController() {
       dao = new MilestoneDAOImplementation();
       dao2 = new ProjectDAOImplementation();
+      dao3 = new IssueDAOImplementation();
     }
 
 	
@@ -44,6 +48,10 @@ public class MilestoneController extends HttpServlet {
 			Project project = dao2.getProjectById(projectID);
 			request.setAttribute("project", project);
 			request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
+			request.setAttribute("percent", dao3.getMilestonePercent(projectID));
+			request.setAttribute("percentClosed", dao3.geetMilestoneClosedPercent(projectID));
+		
+
 		}else{
 			forward = MILE;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));

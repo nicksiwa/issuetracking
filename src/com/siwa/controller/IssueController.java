@@ -198,6 +198,7 @@ public class IssueController extends HttpServlet {
 		issue = dao.getIssueByLastInsert();
 		request.setAttribute("issue", issue);
 		request.setAttribute("labels", dao4.getAllLabelByProjectName(project));
+		request.setAttribute("milestones", dao5.getMilestoneByIssueId(issue.getIssueID()));
 		view.forward(request, response);
 		
 	}

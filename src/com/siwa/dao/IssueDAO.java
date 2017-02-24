@@ -40,4 +40,8 @@ public interface IssueDAO {
 	
 	public void setStatusReOpen(Issue issue);
 	
+	public List <Issue> getMilestonePercent(int projectID);
+	
+	public List <Issue> geetMilestoneClosedPercent(int projectID);
+	
 }

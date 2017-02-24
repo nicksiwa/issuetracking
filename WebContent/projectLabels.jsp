@@ -24,7 +24,7 @@
 			<ul class="nav nav-tabs">
 				<li><a href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>">Project road
 						map</a></li>
-				<li><a href="ProjectController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
+				<li><a href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
 						milestone</a></li>
 				<li><a href="ProjectController.do?action=graph&projectID=<c:out value="${project.projectID }"/>">Graphs</a></li>
 				<li><a href="ProjectController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>

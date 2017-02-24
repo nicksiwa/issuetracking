@@ -435,6 +435,50 @@ public class IssueDAOImplementation implements IssueDAO {
 		}
 	}
 
+	@Override
+	public List<Issue> getMilestonePercent(int projectID) {
+		List<Issue> percent = new ArrayList<Issue>();
+		try{
+			String query = "select issue.`status`,milestone.milestoneID from issue join assignmilestone on issue.issueID = assignmilestone.issueID join milestone on assignmilestone.milestoneID = milestone.milestoneID and milestone.milestoneProject = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setStatus(rs.getString("status"));
+				issue.setMilestoneID(rs.getInt("milestoneID"));
+				percent.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return percent;
+	}
+
+	@Override
+	public List<Issue> geetMilestoneClosedPercent(int projectID) {
+		List<Issue> percentClosed = new ArrayList<Issue>();
+		try{
+			String query = "select issue.`status`,milestone.milestoneID from issue join assignmilestone on issue.issueID = assignmilestone.issueID join milestone on assignmilestone.milestoneID = milestone.milestoneID and issue.`status` = 'Closed' and milestone.milestoneProject = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setStatus(rs.getString("status"));
+				issue.setMilestoneID(rs.getInt("milestoneID"));
+				percentClosed.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return percentClosed;
+	}
+
 
 
 }

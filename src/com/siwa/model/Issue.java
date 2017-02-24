@@ -19,7 +19,7 @@ public class Issue {
 	private String status;
 	private String reporter;
 	private Timestamp createDate;
-	
+	private int milestoneID;
 
 
 	public int getIssueID() {
@@ -129,12 +129,21 @@ public class Issue {
 		this.updateDate = updateDate;
 	}
 
+	public int getMilestoneID() {
+		return milestoneID;
+	}
+
+	public void setMilestoneID(int milestoneID) {
+		this.milestoneID = milestoneID;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
 				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter
-				+ ", createDate=" + createDate + "]";
+				+ ", createDate=" + createDate + ", milestoneID=" + milestoneID + "]";
 	}
+	
 
 }

@@ -6,6 +6,7 @@ public class Milestone {
 	private String milestoneName;
 	private String milestoneDescription;
 	private int milestoneProject;
+	private String milestonePercent;
 	
 	public int getMilestoneID() {
 		return milestoneID;
@@ -31,10 +32,18 @@ public class Milestone {
 	public void setMilestoneProject(int milestoneProject) {
 		this.milestoneProject = milestoneProject;
 	}
+	
+	public String getMilestonePercent() {
+		return milestonePercent;
+	}
+	public void setMilestonePercent(String milestonePercent) {
+		this.milestonePercent = milestonePercent;
+	}
 	@Override
 	public String toString() {
 		return "Milestone [milestoneID=" + milestoneID + ", milestoneName=" + milestoneName + ", milestoneDescription="
-				+ milestoneDescription + ", milestoneProject=" + milestoneProject + "]";
+				+ milestoneDescription + ", milestoneProject=" + milestoneProject + ", milestonePercent="
+				+ milestonePercent + "]";
 	}
 
 	

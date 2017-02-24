@@ -40,14 +40,14 @@
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
-				<li><a href="ProjectController.do?action=main">Project road
+				<li><a href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>">Project road
 						map</a></li>
-				<li><a href="ProjectController.do?action=milestone">Project
+				<li><a href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
 						milestone</a></li>
 				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
 				<li class="active"><a href="TaskController.do?action=task">Project
 						task</a></li>
-				<li><a href="ProjectController.do?action=label">Issue
+				<li><a href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue
 						labels</a></li>
 			</ul>
 			<br>

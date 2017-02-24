@@ -19,4 +19,6 @@ public interface MilestoneDAO {
 	
 	public List<Milestone> getAssignMilestone(int issueID);
 	
+	public void updatePercent(Milestone milestone);
+	
 }
