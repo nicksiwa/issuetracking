@@ -11,12 +11,21 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/dropzone.js"></script>
+<style type="text/css">
+   body { background: #f7f7f7 !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
 	<form action="IssueController.do" method="post" class="form-horizontal">
-		<div class="container">
-			<div class="col-md-8">
+	
+		<div class="col-md-3">
+				<div id="ghapidata" class="clearfix"></div>
+				<input type="hidden" value="niksf203" id="user"> <input
+					type="hidden" id="a">
+			</div>
+	
+			<div class="col-md-9">
 				<div class="panel panel-success">
 					<div class="panel-heading">
 						<h4>
@@ -70,13 +79,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div id="ghapidata" class="clearfix"></div>
-				<input type="hidden" value="niksf203" id="user"> <input
-					type="hidden" id="a">
-			</div>
 
-		</div>
+
 	</form>
 	<script type="text/javascript">
 		var username = document.getElementById('user').value;

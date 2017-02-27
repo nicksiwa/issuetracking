@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -96,20 +97,17 @@
 										
 
 								
-									
+								
 									
 									<c:set var="count3" value="${(count2/count)*100}" scope="page"/>
-									
-									<input type="text" value="<c:out value="${count3}"/>" id="count3"/>
-									<input type="text" value="<c:out value="${count3}"/>" id="count3"/>
-
+						
 
 										<div class="col-md-6">
 											<div class="progress">
 												<div class="progress-bar progress-bar-success"
 													role="progressbar" style="width: <c:out value="${count3}"/>%">50%</div>
 											</div>
-											<c:out value="${count3}"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+											<fmt:formatNumber value="${count3}" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
 										</div> <br> <br> <br>
 									</li>
 								</c:forEach>
@@ -160,15 +158,7 @@
 
 	</div>
 
-	<script>
-	
-	document.getElementById('count3').value = count();
-	var count = function() {
-		var n = count.toFixed(2);
-	    return n;    
-	};
-	
-	</script>
+
 
 
 	<script src="js/jquery-3.1.0.min.js"></script>
