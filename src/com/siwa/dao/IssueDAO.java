@@ -20,6 +20,11 @@ public interface IssueDAO {
 	
 	public List <Issue> getPersonByProject(int issueID);
 	
+	public List <Issue>getIssueByMonth();
+	
+	public List <Issue>getIssueByseverity(String severity);
+	
+	
 	public List <Comment> getCommentByIssue(int issueID);
 	
 	public void setStatusAssign(Issue issue);
@@ -29,7 +34,7 @@ public interface IssueDAO {
 	public void setStatusConfirmed(Issue issue);
 	
 	public void setStatusResolved(Issue issue);
-	
+	public List <Issue> getReport(String severity,String status,String firstDate,String secondDate);
 	public List <Issue> getIssueByProject(int projectID);
 	
 }

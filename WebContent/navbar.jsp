@@ -41,13 +41,15 @@
       </li>
 						<li><a href="ProjectController?action=listProject"><span
 						class="glyphicon glyphicon-tasks"></span> Project</a></li>
+						
+						<li><a href="IssueController.do?action=report"><span
+						class="glyphicon glyphicon-file"></span> Report</a></li>
+				
+			</ul>
 				
 			</ul>
 			
-							<li><a href="IssueController.do?action=report"><span
-						class="glyphicon glyphicon-tasks"></span> Report</a></li>
-				
-			</ul>
+							
 			<ul class="nav navbar-nav navbar-right">
 				<%
 					String username = (String) session.getAttribute("username");

@@ -81,6 +81,8 @@ public class IssueController extends HttpServlet {
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = dao.getAssignById(issueID);
 			request.setAttribute("issue", issue);
+			String severity = (request.getParameter("severity"));
+			request.setAttribute("issues", dao.getIssueByseverity(severity));
 			
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
 		}
@@ -89,12 +91,18 @@ public class IssueController extends HttpServlet {
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			request.setAttribute("projects", dao.getIssueByProject(projectID));
 		}
+		else if(action.equalsIgnoreCase("severity")){
+			forward = ISSUE_DETAIL;
+			
+		}
 		else {
 			forward = LIST_ISSUE;
 			request.setAttribute("issues", dao.getAllIssue());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
+		
+		
 		
 	}
 
@@ -146,16 +154,11 @@ public class IssueController extends HttpServlet {
 			
 		}
 		
-		
-		
-		
-		
+			
 		String status = (request.getParameter("status"));
 		status = new String(status.getBytes("ISO8859-1"), "UTF-8");
 		issue.setStatus(status);
-		
-		
-		
+			
 		
 		String reporter = username;
 		reporter = new String(reporter.getBytes("ISO8859-1"), "UTF-8");
