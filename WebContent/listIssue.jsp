@@ -14,12 +14,21 @@
 <body>
 
 	<jsp:include page="navbar.jsp" />
-
 	<div class="container">
-		<br>
-		<p>
-			<a href="IssueController.do?action=insert">Add Issue</a>
-		</p>
+	<form action="TestController.do" method="post" class="form-inline">
+	
+	<div class="form-group">
+		<label>Severity</label><input type="text" class="form-control" name="severity"> <label>Status</label><input
+			type="text" class="form-control" name="status"> <label>Date</label><input
+			type="date" class="form-control" name="firstDate"> <label>Between</label><input
+			type="date" class="form-control" name="secondDate"> <input type="submit"
+			class="btn btn-default" value="Submit" />
+			</div>
+	
+	</form></div>
+	
+	<div class="container">
+
 		<table class="table table-hover table-responsive table-striped">
 			<thead>
 				<tr>
@@ -51,12 +60,15 @@
 						<td><c:out value="${issue.severity}"></c:out></td>
 						<td><c:out value="${issue.priority}"></c:out></td>
 						<fmt:setLocale value="en_US" />
-						<td><fmt:formatDate pattern="dd/MM/yyyy" value="${issue.dueDate}" /></td>
-						<td><fmt:formatDate value="${issue.updateDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
+						<td><fmt:formatDate pattern="dd/MM/yyyy"
+								value="${issue.dueDate}" /></td>
+						<td><fmt:formatDate value="${issue.updateDate}"
+								pattern="dd/MM/yyyy HH:mm:ss" /></td>
 						<td><c:out value="${issue.status}"></c:out></td>
 						<td><c:out value="${issue.reporter}"></c:out></td>
-						<td><fmt:formatDate value="${issue.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
-						
+						<td><fmt:formatDate value="${issue.createDate}"
+								pattern="dd/MM/yyyy HH:mm:ss" /></td>
+
 						<td><a
 							href="IssueController.do?action=edit&issueID=<c:out value="${issue.issueID }"/>">Update</a></td>
 						<td><a
@@ -67,6 +79,7 @@
 			</tbody>
 		</table>
 	</div>
+
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

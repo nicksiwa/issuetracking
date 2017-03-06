@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.ProjectDAO;
+import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.dao.TaskDAO;
 import com.siwa.dao.TaskDAOImplementation;
+import com.siwa.model.Project;
 import com.siwa.model.Task;
 
 
@@ -22,15 +25,18 @@ import com.siwa.model.Task;
 public class TaskController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private TaskDAO dao;
+    private ProjectDAO dao2;
     
     public static final String TASK = "/projectTask.jsp";
 
     public TaskController() {
     	dao = new TaskDAOImplementation();
+    	dao2 = new ProjectDAOImplementation();
     }
 
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String forward = "";
 		String action = request.getParameter("action");
 		
@@ -46,7 +52,10 @@ public class TaskController extends HttpServlet {
 		}
 		else if(action.equalsIgnoreCase("task")){
 			forward = TASK;
-			request.setAttribute("tasks", dao.getAllTasks());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("tasks", dao.getAllTaskByProjectId(projectID));
 		}
 		else{
 			forward = TASK;
@@ -67,6 +76,9 @@ public class TaskController extends HttpServlet {
 		taskDetail = new String(taskDetail.getBytes("ISO8859-1"), "UTF-8");
 		task.setTaskDetail(taskDetail);
 		
+		int taskType = Integer.parseInt(request.getParameter("taskType"));
+		task.setTaskType(taskType);
+		
 		try {
 			Timestamp createDate = (Timestamp) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("createDate"));
 			task.setCreateDate(createDate);
@@ -78,6 +90,9 @@ public class TaskController extends HttpServlet {
 		createBy = new String(createBy.getBytes("ISO8859-1"), "UTF-8");
 		task.setCreateBy(createBy);
 		
+		int taskProject = Integer.parseInt((request.getParameter("projectID")));
+		task.setTaskProject(taskProject);
+		
 		String taskID = request.getParameter("taskID");
 		if(taskID == null || taskID.isEmpty()){
 			dao.addTask(task);
@@ -87,7 +102,10 @@ public class TaskController extends HttpServlet {
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(TASK);
-		request.setAttribute("tasks", dao.getAllTasks());
+		int projectID = Integer.parseInt(request.getParameter("projectID"));
+		Project project = dao2.getProjectById(projectID);
+		request.setAttribute("project", project);
+		request.setAttribute("tasks", dao.getAllTaskByProjectId(projectID));
 		view.forward(request, response);
 	}
 

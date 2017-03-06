@@ -479,6 +479,42 @@ public class IssueDAOImplementation implements IssueDAO {
 		return percentClosed;
 	}
 
+	@Override
+	public List<Issue> getReport(String severity, String status, String firstDate, String secondDate) {
+		List<Issue> issues = new ArrayList<Issue>();
+		try{
+			String query = "select * from issue where issue.`status` = ? or issue.severity = ? or issue.createDate between ? and ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, status);
+			ps.setString(2, severity);
+			ps.setString(3, firstDate);
+			ps.setString(4, secondDate);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+				issue.setCreateDate(rs.getTimestamp("createDate"));
+				issues.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return issues;
+	}
+
 
 
 }

@@ -1,5 +1,6 @@
-	package com.siwa.dao;
+package com.siwa.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.siwa.model.Comment;
@@ -43,5 +44,7 @@ public interface IssueDAO {
 	public List <Issue> getMilestonePercent(int projectID);
 	
 	public List <Issue> geetMilestoneClosedPercent(int projectID);
+	
+	public List <Issue> getReport(String severity,String status,String firstDate,String secondDate);
 	
 }

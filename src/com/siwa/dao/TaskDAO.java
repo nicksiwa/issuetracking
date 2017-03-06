@@ -12,4 +12,6 @@ public interface TaskDAO {
 	public void updateTask(Task task);
 	
 	public List<Task> getAllTasks();
+	
+	public List<Task> getAllTaskByProjectId(int projectID);
 }

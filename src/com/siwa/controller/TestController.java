@@ -8,6 +8,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.TaskDAO;
+import com.siwa.dao.TaskDAOImplementation;
 import com.siwa.dao.TestDAO;
 import com.siwa.dao.TestDAOImplementation;
 import com.siwa.model.Assign;
@@ -26,80 +37,59 @@ import com.siwa.model.Test;
 
 @WebServlet("/TestController")
 public class TestController extends HttpServlet {
+	private TaskDAO dao;
+	private IssueDAO dao2;
 
-	
-    
-	private TestDAO dao;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_TEST = "/listTest.jsp";
 	public static final String INSERT_OR_EDIT = "/test.jsp";
 	public static final String STATUS = "/testStatus.jsp";
 	public static final String INDEX = "/index.jsp";
+	public static final String LIST_ISSUE = "/listIssue.jsp";
  
 
     public TestController() {
-       dao = new TestDAOImplementation();
+    	dao = new TaskDAOImplementation();
+    	dao2 = new IssueDAOImplementation();
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String forward = "";
-		String action = request.getParameter("action");
-		HttpSession session  = request.getSession();
-		
-		
-		if (action.equalsIgnoreCase("delete")) {
-			forward = INSERT_OR_EDIT;
-			
-		} else {
-			forward = INSERT_OR_EDIT;
-			
-		}
-		RequestDispatcher view = request.getRequestDispatcher(forward);
-		view.forward(request, response);
+	    List<String> list = new ArrayList<>();
+	    list.add("item1");
+	    list.add("item2");
+	    list.add("item3");
+	
+
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-
-            String connectionURL = "jdbc:mysql://localhost/projectdb"; // students is my database name
-            Connection connection = null;
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection(connectionURL, "root", "password");
-            String uname = request.getParameter("uname");
+		Issue issue = new Issue();
 		
-            PreparedStatement ps = connection.prepareStatement("select username from user where username=?");
-            ps.setString(1,uname);
-            
-            
-            ResultSet rs = ps.executeQuery();
-             
-            if (!rs.next()) {
-            	String msg = uname+" is avaliable";
-            	System.out.println(msg);
-            	out.println(msg);
-            	request.setAttribute("m", msg);	               
-       
-            }
-            else{
-            out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
-            System.out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
-            }
-            out.println();
-
-
-
-        } catch (Exception ex) {
-
-            out.println("Error ->" + ex.getMessage());
-
-        } finally {
-            out.close();
-        }
+		String severity = (request.getParameter("severity"));
+		severity = new String(severity.getBytes("ISO8859-1"), "UTF-8");
+		issue.setSeverity(severity);
+		
+		
+		String status = (request.getParameter("status"));
+		status = new String(status.getBytes("ISO8859-1"), "UTF-8");
+		issue.setStatus(status);
+		
+		String firstDate = (request.getParameter("firstDate"));
+		firstDate = new String(firstDate.getBytes("ISO8859-1"), "UTF-8");
+		issue.setAssign(firstDate);
+		
+		String secondDate = (request.getParameter("secondDate"));
+		secondDate = new String(secondDate.getBytes("ISO8859-1"), "UTF-8");
+		issue.setDescription(secondDate);
+		
+		RequestDispatcher view = request.getRequestDispatcher(LIST_ISSUE);
+		request.setAttribute("issues", dao2.getReport(severity, status, firstDate+" 00:00:00.00", secondDate+" 23:59:59.999"));
+		view.forward(request, response);
 	}
-
 	}
 
 

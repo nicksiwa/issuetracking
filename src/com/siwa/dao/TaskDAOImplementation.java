@@ -25,12 +25,13 @@ public class TaskDAOImplementation implements TaskDAO {
 	public void addTask(Task task) {
 		java.util.Date date= new java.util.Date();
 		try{
-			String query = "insert into task (taskDetail, taskType, createDate, createBy) values (?,?,?,?)";
+			String query = "insert into task (taskDetail, taskType, createDate, createBy, taskProject) values (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, task.getTaskDetail());
 			ps.setInt(2, task.getTaskType());
 			ps.setTimestamp(3, new Timestamp(date.getTime()));
 			ps.setString(4, task.getCreateBy());
+			ps.setInt(5, task.getTaskProject());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){
@@ -55,12 +56,14 @@ public class TaskDAOImplementation implements TaskDAO {
 
 	@Override
 	public void updateTask(Task task) {
-		java.util.Date date= new java.util.Date();
+
 		try{
-			String query = "update task set taskDetail=?, taskType=?, createDate=?, createBy=? where taskID=?";
+			String query = "update task set taskType=? where taskID=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, task.getTaskDetail());
-			ps.setInt(2, task.getTaskType());
+			ps.setInt(1, task.getTaskType());
+			ps.setInt(2, task.getTaskID());
+			ps.executeUpdate();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -83,6 +86,31 @@ public class TaskDAOImplementation implements TaskDAO {
 			}
 			rs.close();
 			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return tasks;
+	}
+
+	@Override
+	public List<Task> getAllTaskByProjectId(int projectID) {
+		List<Task> tasks = new ArrayList<Task>();
+		try{
+			String query = "select * from task where taskProject=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, projectID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Task task = new Task();
+				task.setTaskID(rs.getInt("taskID"));
+				task.setTaskDetail(rs.getString("taskDetail"));
+				task.setTaskType(rs.getInt("taskType"));
+				task.setCreateBy(rs.getString("createBy"));
+				task.setTaskProject(rs.getInt("taskProject"));
+				tasks.add(task);
+			}
+			rs.close();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

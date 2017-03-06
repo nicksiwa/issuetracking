@@ -148,8 +148,6 @@
     <servlet-name>AssignLabelController</servlet-name>
     <url-pattern>/AssignLabelController.do</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>AssignMilestoneController</servlet-name>
     <servlet-class>com.siwa.controller.AssignMilestoneController</servlet-class>
@@ -157,5 +155,14 @@
   <servlet-mapping>
     <servlet-name>AssignMilestoneController</servlet-name>
     <url-pattern>/AssignMilestoneController.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>AjaxTaskController</servlet-name>
+    <servlet-class>com.siwa.controller.AjaxTaskController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxTaskController</servlet-name>
+    <url-pattern>/AjaxTaskController.do</url-pattern>
   </servlet-mapping>
 </web-app>

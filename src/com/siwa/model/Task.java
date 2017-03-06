@@ -9,6 +9,7 @@ public class Task {
 	private int taskType;
 	private Timestamp createDate;
 	private String createBy;
+	private int taskProject;
 	
 	public int getTaskID() {
 		return taskID;
@@ -41,10 +42,17 @@ public class Task {
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
 	}
+	
+	public int getTaskProject() {
+		return taskProject;
+	}
+	public void setTaskProject(int taskProject) {
+		this.taskProject = taskProject;
+	}
 	@Override
 	public String toString() {
 		return "Task [taskID=" + taskID + ", taskDetail=" + taskDetail + ", taskType=" + taskType + ", createDate="
-				+ createDate + ", createBy=" + createBy + "]";
+				+ createDate + ", createBy=" + createBy + ", taskProject=" + taskProject + "]";
 	}
 	
 	

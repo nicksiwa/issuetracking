@@ -87,6 +87,8 @@ public class MilestoneDAOImplementation implements MilestoneDAO {
 				milestone.setMilestoneProject(rs.getInt("milestoneProject"));
 				milestones.add(milestone);
 			}
+			rs.close();
+			ps.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
