@@ -2,7 +2,9 @@ package com.siwa.dao;
 
 import java.util.List;
 
+import com.siwa.model.Issue;
 import com.siwa.model.Test;
+import org.json.*;
 
 public interface TestDAO {
 	
@@ -21,6 +23,10 @@ public interface TestDAO {
 	public Test getTestByUser(int testID);
 	
 	public Test getTestByStatus(String status);
+	
+	public List<Issue> getDueDate();
+	
+	
 
 }
 

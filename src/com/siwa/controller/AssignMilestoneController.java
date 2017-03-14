@@ -11,7 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.siwa.dao.AssignMilestoneDAO;
 import com.siwa.dao.AssignMilestoneDAOImplementation;
+import com.siwa.dao.CommentDAO;
+import com.siwa.dao.CommentDAOImplementation;
+import com.siwa.dao.IssueDAO;
+import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.LabelDAO;
+import com.siwa.dao.LabelDAOImplementation;
+import com.siwa.dao.MilestoneDAO;
+import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.model.AssignMilestone;
+import com.siwa.model.Issue;
 
 
 @WebServlet("/AssignMilestoneController")
@@ -19,10 +28,17 @@ public class AssignMilestoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String DETAIL = "/issueDetail.jsp";
     private AssignMilestoneDAO dao;
-       
+    private IssueDAO dao2;
+    private LabelDAO dao3;
+    private MilestoneDAO dao4;
+    private CommentDAO dao5;
 
     public AssignMilestoneController() {
        dao = new AssignMilestoneDAOImplementation();
+       dao2 = new IssueDAOImplementation();
+       dao3 = new LabelDAOImplementation();
+       dao4 = new MilestoneDAOImplementation();
+       dao5 = new CommentDAOImplementation();
     }
 
 	
@@ -60,7 +76,14 @@ public class AssignMilestoneController extends HttpServlet {
 			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(DETAIL);
-		
+		Issue issue = new Issue();
+		issue = dao2.getAssignById(issueID);
+		request.setAttribute("issue", issue);
+		request.setAttribute("labels", dao3.getAllLabelByIssueID(issueID));
+		request.setAttribute("labelAssigns", dao3.getAssignLabel(issueID));
+		request.setAttribute("milestones", dao4.getMilestoneByIssueId(issueID));
+		request.setAttribute("milestoneAssigns", dao4.getAssignMilestone(issueID));
+		request.setAttribute("comments", dao2.getCommentByIssue(issueID));
 		view.forward(request, response);
 	}
 

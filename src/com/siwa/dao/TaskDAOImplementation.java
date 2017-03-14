@@ -107,6 +107,7 @@ public class TaskDAOImplementation implements TaskDAO {
 				task.setTaskType(rs.getInt("taskType"));
 				task.setCreateBy(rs.getString("createBy"));
 				task.setTaskProject(rs.getInt("taskProject"));
+				task.setCreateDate(rs.getTimestamp("createDate"));
 				tasks.add(task);
 			}
 			rs.close();

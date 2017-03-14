@@ -53,12 +53,9 @@
 			<br>
 			<ul class="nav nav-tabs">
 				<li><a
-					href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>">Project
-						road map</a></li>
-				<li><a
 					href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
-						milestone</a></li>
-				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
+						milestone / Project road map</a></li>
+				<li><a href="ProjectController.do?action=graph">Project report</a></li>
 				<li class="active"><a
 					href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project
 						task</a></li>
@@ -73,8 +70,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> To do <span
-								class="badge">${fn:length(tasks)}</span> <a href="#"><span
+							<span class="glyphicon glyphicon-th-list"></span> To do <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
 						</h4>
@@ -92,9 +88,14 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
-											</p> Add by <c:out value="${task.createBy}" /> <span
-											class="pull-right glyphicon glyphicon-time"> <fmt:formatDate
-													value="${task.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span>
+											</p> Add by <c:out value="${task.createBy}" />
+											
+											<span class="pull-right">
+													<fmt:parseDate
+															value="${task.createDate}" pattern="yyyy-MM-dd HH:mm"
+															var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+														<fmt:formatDate value="${myDate}"
+															pattern="dd/MM/yyyy HH:mm" /></span>
 										</li>
 									</c:when>
 								</c:choose>
@@ -107,8 +108,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> Doing <span
-								class="badge">1</span> <a href="#"><span
+							<span class="glyphicon glyphicon-th-list"></span> Doing <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
 						</h4>
@@ -124,9 +124,13 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
-											</p> Add by <c:out value="${task.createBy}" /> <span
-											class="pull-right glyphicon glyphicon-time"> <fmt:formatDate
-													value="${task.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span>
+											</p> Add by <c:out value="${task.createBy}" />
+												<span class="pull-right">
+													<fmt:parseDate
+															value="${task.createDate}" pattern="yyyy-MM-dd HH:mm"
+															var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+														<fmt:formatDate value="${myDate}"
+															pattern="dd/MM/yyyy HH:mm" /></span>
 										</li>
 									</c:when>
 								</c:choose>
@@ -156,9 +160,13 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
-											</p> Add by <c:out value="${task.createBy}" /> <span
-											class="pull-right glyphicon glyphicon-time"> <fmt:formatDate
-													value="${task.createDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span>
+											</p> Add by <c:out value="${task.createBy}" />
+												<span class="pull-right">
+													<fmt:parseDate
+															value="${task.createDate}" pattern="yyyy-MM-dd HH:mm"
+															var="myDate" /> <span class="glyphicon glyphicon-time"></span>
+														<fmt:formatDate value="${myDate}"
+															pattern="dd/MM/yyyy HH:mm" /></span>
 										</li>
 									</c:when>
 								</c:choose>

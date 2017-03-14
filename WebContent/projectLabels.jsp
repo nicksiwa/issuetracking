@@ -22,12 +22,10 @@
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
-				<li><a href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>">Project road
-						map</a></li>
 				<li><a href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
-						milestone</a></li>
-				<li><a href="ProjectController.do?action=graph&projectID=<c:out value="${project.projectID }"/>">Graphs</a></li>
-				<li><a href="ProjectController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
+						milestone / Project road map</a></li>
+				<li><a href="ProjectController.do?action=graph&projectID=<c:out value="${project.projectID }"/>">Project report</a></li>
+				<li><a href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
 				<li class="active"><a href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue
 						labels</a></li>
 			</ul>

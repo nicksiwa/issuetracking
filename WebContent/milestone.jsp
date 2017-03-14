@@ -25,14 +25,11 @@
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
-				<li><a
-					href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>">Project
-						road map</a></li>
 				<li class="active"><a
 					href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
-						milestone</a></li>
-				<li><a href="ProjectController.do?action=graph">Graphs</a></li>
-				<li><a href="ProjectController.do?action=task">Project task</a></li>
+						milestone / Project road map</a></li>
+				<li><a href="ProjectController.do?action=graph">Project report</a></li>
+				<li><a href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
 				<li><a
 					href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue
 						labels</a></li>
@@ -100,6 +97,7 @@
 								
 									
 									<c:set var="count3" value="${(count2/count)*100}" scope="page"/>
+									
 						
 
 										<div class="col-md-6">
@@ -107,7 +105,15 @@
 												<div class="progress-bar progress-bar-success"
 													role="progressbar" style="width: <c:out value="${count3}"/>%">50%</div>
 											</div>
-											<fmt:formatNumber value="${count3}" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+											<c:choose>
+												<c:when test="${count3=='NaN'}">
+												<fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+												</c:when>
+												<c:otherwise>
+												<fmt:formatNumber value="${count3}" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+												</c:otherwise>
+											</c:choose>
+											
 										</div> <br> <br> <br>
 									</li>
 								</c:forEach>

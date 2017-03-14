@@ -12,9 +12,11 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +41,7 @@ import com.siwa.model.Test;
 public class TestController extends HttpServlet {
 	private TaskDAO dao;
 	private IssueDAO dao2;
+	private TestDAO dao3;
 
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_TEST = "/listTest.jsp";
@@ -51,6 +54,7 @@ public class TestController extends HttpServlet {
     public TestController() {
     	dao = new TaskDAOImplementation();
     	dao2 = new IssueDAOImplementation();
+    	dao3 = new TestDAOImplementation();
     }
 
 
@@ -64,6 +68,20 @@ public class TestController extends HttpServlet {
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 	    response.getWriter();
+	    
+	    
+		String forward = "";
+		String action = request.getParameter("action");
+		
+
+		if (action.equalsIgnoreCase("test")) {
+			forward = INSERT_OR_EDIT;
+			request.setAttribute("dates", dao3.getDueDate());
+		}
+		
+		RequestDispatcher view = request.getRequestDispatcher(forward);
+		view.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

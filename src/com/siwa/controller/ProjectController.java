@@ -18,6 +18,8 @@ import com.siwa.dao.AssignDAO;
 import com.siwa.dao.AssignDAOImplementation;
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
+import com.siwa.dao.MilestoneDAO;
+import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.model.Assign;
@@ -29,6 +31,7 @@ public class ProjectController extends HttpServlet {
 	private ProjectDAO dao;
 	private AssignDAO dao2;
 	private IssueDAO dao3;
+	private MilestoneDAO dao4;
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_PROJECT = "/listProject.jsp";
 	public static final String INSERT_OR_EDIT = "/project.jsp";
@@ -45,6 +48,7 @@ public class ProjectController extends HttpServlet {
 		dao = new ProjectDAOImplementation();
 		dao2 = new AssignDAOImplementation();
 		dao3 = new IssueDAOImplementation();
+		dao4 = new MilestoneDAOImplementation();
 	}
 
 	@Override
@@ -88,10 +92,14 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("issueUn", dao.getAllIssue(projectID));
 			request.setAttribute("issueResolved", dao.getAllIssueByResolved(projectID));
 		} else if (action.equalsIgnoreCase("main")) {
-			forward = MAIN;
+			forward = MILE;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			Project project = dao.getProjectById(projectID);
 			request.setAttribute("project", project);
+			request.setAttribute("milestones", dao4.getAllMilestoneByProjectId(projectID));
+			request.setAttribute("percent", dao3.getMilestonePercent(projectID));
+			request.setAttribute("percentClosed", dao3.geetMilestoneClosedPercent(projectID));
+			
 		} 
 		else if(action.equalsIgnoreCase("task")){
 			forward = TASK;

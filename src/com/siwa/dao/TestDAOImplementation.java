@@ -5,9 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
+import com.siwa.model.Issue;
 import com.siwa.model.Test;
 import com.siwa.util.DBUtil;
 
@@ -142,5 +149,54 @@ public class TestDAOImplementation implements TestDAO {
 			e.printStackTrace();
 		}
 		return testss;
+	}
+
+	@Override
+	public List<Issue> getDueDate() {
+		List<Issue> dates = new ArrayList<Issue>();
+		try{
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select dueDate from issue");
+			while(rs.next()){
+				Issue issue = new Issue();
+				
+				
+				
+				SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy",Locale.US);
+				String inputString1 = new SimpleDateFormat("dd MM yyyy",Locale.US).format(Calendar.getInstance().getTime());
+				String inputString2 = new SimpleDateFormat("dd MM yyyy",Locale.US).format(rs.getDate("dueDate"));
+
+				 Date date1;
+				 Date date2 = null;
+				 long diff = 0;
+				 long result = 0;
+				try {
+				    date1 = myFormat.parse(inputString1);
+				    date2 = myFormat.parse(inputString2);
+				    diff = date1.getTime() - date2.getTime();
+				    result = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+				    System.out.println ("");
+				    
+					if (result <= 0) {
+						System.out.println ("Until " + result);
+					} else {
+						System.out.println ("Pass due date by " + result);
+					}
+
+					
+				} catch (ParseException e) {
+				    e.printStackTrace();
+				}
+
+				issue.setDueDateChecker(result);
+				dates.add(issue);
+				
+			}
+			rs.close();
+			stat.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return dates;
 	}
 }

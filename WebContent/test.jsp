@@ -17,36 +17,21 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	<div id="center-wrapper">
-		<div class="dhe-example-section" id="ex-1-2">
-			<div class="dhe-example-section-content">
-				<div id="example-1-2">
-					<p>
-						<input type="submit" class="input-button" id="btn-get"
-							value="Get items" />
-					</p>
-					<div class="column left first">
-						<ul class="sortable-list">
-							<li class="sortable-item" id="1">Sortable item A</li>
-							<li class="sortable-item" id="2">Sortable item B</li>
-						</ul>
-					</div>
-					<div class="column left">
-						<ul class="sortable-list">
-							<li class="sortable-item" id="3">Sortable item C</li>
-							<li class="sortable-item" id="4">Sortable item D</li>
-						</ul>
-					</div>
-					<div class="column left">
-						<ul class="sortable-list">
-							<li class="sortable-item" id="5">Sortable item E</li>
-						</ul>
-					</div>
-					<div class="clearer">&nbsp;</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+	<c:forEach items="${dates}" var="date">
+		<c:choose>
+			<c:when test="${date.dueDateChecker<='0'}">
+      			Not yet due date <c:out value="${date.dueDateChecker}" /><br>
+   								</c:when>
+			<c:otherwise>
+			Pass due date by <c:out value="${date.dueDateChecker}" /><br>
+			</c:otherwise>
+		</c:choose>
+
+
+	</c:forEach>
+
+
 
 	<form class="form-horizontal" role="form" method="post"
 		name="employeeForm" id="employeeForm">

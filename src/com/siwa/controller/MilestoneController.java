@@ -91,6 +91,8 @@ public class MilestoneController extends HttpServlet {
 		Project project = dao2.getProjectById(projectID);
 		request.setAttribute("project", project);
 		request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
+		request.setAttribute("percent", dao3.getMilestonePercent(projectID));
+		request.setAttribute("percentClosed", dao3.geetMilestoneClosedPercent(projectID));
 		view.forward(request, response);
 	}
 

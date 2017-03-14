@@ -14,7 +14,7 @@ public class Index {
 	private String labelName;
 	private String labelType;
 	private int labelID;
-	
+	private long dueDateChecker;
 	
 	public int getIssueID() {
 		return issueID;
@@ -90,12 +90,19 @@ public class Index {
 	public void setLabelID(int labelID) {
 		this.labelID = labelID;
 	}
+	
+	public long getDueDateChecker() {
+		return dueDateChecker;
+	}
+	public void setDueDateChecker(long dueDateChecker) {
+		this.dueDateChecker = dueDateChecker;
+	}
 	@Override
 	public String toString() {
 		return "Index [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", updateDate=" + updateDate + ", reporter=" + reporter + ", status=" + status + ", projectID="
 				+ projectID + ", projectStatus=" + projectStatus + ", labelName=" + labelName + ", labelType="
-				+ labelType + ", labelID=" + labelID + "]";
+				+ labelType + ", labelID=" + labelID + ", dueDateChecker=" + dueDateChecker + "]";
 	}
 	
 	

@@ -12,7 +12,7 @@
 body {
 	background: #f7f7f7 !important;
 }
-	/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
 
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
@@ -142,7 +142,21 @@ body {
 															pattern="dd/MM/yyyy HH:mm" />
 												</font></span></small>
 
-										</p> From Project : <c:out value="${index.project}"></c:out>
+										</p> From Project : <c:out value="${index.project}"></c:out> <c:choose>
+											<c:when test="${index.dueDateChecker<='0'}">
+
+											</c:when>
+											<c:otherwise>
+												<span class="pull-right">
+													<p class="text-danger">
+														<span class="glyphicon glyphicon-exclamation-sign"></span>
+														Pass due date by
+														<c:out value="${index.dueDateChecker}" />
+														days
+													</p>
+												</span>
+											</c:otherwise>
+										</c:choose>
 
 
 									</a>
@@ -204,6 +218,22 @@ body {
 												</font></span></small>
 
 										</p> From Project : <c:out value="${index.project}"></c:out>
+										
+										<c:choose>
+											<c:when test="${index.dueDateChecker<='0'}">
+
+											</c:when>
+											<c:otherwise>
+												<span class="pull-right">
+													<p class="text-danger">
+														<span class="glyphicon glyphicon-exclamation-sign"></span>
+														Pass due date by
+														<c:out value="${index.dueDateChecker}" />
+														days
+													</p>
+												</span>
+											</c:otherwise>
+										</c:choose>
 
 									</a>
 
@@ -262,8 +292,23 @@ body {
 														<fmt:formatDate value="${myDate}"
 															pattern="dd/MM/yyyy HH:mm" />
 												</font></span></small>
-										</p> From Project : <c:out value="${index.project}"></c:out>
+										</p> From Project : <c:out value="${index.project}"></c:out> 
+										
+										<c:choose>
+											<c:when test="${index.dueDateChecker<='0'}">
 
+											</c:when>
+											<c:otherwise>
+												<span class="pull-right">
+													<p class="text-danger">
+														<span class="glyphicon glyphicon-exclamation-sign"></span>
+														Pass due date by
+														<c:out value="${index.dueDateChecker}" />
+														days
+													</p>
+												</span>
+											</c:otherwise>
+										</c:choose>
 
 									</a>
 								</c:forEach>
@@ -322,6 +367,22 @@ body {
 															pattern="dd/MM/yyyy HH:mm" />
 												</font></span></small>
 										</p> From Project : <c:out value="${index.project}"></c:out>
+										
+										<c:choose>
+											<c:when test="${index.dueDateChecker<='0'}">
+
+											</c:when>
+											<c:otherwise>
+												<span class="pull-right">
+													<p class="text-danger">
+														<span class="glyphicon glyphicon-exclamation-sign"></span>
+														Pass due date by
+														<c:out value="${index.dueDateChecker}" />
+														days
+													</p>
+												</span>
+											</c:otherwise>
+										</c:choose>
 
 									</a>
 								</c:forEach>
@@ -341,7 +402,7 @@ body {
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<b>Your feed</b> <span class="badge">${fn:length(feedback)}</span><a
-						href="#" style="color:white"><span class="pull-right"><small>View
+						href="#" style="color: white"><span class="pull-right"><small>View
 								all</small></span></a>
 				</div>
 				<ul class="list-group">

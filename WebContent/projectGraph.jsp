@@ -21,9 +21,8 @@
 		<h2><span class="label label-primary">Project name</span><small> project owner</small></h2>
 		<br>
 			<ul class="nav nav-tabs">
-				<li><a href="ProjectController.do?action=main">Project road map</a></li>
-				<li><a href="ProjectController.do?action=milestone">Project milestone</a></li>
-				<li class="active"><a href="ProjectController.do?action=graph">Graphs</a></li>
+				<li><a href="ProjectController.do?action=milestone">Project milestone / Project road map</a></li>
+				<li class="active"><a href="ProjectController.do?action=graph">Project report</a></li>
 				<li><a href="ProjectController.do?action=task">Project task</a></li>
 				<li><a href="ProjectController.do?action=label">Issue labels</a></li>
 			</ul>

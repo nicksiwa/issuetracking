@@ -77,8 +77,14 @@ public class AssignLabelController extends HttpServlet {
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(DETAIL);
-		
-		
+		Issue issue = new Issue();
+		issue = dao2.getAssignById(issueID);
+		request.setAttribute("issue", issue);
+		request.setAttribute("labels", dao3.getAllLabelByIssueID(issueID));
+		request.setAttribute("labelAssigns", dao3.getAssignLabel(issueID));
+		request.setAttribute("milestones", dao4.getMilestoneByIssueId(issueID));
+		request.setAttribute("milestoneAssigns", dao4.getAssignMilestone(issueID));
+		request.setAttribute("comments", dao2.getCommentByIssue(issueID));
 		view.forward(request, response);
 	}
 
