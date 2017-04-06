@@ -14,6 +14,7 @@ public class Register {
 	private String position;
 	private Date birthDate;
 	private int userID;
+	private String github;
 	
 	public String getUsername() {
 		return username;
@@ -75,11 +76,17 @@ public class Register {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
+	public String getGithub() {
+		return github;
+	}
+	public void setGithub(String github) {
+		this.github = github;
+	}
 	@Override
 	public String toString() {
 		return "Register [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", position=" + position
-				+ ", birthDate=" + birthDate + ", userID=" + userID + "]";
+				+ ", birthDate=" + birthDate + ", userID=" + userID + ", github=" + github + "]";
 	}
 
 }

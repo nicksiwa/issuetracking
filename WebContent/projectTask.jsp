@@ -47,7 +47,7 @@
 	<div class="container">
 		<form action="" class="form-horizontal">
 			<h2>
-				<span class="label label-primary">Project name</span><small>
+				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
 					project owner</small>
 			</h2>
 			<br>
@@ -143,8 +143,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<span class="glyphicon glyphicon-th-list"></span> Done <span
-								class="badge">1</span> <a href="#"><span
+							<span class="glyphicon glyphicon-th-list"></span> Done <a href="#"><span
 								class="pull-right glyphicon glyphicon-plus" data-toggle="modal"
 								data-target="#myModal"></span></a>
 						</h4>

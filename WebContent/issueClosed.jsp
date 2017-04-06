@@ -21,7 +21,7 @@
 	
 		<div class="col-md-3">
 				<div id="ghapidata" class="clearfix"></div>
-				<input type="hidden" value="niksf203" id="user"> <input
+				<input type="hidden" value="${person.github}" id="user"> <input
 					type="hidden" id="a">
 			</div>
 	

@@ -94,6 +94,15 @@
 							</div>
 						</div>
 						<div class="col-md-12">
+							<div class="form-group">
+								<label for="description" class="control-label col-md-4">GitHub Username
+									: </label>
+								<div class="col-md-8">
+									<input type="text" name="github" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
 							<div class="col-md-6"></div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-default" value="Next" />

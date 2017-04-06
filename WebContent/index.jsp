@@ -31,7 +31,7 @@ body {
 		<div class="col-md-3">
 
 			<div id="ghapidata" class="clearfix"></div>
-			<input type="hidden" value="niksf203" id="user"> <input
+			<input type="hidden" value="${person.github}" id="user"> <input
 				type="hidden" id="a">
 
 			<div class="panel panel-primary">
@@ -432,11 +432,7 @@ body {
 
 			</div>
 		</div>
-
 	</form>
-
-
-
 	<script>
 		$(document).ready(function() {
 			$('[data-toggle="tooltip"]').tooltip();
@@ -530,40 +526,5 @@ body {
 			});
 		}
 	</script>
-
-	<script>
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var myChart = new Chart(ctx, {
-			type : 'line',
-			data : {
-				labels : [ 'M', 'T', 'W', 'T', 'F', 'S', 'S' ],
-				datasets : [ {
-					label : 'BugTracking',
-					data : [ 12, 19, 3, 17, 6, 3, 7 ],
-					backgroundColor : "rgba(153,255,51,0.4)"
-				}, {
-					label : 'Hai to Gensou',
-					data : [ 2, 29, 5, 5, 2, 3, 10 ],
-					backgroundColor : "rgba(255,153,0,0.4)"
-				}, {
-					label : 'Project 1',
-					data : [ 14, 12, 2, 3, 17, 20, 9 ],
-					backgroundColor : "rgba(130,35,35,0.4)"
-				}
-
-				]
-			},
-			options : {
-				title : {
-					display : true,
-					text : 'Custom Chart Title'
-				},
-				responsive : true
-			}
-
-		});
-	</script>
-
-
 </body>
 </html>

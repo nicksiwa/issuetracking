@@ -55,7 +55,7 @@
 				<%
 					} else {
 				%>
-				<li><a href="profile.jsp">Hi, <%=username%></a></li>
+				<li><a href="ProfileController?action=profile">Hi, <%=username%></a></li>
 				<li><a href="LoginController?action=logout"><span
 						class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
 				<%

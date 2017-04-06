@@ -14,6 +14,7 @@ public class Person {
 	private Date birthDate;
 	private int assignID;
 	private int projectID;
+	private String github;
 
 	public int getPersonId() {
 		return personId;
@@ -95,11 +96,19 @@ public class Person {
 		this.projectID = projectID;
 	}
 
+	public String getGithub() {
+		return github;
+	}
+
+	public void setGithub(String github) {
+		this.github = github;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [personId=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
 				+ gender + ", address=" + address + ", tel=" + tel + ", position=" + position + ", birthDate="
-				+ birthDate + ", assignID=" + assignID + ", projectID=" + projectID + "]";
+				+ birthDate + ", assignID=" + assignID + ", projectID=" + projectID + ", github=" + github + "]";
 	}
 	
 }

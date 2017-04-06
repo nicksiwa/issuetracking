@@ -12,39 +12,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.siwa.dao.CommentDAO;
-import com.siwa.dao.CommentDAOImplementation;
-import com.siwa.dao.IndexDAO;
-import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.RegisterDAO;
 import com.siwa.dao.RegisterDAOImplementation;
+import com.siwa.model.Person;
 import com.siwa.model.Register;
 
-
-@WebServlet("/RegisterDetailController")
-public class RegisterDetailController extends HttpServlet {
+@WebServlet("/ProfileController")
+public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 private RegisterDAO dao;
-	 private IndexDAO daos;
-	 private CommentDAO dao2;
-	 public static final String INDEX = "/index.jsp";
-       
-   
-    public RegisterDetailController() {
-    	 dao = new RegisterDAOImplementation();
-         daos = new IndexDAOImplementation();
-         dao2 = new CommentDAOImplementation();
+	public static final String PROFILE = "/profile.jsp";
+	private RegisterDAO dao;
+
+    public ProfileController() {
+    	dao = new RegisterDAOImplementation();
     }
 
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String forward = "";
+		String action = request.getParameter("action");
+		
+
+		if (action.equalsIgnoreCase("profile")) {
+			forward = PROFILE;
+			
+		}
+		RequestDispatcher view = request.getRequestDispatcher(forward);
+		view.forward(request, response);
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Register register = new Register();
 		
@@ -85,24 +84,6 @@ public class RegisterDetailController extends HttpServlet {
 		String github = (request.getParameter("github"));
 		github = new String(github.getBytes("ISO8859-1"), "UTF-8");
 		register.setGithub(github);
-		
-		dao.registerPerson(register);
-		HttpSession session  = request.getSession();
-		
-		
-		session.setAttribute("username", firstname+" "+lastname);
-		
-		request.setAttribute("indexs", daos.getAllIndex(firstname+" "+lastname));
-		request.setAttribute("reports", daos.getReportByMe(firstname+" "+lastname));
-		request.setAttribute("resolves", daos.getResolveIssue());
-		request.setAttribute("recents", daos.getRecentlyModified());
-		request.setAttribute("projects", daos.getProjectByUser(firstname+" "+lastname));
-		request.setAttribute("publics", daos.getPublicProject());
-		request.setAttribute("feedback", dao2.getFeedbackByUser(firstname+" "+lastname));
-		request.setAttribute("unassign", daos.getUnassignIssue());
-		
-		RequestDispatcher view = request.getRequestDispatcher(INDEX);
-		view.forward(request, response);
 	}
 
 }

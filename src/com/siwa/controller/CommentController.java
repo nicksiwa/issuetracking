@@ -27,8 +27,11 @@ import com.siwa.dao.LabelDAO;
 import com.siwa.dao.LabelDAOImplementation;
 import com.siwa.dao.MilestoneDAO;
 import com.siwa.dao.MilestoneDAOImplementation;
+import com.siwa.dao.PersonDAO;
+import com.siwa.dao.PersonDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
+import com.siwa.model.Person;
 
 @WebServlet("/CommentController")
 public class CommentController extends HttpServlet {
@@ -39,6 +42,7 @@ public class CommentController extends HttpServlet {
 	private IndexDAO dao4;
 	private LabelDAO dao5;
 	private MilestoneDAO dao6;
+	private PersonDAO dao7;
 	
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_COMMENT = "/listComment.jsp";
@@ -57,6 +61,7 @@ public class CommentController extends HttpServlet {
 		dao4 = new IndexDAOImplementation();
 		dao5 = new LabelDAOImplementation();
 		dao6 = new MilestoneDAOImplementation();
+		dao7 = new PersonDAOImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -134,6 +139,8 @@ public class CommentController extends HttpServlet {
 			forward = CLOSED;
 			request.setAttribute("issues", dao2.getAllIssueClosed());
 			request.setAttribute("label", dao4.getLabelByIssueId(username));
+			Person person = dao7.getGitHubByUsername(username);
+			request.setAttribute("person", person);
 			
 		}
 		else if(action.equalsIgnoreCase("reopenissue")){

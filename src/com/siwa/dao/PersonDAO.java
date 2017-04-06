@@ -13,4 +13,8 @@ public interface PersonDAO {
 	public List<Person> getAllPersons();
 
 	public Person getPersonById(int personId);
+	
+	public Person getPersonByUsername(String username);
+	
+	public Person getGitHubByUsername(String username);
 }

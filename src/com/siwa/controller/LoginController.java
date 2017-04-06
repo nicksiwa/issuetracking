@@ -16,7 +16,10 @@ import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.LoginDAO;
 import com.siwa.dao.LoginDAOImplementation;
+import com.siwa.dao.PersonDAO;
+import com.siwa.dao.PersonDAOImplementation;
 import com.siwa.model.Login;
+import com.siwa.model.Person;
 
 
 @WebServlet("/LoginController")
@@ -25,6 +28,7 @@ public class LoginController extends HttpServlet {
     private LoginDAO dao;
     private IndexDAO daos;
     private CommentDAO dao2;
+    private PersonDAO dao3;
     public static final String LOGIN = "/login.jsp";
     public static final String REGISTER = "/register.jsp";
    
@@ -32,6 +36,7 @@ public class LoginController extends HttpServlet {
        dao = new LoginDAOImplementation();
        daos = new IndexDAOImplementation();
        dao2 = new CommentDAOImplementation();
+       dao3 = new PersonDAOImplementation();
       
     }
 
@@ -89,7 +94,8 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("publics", daos.getPublicProject());
 			request.setAttribute("feedback", dao2.getFeedbackByUser(login.getFirstname()));
 			request.setAttribute("unassign", daos.getUnassignIssue());
-			
+			Person person = dao3.getPersonByUsername(username);
+			request.setAttribute("person", person);
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{

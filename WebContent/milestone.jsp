@@ -20,7 +20,7 @@
 	<div class="container">
 		<form action="" class="form-horizontal">
 			<h2>
-				<span class="label label-primary">Project name</span><small>
+				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
 					project owner</small>
 			</h2>
 			<br>
@@ -97,6 +97,8 @@
 								
 									
 									<c:set var="count3" value="${(count2/count)*100}" scope="page"/>
+									<c:set var="count4" value="${(count-count2)}" scope="page"/>
+									
 									
 						
 
@@ -107,10 +109,10 @@
 											</div>
 											<c:choose>
 												<c:when test="${count3=='NaN'}">
-												<fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+												<fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count4}"/> opened&nbsp;&nbsp;<c:out value="${count2}"/> closed
 												</c:when>
 												<c:otherwise>
-												<fmt:formatNumber value="${count3}" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count}"/> open&nbsp;&nbsp;<c:out value="${count2}"/> close
+												<fmt:formatNumber value="${count3}" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count4}"/> opened&nbsp;&nbsp;<c:out value="${count2}"/> closed
 												</c:otherwise>
 											</c:choose>
 											

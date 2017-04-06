@@ -14,7 +14,10 @@ import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
+import com.siwa.dao.PersonDAO;
+import com.siwa.dao.PersonDAOImplementation;
 import com.siwa.model.Index;
+import com.siwa.model.Person;
 
 
 @WebServlet("/IndexController")
@@ -30,11 +33,13 @@ public class IndexController extends HttpServlet {
 	
 	private IndexDAO dao;
 	private CommentDAO dao2;
+	private PersonDAO dao3;
     
   
     public IndexController() {
         dao = new IndexDAOImplementation();
         dao2 = new CommentDAOImplementation();
+        dao3 = new PersonDAOImplementation();
     }
 
 
@@ -86,6 +91,8 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("feedback", dao2.getFeedbackByUser(username));
 			
 			request.setAttribute("label", dao.getLabelByIssueId(username));
+			Person person = dao3.getGitHubByUsername(username);
+			request.setAttribute("person", person);
 			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);

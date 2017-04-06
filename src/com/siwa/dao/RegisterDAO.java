@@ -14,4 +14,8 @@ public interface RegisterDAO {
 	public String checkUsername(Register regis);
 	
 	public Register getUserPrimaryKey(String username);
+	
+	public void updateProfile(Register register);
+	
+	public Register getPersonById(String username);
 }

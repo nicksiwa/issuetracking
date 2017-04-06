@@ -97,5 +97,20 @@
 			});
 		}));
 	</script>
+	<script type="text/javascript">
+	$.ajax({
+		type : "get",
+		url : "AjaxTaskController",
+		cache : false,
+		data : $('#employeeForm').serialize(),
+		success : function(response) {
+			alert();
+		},
+		error : function() {
+			alert('Error while request..');
+		}
+
+	});
+	</script>
 </body>
 </html>

@@ -123,4 +123,42 @@ public class PersonDAOImplementation implements PersonDAO {
 		return person;
 	}
 
+	@Override
+	public Person getPersonByUsername(String username) {
+		Person person = new Person();
+		try {
+			String query = "select person.github from person join `user` on person.user_ID = `user`.userID and `user`.username=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				person.setGithub(resultSet.getString("github"));
+			}
+			resultSet.close();
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return person;
+	}
+
+	@Override
+	public Person getGitHubByUsername(String username) {
+		Person person = new Person();
+		try {
+			String query = "select github from person where CONCAT_WS (' ',firstName, lastName)=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				person.setGithub(resultSet.getString("github"));
+			}
+			resultSet.close();
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return person;
+	}
+
 }
