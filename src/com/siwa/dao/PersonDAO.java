@@ -17,4 +17,6 @@ public interface PersonDAO {
 	public Person getPersonByUsername(String username);
 	
 	public Person getGitHubByUsername(String username);
+	
+	public List<Person> pagination(int startIndex,int numberOfArticlePerpage);
 }

@@ -36,7 +36,7 @@ public class RegisterDAOImplementation implements RegisterDAO {
 	@Override
 	public void registerPerson(Register register) {
 		try{
-			String query = "insert into person (firstName, lastName, birthDate, gender, address, tel, position, user_ID, github) values (?,?,?,?,?,?,?,?,?)";
+			String query = "insert into person (firstName, lastName, birthDate, gender, address, tel, position, user_ID, github, email_id, email_password) values (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, register.getFirstName());
 			ps.setString(2, register.getLastName());
@@ -47,6 +47,8 @@ public class RegisterDAOImplementation implements RegisterDAO {
 			ps.setString(7, register.getPosition());
 			ps.setInt(8, register.getUserID());
 			ps.setString(9, register.getGithub());
+			ps.setString(10, register.getEmail_id());
+			ps.setString(11, register.getEmail_password());
 			ps.executeUpdate();
 			ps.close();
 		}catch(SQLException e){

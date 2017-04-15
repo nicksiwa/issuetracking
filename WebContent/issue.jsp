@@ -11,14 +11,34 @@
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/dropzone.js"></script>
 
+<script>
+	function myFunction(value) {
+		var x = document.getElementById("mySelect").value;
 
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "AjaxTestController",
+			data : {
+				email_id : x
+			},
+			success : function(data) {
+				document.getElementById('e1').value = data.email_id;
+				document.getElementById('e2').value = data.email_password;
+			}
+		});
+	}
+	
+	
+</script>
 </head>
 <body>
 
 	<jsp:include page="navbar.jsp" />
 
 
-	<form action="IssueController.do" method="post" class="form-horizontal">
+	<form action="IssueController.do" method="post" class="form-horizontal"
+		id="form1">
 		<div class="container">
 
 			<div class="col-md-12">
@@ -34,7 +54,7 @@
 					<div class="panel-body">
 
 						<input type="hidden" name="issueID"
-							value="<c:out value="${issue.issueID}" />" readonly="readonly"
+							value="" readonly="readonly"
 							placeholder="Auto generate ID" /> <br> <br>
 
 						<div class="form-group">
@@ -53,7 +73,7 @@
 							<label for="description" class="control-label col-sm-2">Assign
 								to :</label>
 							<div class="col-sm-3 col-md-4">
-								<select name="assign" class="form-control">
+								<select name="assign" class="form-control" id="mySelect" onchange="myFunction(value)">
 									<option>-</option>
 									<c:forEach var="issue" items="${issuess}">
 
@@ -138,19 +158,30 @@
 								</select>
 							</div>
 						</div>
+
+						To:<input type="text" name="to" id="e1" /><br /> Subject:<input
+							type="text" name="subject" value="New issue assign to you"/><br /> Message:<input type="text"
+							name="message"/><br /> Your Email id:<input type="text"
+							name="user" value="<c:out value="${issue.email_id}" />"><br />
+						Password<input type="text" name="pass"
+							value="<c:out value="${issue.email_password}" />" /><br />
+
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" class="btn btn-default" value="Submit" />
+								<input type="submit" class="btn btn-default" value="Submit"/>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
-
-
-
 		</div>
+
+
 	</form>
+
+
+
 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>

@@ -21,6 +21,8 @@ public class Issue {
 	private Timestamp createDate;
 	private int milestoneID;
 	private long dueDateChecker;
+	private String email_id;
+	private String email_password;
 
 
 	public int getIssueID() {
@@ -146,14 +148,30 @@ public class Issue {
 		this.dueDateChecker = dueDateChecker;
 	}
 
+	
+	public String getEmail_id() {
+		return email_id;
+	}
+
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+
+	public String getEmail_password() {
+		return email_password;
+	}
+
+	public void setEmail_password(String email_password) {
+		this.email_password = email_password;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
 				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter
 				+ ", createDate=" + createDate + ", milestoneID=" + milestoneID + ", dueDateChecker=" + dueDateChecker
-				+ "]";
+				+ ", email_id=" + email_id + ", email_password=" + email_password + "]";
 	}
 	
-
 }

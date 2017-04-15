@@ -1,6 +1,7 @@
 package com.siwa.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,6 +84,8 @@ public class IssueController extends HttpServlet {
 			request.setAttribute("project", project);
 
 			request.setAttribute("issuess", dao.getPersonByProject(projectID));
+			Issue issue = dao.getEmailByUsername(username);
+			request.setAttribute("issue", issue);
 
 		} else if (action.equalsIgnoreCase("detail")) {
 			forward = ISSUE_DETAIL;
@@ -150,10 +153,13 @@ public class IssueController extends HttpServlet {
 		String priority = (request.getParameter("priority"));
 		priority = new String(priority.getBytes("ISO8859-1"), "UTF-8");
 		issue.setPriority(priority);
+		
+		Date a = null;
 
 		try {
 			Date dueDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(request.getParameter("dueDate"));
 			issue.setDueDate(dueDate);
+			a=dueDate;
 
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -176,12 +182,24 @@ public class IssueController extends HttpServlet {
 		issue.setReporter(reporter);
 
 		String issueID = request.getParameter("issueID");
-		if (issueID == null || issueID.isEmpty())
+		if (issueID == null || issueID.isEmpty() || issueID == "0")
 			dao.addIssue(issue);
 		else {
 			issue.setIssueID(Integer.parseInt(issueID));
 			dao.updateIssue(issue);
 		}
+		
+		
+
+        String to = request.getParameter("to");
+        String subject = request.getParameter("subject");
+        String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+title+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+description+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+severity+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+priority+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+a+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+status+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+reporter+"</td></tr></table>";
+        String user = "the.issue.tracking@gmail.com";
+        String pass = "niksf203";
+        SendMail.send(to,subject, message, user, pass);
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher(ISSUE_DETAIL);
 		issue = dao.getIssueByLastInsert();
 		request.setAttribute("issue", issue);

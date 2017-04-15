@@ -86,6 +86,10 @@ public class RegisterDetailController extends HttpServlet {
 		github = new String(github.getBytes("ISO8859-1"), "UTF-8");
 		register.setGithub(github);
 		
+		String email_id = (request.getParameter("email_id"));
+		email_id = new String(email_id.getBytes("ISO8859-1"), "UTF-8");
+		register.setEmail_id(email_id);
+		
 		dao.registerPerson(register);
 		HttpSession session  = request.getSession();
 		

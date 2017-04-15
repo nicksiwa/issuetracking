@@ -15,6 +15,8 @@ public class Register {
 	private Date birthDate;
 	private int userID;
 	private String github;
+	private String email_id;
+	private String email_password;
 	
 	public String getUsername() {
 		return username;
@@ -82,11 +84,24 @@ public class Register {
 	public void setGithub(String github) {
 		this.github = github;
 	}
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+	public String getEmail_password() {
+		return email_password;
+	}
+	public void setEmail_password(String email_password) {
+		this.email_password = email_password;
+	}
 	@Override
 	public String toString() {
 		return "Register [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", gender=" + gender + ", address=" + address + ", tel=" + tel + ", position=" + position
-				+ ", birthDate=" + birthDate + ", userID=" + userID + ", github=" + github + "]";
+				+ ", birthDate=" + birthDate + ", userID=" + userID + ", github=" + github + ", email_id=" + email_id
+				+ ", email_password=" + email_password + "]";
 	}
 
 }

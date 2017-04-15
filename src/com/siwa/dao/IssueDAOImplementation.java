@@ -515,6 +515,24 @@ public class IssueDAOImplementation implements IssueDAO {
 		return issues;
 	}
 
-
+	@Override
+	public Issue getEmailByUsername(String username) {
+		Issue issue = new Issue();
+		try{
+			String query = "select email_id from person where CONCAT_WS (' ',firstName, lastName)=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				issue.setEmail_id(rs.getString("email_id"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issue;
+	
+	}
 
 }

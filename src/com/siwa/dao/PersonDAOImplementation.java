@@ -161,4 +161,33 @@ public class PersonDAOImplementation implements PersonDAO {
 		return person;
 	}
 
+	@Override
+	public List<Person> pagination(int startIndex, int numberOfArticlePerpage) {
+		List<Person> persons = new ArrayList<Person>();
+		try{
+			String query = "select * from person limit ?,?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, startIndex);
+			ps.setInt(2, numberOfArticlePerpage);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Person person = new Person();
+				person.setPersonId(rs.getInt("personId"));
+				person.setFirstName(rs.getString("firstName"));
+				person.setLastName(rs.getString("LastName"));
+				person.setBirthDate(rs.getDate("birthDate"));
+				person.setGender(rs.getString("gender"));
+				person.setAddress(rs.getString("address"));
+				person.setTel(rs.getString("tel"));
+				person.setPosition(rs.getString("position"));
+
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return persons;
+	}
+
 }

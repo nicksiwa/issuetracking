@@ -15,7 +15,8 @@
 	<jsp:include page="navbar.jsp" />
 
 	<div class="container">
-		<form action="RegisterDetailController" class="form-horizontal" method="post">
+		<form action="RegisterDetailController" class="form-horizontal"
+			method="post">
 			<div class="col-md-6 col-md-offset-3">
 
 				<div class="panel panel-default">
@@ -95,8 +96,17 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="description" class="control-label col-md-4">GitHub Username
-									: </label>
+								<label for="description" class="control-label col-md-4">Email
+									Address : </label>
+								<div class="col-md-8">
+									<input type="text" name="email_id" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="description" class="control-label col-md-4">GitHub
+									Username : </label>
 								<div class="col-md-8">
 									<input type="text" name="github" class="form-control" />
 								</div>
