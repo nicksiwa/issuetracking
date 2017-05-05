@@ -40,4 +40,8 @@ public interface ProjectDAO {
 	
 	public List<Issue> getAllIssueByResolved(int projectID);
 	
+	public List<Project> getProjectsByUser(String username);
+	
+	public List<Project> getOwnerName();
+	
 }

@@ -14,19 +14,8 @@
 <body>
 
 	<jsp:include page="navbar.jsp" />
-	<div class="container">
-	<form action="TestController.do" method="post" class="form-inline">
-	
-	<div class="form-group">
-		<label>Severity</label><input type="text" class="form-control" name="severity"> <label>Status</label><input
-			type="text" class="form-control" name="status"> <label>Date</label><input
-			type="date" class="form-control" name="firstDate"> <label>Between</label><input
-			type="date" class="form-control" name="secondDate"> <input type="submit"
-			class="btn btn-default" value="Submit" />
-			</div>
-	
-	</form></div>
-	
+
+
 	<div class="container">
 
 		<table class="table table-hover table-responsive table-striped">
@@ -78,8 +67,32 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	</div>
 
+		<div align="center">
+			<ul class="pagination">
+				<c:forEach begin="1" end="${noOfPages}" var="i">
+					<c:choose>
+						<c:when test="${currentPage eq i}">
+							<li class="active"><a>${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="Pagination.do?page=${i}">${i}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+			<ul class="pager">
+				<c:if test="${currentPage != 1}">
+					<li><a href="Pagination.do?page=${currentPage - 1}">Previous</a></li>
+				</c:if>
+
+				<c:if test="${currentPage lt noOfPages}">
+					<li><a href="Pagination.do?page=${currentPage + 1}">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+	
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

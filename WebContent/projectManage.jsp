@@ -24,12 +24,6 @@
 
 			<div class="col-md-12">
 
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="ProjectController.do?action=listProject">Issue
-							tracking system project</a></li>
-					<li><a href="ProjectController.do?action=github">GitHub
-							project</a></li>
-				</ul>
 				<br>
 				<c:choose>
 					<c:when test="${fn:length(projects)=='0'}">
@@ -60,7 +54,13 @@
 
 										<p class="list-group-item-heading text-primary lead">
 											<a href="ProjectController.do?action=main&projectID=<c:out value="${project.projectID }"/>"><strong><c:out
-														value="${project.projectName}"></c:out></strong></a> <span
+														value="${project.projectName}"></c:out></strong></a> 
+														
+														<span class="label label-default"><c:out value="${project.projectType}"></c:out></span>
+														
+														
+									
+														<span
 												class="pull-right"><small><a
 													class="text-muted" data-toggle="tooltip"
 													title="Project configuration"

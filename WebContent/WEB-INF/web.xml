@@ -188,14 +188,29 @@
     <servlet-name>mail</servlet-name>
     <url-pattern>/mail</url-pattern>
   </servlet-mapping>
-  
-  
-   <servlet>
+  <servlet>
     <servlet-name>AjaxTestController</servlet-name>
     <servlet-class>com.siwa.controller.AjaxTestController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AjaxTestController</servlet-name>
     <url-pattern>/AjaxTestController.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Pagination</servlet-name>
+    <servlet-class>com.siwa.controller.Pagination</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Pagination</servlet-name>
+    <url-pattern>/Pagination.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>AjaxGitHubController</servlet-name>
+    <servlet-class>com.siwa.controller.AjaxGitHubController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxGitHubController</servlet-name>
+    <url-pattern>/AjaxGitHubController.do</url-pattern>
   </servlet-mapping>
 </web-app>

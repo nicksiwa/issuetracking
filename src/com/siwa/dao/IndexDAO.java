@@ -21,5 +21,7 @@ public interface IndexDAO {
 	public List<Index> getUnassignIssue();
 	
 	public List<Index> getLabelByIssueId(String user);
+	
+	public List<Index> getGitHubProject(String user);
  	
 }

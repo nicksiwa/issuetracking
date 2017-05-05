@@ -159,11 +159,11 @@
 							</div>
 						</div>
 
-						To:<input type="text" name="to" id="e1" /><br /> Subject:<input
-							type="text" name="subject" value="New issue assign to you"/><br /> Message:<input type="text"
-							name="message"/><br /> Your Email id:<input type="text"
+						<input type="hidden" name="to" id="e1" /><br /><input
+							type="hidden" name="subject" value="New issue assign to you"/><br /><input type="hidden"
+							name="message"/><br /> <input type="hidden"
 							name="user" value="<c:out value="${issue.email_id}" />"><br />
-						Password<input type="text" name="pass"
+						<input type="hidden" name="pass"
 							value="<c:out value="${issue.email_password}" />" /><br />
 
 						<div class="form-group">

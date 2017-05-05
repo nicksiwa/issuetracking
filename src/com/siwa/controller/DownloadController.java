@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,17 +24,25 @@ public class DownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	private static final int BUFFER_SIZE = 4096;
+	
+	 private String dbURL = "jdbc:mysql://localhost/projectdb";
+	 private String dbUser = "root";
+	 private String dbPass = "password";
 
 	public DownloadController() {
 
-		conn = DBUtil.getConnection();
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int uploadId = Integer.parseInt(request.getParameter("id"));
+		
+		Connection conn = null;
+		
 		try {
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
 			String sql = "SELECT * FROM test WHERE id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, uploadId);

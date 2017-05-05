@@ -14,4 +14,6 @@ public interface TaskDAO {
 	public List<Task> getAllTasks();
 	
 	public List<Task> getAllTaskByProjectId(int projectID);
+	
+	public void testTask(Task task);
 }

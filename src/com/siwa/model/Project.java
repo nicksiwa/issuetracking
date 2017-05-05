@@ -11,6 +11,7 @@ public class Project {
 	private Date startDate;
 	private Date finishDate;
 	private String viewStatus;
+	private String projectType;
 	
 	
 	public int getProjectID() {
@@ -57,10 +58,17 @@ public class Project {
 	public void setViewStatus(String viewStatus) {
 		this.viewStatus = viewStatus;
 	}
+	public String getProjectType() {
+		return projectType;
+	}
+	public void setProjectType(String projectType) {
+		this.projectType = projectType;
+	}
 	@Override
 	public String toString() {
 		return "Project [projectID=" + projectID + ", projectName=" + projectName + ", status=" + status
 				+ ", description=" + description + ", startDate=" + startDate + ", finishDate=" + finishDate
-				+ ", viewStatus=" + viewStatus + "]";
+				+ ", viewStatus=" + viewStatus + ", projectType=" + projectType + "]";
 	}
+	
 }

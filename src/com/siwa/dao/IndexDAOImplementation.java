@@ -213,9 +213,7 @@ public class IndexDAOImplementation implements IndexDAO {
 				index.setProjectStatus(rs.getString("status"));
 				projects.add(index);
 				
-				if (index.getProjectStatus().equals("Closed")) {
-					projects.remove(index);
-				}
+
 			}
 			rs.close();
 			ps.close();
@@ -323,6 +321,30 @@ public class IndexDAOImplementation implements IndexDAO {
 			e.printStackTrace();
 		}
 		return label;
+	}
+
+	@Override
+	public List<Index> getGitHubProject(String user) {
+		List<Index> githubs = new ArrayList<Index>();
+		try{
+			String query = "select * from project where projectType='GitHub' and owner=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, user);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Index index = new Index();
+				index.setProjectID(rs.getInt("projectID"));
+				index.setProject(rs.getString("projectName"));
+				index.setProjectStatus(rs.getString("status"));
+				githubs.add(index);
+				
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return githubs;
 	}
 
 }

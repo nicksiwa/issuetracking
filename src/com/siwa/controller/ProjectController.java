@@ -56,6 +56,8 @@ public class ProjectController extends HttpServlet {
 			throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter("action");
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
 
 		if (action.equalsIgnoreCase("delete")) {
 			forward = MANAGE;
@@ -82,11 +84,9 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("cols", dao.getCollaborators(projectID));
 			request.setAttribute("persons", dao2.getPerson());
 
-			HttpSession session = request.getSession();
-			String user = (String) session.getAttribute("username");
 
-			request.setAttribute("assignResolved", dao.getIssueByAssignResolved(projectID, user));
-			request.setAttribute("assignNo", dao.getIssueByAssign(projectID, user));
+			request.setAttribute("assignResolved", dao.getIssueByAssignResolved(projectID, username));
+			request.setAttribute("assignNo", dao.getIssueByAssign(projectID, username));
 			request.setAttribute("unassign", dao.getIssueByUnAssign(projectID));
 			request.setAttribute("unassignResolved", dao.getIssueByUnAssignResolved(projectID));
 			request.setAttribute("issueUn", dao.getAllIssue(projectID));
@@ -133,7 +133,7 @@ public class ProjectController extends HttpServlet {
 		}
 		else {
 			forward = MANAGE;
-			request.setAttribute("projects", dao.getAllProjects());
+			request.setAttribute("projects", dao.getProjectsByUser(username));
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

@@ -29,9 +29,9 @@ public class AjaxTestController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<String> list = new ArrayList<>();
-	    list.add("item1");
-	    list.add("item2");
-	    list.add("item3");
+	    list.add("ฟหดฟดฟดห");
+	    list.add("ฟหดดหฟดฟดฟ");
+	    list.add("ฟหกด");
 	    String json = new Gson().toJson(list);
 
 	    response.setContentType("application/json");

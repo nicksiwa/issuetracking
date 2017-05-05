@@ -118,4 +118,22 @@ public class TaskDAOImplementation implements TaskDAO {
 		return tasks;
 	}
 
+	@Override
+	public void testTask(Task task) {
+		try{
+
+			String query = "INSERT INTO project (projectName,projectType,owner) SELECT * FROM (SELECT ?,?,?) AS tmp WHERE NOT EXISTS (SELECT projectName FROM project WHERE projectName = ?)";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, task.getTaskDetail());
+			ps.setString(2, "GitHub");
+			ps.setString(3, task.getCreateBy());
+			ps.setString(4, task.getTaskDetail());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+
 }

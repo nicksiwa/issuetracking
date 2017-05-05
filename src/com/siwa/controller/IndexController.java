@@ -93,6 +93,7 @@ public class IndexController extends HttpServlet {
 			request.setAttribute("label", dao.getLabelByIssueId(username));
 			Person person = dao3.getGitHubByUsername(username);
 			request.setAttribute("person", person);
+			request.setAttribute("githubs", dao.getGitHubProject(username));
 			
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);

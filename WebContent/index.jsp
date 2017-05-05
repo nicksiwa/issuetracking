@@ -31,6 +31,28 @@ body {
 		<div class="col-md-3">
 
 			<div id="ghapidata" class="clearfix"></div>
+			<ul class="list-group">
+
+					<c:choose>
+						<c:when test="${fn:length(githubs)=='0'}">
+							<li class="list-group-item">No have any repositories </li>
+
+						</c:when>
+						<c:otherwise>
+
+							<c:forEach items="${githubs}" var="index">
+								<li class="list-group-item text-primary"><a
+									href="IssueController.do?action=project&projectID=<c:out value="${index.projectID}"/>"><c:out
+											value="${index.project}"></c:out></a><a
+									href="IssueController.do?action=insert&project=<c:out value="${index.projectID}"/>"
+									class="btn btn-success btn-xs pull-right" role="button">New
+										issue</a></li>
+							</c:forEach>
+
+						</c:otherwise>
+					</c:choose>
+
+				</ul>
 			<input type="hidden" value="${person.github}" id="user"> <input
 				type="hidden" id="a">
 
@@ -467,6 +489,8 @@ body {
 						var followersnum = json.followers;
 						var followingnum = json.following;
 						var reposnum = json.public_repos;
+						
+						
 
 						document.getElementById("a").value = fullname;
 
@@ -505,10 +529,14 @@ body {
 										.each(
 												repositories,
 												function(index) {
-													outhtml = outhtml
-															+ '<li class="list-group-item"><a href="'+repositories[index].html_url+'" target="_blank">'
-															+ repositories[index].name
-															+ '</a><span class="pull-right"><a href="" class="btn btn-success btn-xs" role="button">New issue</a></span></li>';
+												
+													$.ajax({
+														type : "post",
+														url : "AjaxGitHubController",
+														cache : false,
+														data : { A : repositories[index].name },
+
+													});
 												});
 								outhtml = outhtml + '</ul></div>';
 							}

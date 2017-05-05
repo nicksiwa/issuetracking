@@ -21,7 +21,7 @@ import com.siwa.util.DBUtil;
 public class IssueDAOImplementation implements IssueDAO {
 	
 	private Connection conn;
-	
+	private int noOfRecords;
 	
 	
 
@@ -533,6 +533,45 @@ public class IssueDAOImplementation implements IssueDAO {
 		}
 		return issue;
 	
+	}
+
+	@Override
+	public List<Issue> getAllIssueByPagination(int offset, int noOfRecords) {
+		List<Issue> issues = new ArrayList<Issue>();
+		try{
+			String query = "select * from issue limit ?,?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, offset);
+			ps.setInt(2, noOfRecords);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+				issue.setCreateDate(rs.getTimestamp("createDate"));
+				issues.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			 e.printStackTrace();
+		}
+		return issues;
+	}
+
+	@Override
+	public int getNoOfRecords() {
+		
+		return noOfRecords;
 	}
 
 }

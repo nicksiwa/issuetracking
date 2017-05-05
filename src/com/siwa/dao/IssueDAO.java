@@ -48,6 +48,10 @@ public interface IssueDAO {
 	public List <Issue> getReport(String severity,String status,String firstDate,String secondDate);
 	
 	public Issue getEmailByUsername(String username);
+	
+	public List <Issue> getAllIssueByPagination(int offset,int noOfRecords);
+	
+	public int getNoOfRecords();
 
 	
 }

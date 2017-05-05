@@ -91,6 +91,7 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("resolves", daos.getResolveIssue());
 			request.setAttribute("recents", daos.getRecentlyModified());
 			request.setAttribute("projects", daos.getProjectByUser(login.getFirstname()));
+			request.setAttribute("githubs", daos.getGitHubProject(login.getFirstname()));
 			request.setAttribute("publics", daos.getPublicProject());
 			request.setAttribute("feedback", dao2.getFeedbackByUser(login.getFirstname()));
 			request.setAttribute("unassign", daos.getUnassignIssue());
