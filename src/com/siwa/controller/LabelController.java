@@ -36,7 +36,12 @@ public class LabelController extends HttpServlet {
 		
 		if(action.equalsIgnoreCase("delete")){
 			forward = LABEL;
-			
+			int labelID = Integer.parseInt(request.getParameter("labelID"));
+			dao.deleteLabel(labelID);
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("labels", dao.getAllLabelByProjectId(projectID));
 		}else if(action.equalsIgnoreCase("insert")){
 			forward = LABEL;
 			

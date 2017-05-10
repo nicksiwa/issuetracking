@@ -35,20 +35,18 @@ public class DBFileDownloadServlet extends HttpServlet {
 		
 		try{
 			
-			 String sql = "SELECT * FROM test WHERE testID = ?";
+			 String sql = "SELECT * FROM test WHERE id = ?";
 	            PreparedStatement statement = conn.prepareStatement(sql);
 	            statement.setInt(1, testID);
 	 
 	            ResultSet result = statement.executeQuery();
 			
 	            if(result.next()){
-	            	  String fileName = result.getString("testID");
-	                Blob blob = result.getBlob("file");
+	            	String fileName = result.getString("file_name");
+	                Blob blob = result.getBlob("file_data");
 	                InputStream inputStream = blob.getBinaryStream();
 	                int fileLength = inputStream.available();
-	                 
-	                System.out.println("fileLength = " + fileLength);
-	 
+
 	                ServletContext context = getServletContext();
 	                
 	                String mimeType = context.getMimeType(fileName);
@@ -86,15 +84,6 @@ public class DBFileDownloadServlet extends HttpServlet {
 		}catch(IOException ex){
 			 ex.printStackTrace();
 	         response.getWriter().print("IO Error: " + ex.getMessage());
-		}finally{
-			 if (conn != null) {
-	                // closes the database connection
-	                try {
-	                    conn.close();
-	                } catch (SQLException ex) {
-	                    ex.printStackTrace();
-	                }
-	            }        
 		}
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());

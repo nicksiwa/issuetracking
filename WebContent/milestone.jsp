@@ -28,7 +28,9 @@
 				<li class="active"><a
 					href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
 						milestone / Project road map</a></li>
-				<li><a href="ProjectController.do?action=graph">Project report</a></li>
+				<li><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>">Project report</a></li>
+				<li><a
+					href="ReportController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Graph</a></li>
 				<li><a href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
 				<li><a
 					href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue

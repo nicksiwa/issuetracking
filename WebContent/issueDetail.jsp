@@ -249,7 +249,7 @@
 	</form>
 
 
-	<form action="CommentController.do" method="post"
+	<form action="CommentIssue.do" method="post"
 		class="form-horizontal">
 		<div class="container">
 			<div class="col-md-8">
@@ -263,12 +263,16 @@
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
+						<input type="hidden" name="issueID" class="form-control"
+										value="<c:out value="${issue.issueID}" />"
+										placeholder="project" />
+						
 							<input type="hidden" name="commentID"
 								value="<c:out value="${comment.commentID}" />"
 								readonly="readonly" placeholder="Auto generate ID" />
 
 							<div class="col-sm-12 col-lg-12 col-md-12">
-								<textarea name="description" class="form-control" rows="6"
+								<textarea name="commentDetail" class="form-control" rows="6"
 									id="comment" placeholder="Leave a comment"></textarea>
 								<input type="hidden" name="commentDetail" class="form-control"
 									value="<c:out value="${comment.commentDetail}" />"
@@ -300,22 +304,30 @@
 				<div class="panel panel-default">
 
 					<div class="panel-body">
+					<div>
 						<label for="status" class="control-label">Select project
-							milestone</label> <select name="milestoneName" class="form-control">
+							milestone</label>
+							</div>
+							
+							<div class="col-md-7">
+							 <select name="milestoneName" class="form-control">
 							<c:forEach items="${milestones}" var="milestone">
 								<option><c:out value="${milestone.milestoneName}" />
 
 								</option>
 
 							</c:forEach>
-						</select> <input type="hidden" name="issueID" class="form-control"
+						</select> 
+						</div>
+						<div class="col-md-5">
+						<input type="hidden" name="issueID" class="form-control"
 							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
 
 						<input type="hidden" name="assignMilestonelID"
 							class="form-control" value="" placeholder="issueID" />
 
-						<button type="submit" class="btn btn-default">Add
-							milestone</button>
+						<button type="submit" class="btn btn-success btn-md">Add
+							</button></div>
 
 					</div>
 					<ul class="list-group">
@@ -347,9 +359,11 @@
 				<div class="panel panel-default">
 
 					<div class="panel-body">
-
+<div>
 						<label for="status" class="control-label">Select issue
-							label</label> <select name="labelName" class="form-control">
+							label</label> </div>
+							<div class="col-md-7">
+							<select name="labelName" class="form-control">
 							<c:forEach items="${labels}" var="label">
 								<option><c:out value="${label.labelName}" />
 
@@ -357,13 +371,17 @@
 
 							</c:forEach>
 
-						</select> <input type="hidden" name="issueID" class="form-control"
+						</select> 
+						</div>
+						<div class="col-md-5">
+						<input type="hidden" name="issueID" class="form-control"
 							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
 
 						<input type="hidden" name="assignLabelID" class="form-control"
 							value="" placeholder="issueID" />
 
-						<button type="submit" class="btn btn-default">Add label</button>
+						<button type="submit" class="btn btn-success btn-md">Add</button>
+						</div>
 					</div>
 
 					<ul class="list-group">

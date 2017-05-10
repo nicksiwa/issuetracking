@@ -87,23 +87,58 @@ public class CommentController extends HttpServlet {
 			forward = ASSIGN;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = new Issue();
+			
+			issue = dao2.getAssignById(issueID);
+			String assignusername = issue.getAssign();
+			Issue email = dao2.getEmailByUsername(assignusername);		
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been change status to assigned";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
+			
 			issue.setIssueID(issueID);
 			dao2.setStatusAssign(issue);
 			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
+
 		} else if (action.equalsIgnoreCase("feedback")) {
 			forward = FEEDBACK;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = new Issue();
+			
+			issue = dao2.getAssignById(issueID);
+			String assignusername = issue.getAssign();
+			Issue email = dao2.getEmailByUsername(assignusername);		
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been change status to feedback";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
+			
 			issue.setIssueID(issueID);
 			dao2.setStatusFeedback(issue);
 			issue = dao.getIssueById(issueID);
 			request.setAttribute("issue", issue);
 			request.setAttribute("persons", dao.getPersonById(issueID));
+			
 		} else if (action.equalsIgnoreCase("confirmed")) {
 			forward = CONFIRMED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = new Issue();
+			
+			issue = dao2.getAssignById(issueID);
+			String assignusername = issue.getAssign();
+			Issue email = dao2.getEmailByUsername(assignusername);		
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been change status to confirmed";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
+			
 			issue.setIssueID(issueID);
 			dao2.setStatusConfirmed(issue);
 			issue = dao.getIssueById(issueID);
@@ -112,6 +147,17 @@ public class CommentController extends HttpServlet {
 			forward = RESOLVED;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = new Issue();
+			
+			issue = dao2.getAssignById(issueID);
+			String assignusername = issue.getAssign();
+			Issue email = dao2.getEmailByUsername(assignusername);		
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been change status to resolved";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
+			
 			issue.setIssueID(issueID);
 			dao2.setStatusResolved(issue);
 			issue = dao.getIssueById(issueID);
@@ -162,6 +208,15 @@ public class CommentController extends HttpServlet {
 			request.setAttribute("milestones", dao6.getMilestoneByIssueId(issueID));
 			request.setAttribute("milestoneAssigns", dao6.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+			
+			String assignusername = issue.getAssign();
+			Issue email = dao2.getEmailByUsername(assignusername);	
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been re-opened";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
 			
 		}
 		else {

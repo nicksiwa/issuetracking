@@ -24,7 +24,9 @@
 			<ul class="nav nav-tabs">
 				<li><a href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
 						milestone / Project road map</a></li>
-				<li><a href="ProjectController.do?action=graph&projectID=<c:out value="${project.projectID }"/>">Project report</a></li>
+				<li><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>">Project report</a></li>
+				<li><a
+					href="ReportController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Graph</a></li>
 				<li><a href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
 				<li class="active"><a href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue
 						labels</a></li>
@@ -58,7 +60,7 @@
 													value="${label.labelName}" /></span> <small><span
 												class="pull-right"><a href=""><span
 														class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-													href=""><span class="glyphicon glyphicon-remove"></span></a></span></small>
+													href="LabelController.do?action=delete&labelID=<c:out value="${label.labelID}" />&projectID=<c:out value="${label.labelProject}" />"><span class="glyphicon glyphicon-remove"></span></a></span></small>
 										</h4>
 										
 										<input id="i" type="hidden" name="projectID" value="<c:out value="${label.labelProject}" />">

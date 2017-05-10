@@ -12,6 +12,7 @@ public class Project {
 	private Date finishDate;
 	private String viewStatus;
 	private String projectType;
+	private String owner;
 	
 	
 	public int getProjectID() {
@@ -64,11 +65,17 @@ public class Project {
 	public void setProjectType(String projectType) {
 		this.projectType = projectType;
 	}
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 	@Override
 	public String toString() {
 		return "Project [projectID=" + projectID + ", projectName=" + projectName + ", status=" + status
 				+ ", description=" + description + ", startDate=" + startDate + ", finishDate=" + finishDate
-				+ ", viewStatus=" + viewStatus + ", projectType=" + projectType + "]";
+				+ ", viewStatus=" + viewStatus + ", projectType=" + projectType + ", owner=" + owner + "]";
 	}
 	
 }

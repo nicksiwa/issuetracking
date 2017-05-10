@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
@@ -26,6 +27,8 @@ import com.siwa.dao.MilestoneDAO;
 import com.siwa.dao.MilestoneDAOImplementation;
 import com.siwa.dao.ProjectDAO;
 import com.siwa.dao.ProjectDAOImplementation;
+import com.siwa.dao.ReportDAO;
+import com.siwa.dao.ReportDAOImplementation;
 import com.siwa.model.Comment;
 import com.siwa.model.Issue;
 import com.siwa.model.Person;
@@ -40,8 +43,10 @@ public class IssueController extends HttpServlet {
 	private IndexDAO dao3;
 	private LabelDAO dao4;
 	private MilestoneDAO dao5;
+	private ReportDAO dao6;
 
 	public static final String LIST_ISSUE = "/listIssue.jsp";
+	public static final String LIST_ISSUE_SORT_ID = "/listIssueSortID.jsp";
 	public static final String INSERT_OR_EDIT = "/issue.jsp";
 	public static final String ISSUE_DETAIL = "/issueDetail.jsp";
 	public static final String ISSUE_BY_PROJECT = "/issueByProject.jsp";
@@ -55,10 +60,18 @@ public class IssueController extends HttpServlet {
 		dao3 = new IndexDAOImplementation();
 		dao4 = new LabelDAOImplementation();
 		dao5 = new MilestoneDAOImplementation();
+		dao6 = new ReportDAOImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int page = 1;
+        int recordsPerPage = 10;
+        if(request.getParameter("page") != null){
+        	page = Integer.parseInt(request.getParameter("page"));
+        }
+        
+		
 		String forward = "";
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
@@ -91,7 +104,7 @@ public class IssueController extends HttpServlet {
 			forward = ISSUE_DETAIL;
 			int issueID = Integer.parseInt(request.getParameter("issueID"));
 			Issue issue = dao.getAssignById(issueID);
-			request.setAttribute("issue", issue);
+			request.setAttribute("issue", issue);			
 			request.setAttribute("labels", dao4.getAllLabelByIssueID(issueID));
 			request.setAttribute("labelAssigns", dao4.getAssignLabel(issueID));
 			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
@@ -111,11 +124,95 @@ public class IssueController extends HttpServlet {
 			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
 			request.setAttribute("milestoneAssigns", dao5.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
+			
+			String assignusername = issue.getAssign();
+			Issue email = dao.getEmailByUsername(assignusername);			
+			String to = email.getEmail_id();
+		    String subject = "Issue assign to you has been closed";
+		    String message =  "<table width='600px' align='center' cellpadding='10' cellspacing='5'><tr align='left'><td bgcolor='#41e097' align='right'><b>Title : </b></td><td bgcolor='#e8e8e8'>"+issue.getTitle()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Description : </b></td><td bgcolor='#e8e8e8'>"+issue.getDescription()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Severity : </b></td><td bgcolor='#e8e8e8'>"+issue.getSeverity()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Priority : </b></td><td bgcolor='#e8e8e8'>"+issue.getPriority()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>DueDate : </b></td><td bgcolor='#e8e8e8'>"+issue.getDueDate()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Status : </b></td><td bgcolor='#e8e8e8'>"+issue.getStatus()+"</td></tr>"+"<tr align='left'><td bgcolor='#41e097' align='right'><b>Reporter : </b></td><td bgcolor='#e8e8e8'>"+issue.getReporter()+"</td></tr></table>";
+		    String user = "the.issue.tracking@gmail.com";
+		    String pass = "niksf203";
+		    SendMail.send(to,subject, message, user, pass);
 		} else if (action.equalsIgnoreCase("test")) {
 			forward = LIST_ISSUE;
-		} else {
+		} 
+		else if(action.equalsIgnoreCase("severity")){
+			forward = ISSUE_DETAIL;
+			
+		}else if(action.equalsIgnoreCase("issueId")){
 			forward = LIST_ISSUE;
-			request.setAttribute("issues", dao.getAllIssue());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+		
+			List<Issue> list = dao6.IssueID((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+			
+		}else if(action.equalsIgnoreCase("SeveritySort")){
+			forward = LIST_ISSUE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			List<Issue> list = dao6.SeveritySort((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+		}
+		else if(action.equalsIgnoreCase("DueDateSort")){
+			forward = LIST_ISSUE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			List<Issue> list = dao6.DueDateSort((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+		}
+		else if(action.equalsIgnoreCase("UpdateDateSort")){
+			forward = LIST_ISSUE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			List<Issue> list = dao6.UpdateDateSort((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+		}
+		else if(action.equalsIgnoreCase("CreateDateSort")){
+			forward = LIST_ISSUE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			List<Issue> list = dao6.CreateDateSort((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+			
+		}
+		else {
+			forward = LIST_ISSUE;
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			 List<Issue> list = dao.getAllIssue((page-1)*recordsPerPage,recordsPerPage);
+			int noOfRecords = dao.getNoOfRecords();
+		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		    request.setAttribute("issues", list);
+	        request.setAttribute("noOfPages", noOfPages);
+	        request.setAttribute("currentPage", page);
+			request.setAttribute("number",dao6.getNumberofIssue());
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

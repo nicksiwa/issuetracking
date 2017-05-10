@@ -204,13 +204,45 @@
     <servlet-name>Pagination</servlet-name>
     <url-pattern>/Pagination.do</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>AjaxGitHubController</servlet-name>
     <servlet-class>com.siwa.controller.AjaxGitHubController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AjaxGitHubController</servlet-name>
     <url-pattern>/AjaxGitHubController.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>downloadFileServlet</servlet-name>
+    <servlet-class>com.siwa.controller.DBFileDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downloadFileServlet</servlet-name>
+    <url-pattern>/downloadFileServlet.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>fileUpload</servlet-name>
+    <servlet-class>com.siwa.controller.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fileUpload</servlet-name>
+    <url-pattern>/fileUpload.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CommentIssue</servlet-name>
+    <servlet-class>com.siwa.controller.CommentIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentIssue</servlet-name>
+    <url-pattern>/CommentIssue.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ReportController</servlet-name>
+    <servlet-class>com.siwa.controller.ReportController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportController</servlet-name>
+    <url-pattern>/ReportController.do</url-pattern>
   </servlet-mapping>
 </web-app>

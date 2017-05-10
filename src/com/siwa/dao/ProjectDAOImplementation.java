@@ -25,7 +25,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	@Override
 	public void addProject(Project project) {
 		try{
-			String query = "insert into project (projectName, status, description, startDate, finishDate, viewStatus, projectType) values (?,?,?,?,?,?,?)";
+			String query = "insert into project (projectName, status, description, startDate, finishDate, viewStatus, owner) values (?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getStatus());
@@ -33,7 +33,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 			ps.setDate(4,new java.sql.Date( project.getStartDate().getTime()));
 			ps.setDate(5,new java.sql.Date( project.getFinishDate().getTime()));
 			ps.setString(6, project.getViewStatus());
-			ps.setString(7, "System");
+			ps.setString(7, project.getOwner());
 			ps.executeUpdate();
 			ps.close();	
 		}catch(SQLException e){
@@ -365,7 +365,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 	public List<Project> getProjectsByUser(String username) {
 		List<Project> projects = new ArrayList<Project>();
 		try{
-			String query = "select project.status, project.projectName, project.projectID, project.projectType, project.`owner` from project where project.`owner` in (?) UNION select project.status, project.projectName, project.projectID, project.projectType, project.`owner` from person JOIN assign on person.personId = assign.person_ID and CONCAT_WS (' ',firstName, lastName) like ? JOIN project on assign.project_ID = project.projectID";
+			String query = "select project.status, project.projectName, project.projectID, project.projectType, project.`owner`,project.description from project where project.`owner` in (?) UNION select project.status, project.projectName, project.projectID, project.projectType, project.`owner`,project.description from person JOIN assign on person.personId = assign.person_ID and CONCAT_WS (' ',firstName, lastName) like ? JOIN project on assign.project_ID = project.projectID";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, username);
@@ -376,6 +376,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				project.setProjectName(rs.getString("projectName"));
 				project.setStatus(rs.getString("status"));
 				project.setProjectType(rs.getString("projectType"));
+				project.setDescription(rs.getString("description"));
 				projects.add(project);
 			}
 			rs.close();

@@ -31,6 +31,11 @@ body {
 		<div class="col-md-3">
 
 			<div id="ghapidata" class="clearfix"></div>
+			
+			<div class="panel panel-primary">
+			<div class="panel-heading">
+					<b>GitHub Repositories</b>
+			</div>
 			<ul class="list-group">
 
 					<c:choose>
@@ -53,6 +58,7 @@ body {
 					</c:choose>
 
 				</ul>
+				</div>
 			<input type="hidden" value="${person.github}" id="user"> <input
 				type="hidden" id="a">
 
@@ -498,7 +504,7 @@ body {
 							fullname = username;
 						}
 
-						var outhtml = '<div class="panel panel-primary"><div class="panel-heading"><b>GitHub Repositories</b></div><div class="panel-body"><h3>'
+						var outhtml = '<div class="panel panel-primary"><div class="panel-heading"><b>GitHub</b></div><div class="panel-body"><h3>'
 								+ fullname
 								+ ' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'
 								+ username + '</a>)</span></h3>';
@@ -524,7 +530,7 @@ body {
 								outhtml = outhtml + '<p>No repos!</p></div>';
 							} else {
 								outhtml = outhtml
-										+ '<p><strong>Repositories List : </strong></p></div></div> <ul class="list-group">';
+										+ '</div></div> <ul class="list-group">';
 								$
 										.each(
 												repositories,

@@ -63,7 +63,7 @@ public class ProjectController extends HttpServlet {
 			forward = MANAGE;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			dao.deleteProject(projectID);
-			request.setAttribute("projects", dao.getAllProjects());
+			request.setAttribute("projects", dao.getProjectsByUser(username));
 		} else if (action.equalsIgnoreCase("edit")) {
 			forward = INSERT_OR_EDIT;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
@@ -73,7 +73,7 @@ public class ProjectController extends HttpServlet {
 			forward = INSERT_OR_EDIT;
 		} else if (action.equalsIgnoreCase("manage")) {
 			forward = MANAGE;
-			request.setAttribute("projects", dao.getAllProjects());
+			request.setAttribute("projects", dao.getProjectsByUser(username));
 		} else if (action.equalsIgnoreCase("config")) {
 			forward = CONFIG;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
@@ -142,6 +142,9 @@ public class ProjectController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session  = request.getSession();
+		String username = (String) session.getAttribute("username");
 
 		Project project = new Project();
 
@@ -174,6 +177,10 @@ public class ProjectController extends HttpServlet {
 		String viewStatus = (request.getParameter("viewStatus"));
 		viewStatus = new String(viewStatus.getBytes("ISO8859-1"), "UTF-8");
 		project.setViewStatus(viewStatus);
+		
+		String owner = username;
+		owner = new String(owner.getBytes("ISO8859-1"), "UTF-8");
+		project.setOwner(owner);
 
 		String projectID = request.getParameter("projectID");
 
@@ -186,7 +193,7 @@ public class ProjectController extends HttpServlet {
 		}
 
 		RequestDispatcher view = request.getRequestDispatcher(MANAGE);
-		request.setAttribute("projects", dao.getAllProjects());
+		request.setAttribute("projects", dao.getProjectsByUser(username));
 		view.forward(request, response);
 
 	}

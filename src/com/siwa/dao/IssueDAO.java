@@ -15,7 +15,7 @@ public interface IssueDAO {
 
 	public void updateIssue(Issue issue);
 
-	public List <Issue> getAllIssue();
+	public List <Issue> getAllIssue(int offset, int noOfRecords);
 
 	public Issue getAssignById(int issueID);
 	
@@ -45,7 +45,7 @@ public interface IssueDAO {
 	
 	public List <Issue> geetMilestoneClosedPercent(int projectID);
 	
-	public List <Issue> getReport(String severity,String status,String firstDate,String secondDate);
+	public List <Issue> getReport(String severity,String status,String firstDate,String secondDate,String priority);
 	
 	public Issue getEmailByUsername(String username);
 	

@@ -55,17 +55,19 @@ public class UploadServlet extends HttpServlet {
             inputStream = filePart.getInputStream();
         }
         String filename = filePart.getName();
+        String fileType = filePart.getContentType();
         String message = null; // message will be sent back to client
 
         try {
             // constructs SQL statement
-            String sql = "INSERT INTO test (file_name,file_data) values (?)";
+            String sql = "INSERT INTO test (file_name,file_data,file_type) values (?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, filename);
 
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 statement.setBlob(2, inputStream);
+                statement.setString(3, fileType);
             }
 
             // sends the statement to the database server
@@ -80,9 +82,6 @@ public class UploadServlet extends HttpServlet {
         // sets the message in request scope
         request.setAttribute("Message", message);
 
-        // forwards to the message page
-        getServletContext().getRequestDispatcher("/submit.jsp").forward(
-                request, response);
     }
 
 }

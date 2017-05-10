@@ -105,7 +105,6 @@ public class TestController extends HttpServlet {
 		issue.setDescription(secondDate);
 		
 		RequestDispatcher view = request.getRequestDispatcher(LIST_ISSUE);
-		request.setAttribute("issues", dao2.getReport(severity, status, firstDate+" 00:00:00.00", secondDate+" 23:59:59.999"));
 		view.forward(request, response);
 	}
 	}

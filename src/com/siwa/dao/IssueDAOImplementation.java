@@ -22,7 +22,8 @@ public class IssueDAOImplementation implements IssueDAO {
 	
 	private Connection conn;
 	private int noOfRecords;
-	
+    Statement stmt;
+
 	
 
 	public IssueDAOImplementation() {
@@ -94,11 +95,16 @@ public class IssueDAOImplementation implements IssueDAO {
 	}
 
 	@Override
-	public List<Issue> getAllIssue() {
+	public List<Issue> getAllIssue(int offset, int noOfRecords) {
 		List<Issue> issues = new ArrayList<Issue>();
 		try{
-			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select * from issue");
+			
+			String query = "select SQL_CALC_FOUND_ROWS * from issue limit ?,?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, offset);
+			ps.setInt(2, noOfRecords);
+			stmt = conn.createStatement();
+			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Issue issue = new Issue();
 				issue.setIssueID(rs.getInt("issueID"));
@@ -116,11 +122,17 @@ public class IssueDAOImplementation implements IssueDAO {
 				issues.add(issue);
 			}
 			rs.close();
-			stat.close();
+			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+			if(rs.next())
+                this.noOfRecords = rs.getInt(1);
 		}catch(SQLException e){
-			e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return issues;
+	}
+	
+	public int getNoOfRecords() {
+		return noOfRecords;
 	}
 
 	@Override
@@ -479,41 +491,7 @@ public class IssueDAOImplementation implements IssueDAO {
 		return percentClosed;
 	}
 
-	@Override
-	public List<Issue> getReport(String severity, String status, String firstDate, String secondDate) {
-		List<Issue> issues = new ArrayList<Issue>();
-		try{
-			String query = "select * from issue where issue.`status` = ? or issue.severity = ? or issue.createDate between ? and ?";
-			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, status);
-			ps.setString(2, severity);
-			ps.setString(3, firstDate);
-			ps.setString(4, secondDate);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				Issue issue = new Issue();
-				issue.setIssueID(rs.getInt("issueID"));
-				issue.setProject(rs.getString("project"));
-				issue.setAssign(rs.getString("assign"));
-				issue.setTitle(rs.getString("title"));
-				issue.setDescription(rs.getString("description"));
-				issue.setSeverity(rs.getString("severity"));
-				issue.setPriority(rs.getString("priority"));
-				issue.setDueDate(rs.getDate("dueDate"));
-				issue.setUpdateDate(rs.getTimestamp("updateDate"));
-				issue.setStatus(rs.getString("status"));
-				issue.setReporter(rs.getString("reporter"));
-				issue.setCreateDate(rs.getTimestamp("createDate"));
-				issues.add(issue);
-			}
-			rs.close();
-			ps.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return issues;
-	}
+	
 
 	@Override
 	public Issue getEmailByUsername(String username) {
@@ -569,9 +547,40 @@ public class IssueDAOImplementation implements IssueDAO {
 	}
 
 	@Override
-	public int getNoOfRecords() {
+	public List<Issue> getReport(String severity, String status, String firstDate, String secondDate, String priority) {
+		List<Issue> issues = new ArrayList<Issue>();
+		try{
+			String query = "select * from issue where issue.`status` = ? or issue.severity = ? or issue.createDate between ? and ? or issue.priority=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, status);
+			ps.setString(2, severity);
+			ps.setString(3, firstDate);
+			ps.setString(4, secondDate);
+			ps.setString(5,priority);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Issue issue = new Issue();
+				issue.setIssueID(rs.getInt("issueID"));
+				issue.setProject(rs.getString("project"));
+				issue.setAssign(rs.getString("assign"));
+				issue.setTitle(rs.getString("title"));
+				issue.setDescription(rs.getString("description"));
+				issue.setSeverity(rs.getString("severity"));
+				issue.setPriority(rs.getString("priority"));
+				issue.setDueDate(rs.getDate("dueDate"));
+				issue.setUpdateDate(rs.getTimestamp("updateDate"));
+				issue.setStatus(rs.getString("status"));
+				issue.setReporter(rs.getString("reporter"));
+				issue.setCreateDate(rs.getTimestamp("createDate"));
+				issues.add(issue);
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		
-		return noOfRecords;
+		return issues;
 	}
 
 }

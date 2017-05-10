@@ -28,33 +28,25 @@
 			}
 		});
 	}
-	
-	
 </script>
 </head>
 <body>
-
 	<jsp:include page="navbar.jsp" />
-
-
-	<form action="IssueController.do" method="post" class="form-horizontal"
-		id="form1">
-		<div class="container">
-
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>
-							<span class="glyphicon glyphicon-exclamation-sign"></span> <b>Create
-								Issue : <span class="label label-success"><c:out
-										value="${project.projectName}" /></span>
-							</b>
-						</h4>
-					</div>
-					<div class="panel-body">
-
-						<input type="hidden" name="issueID"
-							value="" readonly="readonly"
+	<div class="container">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>
+						<span class="glyphicon glyphicon-exclamation-sign"></span> <b>Create
+							Issue : <span class="label label-success"><c:out
+									value="${project.projectName}" /></span>
+						</b>
+					</h4>
+				</div>
+				<div class="panel-body">
+					<form action="IssueController.do" method="post"
+						class="form-horizontal" id="form1" enctype="multipart/form-data">
+						<input type="hidden" name="issueID" value="" readonly="readonly"
 							placeholder="Auto generate ID" /> <br> <br>
 
 						<div class="form-group">
@@ -73,7 +65,8 @@
 							<label for="description" class="control-label col-sm-2">Assign
 								to :</label>
 							<div class="col-sm-3 col-md-4">
-								<select name="assign" class="form-control" id="mySelect" onchange="myFunction(value)">
+								<select name="assign" class="form-control" id="mySelect"
+									onchange="myFunction(value)">
 									<option>-</option>
 									<c:forEach var="issue" items="${issuess}">
 
@@ -102,14 +95,8 @@
 								<script>
 									CKEDITOR.replace('description');
 								</script>
-								<br> <input type="file" name="file" />
 							</div>
 						</div>
-
-
-
-						<br>
-
 						<div class="form-group">
 							<label for="severity" class="control-label col-sm-2">Severity
 								:</label>
@@ -159,26 +146,28 @@
 							</div>
 						</div>
 
-						<input type="hidden" name="to" id="e1" /><br /><input
-							type="hidden" name="subject" value="New issue assign to you"/><br /><input type="hidden"
-							name="message"/><br /> <input type="hidden"
+						<input type="hidden" name="to" id="e1" /><br />
+						<input type="hidden" name="subject"
+							value="New issue assign to you" /><br />
+						<input type="hidden" name="message" /><br /> <input type="hidden"
 							name="user" value="<c:out value="${issue.email_id}" />"><br />
 						<input type="hidden" name="pass"
 							value="<c:out value="${issue.email_password}" />" /><br />
+							
+							<input type="file" name="file" size="10" required="required" />
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" class="btn btn-default" value="Submit"/>
+								<input type="submit" class="btn btn-default" value="Submit" />
 							</div>
 						</div>
+					</form>
 
-					</div>
+
 				</div>
 			</div>
 		</div>
-
-
-	</form>
+	</div>
 
 
 

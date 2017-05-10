@@ -19,25 +19,7 @@
 	<div class="container">
 	
 		<form action="ReportController.do" method="post">
-	<div class="container">			
-	<h2>
-				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
-					project owner</small>
-			</h2>
-			<br>
-			<ul class="nav nav-tabs">
-				<li><a
-					href="MilestoneController.do?action=milestone&projectID=<c:out value="${project.projectID }"/>">Project
-						milestone / Project road map</a></li>
-				<li class="active"><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>">Project report</a></li>
-				<li><a
-					href="ReportController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Graph</a></li>
-				<li><a href="TaskController.do?action=task&projectID=<c:out value="${project.projectID }"/>">Project task</a></li>
-				<li><a
-					href="LabelController.do?action=label&projectID=<c:out value="${project.projectID }"/>">Issue
-						labels</a></li>
-			</ul>
-			<br>			
+	<div class="container">						
 			<div class="card" >  	
 			 <div class="container">
 			 <div>
@@ -77,8 +59,6 @@
 					 
 				</select> 
 				
-				<input type="hidden" name="projectID" value="<c:out value="${project.projectID }"/>">
-				
 				&nbsp;&nbsp;&nbsp; <button type="submit" class="btn btn-primary btn-lg right">Search </button>  
 			 </div>
 			    </div>				 
@@ -88,19 +68,19 @@
 		<table class="table table-hover table-responsive table-striped">
 			<thead>
 				<tr>
-					<th><a href="IssueController.do?action=issueId&projectID=<c:out value="${project.projectID }"/>">Issue ID</a></th>
+					<th><a href="IssueController.do?action=issueId">Issue ID</a></th>
 					<th>Project</th>
 					<th>Assign To</th>
 					<th>Title</th>
 					<th>Description</th>
-					<th><a href="IssueController.do?action=SeveritySort&projectID=<c:out value="${project.projectID }"/>">Severity</a></th>
+					<th><a href="IssueController.do?action=SeveritySort">Severity</a></th>
 					<th>Priority</th>
-					<th><a href="IssueController.do?action=DueDateSort&projectID=<c:out value="${project.projectID }"/>">Due Date</a></th>
-					<th><a href="IssueController.do?action=UpdateDateSort&projectID=<c:out value="${project.projectID }"/>">Update Date</a></th>
+					<th><a href="IssueController.do?action=DueDateSort">Due Date</a></th>
+					<th><a href="IssueController.do?action=UpdateDateSort">Update Date</a></th>
 
 					<th>Status</th>
 					<th>Reporter</th>
-					<th><a href="IssueController.do?action=CreateDateSort&projectID=<c:out value="${project.projectID }"/>">Create Date</a></th>
+					<th><a href="IssueController.do?action=CreateDateSort">Create Date</a></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -137,18 +117,18 @@
 							<li class="active"><a>${i}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>&page=${i}">${i}</a></li>
+							<li><a href="IssueController.do?action=issueId?page=${i}">${i}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 			</ul>
 			<ul class="pager">
 				<c:if test="${currentPage != 1}">
-					<li><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>&page=${currentPage - 1}">Previous</a></li>
+					<li><a href="IssueController.do?action=issueId?page=${currentPage - 1}">Previous</a></li>
 				</c:if>
 
 				<c:if test="${currentPage lt noOfPages}">
-					<li><a href="IssueController.do?action=report&projectID=<c:out value="${project.projectID }"/>&page=${currentPage + 1}">Next</a></li>
+					<li><a href="IssueController.do?action=issueId?page=${currentPage + 1}">Next</a></li>
 				</c:if>
 			</ul>
 		</div>
