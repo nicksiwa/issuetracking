@@ -48,7 +48,7 @@
 		<form action="" class="form-horizontal">
 			<h2>
 				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
-					project owner</small>
+					<c:out value="${project.owner }"/></small>
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
@@ -90,6 +90,7 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
+												<small><span class="pull-right"><a class="confirmation" href="TaskController.do?action=delete&taskID=<c:out value="${task.taskID}" />&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></span></small>
 											</p> Add by <c:out value="${task.createBy}" />
 											
 											<span class="pull-right">
@@ -126,6 +127,7 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
+												<small><span class="pull-right"><a class="confirmation" href="TaskController.do?action=delete&taskID=<c:out value="${task.taskID}" />&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></span></small>
 											</p> Add by <c:out value="${task.createBy}" />
 												<span class="pull-right">
 													<fmt:parseDate
@@ -133,6 +135,7 @@
 															var="myDate" /> <span class="glyphicon glyphicon-time"></span>
 														<fmt:formatDate value="${myDate}"
 															pattern="dd/MM/yyyy HH:mm" /></span>
+															
 										</li>
 									</c:when>
 								</c:choose>
@@ -161,6 +164,7 @@
 											ondragstart="drag(event)" id="drag1">
 											<p class="list-group-item-heading text-primary lead">
 												<c:out value="${task.taskDetail}" />
+											<small><span class="pull-right"><a class="confirmation" href="TaskController.do?action=delete&taskID=<c:out value="${task.taskID}" />&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></span></small>
 											</p> Add by <c:out value="${task.createBy}" />
 												<span class="pull-right">
 													<fmt:parseDate
@@ -231,6 +235,11 @@
 		</form>
 	</div>
 
+		<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
+	</script>
 	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 
 

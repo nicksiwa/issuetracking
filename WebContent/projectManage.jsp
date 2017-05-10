@@ -69,9 +69,9 @@
 													class="text-info" data-toggle="tooltip"
 													title="Edit project"
 													href="ProjectController.do?action=edit&projectID=<c:out value="${project.projectID }"/>"><span
-														class="glyphicon glyphicon-edit"></span></a></small>&nbsp;&nbsp; <small><a
+														class="glyphicon glyphicon-edit"></span></a></small>&nbsp;&nbsp; <small><a 
 													href="ProjectController.do?action=delete&projectID=<c:out value="${project.projectID }"/>"
-													class="text-danger" data-toggle="tooltip"
+													class="text-danger confirmation" data-toggle="tooltip"
 													title="Delete this project"><span
 														class="glyphicon glyphicon-trash"></span></a></small></span>
 
@@ -96,6 +96,11 @@
 			</div>
 		</form>
 	</div>
+		<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
+	</script>
 	<script>
 		$(document).ready(function() {
 			$('[data-toggle="tooltip"]').tooltip();

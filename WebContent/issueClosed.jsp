@@ -66,7 +66,7 @@
 											pattern="yyyy-MM-dd HH:mm" var="myDate" />
 										<td><fmt:formatDate value="${myDate}"
 												pattern="dd/MM/yyyy HH:mm" /></td>
-										<td><a
+										<td><a class="confirmation"
 											href="IssueController.do?action=delete&issueID=<c:out value="${issue.issueID}"/>">Delete</a></td>
 									</tr>
 								</c:forEach>
@@ -177,6 +177,11 @@
 				}
 			}
 		}
+	</script>
+	<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-3.1.0.min.js"></script>

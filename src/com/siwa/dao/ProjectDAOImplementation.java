@@ -117,6 +117,7 @@ public class ProjectDAOImplementation implements ProjectDAO {
 				project.setStartDate(rs.getDate("startDate"));
 				project.setFinishDate(rs.getDate("finishDate"));
 				project.setViewStatus(rs.getString("viewStatus"));
+				project.setOwner(rs.getString("owner"));
 		
 			}
 			rs.close();

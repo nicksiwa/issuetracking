@@ -18,11 +18,11 @@
 
 	<div class="container">
 	
-		<form action="ReportController.do" method="post">
+		<form action="ReportController.do" method="post" class="form-inline">
 	<div class="container">			
 	<h2>
 				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
-					project owner</small>
+					<c:out value="${project.owner }"/></small>
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
@@ -43,24 +43,25 @@
 			 <div>
 			 <h4><b>Please Select :</b></h4> 	
 					   		
-					    <span>Date: </span><input type="date"  name="firstDate" class="select" 
+					    <span>Date: </span><input type="date"  name="firstDate" class="form-control" 
 						value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.startDate}" />" />
-						<span>Between</span>
-									<input type="date" name="secondDate"  
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>To</span>
+									<input type="date" name="secondDate"  class="form-control" 
 						value="<fmt:formatDate pattern="yyyy-MM-dd" value="${project.finishDate}" />" />   
 						
 					</div>
-			     Please severity : <select name = "severity" class="select"   > 
-					  <option selected >----- Select severity -----</option>
+			     Please severity : <select name = "severity" class="form-control"   > 
+					  <option selected >Select severity</option>
 					  <option value="Minor">Minor</option>
 					  <option value="Major">Major</option>
 					  <option value="Crash">Crash</option>
 					  
 				</select>
-				
+				&nbsp;&nbsp;&nbsp;&nbsp;
 					 	
-				 Please Status : <select name = "status" class="select" > 
-					  <option selected >----- Select Status -----</option>
+				 Please Status : <select name = "status" class="form-control" > 
+					  <option selected >Select Status</option>
 					  <option value="Open">Open</option>
 					  <option value="Assign">Assign</option>
 					  <option value="Feedback">Feedback</option>
@@ -69,8 +70,9 @@
 					  <option value="Closed">Closed</option>
 					 
 				</select> 
-				 Please Priority : <select name = "priority" class="select" > 
-					  <option selected >----- Select Priority -----</option>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				 Please Priority : <select name = "priority" class="form-control" > 
+					  <option selected >Select Priority</option>
 					  <option value="High">High</option>
 					  <option value="Normal">Normal</option>
 					<option value="Low">Low</option>
@@ -84,7 +86,9 @@
 			    </div>				 
 		</div>	 	
 	</form>
+	<br>
 
+<div>
 		<table class="table table-hover table-responsive table-striped">
 			<thead>
 				<tr>
@@ -128,7 +132,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
+</div>
 		<div align="center">
 			<ul class="pagination">
 				<c:forEach begin="1" end="${noOfPages}" var="i">

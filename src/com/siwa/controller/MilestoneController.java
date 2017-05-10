@@ -40,6 +40,14 @@ public class MilestoneController extends HttpServlet {
 		
 		if(action.equalsIgnoreCase("delete")){
 			forward = MILE;
+			int milestoneID = Integer.parseInt(request.getParameter("milestoneID"));
+			dao.deleteMilestone(milestoneID);
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("milestones", dao.getAllMilestoneByProjectId(projectID));
+			request.setAttribute("percent", dao3.getMilestonePercent(projectID));
+			request.setAttribute("percentClosed", dao3.geetMilestoneClosedPercent(projectID));
 		}else if(action.equalsIgnoreCase("insert")){
 			forward = MILE;
 		}else if(action.equalsIgnoreCase("milestone")){

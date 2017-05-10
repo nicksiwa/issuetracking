@@ -44,7 +44,10 @@ public class TaskController extends HttpServlet {
 			forward = TASK;
 			int taskID = Integer.parseInt(request.getParameter("taskID"));
 			dao.deleteTask(taskID);
-			request.setAttribute("tasks", dao.getAllTasks());
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
+			Project project = dao2.getProjectById(projectID);
+			request.setAttribute("project", project);
+			request.setAttribute("tasks", dao.getAllTaskByProjectId(projectID));
 			
 		}else if(action.equalsIgnoreCase("insert")){
 			forward = TASK;

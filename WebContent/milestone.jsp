@@ -21,7 +21,7 @@
 		<form action="" class="form-horizontal">
 			<h2>
 				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
-					project owner</small>
+					<c:out value="${project.owner }"/></small>
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
@@ -60,6 +60,8 @@
 								<c:forEach items="${milestones}" var="milestone">
 
 									<li class="list-group-item">
+									
+									<input type="hidden" name="milestoneID" value="<c:out value="${milestone.milestoneID}" />">
 
 										<div class="col-md-6">
 											<h5>
@@ -108,7 +110,8 @@
 											<div class="progress">
 												<div class="progress-bar progress-bar-success"
 													role="progressbar" style="width: <c:out value="${count3}"/>%">50%</div>
-											</div>
+											</div><span class="pull-right"><a class="confirmation" href="MilestoneController.do?action=delete&milestoneID=<c:out value="${milestone.milestoneID}" />&projectID=<c:out value="${project.projectID }"/>"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></span>
+											
 											<c:choose>
 												<c:when test="${count3=='NaN'}">
 												<fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2"/> % complete&nbsp;&nbsp;<c:out value="${count4}"/> opened&nbsp;&nbsp;<c:out value="${count2}"/> closed
@@ -169,7 +172,11 @@
 	</div>
 
 
-
+<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
+	</script>
 
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script

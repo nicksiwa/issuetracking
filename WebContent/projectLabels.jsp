@@ -18,7 +18,7 @@
 		<form action="" class="form-horizontal">
 			<h2>
 				<span class="label label-primary"><c:out value="${project.projectName }"/></span><small>
-					project owner</small>
+					<c:out value="${project.owner }"/></small>
 			</h2>
 			<br>
 			<ul class="nav nav-tabs">
@@ -58,9 +58,7 @@
 											<span class="label <c:out value="${label.labelType}" />"><span
 												class="glyphicon glyphicon-tag"></span> <c:out
 													value="${label.labelName}" /></span> <small><span
-												class="pull-right"><a href=""><span
-														class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-													href="LabelController.do?action=delete&labelID=<c:out value="${label.labelID}" />&projectID=<c:out value="${label.labelProject}" />"><span class="glyphicon glyphicon-remove"></span></a></span></small>
+												class="pull-right"><a class="confirmation" href="LabelController.do?action=delete&labelID=<c:out value="${label.labelID}" />&projectID=<c:out value="${label.labelProject}" />"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></span></small>
 										</h4>
 										
 										<input id="i" type="hidden" name="projectID" value="<c:out value="${label.labelProject}" />">
@@ -115,6 +113,12 @@
 		</form>
 
 	</div>
+	
+	<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
+	</script>
 
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script
