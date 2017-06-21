@@ -47,6 +47,8 @@ public class AdminFilter implements Filter {
 			chain.doFilter(request, response);
 		} else if (req.getRequestURI().indexOf("/fonts") > 0) {
 			chain.doFilter(request, response);
+		} else if (req.getRequestURI().indexOf("/images") > 0) {
+			chain.doFilter(request, response);
 		}
 
 		else if (loggedIn || loginRequest || regisRequest) {

@@ -45,7 +45,7 @@
 				</div>
 				<div class="panel-body">
 					<form action="IssueController.do" method="post"
-						class="form-horizontal" id="form1" enctype="multipart/form-data">
+						class="form-horizontal" id="form1">
 						<input type="hidden" name="issueID" value="" readonly="readonly"
 							placeholder="Auto generate ID" /> <br> <br>
 
@@ -154,11 +154,9 @@
 						<input type="hidden" name="pass"
 							value="<c:out value="${issue.email_password}" />" /><br />
 							
-							<input type="file" name="file" size="10" required="required" />
-
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" class="btn btn-default" value="Submit" />
+								<input type="submit" class="btn btn-success" value="Submit" />
 							</div>
 						</div>
 					</form>

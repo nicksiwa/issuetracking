@@ -1,80 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Main</title>
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
-</head>
-<body class="sansserif">
-	<form>
-		<a href="prototype.html" class="button">Home</a> <a
-			href="prototype2.html" class="button">Report Issue</a> <a
-			href="prototype3.html" class="button">Manage</a>
-	</form>
-	<br>
-	<form action="prototype4.html">
-
-		<fieldset>
-
-			<legend>
-				<h3>Assigned to Me</h3>
-			</legend>
-			<div>
-				<fieldset>
-					<legend>Test</legend>
-					<a href="prototype4.html">0001 Test</a> 10/8/2016<br> From
-					Project Test
-				</fieldset>
-				<br>
-				<fieldset>
-					<legend>Bug</legend>
-					<a href="prototype4.html">0002 Bug</a> 10/8/2016<br> From
-					Project Test
-				</fieldset>
-				<h3>2 issues</h3>
-				<input type="submit" value="View Issue" />
-			</div>
-		</fieldset>
-	</form>
-	<br>
-	<form>
-
-		<fieldset>
-
-			<legend>
-				<h3>Report by Me</h3>
-			</legend>
-			<div>
-				<h3>0 issues</h3>
-				<input type="submit" value="View Issue" />
-			</div>
-		</fieldset>
-	</form>
-	<br>
-	<form>
-
-		<fieldset>
-			<legend>
-				<h3>Resolved</h3>
-			</legend>
-			<div>
-				<h3>0 issues</h3>
-				<input type="submit" value="View Issue" />
-			</div>
-		</fieldset>
-	</form>
-	<br>
-	<form>
-
-		<fieldset>
-			<legend>
-				<h3>Recently Modified</h3>
-			</legend>
-			<div>
-				<h3>0 issues</h3>
-				<input type="submit" value="View Issue" />
-			</div>
-		</fieldset>
-	</form>
-</body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+  dfdsfsdfs
+  asdas
+  das
+  dsa
+  dsa
+  dsa
+  dsad
+    <div id="googleMap" style="height:400px;width:100%;"></div>
+<script>
+function myMap() {
+var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var marker = new google.maps.Marker({position:myCenter});
+marker.setMap(map);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC70AciaLEK7fpXk755XNPnL6JxN3-3PBA&callback=myMap"></script>
+  </body>
 </html>

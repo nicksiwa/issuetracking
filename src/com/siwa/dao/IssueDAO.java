@@ -15,7 +15,7 @@ public interface IssueDAO {
 
 	public void updateIssue(Issue issue);
 
-	public List <Issue> getAllIssue(int offset, int noOfRecords);
+	public List <Issue> getAllIssue(int projectID,int offset, int noOfRecords);
 
 	public Issue getAssignById(int issueID);
 	
@@ -52,6 +52,8 @@ public interface IssueDAO {
 	public List <Issue> getAllIssueByPagination(int offset,int noOfRecords);
 	
 	public int getNoOfRecords();
+	
+	public Issue getFileByIssueId(int issueID);
 
 	
 }

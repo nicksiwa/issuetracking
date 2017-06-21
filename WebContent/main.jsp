@@ -54,10 +54,6 @@ html, body {
 					<li>
 						<form action="LoginController" method="post"
 							class="navbar-form navbar-right" role="search">
-							<%
-							String validate = (String) request.getAttribute("errMessage");
-							%>
-
 							<div class="form-group">
 								<input type="text" class="form-control" name="username"
 									placeholder="Username">
@@ -77,16 +73,12 @@ html, body {
 	<div class="jumbotron text-center">
 		<h1>Built for developers</h1>
 		<p>The Issue Tracking is a system for manages and maintains lists
-			of issues, as needed by an organization</p><br>
-			<h2 style="color: #FFFFFF;">Get started for free</h2>
-		
-		<p>Join the millions of developers already using The Issue Tracking<br> to manage their project, work together, and build amazing things.</p>
-		<p>
-			<a href="RegisterController" class="btn btn-default btn-lg"
-				role="button"> Sign Up</a>
-		</p>
+			of issues, as needed by an organization</p>
+		<form>
+			<div class="input-group"></div>
+		</form>
 	</div>
-	
+
 	<div id="about" class="container-fluid">
 		<div class="row">
 			<div class="col-sm-6 col-sm-push-6">
@@ -113,7 +105,11 @@ html, body {
 				<h2>Easy to communicate with collaborators</h2>
 				<br>
 				<h4>
-					Effective communication is more important than ever
+					<strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet,
+					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+					labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.
 				</h4>
 				<br>
 			</div>
@@ -122,13 +118,16 @@ html, body {
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-6 col-sm-push-6">
-				<img src="https://www.img.in.th/images/354d6d7a0babfcb3636988f40910cf57.jpg" class="img-responsive center-block" alt="354d6d7a0babfcb3636988f40910cf57.jpg" border="0">
-			</div>
-			<div class="col-sm-6 col-sm-pull-4">
+			<div class="col-sm-5 col-sm-offset-2">
 				<h2>Connect with GitHub</h2>
 				<br>
-				<h4>For tracking public repositories on GitHub. <br>Connect via <strong>GitHub API.</strong></h4>
+				<h4>Connect with GitHub. via GitHub API.</h4>
+				<br> <br>
+				<button class="btn btn-default btn-lg">Get in Touch</button>
+			</div>
+			<div class="col-sm-4">
+				<img src="images/github-logo.jpg" alt="GitHub"
+					class="img-responsive center-block">
 			</div>
 		</div>
 	</div>
@@ -140,7 +139,7 @@ html, body {
 		<div class="row slideanim">
 			<div class="col-sm-4">
 				<span class="glyphicon glyphicon-blackboard logo-small"></span>
-				<h4>Visual board</h4>
+				<h4>Visual boards</h4>
 				<p>For organize your project.</p>
 			</div>
 			<div class="col-sm-4">
@@ -151,7 +150,7 @@ html, body {
 			<div class="col-sm-4">
 				<span class="glyphicon glyphicon-tags logo-small"></span>
 				<h4>Issue tag</h4>
-				<p>You can customize issue tags.</p>
+				<p>You can customize issue tag.</p>
 			</div>
 		</div>
 		<br> <br>
@@ -162,19 +161,30 @@ html, body {
 				<p>Notifying when issues has been changed status.</p>
 			</div>
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-repeat logo-small"></span>
-				<h4>Re-open issues</h4>
-				<p>When issues closed you can re-open or delete issues.</p>
+				<span class="glyphicon glyphicon-certificate logo-small"></span>
+				<h4>CERTIFIED</h4>
+				<p>Lorem ipsum dolor sit amet..</p>
 			</div>
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-calendar logo-small"></span>
-				<h4 style="color: #303030;">Notifying due date</h4>
-				<p>Notifying when issues pass due date.</p>
+				<span class="glyphicon glyphicon-wrench logo-small"></span>
+				<h4 style="color: #303030;">HARD WORK</h4>
+				<p>Lorem ipsum dolor sit amet..</p>
 			</div>
 		</div>
 	</div>
 
-	<div id="contact" class="container-fluid bg-grey">
+	<div id="start" class="container-fluid bg-grey" align="center">
+		<h2 class="text-center">Get started for free</h2>
+		<div class="row slideanim">
+		<h4>Join the millions of developers</h4>
+		<h4>
+			<a href="RegisterController" class="btn btn-default btn-lg"
+				role="button"> Sign Up</a>
+		</h4>
+		</div>
+	</div>
+
+	<div id="contact" class="container-fluid">
 		<h2 class="text-center">CONTACT US</h2>
 		<div class="row">
 			<div class="col-sm-5 slideanim">
@@ -253,14 +263,6 @@ html, body {
 						});
 					});
 				})
-	</script>
-	<script>
-	var a = '<%=validate%>';
-	if (a == null || a == 'null'){
-		
-	}else{
-		alert(a);
-	}
 	</script>
 
 </body>

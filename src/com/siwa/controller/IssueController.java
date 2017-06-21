@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.siwa.dao.FileDAO;
+import com.siwa.dao.FileDAOImplementation;
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
@@ -30,6 +32,7 @@ import com.siwa.dao.ProjectDAOImplementation;
 import com.siwa.dao.ReportDAO;
 import com.siwa.dao.ReportDAOImplementation;
 import com.siwa.model.Comment;
+import com.siwa.model.File;
 import com.siwa.model.Issue;
 import com.siwa.model.Person;
 import com.siwa.model.Project;
@@ -44,6 +47,7 @@ public class IssueController extends HttpServlet {
 	private LabelDAO dao4;
 	private MilestoneDAO dao5;
 	private ReportDAO dao6;
+	private FileDAO dao7;
 
 	public static final String LIST_ISSUE = "/listIssue.jsp";
 	public static final String LIST_ISSUE_SORT_ID = "/listIssueSortID.jsp";
@@ -61,6 +65,7 @@ public class IssueController extends HttpServlet {
 		dao4 = new LabelDAOImplementation();
 		dao5 = new MilestoneDAOImplementation();
 		dao6 = new ReportDAOImplementation();
+		dao7 = new FileDAOImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -110,6 +115,8 @@ public class IssueController extends HttpServlet {
 			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
 			request.setAttribute("milestoneAssigns", dao5.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
+			request.setAttribute("files", dao7.getAllFileByIssueId(issueID));
+			
 		} else if (action.equalsIgnoreCase("project")) {
 			forward = ISSUE_BY_PROJECT;
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
@@ -124,6 +131,7 @@ public class IssueController extends HttpServlet {
 			request.setAttribute("milestones", dao5.getMilestoneByIssueId(issueID));
 			request.setAttribute("milestoneAssigns", dao5.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao.getCommentByIssue(issueID));
+			request.setAttribute("files", dao7.getAllFileByIssueId(issueID));
 			
 			String assignusername = issue.getAssign();
 			Issue email = dao.getEmailByUsername(assignusername);			
@@ -206,7 +214,7 @@ public class IssueController extends HttpServlet {
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			Project project = dao2.getProjectById(projectID);
 			request.setAttribute("project", project);
-			 List<Issue> list = dao.getAllIssue((page-1)*recordsPerPage,recordsPerPage);
+			 List<Issue> list = dao.getAllIssue(projectID,(page-1)*recordsPerPage,recordsPerPage);
 			int noOfRecords = dao.getNoOfRecords();
 		    int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 		    request.setAttribute("issues", list);

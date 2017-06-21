@@ -13,6 +13,8 @@ import com.siwa.dao.AssignLabelDAO;
 import com.siwa.dao.AssignLabelDAOImplementation;
 import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
+import com.siwa.dao.FileDAO;
+import com.siwa.dao.FileDAOImplementation;
 import com.siwa.dao.IssueDAO;
 import com.siwa.dao.IssueDAOImplementation;
 import com.siwa.dao.LabelDAO;
@@ -32,6 +34,7 @@ public class AssignLabelController extends HttpServlet {
     private LabelDAO dao3;
     private MilestoneDAO dao4;
     private CommentDAO dao5;
+    private FileDAO dao7;
   
     public AssignLabelController() {
        dao = new AssignLabelDAOImplementation();
@@ -39,6 +42,7 @@ public class AssignLabelController extends HttpServlet {
        dao3 = new LabelDAOImplementation();
        dao4 = new MilestoneDAOImplementation();
        dao5 = new CommentDAOImplementation();
+       dao7 = new FileDAOImplementation();
     }
 
 	
@@ -85,6 +89,7 @@ public class AssignLabelController extends HttpServlet {
 		request.setAttribute("milestones", dao4.getMilestoneByIssueId(issueID));
 		request.setAttribute("milestoneAssigns", dao4.getAssignMilestone(issueID));
 		request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+		request.setAttribute("files", dao7.getAllFileByIssueId(issueID));
 		view.forward(request, response);
 	}
 

@@ -142,6 +142,12 @@
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
+				
+									<div class="panel-heading">
+							<span class="glyphicon glyphicon-flag"></span> <b>Project
+								milestone
+							</b>
+					</div>
 
 					<ul class="list-group">
 						<c:choose>
@@ -166,6 +172,12 @@
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
+									<div class="panel-heading">
+							<span class="glyphicon glyphicon-tags"></span> <b> Issue
+								label
+							</b>
+					</div>
+				
 					<ul class="list-group">
 						<c:choose>
 							<c:when test="${fn:length(labelAssigns)=='0'}">
@@ -182,6 +194,34 @@
 													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
 										type="hidden" name="projectID"
 										value="<c:out value="${label.labelProject}" />"></li>
+								</c:forEach>
+
+							</c:otherwise>
+						</c:choose>
+
+
+					</ul>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="panel panel-default">
+				
+				<div class="panel-heading">
+							<span class="glyphicon glyphicon-file"></span> <b>Attach file 
+							</b>
+					</div>
+					<ul class="list-group">
+						<c:choose>
+							<c:when test="${fn:length(files)=='0'}">
+								<li class="list-group-item">No have any file</li>
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach items="${files}" var="file">
+									<li class="list-group-item">
+									<a href="downloadFileServlet?testID=<c:out value="${file.fileID}" />"><c:out value="${file.fileName}" /></a>
+									</li>
 								</c:forEach>
 
 							</c:otherwise>

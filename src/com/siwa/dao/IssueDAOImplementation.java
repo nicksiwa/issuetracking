@@ -95,14 +95,15 @@ public class IssueDAOImplementation implements IssueDAO {
 	}
 
 	@Override
-	public List<Issue> getAllIssue(int offset, int noOfRecords) {
+	public List<Issue> getAllIssue(int projectID,int offset, int noOfRecords) {
 		List<Issue> issues = new ArrayList<Issue>();
 		try{
 			
-			String query = "select SQL_CALC_FOUND_ROWS * from issue limit ?,?";
+			String query = "select SQL_CALC_FOUND_ROWS * from issue join project on issue.project = project.projectName and project.projectID=? limit ?,?";
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, offset);
-			ps.setInt(2, noOfRecords);
+			ps.setInt(1, projectID);
+			ps.setInt(2, offset);
+			ps.setInt(3, noOfRecords);
 			stmt = conn.createStatement();
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -581,6 +582,25 @@ public class IssueDAOImplementation implements IssueDAO {
 		}
 		
 		return issues;
+	}
+
+	@Override
+	public Issue getFileByIssueId(int issueID) {
+		Issue issue = new Issue();
+		try{
+			String query = "select file_name from test where issueID=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, issueID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				issue.setIssueID(rs.getInt("issueID"));
+			}
+			rs.close();
+			ps.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return issue;
 	}
 
 }

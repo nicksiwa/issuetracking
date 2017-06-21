@@ -245,4 +245,33 @@
     <servlet-name>ReportController</servlet-name>
     <url-pattern>/ReportController.do</url-pattern>
   </servlet-mapping>
+  
+   <mime-mapping>
+        <extension>java</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>cpp</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    <extension>docx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mime-type>
+</mime-mapping>
+<mime-mapping>
+    <extension>xlsx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</mime-type>
+</mime-mapping>
+<mime-mapping>
+        <extension>jpe</extension>
+        <mime-type>image/jpeg</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>jpeg</extension>
+        <mime-type>image/jpeg</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>jpg</extension>
+        <mime-type>image/jpeg</mime-type>
+    </mime-mapping>
 </web-app>

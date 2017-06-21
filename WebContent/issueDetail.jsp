@@ -21,12 +21,12 @@
 
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
-	
-	<div class="col-md-9">
-		<form action="EditStatusController.do" method="post"
-			class="form-horizontal">
 
-		
+		<div class="col-md-9">
+			<form action="EditStatusController.do" method="post"
+				class="form-horizontal">
+
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
@@ -176,125 +176,127 @@
 
 					</div>
 
-				
-			</div>
-		</form>
+
+				</div>
+			</form>
 			<form action="" method="post" class="form-horizontal">
-		<div class="container">
-			<div class="col-md-8">
+				<div class="container">
+					<div class="col-md-8">
 
-				<c:forEach items="${comments}" var="comment">
-					<c:choose>
-						<c:when
-							test="${comment.commentDetail=='closed issue on'||comment.commentDetail=='re-opened issue on'}">
-							<br>
-							<div>
-								<span class="glyphicon <c:out value="${comment.commentIcon}"/>"
-									style="color:<c:out value="${comment.commentIconColor}"/>; font-size:1.5em;"></span>
-								&nbsp; <b><c:out value="${comment.userComment}"></c:out></b>
-								<c:out value="${comment.commentDetail}"></c:out>
-								<fmt:parseDate value="${comment.commentTime}"
-									pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
-								<fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
-							</div>
-							<br>
-						</c:when>
-						<c:when test="${comment.commentStatus!=null}">
-							<br>
-							<div>
-								<span class="glyphicon glyphicon-info-sign"
-									style="color: #00bbff; font-size: 1.5em;"></span> &nbsp; <b><c:out
-										value="${comment.userComment}"></c:out></b> changed status to <b><c:out
-										value="${comment.commentStatus}"></c:out></b>
-								<fmt:parseDate value="${comment.commentTime}"
-									pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
-								on
-								<fmt:formatDate value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" />
-								change detail <b><c:out value="${comment.commentDetail}"></c:out></b>
-							</div>
+						<c:forEach items="${comments}" var="comment">
+							<c:choose>
+								<c:when
+									test="${comment.commentDetail=='closed issue on'||comment.commentDetail=='re-opened issue on'}">
+									<br>
+									<div>
+										<span
+											class="glyphicon <c:out value="${comment.commentIcon}"/>"
+											style="color:<c:out value="${comment.commentIconColor}"/>; font-size:1.5em;"></span>
+										&nbsp; <b><c:out value="${comment.userComment}"></c:out></b>
+										<c:out value="${comment.commentDetail}"></c:out>
+										<fmt:parseDate value="${comment.commentTime}"
+											pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
+										<fmt:formatDate value="${myDate}"
+											pattern="dd/MM/yyyy HH:mm:ss" />
+									</div>
+									<br>
+								</c:when>
+								<c:when test="${comment.commentStatus!=null}">
+									<br>
+									<div>
+										<span class="glyphicon glyphicon-info-sign"
+											style="color: #00bbff; font-size: 1.5em;"></span> &nbsp; <b><c:out
+												value="${comment.userComment}"></c:out></b> changed status to <b><c:out
+												value="${comment.commentStatus}"></c:out></b>
+										<fmt:parseDate value="${comment.commentTime}"
+											pattern="yyyy-MM-dd HH:mm:ss" var="myDate" />
+										on
+										<fmt:formatDate value="${myDate}"
+											pattern="dd/MM/yyyy HH:mm:ss" />
+										change detail <b><c:out value="${comment.commentDetail}"></c:out></b>
+									</div>
 
-							<br>
-						</c:when>
-						<c:otherwise>
-							<br>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h6>
-										<b><span class="glyphicon glyphicon-comment"></span> <c:out
-												value="${comment.userComment}"></c:out><span>&nbsp;&nbsp;&nbsp;</span>
-											<fmt:parseDate value="${comment.commentTime}"
-												pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span
-											class="pull-right"> <span
-												class="glyphicon glyphicon-time"></span> <fmt:formatDate
-													value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span> </b>
-									</h6>
-								</div>
-								<div class="panel-body">
-									<div class="form-group">
-										<div class="col-sm-6 col-lg-4 col-md-4">
-											<p class="form-control-static">
-												<c:out value="${comment.commentDetail}"></c:out>
-											</p>
+									<br>
+								</c:when>
+								<c:otherwise>
+									<br>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h6>
+												<b><span class="glyphicon glyphicon-comment"></span> <c:out
+														value="${comment.userComment}"></c:out><span>&nbsp;&nbsp;&nbsp;</span>
+													<fmt:parseDate value="${comment.commentTime}"
+														pattern="yyyy-MM-dd HH:mm:ss" var="myDate" /> <span
+													class="pull-right"> <span
+														class="glyphicon glyphicon-time"></span> <fmt:formatDate
+															value="${myDate}" pattern="dd/MM/yyyy HH:mm:ss" /></span> </b>
+											</h6>
 										</div>
+										<div class="panel-body">
+											<div class="form-group">
+												<div class="col-sm-6 col-lg-4 col-md-4">
+													<p class="form-control-static">
+														<c:out value="${comment.commentDetail}"></c:out>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+					</div>
+				</div>
+			</form>
+
+
+			<form action="CommentIssue.do" method="post" class="form-horizontal">
+				<div class="container">
+					<div class="col-md-8">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-comment"></span>
+								<%
+									String username = (String) session.getAttribute("username");
+								%>
+								<b><%=username%></b>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<input type="hidden" name="issueID" class="form-control"
+										value="<c:out value="${issue.issueID}" />"
+										placeholder="project" /> <input type="hidden"
+										name="commentID"
+										value="<c:out value="${comment.commentID}" />"
+										readonly="readonly" placeholder="Auto generate ID" />
+
+									<div class="col-sm-12 col-lg-12 col-md-12">
+										<textarea name="commentDetail" class="form-control" rows="6"
+											id="comment" placeholder="Leave a comment"></textarea>
+										<input type="hidden" name="commentDetail" class="form-control"
+											value="<c:out value="${comment.commentDetail}" />"
+											placeholder="description" />
+									</div>
+								</div>
+
+								<input type="hidden" id="date" name="commentTime"
+									value="<c:out value="${comment.commentTime}" />"
+									placeholder="Comment Time" />
+
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<span class="pull-right"><input type="submit"
+											class="btn btn-success" value="Comment" /></span>
 									</div>
 								</div>
 							</div>
-
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-			</div>
-		</div>
-	</form>
-
-
-	<form action="CommentIssue.do" method="post"
-		class="form-horizontal">
-		<div class="container">
-			<div class="col-md-8">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<span class="glyphicon glyphicon-comment"></span>
-						<%
-							String username = (String) session.getAttribute("username");
-						%>
-						<b><%=username%></b>
-					</div>
-					<div class="panel-body">
-						<div class="form-group">
-						<input type="hidden" name="issueID" class="form-control"
-										value="<c:out value="${issue.issueID}" />"
-										placeholder="project" />
-						
-							<input type="hidden" name="commentID"
-								value="<c:out value="${comment.commentID}" />"
-								readonly="readonly" placeholder="Auto generate ID" />
-
-							<div class="col-sm-12 col-lg-12 col-md-12">
-								<textarea name="commentDetail" class="form-control" rows="6"
-									id="comment" placeholder="Leave a comment"></textarea>
-								<input type="hidden" name="commentDetail" class="form-control"
-									value="<c:out value="${comment.commentDetail}" />"
-									placeholder="description" />
-							</div>
-						</div>
-
-						<input type="hidden" id="date" name="commentTime"
-							value="<c:out value="${comment.commentTime}" />"
-							placeholder="Comment Time" />
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<span class="pull-right"><input type="submit" class="btn btn-success" value="Comment" /></span>
-							</div>
 						</div>
 					</div>
+
 				</div>
-			</div>
-
-		</div>
-	</form>
+			</form>
 		</div>
 
 		<form action="AssignMilestoneController.do" method="post"
@@ -302,32 +304,35 @@
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
+				
+					<div class="panel-heading">
+							<span class="glyphicon glyphicon-flag"></span> <b>Select project
+								milestone
+							</b>
+					</div>
 
 					<div class="panel-body">
-					<div>
-						<label for="status" class="control-label">Select project
-							milestone</label>
-							</div>
-							
-							<div class="col-md-7">
-							 <select name="milestoneName" class="form-control">
-							<c:forEach items="${milestones}" var="milestone">
-								<option><c:out value="${milestone.milestoneName}" />
 
-								</option>
+						<div class="col-md-7">
+							<select name="milestoneName" class="form-control">
+								<c:forEach items="${milestones}" var="milestone">
+									<option><c:out value="${milestone.milestoneName}" />
 
-							</c:forEach>
-						</select> 
+									</option>
+
+								</c:forEach>
+							</select>
 						</div>
 						<div class="col-md-5">
-						<input type="hidden" name="issueID" class="form-control"
-							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+							<input type="hidden" name="issueID" class="form-control"
+								value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
 
-						<input type="hidden" name="assignMilestonelID"
-							class="form-control" value="" placeholder="issueID" />
+							<input type="hidden" name="assignMilestonelID"
+								class="form-control" value="" placeholder="issueID" />
 
-						<button type="submit" class="btn btn-success btn-md">Add
-							</button></div>
+							<button type="submit" class="btn btn-success btn-md">Add
+							</button>
+						</div>
 
 					</div>
 					<ul class="list-group">
@@ -357,30 +362,34 @@
 			class="form-horizontal">
 			<div class="col-md-3">
 				<div class="panel panel-default">
+				
+					<div class="panel-heading">
+							<span class="glyphicon glyphicon-tags"></span> <b> Select issue
+								label
+							</b>
+					</div>
 
 					<div class="panel-body">
-<div>
-						<label for="status" class="control-label">Select issue
-							label</label> </div>
-							<div class="col-md-7">
+
+						<div class="col-md-7">
 							<select name="labelName" class="form-control">
-							<c:forEach items="${labels}" var="label">
-								<option><c:out value="${label.labelName}" />
+								<c:forEach items="${labels}" var="label">
+									<option><c:out value="${label.labelName}" />
 
-								</option>
+									</option>
 
-							</c:forEach>
+								</c:forEach>
 
-						</select> 
+							</select>
 						</div>
 						<div class="col-md-5">
-						<input type="hidden" name="issueID" class="form-control"
-							value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
+							<input type="hidden" name="issueID" class="form-control"
+								value="<c:out value="${issue.issueID}" />" placeholder="issueID" />
 
-						<input type="hidden" name="assignLabelID" class="form-control"
-							value="" placeholder="issueID" />
+							<input type="hidden" name="assignLabelID" class="form-control"
+								value="" placeholder="issueID" />
 
-						<button type="submit" class="btn btn-success btn-md">Add</button>
+							<button type="submit" class="btn btn-success btn-md">Add</button>
 						</div>
 					</div>
 
@@ -400,6 +409,54 @@
 													class="glyphicon glyphicon-remove"></span></a></span></small> <input id="i"
 										type="hidden" name="projectID"
 										value="<c:out value="${labelAssign.labelProject}" />"></li>
+								</c:forEach>
+
+							</c:otherwise>
+						</c:choose>
+
+
+					</ul>
+				</div>
+			</div>
+
+		</form>
+		
+		<form action="fileUpload" method="post" class="form-horizontal"
+			enctype="multipart/form-data">
+			<div class="col-md-3">
+				<div class="panel panel-default">
+				
+				<div class="panel-heading">
+							<span class="glyphicon glyphicon-file"></span> <b>Attach file 
+							</b>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="col-md-7">
+						<input type="file" name="file" class="form-control"> <input
+								type="hidden" value="<c:out value="${issue.issueID}" />"
+								name="issueID" class="form-control">
+						</div>
+						<div class="col-md-5">
+							<button type="submit" class="btn btn-success btn-md">Add</button>
+						</div>
+					</div>
+
+					<ul class="list-group">
+						<c:choose>
+							<c:when test="${fn:length(files)=='0'}">
+								<li class="list-group-item">No have any file</li>
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach items="${files}" var="file">
+									<li class="list-group-item">
+									<a href="downloadFileServlet?testID=<c:out value="${file.fileID}" />"><c:out value="${file.fileName}" /></a>
+									<small><span
+											class="pull-right"><a href=""><span
+													class="glyphicon glyphicon-remove"></span></a></span></small>
+									</li>
 								</c:forEach>
 
 							</c:otherwise>

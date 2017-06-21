@@ -37,10 +37,26 @@ $(document).ready(function(){
 	  				s += report[i].createDate+' '+report[i].assign;
 	  			 }
 	  		google.charts.load('current',{'packages':['bar']});
-	  	    google.charts.setOnLoadCallback(draw);
+	  		google.charts.setOnLoadCallback(draw);
+	  		$('#sel1').change(()=>{
+	  			var c = $( "select option:selected" ).val();
+	  			if(c==0){
+	  				google.charts.setOnLoadCallback(draw);
+	  			}else if(c==1){
+	  				google.charts.setOnLoadCallback(draw1);
+	  			}else if (c==2){
+	  				google.charts.setOnLoadCallback(draw2);
+	  			}else if(c==3){
+	  				google.charts.setOnLoadCallback(draw3);
+	  			}else{
+	  				google.charts.setOnLoadCallback(draw4);
+	  			}
+	  			
+	  		})
+	  	    
 	  	    function draw() {
 	  	      var data1 = new google.visualization.DataTable();
-	  	      data1.addColumn('string','month ');
+	  	      data1.addColumn('string','Month ');
 	  	      data1.addColumn('number','Total By Month ');
 	  	     for(var ix=0;ix<report.length;ix++){
 	  	    	 data1.addRow([monthNames[parseInt(report[ix].project)-1],Number(report[ix].assign)]);    	
@@ -55,6 +71,78 @@ $(document).ready(function(){
 	  	      var chart = new google.charts.Bar(document.getElementById('bar'));
 	  	      chart.draw(data1, option1);
 	  	    }
+	  		
+	  		function draw1() {
+		  	      var data1 = new google.visualization.DataTable();
+		  	      data1.addColumn('string','Month ');
+		  	      data1.addColumn('number','Total By Month ');
+		  	     for(var ix=0;ix<3;ix++){
+		  	    	 data1.addRow([monthNames[parseInt(report[ix].project)-1],Number(report[ix].assign)]);    	
+		  	     }
+		  	      var option1 = {
+		  	    		  chart:{
+		  	    			  title:'Count of Issue',
+		  	    			 	
+		  	    		  },
+		  	    		  bars:'vertical',
+		  	      };
+		  	      var chart = new google.charts.Bar(document.getElementById('bar'));
+		  	      chart.draw(data1, option1);
+		  	    }
+	  		
+	  		function draw2() {
+		  	      var data1 = new google.visualization.DataTable();
+		  	      data1.addColumn('string','Month ');
+		  	      data1.addColumn('number','Total By Month ');
+		  	     for(var ix=3;ix<6;ix++){
+		  	    	 data1.addRow([monthNames[parseInt(report[ix].project)-1],Number(report[ix].assign)]);    	
+		  	     }
+		  	      var option1 = {
+		  	    		  chart:{
+		  	    			  title:'Count of Issue',
+		  	    			 	
+		  	    		  },
+		  	    		  bars:'vertical',
+		  	      };
+		  	      var chart = new google.charts.Bar(document.getElementById('bar'));
+		  	      chart.draw(data1, option1);
+		  	    }
+	  		
+	  		function draw3() {
+		  	      var data1 = new google.visualization.DataTable();
+		  	      data1.addColumn('string','Month ');
+		  	      data1.addColumn('number','Total By Month ');
+		  	     for(var ix=6;ix<9;ix++){
+		  	    	 data1.addRow([monthNames[parseInt(report[ix].project)-1],Number(report[ix].assign)]);    	
+		  	     }
+		  	      var option1 = {
+		  	    		  chart:{
+		  	    			  title:'Count of Issue',
+		  	    			 	
+		  	    		  },
+		  	    		  bars:'vertical',
+		  	      };
+		  	      var chart = new google.charts.Bar(document.getElementById('bar'));
+		  	      chart.draw(data1, option1);
+		  	    }
+	  		
+	  		function draw4() {
+		  	      var data1 = new google.visualization.DataTable();
+		  	      data1.addColumn('string','Month ');
+		  	      data1.addColumn('number','Total By Month ');
+		  	     for(var ix=9;ix<12;ix++){
+		  	    	 data1.addRow([monthNames[parseInt(report[ix].project)-1],Number(report[ix].assign)]);    	
+		  	     }
+		  	      var option1 = {
+		  	    		  chart:{
+		  	    			  title:'Count of Issue',
+		  	    			 	
+		  	    		  },
+		  	    		  bars:'vertical',
+		  	      };
+		  	      var chart = new google.charts.Bar(document.getElementById('bar'));
+		  	      chart.draw(data1, option1);
+		  	    }
 	  			
 	  		}
 	    });
@@ -120,9 +208,30 @@ $.ajax({
 			</ul>
 			<br>
 			<div class="col-md-12">
+			<div class="col-md-6">
+	<label for="sel1">Select Month:</label>
+      <select class="form-control" id="sel1">
+      	<option value="0">All Month </option>
+        <option value="1">January-March</option>
+        <option value="2">April-June</option>
+        <option value="3">July-September</option>
+        <option value="4">October-December</option>
+      </select>
+			</div>
+			</div>
+				<br><br><br><br>
+			<div class="col-md-12">
+			<div class="panel panel-default col-md-6">
+			<div class="panel-body">
+			<div class="col-md-6" id="bar" style="width: 500px; height: 350px;"></div>
+			</div>
+			</div>
 			
-			<div class="col-md-6" id="bar" style="width: 550px; height: 350px;"></div>
-			<div class="col-md-6" id="piechart_3d" style="width: 550px; height: 500px;"></div>
+			<div class="panel panel-default col-md-6">
+			<div class="panel-body">
+			<div class="col-md-6" id="piechart_3d" style="width: 500px; height: 350px;"></div>
+			</div>
+			</div>
 			
 			</div>
 			

@@ -31,6 +31,7 @@ public class LoginController extends HttpServlet {
     private PersonDAO dao3;
     public static final String LOGIN = "/login.jsp";
     public static final String REGISTER = "/register.jsp";
+    public static final String MAIN = "/main.jsp";
    
     public LoginController() {
        dao = new LoginDAOImplementation();

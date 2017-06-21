@@ -23,6 +23,7 @@ public class Issue {
 	private long dueDateChecker;
 	private String email_id;
 	private String email_password;
+	private String fileName;
 
 
 	public int getIssueID() {
@@ -165,13 +166,21 @@ public class Issue {
 		this.email_password = email_password;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [issueID=" + issueID + ", project=" + project + ", assign=" + assign + ", title=" + title
 				+ ", description=" + description + ", severity=" + severity + ", priority=" + priority + ", dueDate="
 				+ dueDate + ", updateDate=" + updateDate + ", status=" + status + ", reporter=" + reporter
 				+ ", createDate=" + createDate + ", milestoneID=" + milestoneID + ", dueDateChecker=" + dueDateChecker
-				+ ", email_id=" + email_id + ", email_password=" + email_password + "]";
+				+ ", email_id=" + email_id + ", email_password=" + email_password + ", fileName=" + fileName + "]";
 	}
 	
 }

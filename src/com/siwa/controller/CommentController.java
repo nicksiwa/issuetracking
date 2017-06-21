@@ -19,6 +19,8 @@ import com.siwa.dao.CommentDAO;
 import com.siwa.dao.CommentDAOImplementation;
 import com.siwa.dao.EditStatusDAO;
 import com.siwa.dao.EditStatusDAOIM;
+import com.siwa.dao.FileDAO;
+import com.siwa.dao.FileDAOImplementation;
 import com.siwa.dao.IndexDAO;
 import com.siwa.dao.IndexDAOImplementation;
 import com.siwa.dao.IssueDAO;
@@ -43,6 +45,7 @@ public class CommentController extends HttpServlet {
 	private LabelDAO dao5;
 	private MilestoneDAO dao6;
 	private PersonDAO dao7;
+	private FileDAO dao8;
 	
 	private static final long serialVersionUID = 1L;
 	public static final String LIST_COMMENT = "/listComment.jsp";
@@ -62,6 +65,7 @@ public class CommentController extends HttpServlet {
 		dao5 = new LabelDAOImplementation();
 		dao6 = new MilestoneDAOImplementation();
 		dao7 = new PersonDAOImplementation();
+		dao8 = new FileDAOImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -208,6 +212,7 @@ public class CommentController extends HttpServlet {
 			request.setAttribute("milestones", dao6.getMilestoneByIssueId(issueID));
 			request.setAttribute("milestoneAssigns", dao6.getAssignMilestone(issueID));
 			request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+			request.setAttribute("files", dao8.getAllFileByIssueId(issueID));
 			
 			String assignusername = issue.getAssign();
 			Issue email = dao2.getEmailByUsername(assignusername);	
@@ -313,6 +318,11 @@ public class CommentController extends HttpServlet {
 		
 		request.setAttribute("issue", issue);
 		request.setAttribute("comments", dao2.getCommentByIssue(issueID));
+		request.setAttribute("labels", dao5.getAllLabelByIssueID(issueID));
+		request.setAttribute("labelAssigns", dao5.getAssignLabel(issueID));
+		request.setAttribute("milestones", dao6.getMilestoneByIssueId(issueID));
+		request.setAttribute("milestoneAssigns", dao6.getAssignMilestone(issueID));
+		request.setAttribute("files", dao8.getAllFileByIssueId(issueID));
 		RequestDispatcher view = request.getRequestDispatcher(ISSUE_DETAIL);
 		view.forward(request, response);
 

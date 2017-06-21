@@ -49,6 +49,7 @@ public class DownloadController extends HttpServlet {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				String fileName = result.getString("file_name");
+				String fileType = result.getString("file_type");
 				Blob blob = result.getBlob("file_data");
 				InputStream inputStream = blob.getBinaryStream();
 				int fileLength = inputStream.available();
@@ -69,6 +70,7 @@ public class DownloadController extends HttpServlet {
 				response.setHeader(headerKey, headerValue);
 
 				OutputStream outStream = response.getOutputStream();
+				outStream.flush();
 
 				byte[] buffer = new byte[BUFFER_SIZE];
 				int bytesRead = -1;
@@ -79,6 +81,7 @@ public class DownloadController extends HttpServlet {
 
 				inputStream.close();
 				outStream.close();
+
 			} else {
 				// no file found
 				response.getWriter().print("File not found for the id: " + uploadId);
